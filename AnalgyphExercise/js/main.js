@@ -1,6 +1,5 @@
 //TODO uncomment ajax call andcheck if works
 //TODO make arrows instead of buttons?
-//TODO rename buttons
 //TODO make close button works
 //TODO calibrate color
 
@@ -8,11 +7,11 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const imageUrl = "../assets/ThumbUp.png";
 
-let leftButton = document.getElementById("goLeftButton");
-let rightButton = document.getElementById("goRightButton");
+let easierButton = document.getElementById("goLeftButton");
+let harderButton = document.getElementById("goRightButton");
 
-let goLeft = false;
-let goRight = false;
+let easier = false;
+let harder = false;
 
 let leftPictureOffset = 0.001;
 let rightPictureOffset = 0.001;
@@ -28,6 +27,8 @@ let seconds;
 let score = 0;
 
 let startTime;
+
+let displayEndOfRoundMessage;
 
 window.onload = constructor;
 
@@ -61,30 +62,34 @@ function setUp() {
     }
 
     function createListeners() {
-        leftButton.onpointerdown = () => goLeft = true;
-        leftButton.onpointerup = () => goLeft = false;
-        leftButton.onpointerout = () => goLeft = false;
+        easierButton.onpointerdown = () => easier = true;
+        easierButton.onpointerup = () => easier = false;
+        easierButton.onpointerout = () => easier = false;
 
-        rightButton.onpointerdown = () => goRight = true;
-        rightButton.onpointerup = () => goRight = false;
-        rightButton.onpointerout = () => goRight = false;
+        harderButton.onpointerdown = () => harder = true;
+        harderButton.onpointerup = () => harder = false;
+        harderButton.onpointerout = () => harder = false;
 
-        document.addEventListener("keydown", (event) => {
-            if (event.code === 'ArrowLeft') {
-                goLeft = true;
-            }
-            if (event.code === 'ArrowRight') {
-                goRight = true;
-            }
-        });
-        document.addEventListener("keyup", (event) => {
-            if (event.code === 'ArrowLeft') {
-                goLeft = false;
-            }
-            if (event.code === 'ArrowRight') {
-                goRight = false;
-            }
-        })
+        document.addEventListener("keydown", keyDownListener);
+        document.addEventListener("keyup", keyUpListener)
+    }
+
+    function keyUpListener(event) {
+        if (event.code === 'ArrowLeft') {
+            easier = false;
+        }
+        if (event.code === 'ArrowRight') {
+            harder = false;
+        }
+    }
+
+    function keyDownListener(event) {
+        if (event.code === 'ArrowLeft') {
+            easier = true;
+        }
+        if (event.code === 'ArrowRight') {
+            harder = true;
+        }
     }
 
     function createTimer() {
@@ -106,11 +111,36 @@ function setUp() {
         }
 
         function timeOverHandler() {
+            displayEndOfRoundMessage = true;
+            removeListeners();
             saveDataToAPI()
+
+            let exitButton = document.getElementById("middleButton");
+            exitButton.style.visibility = 'visible';
+            exitButton.addEventListener("keydown", () => {
+                let new_window =
+                    open(location, '_self');
+
+                // Close this window
+                new_window.close();
+            })
+
+            function removeListeners() {
+                removeElementAllListeners("goLeftButton");
+                removeElementAllListeners("goRightButton");
+
+                function removeElementAllListeners(elementID) {
+                    let old_element = document.getElementById(elementID);
+                    let new_element = old_element.cloneNode(true);
+                    old_element.parentNode.replaceChild(new_element, old_element);
+                }
+
+                document.removeEventListener("keydown", keyDownListener);
+                document.removeEventListener("keyup", keyUpListener)
+            }
         }
 
         //TODO check if works
-
         function saveDataToAPI() {
             var currentLog = {
                 score: score,
@@ -158,7 +188,14 @@ function draw() {
     clearCanvas();
     drawTimer();
     drawScore();
+    drawEndOfTheRoundMessage();
     renderPictures();
+
+    function drawEndOfTheRoundMessage() {
+        if (displayEndOfRoundMessage) {
+            drawText("Great job, you have finished daily exercise!", context.canvas.width * 0.5, context.canvas.height * 0.5);
+        }
+    }
 
     function clearCanvas() {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -170,20 +207,20 @@ function draw() {
     }
 
     function drawScore() {
-        drawText("Score: " + score, context.canvas.width * 0.05, context.canvas.height * 0.15)
+        drawText("Score: " + score, context.canvas.width * 0.1, context.canvas.height * 0.15)
     }
 
     function drawTimer() {
-        drawText("Time: " + seconds, context.canvas.width * 0.05, context.canvas.height * 0.1);
+        drawText("Time: " + seconds, context.canvas.width * 0.1, context.canvas.height * 0.1);
     }
 
     function drawText(text, x, y) {
+        context.textAlign = "center";
         context.globalAlpha = 1;
         context.fillStyle = "white";
         context.font = "30px Arial";
         context.fillText(text, x, y);
         context.globalAlpha = 0.5;
-
     }
 
     function renderPicture(image, offset) {
@@ -197,10 +234,10 @@ function draw() {
 }
 
 function checkButtons() {
-    if (goLeft) {
+    if (easier) {
         decreaseOfssets();
     }
-    if (goRight) {
+    if (harder) {
         increaseOffsets();
         if (rightPictureOffset > lastOffset) {
             score++;
