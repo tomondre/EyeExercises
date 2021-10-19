@@ -115,6 +115,9 @@ function setUp() {
             removeListeners();
             saveDataToAPI()
 
+            easier = false;
+            harder = false;
+
             let exitButton = document.getElementById("middleButton");
             exitButton.style.visibility = 'visible';
             exitButton.addEventListener("keydown", () => {

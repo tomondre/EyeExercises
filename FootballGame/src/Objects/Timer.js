@@ -26,8 +26,7 @@ export default class Timer {
     }
 
     update() {
-        if (this.timerText !== null)
-            this.timerText.setText("Time: " + this.time);
+        this.timerText.setText("Time: " + this.time)
     }
 
     reset() {
@@ -36,16 +35,11 @@ export default class Timer {
 
     sec() {
         this.time -= 1;
+
         if (this.time === 0) {
             clearInterval(this.interval);
             this.timeOverCB();
         }
-        this.update();
-    }
-
-    stop() {
-        clearInterval(this.interval);
-        this.time = 0;
         this.update();
     }
 
@@ -54,7 +48,6 @@ export default class Timer {
     }
 
     continue() {
-        if (this.time !== 0)
-            this.interval = setInterval(() => this.sec(), 1000);
+        this.interval = setInterval(() => this.sec(), 1000);
     }
 }

@@ -103,12 +103,6 @@ table {
     align-items: center;
 }
 
-#changeEyeButton {
-    position: absolute;
-    left: 10%;
-    top: 10%;
-    visibility: hidden;
-}
 
 @media screen and (min-width: 1204px) {
     #spaceButton {

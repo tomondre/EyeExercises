@@ -14,17 +14,14 @@ export default function EndLevelMessage(scene, level, callback) {
     let text = null;
 
     let textFunction = function () {
-        if (time === 0){
+        if (time === 0)
             callback();
-            clearInterval(interval);
-            text.destroy();
-        }
         if (text !== null)
             text.destroy();
         text = scene.add.text(windowWidth / 2, windowHeight / 2, CONFIG.messages.endLevel.firstPart + level + CONFIG.messages.endLevel.secondPart + time + CONFIG.messages.endLevel.thirdPart, endMessageStyle);
         text.setOrigin(0.5);
         time--;
     }
-    let interval = setInterval(() => textFunction(), 1000);
     textFunction();
+    setInterval(() => textFunction(), 1000);
 }

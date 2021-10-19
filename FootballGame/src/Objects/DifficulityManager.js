@@ -25,11 +25,6 @@ export default class DifficultyManager {
     //     }
     // }
 
-    setDifficulty(difficulty)
-    {
-       this.currentDifficulty = difficulty;
-    }
-
     getCurrentDifficulty() {
         return this.difficulties[this.currentDifficulty]
     }
@@ -49,6 +44,7 @@ export default class DifficultyManager {
             return;
         }
         this.currentDifficulty++;
+        console.log("Difficulty increased");
     }
 
     decreaseDifficulty() {

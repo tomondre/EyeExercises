@@ -35,6 +35,10 @@ export const CONFIG = {
             "text": "Level failed. Try again",
             "button": "Confirm",
         },
+        "changeEye": {
+            "text": "Change Eye",
+            "button": "Confirm"
+        },
         "gameFinished": {
             "text": "Congratulation, you have successfully finished the game!",
             "button": "Exit",
@@ -176,7 +180,7 @@ export const CONFIG = {
         "rightSpanXMax": 0.90,
 
         "dotSize": 5,
-        "lowerIntervalLimit": 350,
+        "lowerIntervalLimit": 0,
         "upperIntervalLimit": 372,
 
         "numberOfSymbols": 4
