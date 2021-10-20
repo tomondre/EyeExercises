@@ -25,6 +25,13 @@ export default class SymbolLevel extends Phaser.Scene {
         this.createObjects();
     }
 
+    setSymbolType(level) {
+        levelNo = level;
+        this.symbolManager.setLevel(level);
+        FetchDataManager.saveEyeLevelIndex(CST.EYE.RIGHT, levelNo);
+        console.log("eye saved");
+    }
+
     createObjects() {
         this.APIcall = new APIcall();
         this.eyeManager = new EyeManager(this);
@@ -40,7 +47,6 @@ export default class SymbolLevel extends Phaser.Scene {
     }
 
     create() {
-        FetchDataManager.saveEyeLevelIndex(CST.EYE.RIGHT, levelNo);
         this.APIcall.create();
         this.levelPassedManager.create();
         BackgroundImage(this);
@@ -57,6 +63,7 @@ export default class SymbolLevel extends Phaser.Scene {
     update() {
     }
 
+
     createBall() {
         this.ball.createBall(this.difficultyManager.getCurrentDifficulty())
         if (this.symbolManager.isToGenerateSymbol()) {
@@ -70,7 +77,6 @@ export default class SymbolLevel extends Phaser.Scene {
             this.symbolManager.removeSymbol()
         }
     }
-
 
     displaySymbolOptions() {
         let options = this.symbolManager.getOptions(this.difficultyManager.getCurrentDifficulty());
@@ -117,11 +123,6 @@ export default class SymbolLevel extends Phaser.Scene {
         this.difficultyManager.reset();
     }
 
-    setSymbolType(level) {
-        levelNo = level;
-        this.symbolManager.setLevel(level);
-    }
-
     roundFinished() {
         this.intervalManager.reset();
         clearTimeout(symbolTimeout);
@@ -145,7 +146,6 @@ export default class SymbolLevel extends Phaser.Scene {
     }
 
     restartLevel() {
-        this.saveDataToAPI();
         this.eyeManager.switchEye();
         this.reset();
         this.create();

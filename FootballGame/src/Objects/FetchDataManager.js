@@ -7,7 +7,7 @@ export default class FetchDataManager {
     {
         var index =  window.localStorage.getItem("903/Level/" + eye.toString());
         if (index === null)
-            return 0;
+            return 1;
         else
             return  index;
     }

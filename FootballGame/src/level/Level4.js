@@ -9,7 +9,6 @@ export default class Level4 extends SymbolLevel
 
     init()
     {
-        window.localStorage.setItem("SavedLevel", "4");
         this.createObjects();
         this.create();
         super.setSymbolType(4);
