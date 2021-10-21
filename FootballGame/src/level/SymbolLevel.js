@@ -29,7 +29,6 @@ export default class SymbolLevel extends Phaser.Scene {
         levelNo = level;
         this.symbolManager.setLevel(level);
         FetchDataManager.saveEyeLevelIndex(CST.EYE.RIGHT, levelNo);
-        console.log("eye saved");
     }
 
     createObjects() {
