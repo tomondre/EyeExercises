@@ -6,8 +6,13 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/FootballGame/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/FootballGame/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
+      <excludeFolder url="file://$MODULE_DIR$/FootballGame" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/p5" level="application" />
   </component>
 </module>
