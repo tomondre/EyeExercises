@@ -60,12 +60,12 @@ function Cell(i, j) {
                mouseY > y && mouseY < y + w;
     }
     this.highlightFirst = function (r, g, b) {
-        let c = config.firstTile;
+        let c = config.tile.firstTile;
         this.highlight(c.R, c.G, c.B, 0, lineWidth);
     }
 
     this.highlightLast = function (r, g, b) {
-        let c = config.firstTile;
+        let c = config.tile.firstTile;
         this.highlight(c.R, c.G, c.B, lineWidth, 0);
     }
 

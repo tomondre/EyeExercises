@@ -12,6 +12,8 @@
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 
+//TODO not listen to the collision on first and last cell
+
 let cols, rows;
 let w = 50;
 let grid = [];
@@ -19,23 +21,28 @@ let current;
 let stack = [];
 
 let canvas;
+let canvasWidth = 600;
 let lineWidth = 5;
 function setup() {
-    canvas = createCanvas(600, 600);
+    canvas = createCanvas(canvasWidth, canvasWidth);
     strokeWeight(lineWidth);
     canvas.position(window.innerWidth / 2 - (canvas.width / 2), window.innerHeight / 2 - (canvas.height / 2))
     cols = floor(width / w);
     rows = floor(height / w);
 
-    for (let j = 0; j < rows; j++) {
-        for (let i = 0; i < cols; i++) {
-            var cell = new Cell(i, j);
-            grid.push(cell);
+    createObjects()
+    function createObjects() {
+        for (let j = 0; j < rows; j++) {
+            for (let i = 0; i < cols; i++) {
+                var cell = new Cell(i, j);
+                grid.push(cell);
+            }
         }
     }
     current = grid[0];
     generate();
 }
+
 
 function generate() {
     while (true) {
@@ -75,20 +82,27 @@ var gameStarted = false;
 
 function checkBoundaries() {
     if (gameStarted) {
-        for (let i = 0; i < grid.length-1; i++) {
+        for (let i = 0; i < grid.length - 1; i++) {
             if (grid[i].checkColision(mouseX, mouseY)) {
                 console.log("colision");
+                return;
             }
         }
         if (grid[grid.length - 1].isHoverOver(mouseX, mouseY))
         {
             console.log("game finished")
+            return;
+        }
+        if ((mouseX < 0 - w || mouseX > canvasWidth + w) ||
+            mouseY < 0 - w || mouseY > canvasWidth + w) {
+            gameStarted = false;
+            document.body.style.cursor = "default";
         }
     } else {
         if ((mouseX > 0 && mouseX < w) &&
             mouseY > 0 && mouseY < w) {
             gameStarted = true;
-            document.body.style.cursor = "url('../img/CursorCar.png')12 25, auto";
+            document.body.style.cursor = "url('../img/CursorCar.png')8 26, auto";
         }
     }
 }
