@@ -10,6 +10,8 @@
       <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
       <excludeFolder url="file://$MODULE_DIR$/FootballGame" />
       <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
+      <excludeFolder url="file://$MODULE_DIR$/Maze/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Maze/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

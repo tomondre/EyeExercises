@@ -11,20 +11,31 @@
 // Depth-first search
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
+import {config} from "./config"
 
-function Cell(i, j) {
-    this.i = i;
-    this.j = j;
-    this.walls = [true, true, true, true];
-    this.visited = false;
+let w = config.tile.width;
+let lineWidth = config.maze.lineWidth;
+let cols, rows;
+let grid;
 
-    this.checkNeighbors = function () {
+export default class Cell {
+    constructor(i, j, sketch, _grid) {
+        grid = _grid
+        this.sketch = sketch
+        this.i = i;
+        this.j = j;
+        this.walls = [true, true, true, true];
+        this.visited = false;
+        cols = sketch.floor(sketch.canvas.width / w);
+        rows = sketch.floor(sketch.canvas.width / w);
+    }
+
+    checkNeighbors() {
         let neighbors = [];
-
-        let top = grid[index(i, j - 1)];
-        let right = grid[index(i + 1, j)];
-        let bottom = grid[index(i, j + 1)];
-        let left = grid[index(i - 1, j)];
+        let top = grid[this.index(this.i, this.j - 1)];
+        let right = grid[this.index(this.i + 1, this.j)];
+        let bottom = grid[this.index(this.i, this.j + 1)];
+        let left = grid[this.index(this.i - 1, this.j)];
 
         if (top && !top.visited) {
             neighbors.push(top);
@@ -40,36 +51,37 @@ function Cell(i, j) {
         }
 
         if (neighbors.length > 0) {
-            let r = floor(random(0, neighbors.length));
+            let r = this.sketch.floor(this.sketch.random(0, neighbors.length));
             return neighbors[r];
         } else {
             return undefined;
         }
     };
-    this.highlight = function (r, g, b, leftTopOffset, rightBottomOffset) {
+
+    highlight(r, g, b, leftTopOffset, rightBottomOffset) {
         let x = this.i * w;
         let y = this.j * w;
-        noStroke();
-        fill(r, g, b, 100);
-        rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);
+        this.sketch.noStroke();
+        this.sketch.fill(r, g, b, 100);
+        this.sketch.rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);
     };
-    this.isHoverOver = function (mouseX, mouseY) {
+    isHoverOver(mouseX, mouseY) {
         let x = this.i * w;
         let y = this.j * w;
         return mouseX > x && mouseX < x + w &&
                mouseY > y && mouseY < y + w;
     }
-    this.highlightFirst = function (r, g, b) {
+    highlightFirst() {
         let c = config.tile.firstTile;
         this.highlight(c.R, c.G, c.B, 0, lineWidth);
     }
 
-    this.highlightLast = function (r, g, b) {
-        let c = config.tile.firstTile;
+    highlightLast() {
+        let c = config.tile.lastTile;
         this.highlight(c.R, c.G, c.B, lineWidth, 0);
     }
 
-    this.checkColision = function (mX, mY) {
+    checkColision(mX, mY) {
         let x = this.i * w;
         let y = this.j * w;
         if (this.walls[0]) {
@@ -99,21 +111,28 @@ function Cell(i, j) {
         return false;
     }
 
-    this.show = function () {
+    show() {
         let x = this.i * w;
         let y = this.j * w;
-        stroke(255);
+        this.sketch.stroke(255);
         if (this.walls[0]) {
-            line(x, y, x + w, y);
+            this.sketch.line(x, y, x + w, y);
         }
         if (this.walls[1]) {
-            line(x + w, y, x + w, y + w);
+            this.sketch.line(x + w, y, x + w, y + w);
         }
         if (this.walls[2]) {
-            line(x + w, y + w, x, y + w);
+            this.sketch.line(x + w, y + w, x, y + w);
         }
         if (this.walls[3]) {
-            line(x, y + w, x, y);
+            this.sketch.line(x, y + w, x, y);
         }
-    };
+    }
+
+    index(i, j) {
+        if (i < 0 || j < 0 || i > cols - 1 || j > rows - 1) {
+            return -1;
+        }
+        return i + j * cols;
+    }
 }
