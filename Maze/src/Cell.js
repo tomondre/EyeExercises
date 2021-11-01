@@ -26,8 +26,8 @@ export default class Cell {
         this.j = j;
         this.walls = [true, true, true, true];
         this.visited = false;
-        cols = sketch.floor(sketch.canvas.width / w);
-        rows = sketch.floor(sketch.canvas.width / w);
+        cols = sketch.floor(config.canvas.width / w);
+        rows = sketch.floor(config.canvas.width / w);
     }
 
     checkNeighbors() {

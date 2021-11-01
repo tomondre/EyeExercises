@@ -32,7 +32,7 @@ export default class Grid {
             }
         }
         current = grid[0];
-        this.generate();
+        // this.generate();
     }
 
     generate() {
@@ -56,12 +56,13 @@ export default class Grid {
             } else {
                 return;
             }
-            console.log(grid);
+                current.highlightLast();
         }
     }
 
     draw() {
         sketch.background(51);
+        this.generate();
         grid[0].highlightFirst();
         for (let i = 1; i < grid.length - 1; i++) {
             grid[i].show();

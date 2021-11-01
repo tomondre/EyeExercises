@@ -32,7 +32,6 @@ const s = (sketch) => {
         canvas = sketch.createCanvas(canvasWidth, canvasWidth);
         sketch.strokeWeight(lineWidth);
         canvas.position(window.innerWidth / 2 - (canvas.width / 2), window.innerHeight / 2 - (canvas.height / 2))
-
         createObjects()
 
         function createObjects() {
