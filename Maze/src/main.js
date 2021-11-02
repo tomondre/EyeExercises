@@ -12,38 +12,21 @@
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 
-//TODO not listen to the collision on first and last cell
-
-
-import Cell from "./Cell";
 import p5 from "p5";
-import {config} from "./config";
-import Grid from "./Grid";
+import Game from "./Game";
 
 //Wrapper for p5.js
 const s = (sketch) => {
-    let canvas;
-    let canvasWidth = config.canvas.width;
-    let lineWidth = 5;
-
-    let grid;
+    let game;
 
     sketch.setup = function () {
-        canvas = sketch.createCanvas(canvasWidth, canvasWidth);
-        sketch.strokeWeight(lineWidth);
-        canvas.position(window.innerWidth / 2 - (canvas.width / 2), window.innerHeight / 2 - (canvas.height / 2))
-        createObjects()
+        sketch.createCanvas(window.innerWidth, window.innerHeight);
 
-        function createObjects() {
-            grid = new Grid(sketch);
-        }
-        grid.setup()
+        game = new Game(sketch);
     }
-
 
     sketch.draw = function () {
-        grid.draw();
+        game.draw();
     }
-
 }
-let myp5 = new p5(s);
+new p5(s);

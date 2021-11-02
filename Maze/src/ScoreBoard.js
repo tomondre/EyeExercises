@@ -1,9 +1,14 @@
 let score = 0;
+let sketch;
 
 export default class ScoreBoard {
+    constructor(Sketch) {
+        sketch = Sketch;
+    }
+
     draw() {
-        fill("white");
-        text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.1);
+        sketch.fill("white");
+        sketch.text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.1);
     }
     increaseScore()
     {

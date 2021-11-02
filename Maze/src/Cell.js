@@ -12,11 +12,15 @@
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 import {config} from "./config"
+import Helper from "./Helper";
 
 let w = config.tile.width;
 let lineWidth = config.maze.lineWidth;
 let cols, rows;
 let grid;
+let gridOffsetX;
+let gridOffsetY
+
 
 export default class Cell {
     constructor(i, j, sketch, _grid) {
@@ -28,6 +32,9 @@ export default class Cell {
         this.visited = false;
         cols = sketch.floor(config.canvas.width / w);
         rows = sketch.floor(config.canvas.width / w);
+        let offsets = Helper.getOffsets();
+        gridOffsetX = offsets.offsetX;
+        gridOffsetY = offsets.offsetY;
     }
 
     checkNeighbors() {
@@ -59,15 +66,18 @@ export default class Cell {
     };
 
     highlight(r, g, b, leftTopOffset, rightBottomOffset) {
-        let x = this.i * w;
-        let y = this.j * w;
+        let coordinates = this.getXYcoordinates();
+        let x = coordinates.x;
+        let y = coordinates.y;
+
         this.sketch.noStroke();
         this.sketch.fill(r, g, b, 100);
         this.sketch.rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);
     };
     isHoverOver(mouseX, mouseY) {
-        let x = this.i * w;
-        let y = this.j * w;
+        let coordinates = this.getXYcoordinates();
+        let x = coordinates.x;
+        let y = coordinates.y;
         return mouseX > x && mouseX < x + w &&
                mouseY > y && mouseY < y + w;
     }
@@ -82,8 +92,10 @@ export default class Cell {
     }
 
     checkColision(mX, mY) {
-        let x = this.i * w;
-        let y = this.j * w;
+        let coordinates = this.getXYcoordinates();
+        let x = coordinates.x;
+        let y = coordinates.y;
+
         if (this.walls[0]) {
             if (mX > x - lineWidth && mX < x + w + lineWidth &&
                 mY > y - lineWidth && mY < y + lineWidth) {
@@ -112,8 +124,9 @@ export default class Cell {
     }
 
     show() {
-        let x = this.i * w;
-        let y = this.j * w;
+        let coordinates = this.getXYcoordinates();
+        let x = coordinates.x;
+        let y = coordinates.y;
         this.sketch.stroke(255);
         if (this.walls[0]) {
             this.sketch.line(x, y, x + w, y);
@@ -134,5 +147,12 @@ export default class Cell {
             return -1;
         }
         return i + j * cols;
+    }
+
+    getXYcoordinates()
+    {
+        let x = this.i * w + gridOffsetX;
+        let y = this.j * w + gridOffsetY;
+        return {x, y};
     }
 }
