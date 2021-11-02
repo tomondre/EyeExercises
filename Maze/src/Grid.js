@@ -1,30 +1,37 @@
 import Cell from "./Cell";
 import {config} from "./config";
-
-//TODO generating algorithm not working - check
-
+import CarCursor from "./CarCursor";
+import ObserverSupport from "./observer/ObserverSupport";
+import {ObserverChange} from "./observer/ObserverChange";
+import Helper from "./Helper";
 
 let grid = [];
 let cols, rows;
 let current;
 let stack = [];
 let w = config.tile.width;
+let lineWidth = config.maze.lineWidth;
 
-var gameStarted = false;
+let gameStarted = false;
 
 let sketch;
-let canvasWidth
+let mazeWidth = config.canvas.width;
+let mazeOffsetX = Helper.getOffsets().offsetX;
+let mazeOffsetY = Helper.getOffsets().offsetY;
+
+let observerSupport;
 
 export default class Grid {
 
     constructor(Sketch) {
         sketch = Sketch;
-        canvasWidth = config.canvas.width;
+        observerSupport = new ObserverSupport();
+        this.setup();
     }
 
     setup() {
-        cols = sketch.floor(canvasWidth / w);
-        rows = sketch.floor(canvasWidth / w);
+        cols = sketch.floor(mazeWidth / w);
+        rows = sketch.floor(mazeWidth / w);
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols; i++) {
                 var cell = new Cell(i, j, sketch, grid);
@@ -32,10 +39,11 @@ export default class Grid {
             }
         }
         current = grid[0];
-        // this.generate();
+        this.generate();
     }
 
     generate() {
+        sketch.strokeWeight(lineWidth);
         while (true) {
             current.visited = true;
             // STEP 1
@@ -61,38 +69,38 @@ export default class Grid {
     }
 
     draw() {
-        sketch.background(51);
-        this.generate();
-        grid[0].highlightFirst();
+        sketch.background(0);
         for (let i = 1; i < grid.length - 1; i++) {
             grid[i].show();
         }
+        grid[0].highlightFirst();
         grid[grid.length - 1].highlightLast();
         this.checkBoundaries();
     }
 
     checkBoundaries() {
+
         if (gameStarted) {
             for (let i = 0; i < grid.length - 1; i++) {
                 if (grid[i].checkColision(sketch.mouseX, sketch.mouseY)) {
-                    console.log("colision");
+                    observerSupport.fire(ObserverChange.collision);
                     return;
                 }
             }
             if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
-                console.log("game finished")
+                observerSupport.fire(ObserverChange.mazeFinished);
                 return;
             }
-            if ((sketch.mouseX < 0 - w || sketch.mouseX > canvasWidth + w) ||
-                sketch.mouseY < 0 - w || sketch.mouseY > canvasWidth + w) {
+            if ((sketch.mouseX < mazeOffsetX - w || sketch.mouseX > mazeWidth + mazeOffsetX + w) ||
+                sketch.mouseY < mazeOffsetY - w || sketch.mouseY > mazeWidth + mazeOffsetY + w) {
                 gameStarted = false;
-                document.body.style.cursor = "default";
+                observerSupport.fire(ObserverChange.pointerOutsideMaze);
             }
         } else {
-            if ((sketch.mouseX > 0 && sketch.mouseX < w) &&
-                sketch.mouseY > 0 && sketch.mouseY < w) {
+            if ((sketch.mouseX > mazeOffsetX && sketch.mouseX < mazeOffsetX + w) &&
+                sketch.mouseY > mazeOffsetY && sketch.mouseY < mazeOffsetY +  w) {
                 gameStarted = true;
-                document.body.style.cursor = "url('./img/CursorCar.png')8 26, auto";
+                observerSupport.fire(ObserverChange.pointerOnFirstTile);
             }
         }
     }
@@ -114,5 +122,15 @@ export default class Grid {
             a.walls[2] = false;
             b.walls[0] = false;
         }
+    }
+
+    subscribe(observer)
+    {
+        observerSupport.subscribe(observer);
+    }
+
+    unsubscribe(observer)
+    {
+        observerSupport.unsubscribe(observer);
     }
 }
