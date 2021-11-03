@@ -21,21 +21,14 @@ export default class CarCursor {
             let x = sketch.pmouseX - sketch.mouseX;
             let y = sketch.pmouseY - sketch.mouseY
 
-            // sketch.translate(defaultCarSize.x / 2, defaultCarSize.y / 2)
-            if (x === 0 && y === 0) {
-
-            } else if (x > 0 && y > 0) {
+            if (x > 0 && y > 0) {
                 angle = 135;
-                console.log("left up")
             } else if (x > 0 && y < 0) {
                 angle = 45;
-                console.log("left down")
             } else if (x < 0 && y < 0) {
                 angle = 315;
-                console.log("right down")
             } else if (x < 0 && y > 0) {
                 angle = 225;
-                console.log("right up")
             } else if (x === 0 && y < 0) {
                 angle = 0;
             } else if (x === 0 && y > 0) {

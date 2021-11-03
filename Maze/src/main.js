@@ -12,6 +12,7 @@
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 
+import {config} from "./config";
 import p5 from "p5";
 import Game from "./Game";
 

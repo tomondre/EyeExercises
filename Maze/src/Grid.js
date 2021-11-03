@@ -8,7 +8,7 @@ let grid = [];
 let cols, rows;
 let current;
 let stack = [];
-let w = config.tile.width;
+let w;
 let lineWidth = config.maze.lineWidth;
 
 let gameStarted = false;
@@ -24,16 +24,18 @@ export default class Grid {
     constructor(Sketch) {
         sketch = Sketch;
         observerSupport = new ObserverSupport();
-        this.setup();
     }
 
-    setup() {
+    setup(numberOfColumns) {
+        w = sketch.floor(mazeWidth / numberOfColumns);
+        cols = numberOfColumns;
+        rows = numberOfColumns;
         grid = [];
         cols = sketch.floor(mazeWidth / w);
         rows = sketch.floor(mazeWidth / w);
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols; i++) {
-                var cell = new Cell(i, j, sketch, grid);
+                var cell = new Cell(i, j, sketch, grid, w, cols);
                 grid.push(cell);
             }
         }
@@ -60,7 +62,8 @@ export default class Grid {
 
             } else if (stack.length > 0) {
                 current = stack.pop();
-            } else {
+            }
+            else {
                 return;
             }
         }
@@ -85,6 +88,7 @@ export default class Grid {
                 }
             }
             if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
+                gameStarted = false;
                 observerSupport.fire(ObserverChange.mazeFinished);
                 return;
             }

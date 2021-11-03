@@ -10,7 +10,6 @@ export const config = {
             G: 0,
             B: 255,
         },
-        width: 100
     },
     maze: {
         lineWidth: 5
@@ -30,5 +29,22 @@ export const config = {
             x: 26,
             y: 52
         }
-    }
+    },
+    difficulties: [{
+        difficulty: 1,
+        numberOfMazes: 2,
+        numberOfColumns: 6
+    }, {
+        difficulty: 2,
+        numberOfMazes: 3,
+        numberOfColumns: 7
+    }, {
+        difficulty: 3,
+        numberOfMazes: 2,
+        numberOfColumns: 8,
+    },{
+        difficulty: 3,
+        numberOfMazes: 7,
+        numberOfColumns: 9,
+    }]
 }

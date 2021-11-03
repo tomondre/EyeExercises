@@ -14,7 +14,7 @@
 import {config} from "./config"
 import Helper from "./Helper";
 
-let w = config.tile.width;
+let w;
 let lineWidth = config.maze.lineWidth;
 let cols, rows;
 let grid;
@@ -23,15 +23,16 @@ let gridOffsetY
 
 
 export default class Cell {
-    constructor(i, j, sketch, _grid) {
+    constructor(i, j, sketch, _grid, _w, _cols) {
+        cols = _cols;
+        rows = _cols;
+        w = _w;
         grid = _grid
         this.sketch = sketch
         this.i = i;
         this.j = j;
         this.walls = [true, true, true, true];
         this.visited = false;
-        cols = sketch.floor(config.canvas.width / w);
-        rows = sketch.floor(config.canvas.width / w);
         let offsets = Helper.getOffsets();
         gridOffsetX = offsets.offsetX;
         gridOffsetY = offsets.offsetY;
