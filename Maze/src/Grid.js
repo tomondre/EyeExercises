@@ -1,6 +1,5 @@
 import Cell from "./Cell";
 import {config} from "./config";
-import CarCursor from "./CarCursor";
 import ObserverSupport from "./observer/ObserverSupport";
 import {ObserverChange} from "./observer/ObserverChange";
 import Helper from "./Helper";
@@ -22,7 +21,6 @@ let mazeOffsetY = Helper.getOffsets().offsetY;
 let observerSupport;
 
 export default class Grid {
-
     constructor(Sketch) {
         sketch = Sketch;
         observerSupport = new ObserverSupport();
@@ -30,6 +28,7 @@ export default class Grid {
     }
 
     setup() {
+        grid = [];
         cols = sketch.floor(mazeWidth / w);
         rows = sketch.floor(mazeWidth / w);
         for (let j = 0; j < rows; j++) {
@@ -64,7 +63,6 @@ export default class Grid {
             } else {
                 return;
             }
-                current.highlightLast();
         }
     }
 
@@ -79,9 +77,8 @@ export default class Grid {
     }
 
     checkBoundaries() {
-
         if (gameStarted) {
-            for (let i = 0; i < grid.length - 1; i++) {
+            for (let i = 1; i < grid.length - 1; i++) {
                 if (grid[i].checkColision(sketch.mouseX, sketch.mouseY)) {
                     observerSupport.fire(ObserverChange.collision);
                     return;
@@ -91,8 +88,8 @@ export default class Grid {
                 observerSupport.fire(ObserverChange.mazeFinished);
                 return;
             }
-            if ((sketch.mouseX < mazeOffsetX - w || sketch.mouseX > mazeWidth + mazeOffsetX + w) ||
-                sketch.mouseY < mazeOffsetY - w || sketch.mouseY > mazeWidth + mazeOffsetY + w) {
+            if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
+                sketch.mouseY < mazeOffsetY || sketch.mouseY > mazeWidth + mazeOffsetY) {
                 gameStarted = false;
                 observerSupport.fire(ObserverChange.pointerOutsideMaze);
             }
@@ -122,6 +119,14 @@ export default class Grid {
             a.walls[2] = false;
             b.walls[0] = false;
         }
+    }
+
+    getCarPosition()
+    {
+        let result = grid[0].getMiddlePoint();
+        result.x -= config.car.size.x / 2;
+        result.y -= config.car.size.y / 2;
+        return result;
     }
 
     subscribe(observer)

@@ -74,13 +74,15 @@ export default class Cell {
         this.sketch.fill(r, g, b, 100);
         this.sketch.rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);
     };
+
     isHoverOver(mouseX, mouseY) {
         let coordinates = this.getXYcoordinates();
         let x = coordinates.x;
         let y = coordinates.y;
         return mouseX > x && mouseX < x + w &&
-               mouseY > y && mouseY < y + w;
+            mouseY > y && mouseY < y + w;
     }
+
     highlightFirst() {
         let c = config.tile.firstTile;
         this.highlight(c.R, c.G, c.B, 0, lineWidth);
@@ -149,8 +151,14 @@ export default class Cell {
         return i + j * cols;
     }
 
-    getXYcoordinates()
-    {
+    getMiddlePoint() {
+        let coordinates = this.getXYcoordinates();
+        let x = coordinates.x + (w / 2);
+        let y = coordinates.y + (w / 2);
+        return {x, y}
+    }
+
+    getXYcoordinates() {
         let x = this.i * w + gridOffsetX;
         let y = this.j * w + gridOffsetY;
         return {x, y};
