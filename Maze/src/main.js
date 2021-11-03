@@ -21,7 +21,7 @@ const s = (sketch) => {
 
     sketch.setup = function () {
         sketch.createCanvas(window.innerWidth, window.innerHeight);
-
+        sketch.frameRate(config.game.frameRate);
         game = new Game(sketch);
     }
 

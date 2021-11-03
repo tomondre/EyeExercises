@@ -12,8 +12,11 @@ export const config = {
         },
         width: 100
     },
-    maze:{
+    maze: {
         lineWidth: 5
+    },
+    game: {
+        frameRate: 30
     },
     score: {
         scoreIncrease: 2,
@@ -21,5 +24,11 @@ export const config = {
     },
     canvas: {
         width: 600
+    },
+    car: {
+        size: {
+            x: 26,
+            y: 52
+        }
     }
 }
