@@ -7,6 +7,7 @@ let sketch;
 let grid;
 let scoreBoard;
 
+
 let cursor;
 
 export default class Game {
@@ -15,24 +16,30 @@ export default class Game {
 
         grid = new Grid(sketch);
         scoreBoard = new ScoreBoard(sketch);
-        cursor = new CarCursor(sketch.canvas);
-
+        cursor = new CarCursor(sketch, grid.getCarPosition());
         grid.subscribe(this);
     }
 
     draw() {
         grid.draw();
         scoreBoard.draw();
+        cursor.draw();
+    }
+
+    mazeFinishedHandler() {
+            grid.setup();
+            console.log("game finished");
+            cursor.remove();
     }
 
     observerChange(action) {
         switch (action) {
             case ObserverChange.collision:
                 console.log("collision");
-                cursor.lock();
+                scoreBoard.decreaseScore();
                 break;
             case ObserverChange.mazeFinished:
-                console.log("game finished");
+                this.mazeFinishedHandler();
                 break;
             case ObserverChange.pointerOnFirstTile:
                 console.log("pointerOnFirstTile");
