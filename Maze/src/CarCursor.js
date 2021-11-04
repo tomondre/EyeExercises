@@ -44,6 +44,7 @@ export default class CarCursor {
             sketch.imageMode(sketch.CENTER);
             sketch.image(img, 0, 0, defaultCarSize.x, defaultCarSize.y)
         } else {
+            sketch.imageMode(sketch.CENTER);
             sketch.image(img, defaultCarCoordinates.x, defaultCarCoordinates.y, defaultCarSize.x, defaultCarSize.y);
         }
     }
