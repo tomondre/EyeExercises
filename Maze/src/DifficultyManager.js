@@ -1,10 +1,19 @@
 import {config} from "./config";
+import ObserverSupport from "./observer/ObserverSupport";
+import {ObserverChange} from "./observer/ObserverChange";
 
 let difficulties = config.difficulties;
 let currentDifficulty = 0;
 let numberOfMazeSolved = 0;
+let currentLevel = 0;
+
+let support;
 
 export default class DifficultyManager {
+
+    constructor() {
+        support = new ObserverSupport();
+    }
 
     increaseDifficulty() {
         currentDifficulty++;
@@ -15,33 +24,38 @@ export default class DifficultyManager {
         return difficulties[currentDifficulty].difficulty;
     }
 
-    getCurrentColumnNo()
-    {
+    getCurrentColumnNo() {
         return difficulties[currentDifficulty].numberOfColumns;
     }
 
     mazeSolved() {
         numberOfMazeSolved++;
-        if (this.isDifficultyFinished()) {
+        if (numberOfMazeSolved === difficulties[currentDifficulty].numberOfMazes) {
             numberOfMazeSolved = 0;
-            this.increaseDifficulty();
+            currentDifficulty++;
+
+            if (currentDifficulty === difficulties.length) {
+                currentDifficulty = 0;
+                currentLevel++;
+
+                if (currentLevel === 2) {
+                    support.fire(ObserverChange.gameFinished);
+                }
+                else {
+                    support.fire(ObserverChange.levelFinished);
+                }
+            }
+            else {
+                support.fire(ObserverChange.difficultyFinished)
+            }
         }
     }
 
-    isLevelFinished() {
-        if (this.isDifficultyFinished() && currentDifficulty >= difficulties.length)
-        {
-            numberOfMazeSolved = 0;
-            return true;
-        }
-        return false;
+    subscribe(observer) {
+        support.subscribe(observer)
     }
 
-    isDifficultyFinished() {
-        if (difficulties[currentDifficulty] === undefined) {
-            numberOfMazeSolved = 0;
-            return true;
-        }
-        return numberOfMazeSolved >= (difficulties[currentDifficulty].numberOfMazes);
+    unsubscribe(observer) {
+        support.unsubscribe(observer);
     }
 }

@@ -1,8 +1,8 @@
 import Cell from "./Cell";
-import {config} from "./config";
-import ObserverSupport from "./observer/ObserverSupport";
-import {ObserverChange} from "./observer/ObserverChange";
-import Helper from "./Helper";
+import {config} from "../config";
+import ObserverSupport from "../observer/ObserverSupport";
+import {ObserverChange} from "../observer/ObserverChange";
+import Helper from "../Helper";
 
 let grid = [];
 let cols, rows;
@@ -89,7 +89,7 @@ export default class Grid {
             }
             if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
                 gameStarted = false;
-                observerSupport.fire(ObserverChange.mazeFinished);
+                observerSupport.fire(ObserverChange.difficultyFinished);
                 return;
             }
             if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||

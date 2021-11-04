@@ -1,6 +1,8 @@
 export const ObserverChange = {
     collision: "collision",
-    mazeFinished: "finished",
+    difficultyFinished: "difficultyFnished",
+    levelFinished: "levelFinished",
     pointerOutsideMaze: "pointerOutsideMaze",
-    pointerOnFirstTile: "pointerOnFirstTile"
+    pointerOnFirstTile: "pointerOnFirstTile",
+    gameFinished: "gameFinished"
 }

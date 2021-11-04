@@ -11,6 +11,7 @@ export default class ScoreBoard {
     constructor(Sketch) {
         sketch = Sketch;
         score = config.score.defaultScore;
+
     }
 
     draw() {
@@ -44,6 +45,8 @@ export default class ScoreBoard {
     }
 
     startInterval() {
+        this.reset();
         scoreBoardInterval = setInterval(this.decreaseScore, 1000);
     }
+
 }

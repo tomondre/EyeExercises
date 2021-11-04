@@ -11,8 +11,8 @@
 // Depth-first search
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
-import {config} from "./config"
-import Helper from "./Helper";
+import {config} from "../config"
+import Helper from "../Helper";
 
 let w;
 let lineWidth = config.maze.lineWidth;

@@ -47,7 +47,7 @@ export const config = {
         numberOfColumns: 8
     },{
         difficulty: 3,
-        numberOfMazes: 7,
+        numberOfMazes: 1,
         numberOfColumns: 9
     }]
 }

@@ -14,7 +14,7 @@
 
 import {config} from "./config";
 import p5 from "p5";
-import Game from "./Game";
+import Game from "./objects/Game";
 
 //Wrapper for p5.js
 const s = (sketch) => {

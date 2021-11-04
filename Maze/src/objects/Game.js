@@ -1,8 +1,8 @@
 import Grid from "./Grid";
-import ScoreBoard from "./score/ScoreBoard";
-import {ObserverChange} from "./observer/ObserverChange";
+import ScoreBoard from "../score/ScoreBoard";
+import {ObserverChange} from "../observer/ObserverChange";
 import CarCursor from "./CarCursor";
-import DifficultyManager from "./DifficultyManager";
+import DifficultyManager from "../DifficultyManager";
 
 let sketch;
 let grid;
@@ -20,6 +20,7 @@ export default class Game {
         grid.setup(difficultyManager.getCurrentColumnNo());
         cursor = new CarCursor(sketch, grid.getCarPosition());
 
+        //Subscribe
         grid.subscribe(this);
     }
 
@@ -31,13 +32,8 @@ export default class Game {
 
     mazeFinishedHandler() {
         difficultyManager.mazeSolved();
-        if(difficultyManager.isLevelFinished()) {
-            this.levelFinishedCalBack();
-            return;
-        }
         cursor.remove();
         scoreBoard.reset();
-
         grid.setup(difficultyManager.getCurrentColumnNo());
     }
 
@@ -52,7 +48,7 @@ export default class Game {
             case ObserverChange.collision:
                 scoreBoard.decreaseScoreWallHit();
                 break;
-            case ObserverChange.mazeFinished:
+            case ObserverChange.difficultyFinished:
                 this.mazeFinishedHandler();
                 break;
             case ObserverChange.pointerOnFirstTile:
@@ -61,10 +57,14 @@ export default class Game {
             case ObserverChange.pointerOutsideMaze:
                 cursor.remove();
                 break;
+            case ObserverChange.levelFinished:
+                this.levelFinishedCalBack();
+                break;
         }
+        console.log(action);
     }
 
     levelFinishedCalBack() {
-        console.log("levelFInished")
+
     }
 }
