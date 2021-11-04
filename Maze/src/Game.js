@@ -1,5 +1,5 @@
 import Grid from "./Grid";
-import ScoreBoard from "./ScoreBoard";
+import ScoreBoard from "./score/ScoreBoard";
 import {ObserverChange} from "./observer/ObserverChange";
 import CarCursor from "./CarCursor";
 import DifficultyManager from "./DifficultyManager";
@@ -21,7 +21,6 @@ export default class Game {
         cursor = new CarCursor(sketch, grid.getCarPosition());
 
         grid.subscribe(this);
-
     }
 
     draw() {
@@ -37,20 +36,27 @@ export default class Game {
             return;
         }
         cursor.remove();
+        scoreBoard.reset();
 
         grid.setup(difficultyManager.getCurrentColumnNo());
+    }
+
+    startMazeRoundHandler()
+    {
+        cursor.create();
+        scoreBoard.startInterval();
     }
 
     observerChange(action) {
         switch (action) {
             case ObserverChange.collision:
-                scoreBoard.decreaseScore();
+                scoreBoard.decreaseScoreWallHit();
                 break;
             case ObserverChange.mazeFinished:
                 this.mazeFinishedHandler();
                 break;
             case ObserverChange.pointerOnFirstTile:
-                cursor.create();
+                this.startMazeRoundHandler();
                 break;
             case ObserverChange.pointerOutsideMaze:
                 cursor.remove();
