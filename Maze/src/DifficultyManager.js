@@ -1,7 +1,5 @@
 import {config} from "./config";
 
-//TODO remove comments
-
 let difficulties = config.difficulties;
 let currentDifficulty = 0;
 let numberOfMazeSolved = 0;
@@ -26,7 +24,6 @@ export default class DifficultyManager {
         numberOfMazeSolved++;
         if (this.isDifficultyFinished()) {
             numberOfMazeSolved = 0;
-            console.log("increased")
             this.increaseDifficulty();
         }
     }
@@ -42,7 +39,6 @@ export default class DifficultyManager {
 
     isDifficultyFinished() {
         if (difficulties[currentDifficulty] === undefined) {
-            console.log("level finished")
             numberOfMazeSolved = 0;
             return true;
         }
