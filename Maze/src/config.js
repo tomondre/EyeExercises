@@ -15,11 +15,14 @@ export const config = {
         lineWidth: 5
     },
     game: {
-        frameRate: 30
+        frameRate: 30,
+        collisionCountForGameOver: 3
     },
     score: {
-        scoreIncrease: 2,
-        scoreDecrease: 2
+        scoreIncrease: 1,
+        scoreDecreaseBySecond: 1,
+        scoreDecreaseWhenWallHit: 5,
+        defaultScore: 100
     },
     canvas: {
         width: 600
@@ -41,10 +44,10 @@ export const config = {
     }, {
         difficulty: 3,
         numberOfMazes: 2,
-        numberOfColumns: 8,
+        numberOfColumns: 8
     },{
         difficulty: 3,
         numberOfMazes: 7,
-        numberOfColumns: 9,
+        numberOfColumns: 9
     }]
 }
