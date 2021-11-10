@@ -2,7 +2,7 @@ import Cell from "./Cell";
 import {config} from "../config";
 import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
-import Helper from "../Helper";
+import Helper from "./Helper";
 
 let grid = [];
 let cols, rows;

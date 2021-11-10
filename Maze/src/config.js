@@ -20,8 +20,9 @@ export const config = {
     },
     score: {
         scoreIncrease: 1,
-        scoreDecreaseBySecond: 1,
-        scoreDecreaseWhenWallHit: 5,
+        scoreDecrease: 1,
+        scoreDecreaseEvery: 500,
+        scoreDecreaseWhenWallHit: 10,
         defaultScore: 100
     },
     canvas: {

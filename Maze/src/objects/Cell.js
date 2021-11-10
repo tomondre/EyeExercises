@@ -12,7 +12,7 @@
 // Recursive backtracker
 // https://en.wikipedia.org/wiki/Maze_generation_algorithm
 import {config} from "../config"
-import Helper from "../Helper";
+import Helper from "./Helper";
 
 let w;
 let lineWidth = config.maze.lineWidth;
@@ -70,7 +70,6 @@ export default class Cell {
         let coordinates = this.getXYcoordinates();
         let x = coordinates.x;
         let y = coordinates.y;
-
         this.sketch.noStroke();
         this.sketch.fill(r, g, b, 100);
         this.sketch.rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);

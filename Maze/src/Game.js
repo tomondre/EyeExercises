@@ -1,14 +1,16 @@
-import Grid from "./Grid";
-import ScoreBoard from "../score/ScoreBoard";
-import {ObserverChange} from "../observer/ObserverChange";
-import CarCursor from "./CarCursor";
-import DifficultyManager from "../DifficultyManager";
+import Grid from "./objects/Grid";
+import ScoreBoard from "./score/ScoreBoard";
+import {ObserverChange} from "./observer/ObserverChange";
+import CarCursor from "./objects/CarCursor";
+import DifficultyManager from "./objects/DifficultyManager";
+import Timer from "./objects/Timer";
 
 let sketch;
 let grid;
 let scoreBoard;
 let cursor;
 let difficultyManager;
+let timer;
 
 export default class Game {
     constructor(Sketch) {
@@ -19,6 +21,7 @@ export default class Game {
         difficultyManager = new DifficultyManager();
         grid.setup(difficultyManager.getCurrentColumnNo());
         cursor = new CarCursor(sketch, grid.getCarPosition());
+        timer = new Timer(sketch);
 
         //Subscribe
         grid.subscribe(this);
@@ -27,20 +30,8 @@ export default class Game {
     draw() {
         grid.draw();
         scoreBoard.draw();
+        timer.draw();
         cursor.draw();
-    }
-
-    mazeFinishedHandler() {
-        difficultyManager.mazeSolved();
-        cursor.remove();
-        scoreBoard.reset();
-        grid.setup(difficultyManager.getCurrentColumnNo());
-    }
-
-    startMazeRoundHandler()
-    {
-        cursor.create();
-        scoreBoard.startInterval();
     }
 
     observerChange(action) {
@@ -58,13 +49,40 @@ export default class Game {
                 cursor.remove();
                 break;
             case ObserverChange.levelFinished:
-                this.levelFinishedCalBack();
+                this.levelFinishedHandler();
+                break;
+            case ObserverChange.dailyTimerFinished:
+                this.dailyTimerFinishedHandler();
+                break;
+            case ObserverChange.levelNotPassed:
+                this.levelNotPassedHandler();
                 break;
         }
-        console.log(action);
     }
 
-    levelFinishedCalBack() {
+    mazeFinishedHandler() {
+        difficultyManager.mazeSolved();
+        cursor.remove();
+        scoreBoard.reset();
+        grid.setup(difficultyManager.getCurrentColumnNo());
+    }
 
+    startMazeRoundHandler()
+    {
+        cursor.create();
+        scoreBoard.startInterval();
+        timer.create();
+    }
+
+    levelFinishedHandler() {
+
+    }
+
+    dailyTimerFinishedHandler() {
+        console.log("timer finished");
+    }
+
+    levelNotPassedHandler() {
+        console.log("levelNotPassed");
     }
 }

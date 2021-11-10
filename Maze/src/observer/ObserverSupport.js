@@ -1,16 +1,17 @@
+let observers;
 
 export default class ObserverSupport {
     constructor() {
-        this.observers = [];
+        observers = [];
 
     }
 
     subscribe(observer) {
-        this.observers.push(observer)
+        observers.push(observer)
     }
 
     unsubscribe(observer) {
-        this.observers = this.observers.filter(
+        observers = observers.filter(
             function (item) {
                 if (item !== observer) {
                         return item;
@@ -20,7 +21,7 @@ export default class ObserverSupport {
     }
 
     fire(change) {
-        this.observers.forEach((item) => {
+        observers.forEach((item) => {
             item.observerChange(change)
         });
     }

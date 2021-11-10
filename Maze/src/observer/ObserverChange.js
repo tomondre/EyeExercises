@@ -4,5 +4,7 @@ export const ObserverChange = {
     levelFinished: "levelFinished",
     pointerOutsideMaze: "pointerOutsideMaze",
     pointerOnFirstTile: "pointerOnFirstTile",
-    gameFinished: "gameFinished"
+    gameFinished: "gameFinished",
+    dailyTimerFinished: "dailyTimerFinished",
+    levelNotPassed: "levelNotPassed"
 }
