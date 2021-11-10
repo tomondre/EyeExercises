@@ -5,7 +5,6 @@
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const imageUrl = "../assets/ThumbUp.png";
 
 let easierButton = document.getElementById("goLeftButton");
 let harderButton = document.getElementById("goRightButton");
@@ -13,7 +12,7 @@ let harderButton = document.getElementById("goRightButton");
 let easier = false;
 let harder = false;
 
-let leftPictureOffset = 0.001;
+let leftPictureOffset = -0.001;
 let rightPictureOffset = 0.001;
 
 let lastOffset = rightPictureOffset;

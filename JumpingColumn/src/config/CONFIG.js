@@ -26,7 +26,7 @@ export const CONFIG = {
             textFirstPart: "Great Job! Level ",
             textSecondPart: " has been passed,\n Next level starts in: ",
             textThirdPart: " seconds",
-            timeLength: 3
+            timeLength: 2
         },
         levelNotPassed: {
             text: "Level failed. Try again",
