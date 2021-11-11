@@ -41,13 +41,11 @@ export default class DifficultyManager {
 
                 if (currentLevel === 2) {
                     support.fire(ObserverChange.gameFinished);
-                }
-                else {
+                } else {
                     support.fire(ObserverChange.levelFinished);
                 }
-            }
-            else {
-                support.fire(ObserverChange.difficultyFinished)
+            } else {
+                support.fire(ObserverChange.difficultyFinished);
             }
         }
     }
