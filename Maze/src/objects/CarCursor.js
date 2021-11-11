@@ -56,4 +56,9 @@ export default class CarCursor {
     remove() {
         shouldBeDrawn = false;
     }
+
+    setDefaultCarPosition(firstTileMidPosition)
+    {
+        defaultCarCoordinates = firstTileMidPosition;
+    }
 }

@@ -39,7 +39,7 @@ export default class Game {
             case ObserverChange.collision:
                 scoreBoard.decreaseScoreWallHit();
                 break;
-            case ObserverChange.difficultyFinished:
+            case ObserverChange.mazeSolved:
                 this.mazeFinishedHandler();
                 break;
             case ObserverChange.pointerOnFirstTile:
@@ -57,14 +57,23 @@ export default class Game {
             case ObserverChange.levelNotPassed:
                 this.levelNotPassedHandler();
                 break;
+            case ObserverChange.difficultyFinished:
+                this.difficultyFinishedHandler();
+                break;
+            case ObserverChange.gameFinished:
+                this.gameFinishedHandler();
+                break;
         }
     }
 
     mazeFinishedHandler() {
+        scoreBoard.clearInterval();
+        timer.remove();
         difficultyManager.mazeSolved();
         cursor.remove();
-        scoreBoard.reset();
+        scoreBoard.resetCollisions();
         grid.setup(difficultyManager.getCurrentColumnNo());
+        cursor.setDefaultCarPosition(grid.getCarPosition());
     }
 
     startMazeRoundHandler()
@@ -79,10 +88,16 @@ export default class Game {
     }
 
     dailyTimerFinishedHandler() {
-        console.log("timer finished");
     }
 
     levelNotPassedHandler() {
-        console.log("levelNotPassed");
+    }
+
+    difficultyFinishedHandler() {
+        scoreBoard.reset();
+        scoreBoard.saveDataToApi();
+    }
+
+    gameFinishedHandler() {
     }
 }

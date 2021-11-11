@@ -89,7 +89,7 @@ export default class Grid {
             }
             if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
                 gameStarted = false;
-                observerSupport.fire(ObserverChange.difficultyFinished);
+                observerSupport.fire(ObserverChange.mazeSolved);
                 return;
             }
             if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
@@ -127,10 +127,7 @@ export default class Grid {
 
     getCarPosition()
     {
-        let result = grid[0].getMiddlePoint();
-        result.x -= config.car.size.x / 2;
-        result.y -= config.car.size.y / 2;
-        return result;
+        return grid[0].getMiddlePoint();
     }
 
     subscribe(observer)
