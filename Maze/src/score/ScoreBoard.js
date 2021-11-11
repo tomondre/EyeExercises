@@ -57,15 +57,28 @@ export default class ScoreBoard {
         }
     }
 
+    resetCollisions()
+    {
+        collisionCounter.reset();
+    }
+
     reset()
     {
         clearInterval(scoreBoardInterval);
         score = config.score.defaultScore;
     }
 
+    clearInterval()
+    {
+        clearInterval(scoreBoardInterval);
+    }
+
     startInterval() {
-        this.reset();
+        clearInterval(scoreBoardInterval);
         scoreBoardInterval = setInterval(this.decreaseScore, config.score.scoreDecreaseEvery);
     }
 
+    saveDataToApi() {
+
+    }
 }
