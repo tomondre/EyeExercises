@@ -3,7 +3,15 @@ import ObserverSupport from "../observer/ObserverSupport";
 import CollisionCounter from "./CollisionCounter";
 import {ObserverChange} from "../observer/ObserverChange";
 
-let score;
+
+let scoreDecreaseEvery = config.score.scoreDecreaseEvery;
+let score = config.score.defaultScore;
+let scoreIncrease = config.score.scoreIncrease;
+let scoreDecrease = config.score.scoreDecrease;
+let scoreDecreaseWallHit = config.score.scoreDecreaseWhenWallHit;
+let defaultScore = config.score.defaultScore;
+let redScoreBoardTimeAfterWallHitDecrease = config.cooldown.scoreBoardCooldownAfterCollision;
+
 let sketch;
 let scoreBoard;
 let scoreBoardInterval;
@@ -16,7 +24,6 @@ let coolDown = false;
 export default class ScoreBoard {
     constructor(Sketch) {
         sketch = Sketch;
-        score = config.score.defaultScore;
         support = new ObserverSupport();
         collisionCounter = new CollisionCounter();
     }
@@ -36,24 +43,24 @@ export default class ScoreBoard {
     }
 
     increaseScore() {
-        score += config.score.scoreIncrease;
+        score += scoreIncrease;
     }
 
     decreaseScore() {
-        score -= config.score.scoreDecrease;
+        score -= scoreDecrease;
     }
 
     decreaseScoreWallHit()
     {
         if (!coolDown) {
-            score -= config.score.scoreDecreaseWhenWallHit;
+            score -= scoreDecreaseWallHit;
             coolDown = true;
             collisionCounter.collision();
             if (collisionCounter.isGameOver())
             {
                 support.fire(ObserverChange.levelNotPassed);
             }
-            setTimeout(() => coolDown = false, 100);
+            setTimeout(() => coolDown = false, redScoreBoardTimeAfterWallHitDecrease);
         }
     }
 
@@ -65,7 +72,7 @@ export default class ScoreBoard {
     reset()
     {
         clearInterval(scoreBoardInterval);
-        score = config.score.defaultScore;
+        score = defaultScore;
     }
 
     clearInterval()
@@ -75,7 +82,7 @@ export default class ScoreBoard {
 
     startInterval() {
         clearInterval(scoreBoardInterval);
-        scoreBoardInterval = setInterval(this.decreaseScore, config.score.scoreDecreaseEvery);
+        scoreBoardInterval = setInterval(this.decreaseScore, scoreDecreaseEvery);
     }
 
     saveDataToApi() {
