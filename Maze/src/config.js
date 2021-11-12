@@ -34,6 +34,10 @@ export const config = {
             y: 52
         }
     },
+    cooldown: {
+        scoreBoardCooldownAfterCollision: 100,
+        afterCollisionCooldown: 100
+    },
     difficulties: [{
         difficulty: 1,
         numberOfMazes: 2,
