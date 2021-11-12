@@ -115,3 +115,14 @@ html, body {
     margin: 0;
     background-color: black;
 }
+#numbersButtons {
+    top: 50%;
+    /*visibility: hidden;*/
+}
+
+#numbersButtons > table {
+    top: 85%;
+    left: 34%;
+    /*visibility: hidden;*/
+}
+
