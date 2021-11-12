@@ -11,6 +11,9 @@ let stack = [];
 let w;
 let lineWidth = config.maze.lineWidth;
 
+let mazeSolution = [];
+let mazeSolved = false;
+
 let collisionCooldown = config.cooldown.afterCollisionCooldown;
 
 let gameStarted = false;
@@ -33,9 +36,15 @@ export default class Grid {
         w = sketch.floor(mazeWidth / numberOfColumns);
         cols = numberOfColumns;
         rows = numberOfColumns;
+
         grid = [];
+        mazeSolution = [];
+
+        mazeSolved = false;
+
         cols = sketch.floor(mazeWidth / w);
         rows = sketch.floor(mazeWidth / w);
+
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols; i++) {
                 var cell = new Cell(i, j, sketch, grid, w, cols);
@@ -54,6 +63,7 @@ export default class Grid {
             let next = current.checkNeighbors();
             if (next) {
                 next.visited = true;
+
                 // STEP 2
                 stack.push(current);
 
@@ -63,11 +73,24 @@ export default class Grid {
                 // STEP 4
                 current = next;
 
+                //STEP 5 - maze solver
+                if (current.i === (cols - 1)&& current.j === (rows - 1))
+                {
+                    mazeSolved = true;
+                }
+                if (!mazeSolved)
+                {
+                    mazeSolution.push(current);
+                }
             } else if (stack.length > 0) {
+                if (!mazeSolved)
+                {
+                    mazeSolution.pop();
+                }
                 current = stack.pop();
             }
             else {
-                return;
+               return;
             }
         }
     }
@@ -79,7 +102,16 @@ export default class Grid {
         }
         grid[0].highlightFirst();
         grid[grid.length - 1].highlightLast();
+        this.drawSolution();
+        this.generate();
         this.checkBoundaries();
+    }
+
+    drawSolution()
+    {
+        for (let i = 0; i < mazeSolution.length; i++) {
+            mazeSolution[i].highlightLast();
+        }
     }
 
     checkBoundaries() {
