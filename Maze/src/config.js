@@ -40,19 +40,23 @@ export const config = {
     },
     difficulties: [{
         difficulty: 1,
-        numberOfMazes: 2,
-        numberOfColumns: 6
+        numberOfMazes: 1,
+        numberOfColumns: 6,
+        numberOfNumbersWhenLevelTwo: 18
     }, {
         difficulty: 2,
-        numberOfMazes: 3,
-        numberOfColumns: 7
+        numberOfMazes: 1,
+        numberOfColumns: 7,
+        numberOfNumbersWhenLevelTwo: 21
     }, {
         difficulty: 3,
-        numberOfMazes: 2,
-        numberOfColumns: 8
+        numberOfMazes: 1,
+        numberOfColumns: 8,
+        numberOfNumbersWhenLevelTwo: 24
     },{
         difficulty: 3,
         numberOfMazes: 1,
-        numberOfColumns: 9
+        numberOfColumns: 9,
+        numberOfNumbersWhenLevelTwo: 27
     }]
 }
