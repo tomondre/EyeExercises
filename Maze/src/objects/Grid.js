@@ -11,7 +11,10 @@ let stack = [];
 let w;
 let lineWidth = config.maze.lineWidth;
 
+let collisionCooldown = config.cooldown.afterCollisionCooldown;
+
 let gameStarted = false;
+let isCooldown = false;
 
 let sketch;
 let mazeWidth = config.canvas.width;
@@ -81,28 +84,33 @@ export default class Grid {
 
     checkBoundaries() {
         if (gameStarted) {
-            for (let i = 1; i < grid.length - 1; i++) {
-                if (grid[i].checkColision(sketch.mouseX, sketch.mouseY)) {
-                    observerSupport.fire(ObserverChange.collision);
-                    return;
+
+            if (!isCooldown) {
+                isCooldown = true;
+                for (let i = 1; i < grid.length - 1; i++) {
+                    if (grid[i].checkColision(sketch.mouseX, sketch.mouseY)) {
+                        observerSupport.fire(ObserverChange.collision);
+                        break;
+                    }
                 }
+                setTimeout(() => isCooldown = false, collisionCooldown);
             }
-            if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
+
+            else if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
                 gameStarted = false;
                 observerSupport.fire(ObserverChange.mazeSolved);
-                return;
             }
-            if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
+
+            else if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
                 sketch.mouseY < mazeOffsetY || sketch.mouseY > mazeWidth + mazeOffsetY) {
                 gameStarted = false;
                 observerSupport.fire(ObserverChange.pointerOutsideMaze);
             }
-        } else {
-            if ((sketch.mouseX > mazeOffsetX && sketch.mouseX < mazeOffsetX + w) &&
+
+        } else if ((sketch.mouseX > mazeOffsetX && sketch.mouseX < mazeOffsetX + w) &&
                 sketch.mouseY > mazeOffsetY && sketch.mouseY < mazeOffsetY +  w) {
                 gameStarted = true;
                 observerSupport.fire(ObserverChange.pointerOnFirstTile);
-            }
         }
     }
 
