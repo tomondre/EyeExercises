@@ -26,16 +26,20 @@ let mazeOffsetY = Helper.getOffsets().offsetY;
 
 let observerSupport;
 
+let difficultyManager;
+
 export default class Grid {
-    constructor(Sketch) {
+    constructor(Sketch, _difficultyManager) {
+        difficultyManager = _difficultyManager;
         sketch = Sketch;
         observerSupport = new ObserverSupport();
     }
 
-    setup(numberOfColumns) {
-        w = sketch.floor(mazeWidth / numberOfColumns);
-        cols = numberOfColumns;
-        rows = numberOfColumns;
+    setup() {
+        let columnNo = difficultyManager.getCurrentColumnNo()
+        w = sketch.floor(mazeWidth / columnNo);
+        cols = columnNo;
+        rows = columnNo;
 
         grid = [];
         mazeSolution = [];
@@ -51,12 +55,12 @@ export default class Grid {
                 grid.push(cell);
             }
         }
-        current = grid[0];
         this.generate();
     }
 
     generate() {
         sketch.strokeWeight(lineWidth);
+        current = grid[0];
         while (true) {
             current.visited = true;
             // STEP 1
@@ -74,24 +78,24 @@ export default class Grid {
                 current = next;
 
                 //STEP 5 - maze solver
-                if (current.i === (cols - 1)&& current.j === (rows - 1))
-                {
+                if (current.i === (cols - 1) && current.j === (rows - 1)) {
                     mazeSolved = true;
                 }
-                if (!mazeSolved)
-                {
+                if (!mazeSolved) {
                     mazeSolution.push(current);
                 }
             } else if (stack.length > 0) {
-                if (!mazeSolved)
-                {
+                if (!mazeSolved) {
                     mazeSolution.pop();
                 }
                 current = stack.pop();
+            } else {
+                break;
             }
-            else {
-               return;
-            }
+        }
+        console.log(difficultyManager)
+        if (difficultyManager.getCurrentLevelNo() === 1) {
+            this.generateLevelTwoNumbers();
         }
     }
 
@@ -102,13 +106,17 @@ export default class Grid {
         }
         grid[0].highlightFirst();
         grid[grid.length - 1].highlightLast();
-        this.drawSolution();
-        this.generate();
-        this.checkBoundaries();
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+            this.checkBoundaries();
+        }
+        else {
+            this.drawLevelTwoNums()
+            // this.drawSolution();
+        }
     }
 
-    drawSolution()
-    {
+
+    drawSolution() {
         for (let i = 0; i < mazeSolution.length; i++) {
             mazeSolution[i].highlightLast();
         }
@@ -126,23 +134,19 @@ export default class Grid {
                     }
                 }
                 setTimeout(() => isCooldown = false, collisionCooldown);
-            }
-
-            else if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
+            } else if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
                 gameStarted = false;
                 observerSupport.fire(ObserverChange.mazeSolved);
-            }
-
-            else if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
+            } else if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
                 sketch.mouseY < mazeOffsetY || sketch.mouseY > mazeWidth + mazeOffsetY) {
                 gameStarted = false;
                 observerSupport.fire(ObserverChange.pointerOutsideMaze);
             }
 
         } else if ((sketch.mouseX > mazeOffsetX && sketch.mouseX < mazeOffsetX + w) &&
-                sketch.mouseY > mazeOffsetY && sketch.mouseY < mazeOffsetY +  w) {
-                gameStarted = true;
-                observerSupport.fire(ObserverChange.pointerOnFirstTile);
+            sketch.mouseY > mazeOffsetY && sketch.mouseY < mazeOffsetY + w) {
+            gameStarted = true;
+            observerSupport.fire(ObserverChange.pointerOnFirstTile);
         }
     }
 
@@ -165,18 +169,23 @@ export default class Grid {
         }
     }
 
-    getCarPosition()
-    {
+    generateLevelTwoNumbers() {
+
+    }
+
+    getCarPosition() {
         return grid[0].getMiddlePoint();
     }
 
-    subscribe(observer)
-    {
+    subscribe(observer) {
         observerSupport.subscribe(observer);
     }
 
-    unsubscribe(observer)
-    {
+    unsubscribe(observer) {
         observerSupport.unsubscribe(observer);
+    }
+
+    drawLevelTwoNums() {
+
     }
 }

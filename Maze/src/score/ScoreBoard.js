@@ -71,8 +71,8 @@ export default class ScoreBoard {
 
     reset()
     {
-        clearInterval(scoreBoardInterval);
         score = defaultScore;
+        clearInterval(scoreBoardInterval);
     }
 
     clearInterval()

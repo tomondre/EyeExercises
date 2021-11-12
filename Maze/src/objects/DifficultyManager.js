@@ -3,7 +3,7 @@ import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
 
 let difficulties = config.difficulties;
-let currentDifficulty;
+let currentDifficulty = 0;
 let numberOfMazeSolved = 0;
 let currentLevel = 0;
 
@@ -13,7 +13,6 @@ export default class DifficultyManager {
 
     constructor() {
         support = new ObserverSupport();
-        currentDifficulty = 0;
     }
 
     increaseDifficulty() {
@@ -23,6 +22,10 @@ export default class DifficultyManager {
 
     getCurrentDifficultyNo() {
         return difficulties[currentDifficulty].difficulty;
+    }
+
+    getCurrentLevelNo() {
+        return currentLevel;
     }
 
     getCurrentColumnNo() {

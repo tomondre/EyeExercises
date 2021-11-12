@@ -4,6 +4,7 @@ import {ObserverChange} from "./observer/ObserverChange";
 import CarCursor from "./objects/CarCursor";
 import DifficultyManager from "./objects/DifficultyManager";
 import Timer from "./objects/Timer";
+import NumberButtonManager from "./level2/NumberButtonManager";
 
 let sketch;
 let grid;
@@ -11,18 +12,21 @@ let scoreBoard;
 let cursor;
 let difficultyManager;
 let timer;
+let numberButtons;
 
 export default class Game {
     constructor(Sketch) {
         sketch = Sketch;
 
-        grid = new Grid(sketch);
         scoreBoard = new ScoreBoard(sketch);
         difficultyManager = new DifficultyManager();
-        grid.setup(difficultyManager.getCurrentColumnNo());
+        grid = new Grid(sketch, difficultyManager);
+        grid.setup();
         cursor = new CarCursor(sketch, grid.getCarPosition());
         timer = new Timer(sketch);
+        numberButtons = new NumberButtonManager(sketch);
 
+        numberButtons.generate();
         //Subscribe
         grid.subscribe(this);
     }
@@ -72,7 +76,7 @@ export default class Game {
         difficultyManager.mazeSolved();
         cursor.remove();
         scoreBoard.resetCollisions();
-        grid.setup(difficultyManager.getCurrentColumnNo());
+        grid.setup();
         cursor.setDefaultCarPosition(grid.getCarPosition());
     }
 
@@ -84,7 +88,10 @@ export default class Game {
     }
 
     levelFinishedHandler() {
-
+        scoreBoard.reset();
+        scoreBoard.saveDataToApi();
+        cursor.stopCarGeneration();
+        timer.reset();
     }
 
     dailyTimerFinishedHandler() {
@@ -96,6 +103,7 @@ export default class Game {
     difficultyFinishedHandler() {
         scoreBoard.reset();
         scoreBoard.saveDataToApi();
+        timer.reset();
     }
 
     gameFinishedHandler() {
