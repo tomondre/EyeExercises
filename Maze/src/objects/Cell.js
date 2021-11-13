@@ -33,6 +33,7 @@ export default class Cell {
         this.j = j;
         this.walls = [true, true, true, true];
         this.visited = false;
+
         let offsets = Helper.getOffsets();
         gridOffsetX = offsets.offsetX;
         gridOffsetY = offsets.offsetY;
@@ -130,6 +131,7 @@ export default class Cell {
         let x = coordinates.x;
         let y = coordinates.y;
         this.sketch.stroke(255);
+        this.sketch.strokeWeight(lineWidth);
         if (this.walls[0]) {
             this.sketch.line(x, y, x + w, y);
         }
@@ -142,6 +144,17 @@ export default class Cell {
         if (this.walls[3]) {
             this.sketch.line(x, y + w, x, y);
         }
+        if (this.num !== undefined)
+        {
+            this.sketch.textAlign(this.sketch.CENTER);
+            this.sketch.strokeWeight(1);
+            this.sketch.text(this.num.toString(), x + (w/2), y + (w/2));
+        }
+    }
+
+    addNumber(_num)
+    {
+        this.num = _num;
     }
 
     index(i, j) {
