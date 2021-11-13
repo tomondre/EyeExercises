@@ -5,7 +5,8 @@ import {ObserverChange} from "../observer/ObserverChange";
 let difficulties = config.difficulties;
 let currentDifficulty = 0;
 let numberOfMazeSolved = 0;
-let currentLevel = 0;
+//TODO change
+let currentLevel = 1;
 
 let support;
 
@@ -30,6 +31,10 @@ export default class DifficultyManager {
 
     getCurrentColumnNo() {
         return difficulties[currentDifficulty].numberOfColumns;
+    }
+
+    getNoOfNumbers() {
+        return difficulties[currentDifficulty].numberOfNumbersWhenLevelTwo;
     }
 
     mazeSolved() {

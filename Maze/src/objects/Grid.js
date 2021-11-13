@@ -93,7 +93,6 @@ export default class Grid {
                 break;
             }
         }
-        console.log(difficultyManager)
         if (difficultyManager.getCurrentLevelNo() === 1) {
             this.generateLevelTwoNumbers();
         }
@@ -108,10 +107,6 @@ export default class Grid {
         grid[grid.length - 1].highlightLast();
         if (difficultyManager.getCurrentLevelNo() === 0) {
             this.checkBoundaries();
-        }
-        else {
-            this.drawLevelTwoNums()
-            // this.drawSolution();
         }
     }
 
@@ -170,7 +165,12 @@ export default class Grid {
     }
 
     generateLevelTwoNumbers() {
-
+        let numbers = difficultyManager.getNoOfNumbers();
+        for (let i = 0; i < numbers; i++) {
+            let randomNum = sketch.int(sketch.random(0, 10));
+            let randomCellNum = sketch.int(sketch.random(1, grid.length));
+            grid[randomCellNum].addNumber(randomNum);
+        }
     }
 
     getCarPosition() {
@@ -183,9 +183,5 @@ export default class Grid {
 
     unsubscribe(observer) {
         observerSupport.unsubscribe(observer);
-    }
-
-    drawLevelTwoNums() {
-
     }
 }
