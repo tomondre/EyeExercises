@@ -152,6 +152,14 @@ export default class Cell {
         }
     }
 
+    getAssignedNum() {
+        return this.num;
+    }
+
+    hasNum() {
+        return this.num !== undefined;
+    }
+
     addNumber(_num)
     {
         this.num = _num;

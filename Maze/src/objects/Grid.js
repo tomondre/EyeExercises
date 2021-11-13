@@ -173,6 +173,17 @@ export default class Grid {
         }
     }
 
+    getCorrectCombination() {
+        let combination = [];
+        for (let i = 0; i <mazeSolution.length; i++) {
+            if (mazeSolution[i].hasNum())
+            {
+                combination.push(mazeSolution[i].getAssignedNum())
+            }
+        }
+        return combination;
+    }
+
     getCarPosition() {
         return grid[0].getMiddlePoint();
     }
