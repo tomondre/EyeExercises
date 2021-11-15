@@ -12,7 +12,7 @@ export const config = {
         },
     },
     maze: {
-        lineWidth: 5
+        lineWidth: 5,
     },
     game: {
         frameRate: 30,
@@ -23,6 +23,8 @@ export const config = {
         scoreDecrease: 1,
         scoreDecreaseEvery: 500,
         scoreDecreaseWhenWallHit: 10,
+        scoreIncreaseLevelTwo: 10,
+        scoreDecreaseLevelTwo: 10,
         defaultScore: 100
     },
     canvas: {
@@ -38,25 +40,30 @@ export const config = {
         scoreBoardCooldownAfterCollision: 100,
         afterCollisionCooldown: 100
     },
+    levelTwoNumbers: {
+        selectedGap: 20,
+        gapBetweenGridAndNumberButton: 50,
+        gapBetweenButtonsAnsSelectedNumbers: 40
+    },
     difficulties: [{
         difficulty: 1,
-        numberOfMazes: 1,
+        numberOfMazes: 2,
         numberOfColumns: 6,
-        numberOfNumbersWhenLevelTwo: 18
+        numberOfNumbersWhenLevelTwo: 12
     }, {
         difficulty: 2,
         numberOfMazes: 1,
         numberOfColumns: 7,
-        numberOfNumbersWhenLevelTwo: 21
+        numberOfNumbersWhenLevelTwo: 14
     }, {
         difficulty: 3,
         numberOfMazes: 1,
         numberOfColumns: 8,
-        numberOfNumbersWhenLevelTwo: 24
+        numberOfNumbersWhenLevelTwo: 16
     },{
         difficulty: 3,
         numberOfMazes: 1,
         numberOfColumns: 9,
-        numberOfNumbersWhenLevelTwo: 27
+        numberOfNumbersWhenLevelTwo: 18
     }]
 }

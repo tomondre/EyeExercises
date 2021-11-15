@@ -11,6 +11,8 @@ let scoreDecrease = config.score.scoreDecrease;
 let scoreDecreaseWallHit = config.score.scoreDecreaseWhenWallHit;
 let defaultScore = config.score.defaultScore;
 let redScoreBoardTimeAfterWallHitDecrease = config.cooldown.scoreBoardCooldownAfterCollision;
+let scoreDecreaseLevelTwo = config.score.scoreDecreaseLevelTwo;
+let scoreIncreaseLevelTwo = config.score.scoreIncreaseLevelTwo;
 
 let sketch;
 let scoreBoard;
@@ -29,12 +31,9 @@ export default class ScoreBoard {
     }
 
     draw() {
-        if (coolDown)
-        {
+        if (coolDown) {
             sketch.fill("red");
-        }
-        else
-        {
+        } else {
             sketch.fill("white");
         }
         sketch.textSize(30);
@@ -50,33 +49,39 @@ export default class ScoreBoard {
         score -= scoreDecrease;
     }
 
-    decreaseScoreWallHit()
-    {
+    decreaseScoreLevelTwo() {
+        score -= scoreDecreaseLevelTwo;
+    }
+
+    increaseScoreLevelTwo() {
+        score += scoreIncreaseLevelTwo;
+    }
+
+    decreaseScoreWallHit() {
         if (!coolDown) {
             score -= scoreDecreaseWallHit;
             coolDown = true;
             collisionCounter.collision();
-            if (collisionCounter.isGameOver())
-            {
+            if (collisionCounter.isGameOver()) {
                 support.fire(ObserverChange.levelNotPassed);
             }
             setTimeout(() => coolDown = false, redScoreBoardTimeAfterWallHitDecrease);
         }
     }
 
-    resetCollisions()
-    {
+    resetCollisions() {
         collisionCounter.reset();
     }
 
-    reset()
-    {
+    setDefaultLevelOneScore() {
         score = defaultScore;
-        clearInterval(scoreBoardInterval);
     }
 
-    clearInterval()
-    {
+    setDefaultLevelTwoScore() {
+        score = 0;
+    }
+
+    clearInterval() {
         clearInterval(scoreBoardInterval);
     }
 

@@ -3,17 +3,20 @@ import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
 
 let difficulties = config.difficulties;
-let currentDifficulty = 0;
+
+let currentDifficulty;
+
 let numberOfMazeSolved = 0;
-//TODO change
-let currentLevel = 1;
+let currentLevel = 0;
 
 let support;
 
 export default class DifficultyManager {
 
-    constructor() {
+    constructor(savedLevel, savedDifficulty) {
         support = new ObserverSupport();
+        currentDifficulty = savedDifficulty;
+        currentLevel = savedLevel;
     }
 
     increaseDifficulty() {
@@ -55,6 +58,9 @@ export default class DifficultyManager {
             } else {
                 support.fire(ObserverChange.difficultyFinished);
             }
+        }
+        else {
+            support.fire(ObserverChange.mazeSolved);
         }
     }
 

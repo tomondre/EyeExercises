@@ -117,7 +117,7 @@ html, body {
 }
 #numbersButtons {
     top: 50%;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 
 #numbersButtons > table {

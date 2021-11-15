@@ -7,5 +7,7 @@ export const ObserverChange = {
     gameFinished: "gameFinished",
     dailyTimerFinished: "dailyTimerFinished",
     levelNotPassed: "levelNotPassed",
-    mazeSolved: "mazeSolved"
+    mazeSolved: "mazeSolved",
+    correctNumberPressed: "correctNumberPressed",
+    incorrectNumberPressed: "incorrectNumberPressed"
 }

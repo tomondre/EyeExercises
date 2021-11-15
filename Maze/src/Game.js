@@ -5,6 +5,7 @@ import CarCursor from "./objects/CarCursor";
 import DifficultyManager from "./objects/DifficultyManager";
 import Timer from "./objects/Timer";
 import NumberButtonManager from "./level2/NumberButtonManager";
+import {config} from "./config";
 
 let sketch;
 let grid;
@@ -14,21 +15,31 @@ let difficultyManager;
 let timer;
 let numberButtons;
 
+//TODO Fetch difficulties
+//TODO align numbers in second level
+//TODO API call
+//TODO
+
 export default class Game {
     constructor(Sketch) {
         sketch = Sketch;
 
+        difficultyManager = new DifficultyManager(0, 0);
         scoreBoard = new ScoreBoard(sketch);
-        difficultyManager = new DifficultyManager();
         grid = new Grid(sketch, difficultyManager);
         grid.setup();
         cursor = new CarCursor(sketch, grid.getCarPosition());
         timer = new Timer(sketch);
-        numberButtons = new NumberButtonManager(sketch);
+        numberButtons = new NumberButtonManager(sketch, difficultyManager);
 
-        numberButtons.generate();
         //Subscribe
         grid.subscribe(this);
+
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+        } else {
+            scoreBoard.setDefaultLevelTwoScore();
+            this.setLevelTwo();
+        }
     }
 
     draw() {
@@ -36,21 +47,13 @@ export default class Game {
         scoreBoard.draw();
         timer.draw();
         cursor.draw();
+        numberButtons.draw();
     }
 
     observerChange(action) {
         switch (action) {
-            case ObserverChange.collision:
-                scoreBoard.decreaseScoreWallHit();
-                break;
             case ObserverChange.mazeSolved:
                 this.mazeFinishedHandler();
-                break;
-            case ObserverChange.pointerOnFirstTile:
-                this.startMazeRoundHandler();
-                break;
-            case ObserverChange.pointerOutsideMaze:
-                cursor.remove();
                 break;
             case ObserverChange.levelFinished:
                 this.levelFinishedHandler();
@@ -68,44 +71,93 @@ export default class Game {
                 this.gameFinishedHandler();
                 break;
         }
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+            switch (action) {
+                case ObserverChange.collision:
+                    scoreBoard.decreaseScoreWallHit();
+                    break;
+                case ObserverChange.pointerOnFirstTile:
+                    this.startMazeRoundHandler();
+                    break;
+                case ObserverChange.pointerOutsideMaze:
+                    cursor.remove();
+                    break;
+            }
+        } else {
+            switch (action) {
+                case ObserverChange.correctNumberPressed:
+                    scoreBoard.increaseScoreLevelTwo();
+                    break;
+                case ObserverChange.incorrectNumberPressed:
+                    scoreBoard.decreaseScoreLevelTwo();
+                    break;
+            }
+        }
+        console.log(action);
     }
 
     mazeFinishedHandler() {
         scoreBoard.clearInterval();
-        timer.remove();
-        difficultyManager.mazeSolved();
-        cursor.remove();
-        scoreBoard.resetCollisions();
         grid.setup();
-        cursor.setDefaultCarPosition(grid.getCarPosition());
+
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+            timer.remove();
+            cursor.remove();
+            scoreBoard.resetCollisions();
+            cursor.setDefaultCarPosition(grid.getCarPosition());
+        } else {
+            numberButtons.setCorrectCombination(grid.getCorrectCombination());
+        }
     }
 
-    startMazeRoundHandler()
-    {
+    startMazeRoundHandler() {
         cursor.create();
         scoreBoard.startInterval();
         timer.create();
     }
 
-    levelFinishedHandler() {
-        scoreBoard.reset();
-        scoreBoard.saveDataToApi();
-        cursor.stopCarGeneration();
-        timer.reset();
-    }
-
     dailyTimerFinishedHandler() {
+
     }
 
     levelNotPassedHandler() {
+
     }
 
     difficultyFinishedHandler() {
-        scoreBoard.reset();
         scoreBoard.saveDataToApi();
-        timer.reset();
+
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+            scoreBoard.setDefaultLevelOneScore()
+        } else {
+            scoreBoard.setDefaultLevelTwoScore()
+        }
+
+        this.mazeFinishedHandler();
     }
 
     gameFinishedHandler() {
+
+    }
+
+    levelFinishedHandler() {
+        scoreBoard.saveDataToApi();
+        cursor.stopCarGeneration();
+
+        this.mazeFinishedHandler();
+
+        if (difficultyManager.getCurrentLevelNo() === 0) {
+            scoreBoard.setDefaultLevelOneScore()
+        } else {
+            scoreBoard.setDefaultLevelTwoScore()
+            this.setLevelTwo();
+        }
+    }
+
+    setLevelTwo() {
+        cursor.stopCarGeneration();
+        numberButtons.generate(grid.getGridLeftBottomPosition());
+        numberButtons.setCorrectCombination(grid.getCorrectCombination());
+        timer.create();
     }
 }

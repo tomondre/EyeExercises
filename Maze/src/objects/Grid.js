@@ -105,9 +105,15 @@ export default class Grid {
         }
         grid[0].highlightFirst();
         grid[grid.length - 1].highlightLast();
+
         if (difficultyManager.getCurrentLevelNo() === 0) {
-            this.checkBoundaries();
+            this.levelOneDraw();
         }
+        else{
+        }
+    }
+    levelOneDraw() {
+        this.checkBoundaries();
     }
 
 
@@ -131,7 +137,7 @@ export default class Grid {
                 setTimeout(() => isCooldown = false, collisionCooldown);
             } else if (grid[grid.length - 1].isHoverOver(sketch.mouseX, sketch.mouseY)) {
                 gameStarted = false;
-                observerSupport.fire(ObserverChange.mazeSolved);
+                difficultyManager.mazeSolved();
             } else if ((sketch.mouseX < mazeOffsetX || sketch.mouseX > mazeWidth + mazeOffsetX) ||
                 sketch.mouseY < mazeOffsetY || sketch.mouseY > mazeWidth + mazeOffsetY) {
                 gameStarted = false;
@@ -182,6 +188,10 @@ export default class Grid {
             }
         }
         return combination;
+    }
+
+    getGridLeftBottomPosition() {
+        return {x: Helper.getOffsets().offsetX, y: Helper.getOffsets().offsetY + (rows * w)}
     }
 
     getCarPosition() {
