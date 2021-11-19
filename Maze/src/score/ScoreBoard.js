@@ -51,6 +51,11 @@ export default class ScoreBoard {
 
     decreaseScoreLevelTwo() {
         score -= scoreDecreaseLevelTwo;
+        collisionCounter.collision();
+        if (collisionCounter.isGameOver())
+        {
+            support.fire(ObserverChange.levelNotPassed);
+        }
     }
 
     increaseScoreLevelTwo() {
@@ -73,6 +78,11 @@ export default class ScoreBoard {
         collisionCounter.reset();
     }
 
+    reset() {
+        collisionCounter.reset();
+        clearInterval(scoreBoardInterval);
+    }
+
     setDefaultLevelOneScore() {
         score = defaultScore;
     }
@@ -90,7 +100,7 @@ export default class ScoreBoard {
         scoreBoardInterval = setInterval(this.decreaseScore, scoreDecreaseEvery);
     }
 
-    saveDataToApi() {
-
+    saveDataToApi(level, difficulty) {
+        console.log("api call" + level + ", difficulty: " + difficulty);
     }
 }
