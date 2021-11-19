@@ -28,6 +28,8 @@ let observerSupport;
 
 let difficultyManager;
 
+let shouldListen = true;
+
 export default class Grid {
     constructor(Sketch, _difficultyManager) {
         difficultyManager = _difficultyManager;
@@ -36,6 +38,7 @@ export default class Grid {
     }
 
     setup() {
+
         let columnNo = difficultyManager.getCurrentColumnNo()
         w = sketch.floor(mazeWidth / columnNo);
         cols = columnNo;
@@ -55,12 +58,12 @@ export default class Grid {
                 grid.push(cell);
             }
         }
+        current = grid[0];
         this.generate();
     }
 
     generate() {
         sketch.strokeWeight(lineWidth);
-        current = grid[0];
         while (true) {
             current.visited = true;
             // STEP 1
@@ -108,12 +111,14 @@ export default class Grid {
 
         if (difficultyManager.getCurrentLevelNo() === 0) {
             this.levelOneDraw();
-        }
-        else{
+        } else {
         }
     }
+
     levelOneDraw() {
-        this.checkBoundaries();
+        if (shouldListen) {
+            this.checkBoundaries();
+        }
     }
 
 
@@ -125,7 +130,6 @@ export default class Grid {
 
     checkBoundaries() {
         if (gameStarted) {
-
             if (!isCooldown) {
                 isCooldown = true;
                 for (let i = 1; i < grid.length - 1; i++) {
@@ -179,11 +183,18 @@ export default class Grid {
         }
     }
 
+    stopListening() {
+        shouldListen = false;
+    }
+
+    startListening() {
+        shouldListen = true;
+    }
+
     getCorrectCombination() {
         let combination = [];
-        for (let i = 0; i <mazeSolution.length; i++) {
-            if (mazeSolution[i].hasNum())
-            {
+        for (let i = 0; i < mazeSolution.length; i++) {
+            if (mazeSolution[i].hasNum()) {
                 combination.push(mazeSolution[i].getAssignedNum())
             }
         }
@@ -200,6 +211,10 @@ export default class Grid {
 
     subscribe(observer) {
         observerSupport.subscribe(observer);
+    }
+
+    gameNotStarted() {
+        gameStarted = false;
     }
 
     unsubscribe(observer) {
