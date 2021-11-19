@@ -43,9 +43,9 @@ export default class DifficultyManager {
     mazeSolved() {
         numberOfMazeSolved++;
         if (numberOfMazeSolved === difficulties[currentDifficulty].numberOfMazes) {
+            support.fire(ObserverChange.saveDataToAPI, {difficulty: currentDifficulty, level: currentLevel})
             numberOfMazeSolved = 0;
             currentDifficulty++;
-
             if (currentDifficulty === difficulties.length) {
                 currentDifficulty = 0;
                 currentLevel++;
@@ -62,6 +62,10 @@ export default class DifficultyManager {
         else {
             support.fire(ObserverChange.mazeSolved);
         }
+    }
+
+    resetDifficulty() {
+        numberOfMazeSolved = 0;
     }
 
     subscribe(observer) {
