@@ -14,6 +14,8 @@ let selectedNumbersDefaultCoordinates;
 let support;
 let difficultyManager;
 
+let shouldListen = true;
+
 let selectedNumbersGap = config.levelTwoNumbers.selectedGap;
 let gapBetweenGridAndNumberButton = config.levelTwoNumbers.gapBetweenGridAndNumberButton;
 let gapBetweenButtonsAnsSelectedNumbers = config.levelTwoNumbers.gapBetweenButtonsAnsSelectedNumbers;
@@ -48,6 +50,15 @@ export default class NumberButtonManager {
             element.addEventListener("click", () => this.buttonClickedHandler(i, element))
             numberButtons.push(element);
         }
+        this.createListeners();
+    }
+
+    createListeners() {
+        shouldListen = true;
+    }
+
+    removeListeners() {
+        shouldListen = false;
     }
 
     saveCoordinates(position) {
@@ -55,10 +66,10 @@ export default class NumberButtonManager {
         let y = position.y + gapBetweenGridAndNumberButton + gapBetweenButtonsAnsSelectedNumbers;
 
         selectedNumbersDefaultCoordinates = {x: x, y: y};
-        console.log(selectedNumbersDefaultCoordinates)
     }
 
     setCorrectCombination(_correctCombination) {
+        this.reset()
         correctCombination = _correctCombination;
     }
 
@@ -69,20 +80,21 @@ export default class NumberButtonManager {
     }
 
     buttonClickedHandler(i, elementClicked) {
-        if (this.checkSelectedNumber(i)) {
-            support.fire(ObserverChange.correctNumberPressed);
-            selectedNumbersList.push(i);
-            if (correctCombination.length === selectedNumbersList.length) {
-                this.reset();
-                difficultyManager.mazeSolved();
+        if (shouldListen) {
+            if (this.checkSelectedNumber(i)) {
+                support.fire(ObserverChange.correctNumberPressed);
+                selectedNumbersList.push(i);
+                if (correctCombination.length === selectedNumbersList.length) {
+                    this.reset();
+                    difficultyManager.mazeSolved();
+                }
+            } else {
+                support.fire(ObserverChange.incorrectNumberPressed);
+                elementClicked.className = "negativesmall";
+                setTimeout(() => {
+                    elementClicked.className = "positivesmall";
+                }, 500);
             }
-        } else {
-            //TODO change element colo for some time as feedback.
-            support.fire(ObserverChange.incorrectNumberPressed);
-            elementClicked.className = "negativesmall";
-            setTimeout(() => {
-                elementClicked.className = "positivesmall";
-            }, 500);
         }
     }
 
