@@ -12,7 +12,12 @@ export default class CollisionCounter {
 
     isGameOver()
     {
-        return collisionCount >= (maxCollisions);
+        if (collisionCount >= (maxCollisions))
+        {
+            collisionCount = 0;
+            return true;
+        }
+        return false;
     }
 
     reset()
