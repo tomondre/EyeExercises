@@ -11,6 +11,26 @@ export const config = {
             B: 255,
         },
     },
+    messages: {
+        timeOverMessage:{
+            text: "Daily time Over. If you wish to continue press here: ",
+            button: "Yes",
+            buttonTwo: "No"
+        },
+        levelNotPassed: {
+            text: "Difficulty Not Passed. Restarting in ",
+            textTwo: " seconds.",
+            timeLength: 3
+        },
+        levelPassedMessage : {
+            text: "Congratulation, you have passed level ",
+            textTwo: ". \nNext level starts in : ",
+            textThree: " seconds.",
+            timeLength: 3
+        }, gameFinished : {
+            text: "Congratulation, you have finished the game!"
+        }
+    },
     maze: {
         lineWidth: 5,
     },
@@ -47,7 +67,7 @@ export const config = {
     },
     difficulties: [{
         difficulty: 1,
-        numberOfMazes: 2,
+        numberOfMazes: 3,
         numberOfColumns: 6,
         numberOfNumbersWhenLevelTwo: 12
     }, {
