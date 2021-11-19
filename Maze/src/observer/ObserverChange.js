@@ -9,5 +9,6 @@ export const ObserverChange = {
     levelNotPassed: "levelNotPassed",
     mazeSolved: "mazeSolved",
     correctNumberPressed: "correctNumberPressed",
-    incorrectNumberPressed: "incorrectNumberPressed"
+    incorrectNumberPressed: "incorrectNumberPressed",
+    saveDataToAPI: "saveDataToApi"
 }
