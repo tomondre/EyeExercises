@@ -6,7 +6,6 @@ let sketch;
 let time;
 let interval;
 let support;
-let defaultTime = FetchDataManager.getEyeTime();
 
 export default class Timer {
     constructor(Sketch) {
@@ -40,6 +39,5 @@ export default class Timer {
 
     reset() {
         this.remove();
-        time = defaultTime;
     }
 }
