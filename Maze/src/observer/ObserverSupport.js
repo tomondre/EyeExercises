@@ -20,9 +20,9 @@ export default class ObserverSupport {
         )
     }
 
-    fire(change) {
+    fire(change, data) {
         observers.forEach((item) => {
-            item.observerChange(change)
+            item.observerChange(change, data)
         });
     }
 }
