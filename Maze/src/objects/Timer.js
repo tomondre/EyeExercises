@@ -1,6 +1,7 @@
 import FetchDataManager from "./FetchDataManager";
 import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
+import {config} from "../config";
 
 let sketch;
 let time;
@@ -15,6 +16,7 @@ export default class Timer {
     }
 
     draw() {
+        sketch.fill(config.colors.timer);
         sketch.text("Time: " + time, window.innerWidth * 0.1, window.innerHeight * 0.14);
     }
 

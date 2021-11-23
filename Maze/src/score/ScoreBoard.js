@@ -3,7 +3,6 @@ import ObserverSupport from "../observer/ObserverSupport";
 import CollisionCounter from "./CollisionCounter";
 import {ObserverChange} from "../observer/ObserverChange";
 
-
 let scoreDecreaseEvery = config.score.scoreDecreaseEvery;
 let score = config.score.defaultScore;
 let scoreIncrease = config.score.scoreIncrease;
@@ -34,11 +33,10 @@ export default class ScoreBoard {
         if (coolDown) {
             sketch.fill("red");
         } else {
-            sketch.fill("white");
+            sketch.fill(config.colors.scoreBoard);
         }
         sketch.textSize(30);
         scoreBoard = sketch.text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.1);
-        sketch.fill("white");
     }
 
     increaseScore() {

@@ -64,6 +64,7 @@ export default class Grid {
 
     generate() {
         sketch.strokeWeight(lineWidth);
+        mazeSolution.push(current);
         while (true) {
             current.visited = true;
             // STEP 1
@@ -83,6 +84,7 @@ export default class Grid {
                 //STEP 5 - maze solver
                 if (current.i === (cols - 1) && current.j === (rows - 1)) {
                     mazeSolved = true;
+                    mazeSolution.push(current);
                 }
                 if (!mazeSolved) {
                     mazeSolution.push(current);
@@ -102,7 +104,7 @@ export default class Grid {
     }
 
     draw() {
-        sketch.background(0);
+        sketch.background(config.colors.background);
         for (let i = 1; i < grid.length - 1; i++) {
             grid[i].show();
         }
@@ -112,6 +114,8 @@ export default class Grid {
         if (difficultyManager.getCurrentLevelNo() === 0) {
             this.levelOneDraw();
         } else {
+            grid[0].showNumber();
+            grid[grid.length - 1].showNumber();
         }
     }
 
@@ -176,11 +180,15 @@ export default class Grid {
 
     generateLevelTwoNumbers() {
         let numbers = difficultyManager.getNoOfNumbers();
-        for (let i = 0; i < numbers; i++) {
+        for (let i = 0; i < numbers - 2; i++) {
             let randomNum = sketch.int(sketch.random(0, 10));
             let randomCellNum = sketch.int(sketch.random(1, grid.length));
             grid[randomCellNum].addNumber(randomNum);
         }
+        let randomNum = sketch.int(sketch.random(0, 10));
+        grid[0].addNumber(randomNum);
+        randomNum = sketch.int(sketch.random(0, 10));
+        grid[grid.length - 1].addNumber(randomNum);
     }
 
     stopListening() {

@@ -23,7 +23,7 @@ export default class Game {
     constructor(Sketch) {
         sketch = Sketch;
 
-        difficultyManager = new DifficultyManager(1, 0);
+        difficultyManager = new DifficultyManager(0, 0);
         scoreBoard = new ScoreBoard(sketch);
         grid = new Grid(sketch, difficultyManager);
         grid.setup();
@@ -38,6 +38,7 @@ export default class Game {
         grid.subscribe(this);
 
         if (difficultyManager.getCurrentLevelNo() === 0) {
+
         } else {
             scoreBoard.setDefaultLevelTwoScore();
             this.setLevelTwo();

@@ -19,8 +19,7 @@ let lineWidth = config.maze.lineWidth;
 let cols, rows;
 let grid;
 let gridOffsetX;
-let gridOffsetY
-
+let gridOffsetY;
 
 export default class Cell {
     constructor(i, j, sketch, _grid, _w, _cols) {
@@ -37,6 +36,7 @@ export default class Cell {
         let offsets = Helper.getOffsets();
         gridOffsetX = offsets.offsetX;
         gridOffsetY = offsets.offsetY;
+        this.coordinates = {x: this.i * w + gridOffsetX, y: this.j * w + gridOffsetY};
     }
 
     checkNeighbors() {
@@ -67,37 +67,31 @@ export default class Cell {
         }
     };
 
-    highlight(r, g, b, leftTopOffset, rightBottomOffset) {
-        let coordinates = this.getXYcoordinates();
-        let x = coordinates.x;
-        let y = coordinates.y;
-        this.sketch.noStroke();
-        this.sketch.fill(r, g, b, 100);
+    highlight(leftTopOffset, rightBottomOffset) {
+        let x = this.coordinates.x;
+        let y = this.coordinates.y;
+        this.sketch.fill(config.colors.tiles);
         this.sketch.rect(x + leftTopOffset, y + leftTopOffset, w - rightBottomOffset, w - rightBottomOffset);
-    };
+    }
 
     isHoverOver(mouseX, mouseY) {
-        let coordinates = this.getXYcoordinates();
-        let x = coordinates.x;
-        let y = coordinates.y;
+        let x = this.coordinates.x;
+        let y = this.coordinates.y;
         return mouseX > x && mouseX < x + w &&
             mouseY > y && mouseY < y + w;
     }
 
     highlightFirst() {
-        let c = config.tile.firstTile;
-        this.highlight(c.R, c.G, c.B, 0, lineWidth);
+        this.highlight(0, lineWidth);
     }
 
     highlightLast() {
-        let c = config.tile.lastTile;
-        this.highlight(c.R, c.G, c.B, lineWidth, 0);
+        this.highlight(lineWidth, 0);
     }
 
     checkColision(mX, mY) {
-        let coordinates = this.getXYcoordinates();
-        let x = coordinates.x;
-        let y = coordinates.y;
+        let x = this.coordinates.x;
+        let y = this.coordinates.y;
 
         if (this.walls[0]) {
             if (mX > x - lineWidth && mX < x + w + lineWidth &&
@@ -127,11 +121,10 @@ export default class Cell {
     }
 
     show() {
-        let coordinates = this.getXYcoordinates();
-        let x = coordinates.x;
-        let y = coordinates.y;
-        this.sketch.stroke(255);
+        let x = this.coordinates.x;
+        let y = this.coordinates.y;
         this.sketch.strokeWeight(lineWidth);
+        this.sketch.stroke(config.colors.lines);
         if (this.walls[0]) {
             this.sketch.line(x, y, x + w, y);
         }
@@ -144,11 +137,18 @@ export default class Cell {
         if (this.walls[3]) {
             this.sketch.line(x, y + w, x, y);
         }
+        this.sketch.noStroke();
+        this.showNumber();
+    }
+
+    showNumber() {
         if (this.num !== undefined)
         {
             this.sketch.textAlign(this.sketch.CENTER);
-            this.sketch.strokeWeight(1);
-            this.sketch.text(this.num.toString(), x + (w/2), y + (w/2));
+            this.sketch.fill(config.colors.numbers);
+            this.sketch.textSize(30);
+            this.sketch.text(this.num.toString(), this.coordinates.x + (w/2), this.coordinates.y + (w/2));
+            this.sketch.noStroke();
         }
     }
 
@@ -173,15 +173,8 @@ export default class Cell {
     }
 
     getMiddlePoint() {
-        let coordinates = this.getXYcoordinates();
-        let x = coordinates.x + (w / 2);
-        let y = coordinates.y + (w / 2);
+        let x = this.coordinates.x + (w / 2);
+        let y = this.coordinates.y + (w / 2);
         return {x, y}
-    }
-
-    getXYcoordinates() {
-        let x = this.i * w + gridOffsetX;
-        let y = this.j * w + gridOffsetY;
-        return {x, y};
     }
 }

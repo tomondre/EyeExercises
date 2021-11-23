@@ -1,16 +1,4 @@
 export const config = {
-    tile: {
-        firstTile: {
-            R: 0,
-            G: 0,
-            B: 255,
-        },
-        lastTile: {
-            R: 0,
-            G: 0,
-            B: 255,
-        },
-    },
     messages: {
         timeOverMessage:{
             text: "Daily time Over. If you wish to continue press here: ",
@@ -55,6 +43,15 @@ export const config = {
             x: 26,
             y: 52
         }
+    },
+    colors: {
+        background: 255,
+        lines: '#66ffff',
+        timer: '#ff6666',
+        scoreBoard: '#ff6666',
+        numbers: '#ff6666',
+        tiles: '#66ffff',
+        selectedColors: '#ff6666'
     },
     cooldown: {
         scoreBoardCooldownAfterCollision: 100,
