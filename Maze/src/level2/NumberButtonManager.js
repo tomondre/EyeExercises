@@ -14,7 +14,7 @@ let selectedNumbersDefaultCoordinates;
 let support;
 let difficultyManager;
 
-let shouldListen = true;
+let isContinue = true;
 
 let selectedNumbersGap = config.levelTwoNumbers.selectedGap;
 let gapBetweenGridAndNumberButton = config.levelTwoNumbers.gapBetweenGridAndNumberButton;
@@ -29,8 +29,10 @@ export default class NumberButtonManager {
     }
 
     draw() {
-        for (let i = 0; i < selectedNumbersList.length; i++) {
-            sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * selectedNumbersGap), selectedNumbersDefaultCoordinates.y);
+        if (isContinue) {
+            for (let i = 0; i < selectedNumbersList.length; i++) {
+                sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * selectedNumbersGap), selectedNumbersDefaultCoordinates.y);
+            }
         }
     }
 
@@ -47,19 +49,33 @@ export default class NumberButtonManager {
 
         for (let i = 0; i < 10; i++) {
             let element = document.getElementById("numberButton" + i);
-            element.addEventListener("click", () => this.buttonClickedHandler(i, element))
+            element.addEventListener("click", () => this.buttonClickedHandler(i))
             numberButtons.push(element);
         }
-        this.createListeners();
+        document.addEventListener('keydown', this.keyboardClickedHandler.bind(this));
+
+        this.continue();
     }
 
-    createListeners() {
-        shouldListen = true;
+    keyboardClickedHandler(event) {
+        for (let i = 0; i < 10; i++) {
+            if (event.key === i.toString()) {
+                this.buttonClickedHandler(i);
+                return;
+            }
+        }
     }
 
-    removeListeners() {
-        shouldListen = false;
+    continue() {
+        isContinue = true;
+        document.getElementById("numbersButtons").style.visibility = "visible";
     }
+
+    pause() {
+        isContinue = false;
+        document.getElementById("numbersButtons").style.visibility = "hidden";
+    }
+
 
     saveCoordinates(position) {
         let x = position.x;
@@ -79,8 +95,8 @@ export default class NumberButtonManager {
         correctCombination = [];
     }
 
-    buttonClickedHandler(i, elementClicked) {
-        if (shouldListen) {
+    buttonClickedHandler(i) {
+        if (isContinue) {
             if (this.checkSelectedNumber(i)) {
                 support.fire(ObserverChange.correctNumberPressed);
                 selectedNumbersList.push(i);
@@ -90,9 +106,9 @@ export default class NumberButtonManager {
                 }
             } else {
                 support.fire(ObserverChange.incorrectNumberPressed);
-                elementClicked.className = "negativesmall";
+                numberButtons[i].className = "negativesmall";
                 setTimeout(() => {
-                    elementClicked.className = "positivesmall";
+                    numberButtons[i].className = "positivesmall";
                 }, 500);
             }
         }
