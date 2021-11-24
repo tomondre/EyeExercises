@@ -49,9 +49,10 @@ export const config = {
         lines: '#66ffff',
         timer: '#ff6666',
         scoreBoard: '#ff6666',
+        scoreBoardWhenHit: '#66ffff',
         numbers: '#ff6666',
         tiles: '#66ffff',
-        selectedColors: '#ff6666'
+        selectedColors: '#ff6666',
     },
     cooldown: {
         scoreBoardCooldownAfterCollision: 100,

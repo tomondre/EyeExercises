@@ -22,16 +22,19 @@ let collisionCounter;
 
 let coolDown = false;
 
+let startTime;
+
 export default class ScoreBoard {
     constructor(Sketch) {
         sketch = Sketch;
         support = new ObserverSupport();
         collisionCounter = new CollisionCounter();
+        startTime = this.getCurrentDateTime();
     }
 
     draw() {
         if (coolDown) {
-            sketch.fill("red");
+            sketch.fill(config.colors.scoreBoardWhenHit);
         } else {
             sketch.fill(config.colors.scoreBoard);
         }
@@ -79,6 +82,7 @@ export default class ScoreBoard {
     reset() {
         collisionCounter.reset();
         clearInterval(scoreBoardInterval);
+        startTime = this.getCurrentDateTime();
     }
 
     setDefaultLevelOneScore() {
@@ -99,6 +103,36 @@ export default class ScoreBoard {
     }
 
     saveDataToApi(level, difficulty) {
-        console.log("api call" + level + ", difficulty: " + difficulty);
+        let currentLog = {
+            score: score,
+            startTimeStr: startTime,
+            endTimeStr: this.getCurrentDateTime(),
+            exerciseName: "JumpingColumn",
+            attribValue: "level " + level,
+            attribName: "difficulty " + difficulty,        // (left, right or both) depending on current eye (blank if no eye-switching)
+        }
+        console.log(currentLog);
+        //
+        // // TODO: check work request on TYE website
+        // window.$.ajax({
+        //     type: "POST",
+        //     url: `/Exercise/PostScore`,
+        //     data: {score: currentLog},
+        //     success: function (data) {
+        //         if (data.success) {
+        //         } else {
+        //         }
+        //     }
+        // })
+    }
+
+    getCurrentDateTime() {
+        let date = new Date().toLocaleString("en-GB");
+        // from js: 07/10/2021, 19:05:51
+        // to   cs: 07-10-2021 19:05:51
+        date = date.replace("/", "-");
+        date = date.replace("/", "-");
+        date = date.replace(",", "");
+        return date;
     }
 }
