@@ -146,7 +146,13 @@ export default class Cell {
         {
             this.sketch.textAlign(this.sketch.CENTER);
             this.sketch.fill(config.colors.numbers);
-            this.sketch.textSize(30);
+            if (Helper.isMobile())
+            {
+                this.sketch.textSize(50);
+            }
+            else {
+                this.sketch.textSize(30);
+            }
             this.sketch.text(this.num.toString(), this.coordinates.x + (w/2), this.coordinates.y + (w/2));
             this.sketch.noStroke();
         }

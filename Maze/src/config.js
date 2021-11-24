@@ -60,8 +60,8 @@ export const config = {
     },
     levelTwoNumbers: {
         selectedGap: 20,
-        gapBetweenGridAndNumberButton: 50,
-        gapBetweenButtonsAnsSelectedNumbers: 40
+        gapBetweenGridAndNumberButton: 10,
+        gapBetweenButtonsAnsSelectedNumbers: 50
     },
     difficulties: [{
         difficulty: 1,

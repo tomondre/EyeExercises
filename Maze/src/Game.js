@@ -6,6 +6,8 @@ import DifficultyManager from "./objects/DifficultyManager";
 import Timer from "./objects/Timer";
 import NumberButtonManager from "./level2/NumberButtonManager";
 import MessageManager from "./messages/MessageManager";
+import FetchDataManager from "./objects/FetchDataManager";
+import Helper from "./objects/Helper";
 
 let sketch;
 let grid;
@@ -23,7 +25,8 @@ export default class Game {
     constructor(Sketch) {
         sketch = Sketch;
 
-        difficultyManager = new DifficultyManager(1, 0);
+
+        difficultyManager = new DifficultyManager(FetchDataManager.getLevelIndex(), FetchDataManager.getDifficulty());
         scoreBoard = new ScoreBoard(sketch);
         grid = new Grid(sketch, difficultyManager);
         grid.setup();
@@ -174,6 +177,8 @@ export default class Game {
     }
 
     gameFinishedHandler() {
+        FetchDataManager.saveDifficulty(0);
+        FetchDataManager.saveLevelIndex(0);
     }
 
     levelFinishedHandler() {

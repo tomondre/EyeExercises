@@ -1,6 +1,7 @@
 import {config} from "../config";
 import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
+import FetchDataManager from "./FetchDataManager";
 
 let difficulties = config.difficulties;
 
@@ -50,12 +51,16 @@ export default class DifficultyManager {
                 currentDifficulty = 0;
                 currentLevel++;
 
+                FetchDataManager.saveLevelIndex(currentLevel);
+                FetchDataManager.saveDifficulty(0);
+
                 if (currentLevel === 2) {
                     support.fire(ObserverChange.gameFinished);
                 } else {
                     support.fire(ObserverChange.levelFinished);
                 }
             } else {
+                FetchDataManager.saveDifficulty(currentDifficulty);
                 support.fire(ObserverChange.difficultyFinished);
             }
         }

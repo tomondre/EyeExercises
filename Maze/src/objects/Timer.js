@@ -11,7 +11,7 @@ let support;
 export default class Timer {
     constructor(Sketch) {
         sketch = Sketch;
-        time = FetchDataManager.getEyeTime();
+        time = FetchDataManager.getTime();
         support = new ObserverSupport();
     }
 

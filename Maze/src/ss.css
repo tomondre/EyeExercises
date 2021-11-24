@@ -123,6 +123,7 @@ html, body {
 #numbersButtons > table {
     top: 85%;
     left: 34%;
+    font-size: 50px;
     /*visibility: hidden;*/
 }
 

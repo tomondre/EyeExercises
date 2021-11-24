@@ -3,30 +3,43 @@
 let gameCode = "904";
 
 export default class FetchDataManager {
-    static saveEyeLevelIndex(level){
-        window.localStorage.setItem(gameCode + "/Level", level);
-    }
 
-    static getEyeLevelIndex()
+    static getLevelIndex()
     {
         var index =  window.localStorage.getItem(gameCode + "/Level");
         if (index === null)
             return 0
         else
-            return  index;
+            return  parseInt(index);
     }
 
-    static getEyeTime()
+    static getDifficulty() {
+        let item = window.localStorage.getItem(gameCode + "/Difficulty");
+        if (item === null)
+            return 0
+        else
+            return parseInt(item);
+    }
+
+    static saveDifficulty(index) {
+        window.localStorage.setItem(gameCode + "/Difficulty", index);
+    }
+
+    static saveLevelIndex(index) {
+        window.localStorage.setItem(gameCode + "/Level", index);
+    }
+
+    static getTime()
     {
         let time = window.localStorage.getItem(gameCode + "/Time");
         if (time === null)
         {
-            return 100;
+            return 50;
         }
         return time;
     }
 
-    static saveEyeTime(time) {
+    static saveTime(time) {
         window.localStorage.setItem(gameCode + "/Time", time);
     }
 }

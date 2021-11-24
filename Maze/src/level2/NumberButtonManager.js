@@ -1,6 +1,7 @@
 import ObserverSupport from "../observer/ObserverSupport";
 import {config} from "../config";
 import {ObserverChange} from "../observer/ObserverChange";
+import Helper from "../objects/Helper";
 
 let sketch;
 let numberButtons = [];
@@ -31,7 +32,14 @@ export default class NumberButtonManager {
     draw() {
         if (isContinue) {
             for (let i = 0; i < selectedNumbersList.length; i++) {
-                sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * selectedNumbersGap), selectedNumbersDefaultCoordinates.y);
+                if (Helper.isMobile())
+                {
+                    sketch.textSize(50);
+                    sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * 50 + 20), selectedNumbersDefaultCoordinates.y + 60);
+                }
+                else {
+                    sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * selectedNumbersGap), selectedNumbersDefaultCoordinates.y);
+                }
             }
         }
     }
@@ -46,6 +54,15 @@ export default class NumberButtonManager {
         buttons.style.visibility = "visible";
         buttons.childNodes[1].style.left = x + "%";
         buttons.childNodes[1].style.top = y + "%";
+        if (Helper.isMobile())
+        {
+            buttons.childNodes[1].style.width = "100%";
+            let elements = document.getElementsByClassName("numBut");
+            for (let i = 0; i < elements.length; i++) {
+                elements.item(i).style.fontSize = "50px";
+            }
+        }
+
 
         for (let i = 0; i < 10; i++) {
             let element = document.getElementById("numberButton" + i);

@@ -35,10 +35,16 @@ export default class Grid {
         difficultyManager = _difficultyManager;
         sketch = Sketch;
         observerSupport = new ObserverSupport();
+        if (Helper.isMobile())
+        {
+            mazeWidth = window.innerWidth;
+        }
+        else {
+            mazeWidth = config.canvas.width;
+        }
     }
 
     setup() {
-
         let columnNo = difficultyManager.getCurrentColumnNo()
         w = sketch.floor(mazeWidth / columnNo);
         cols = columnNo;
