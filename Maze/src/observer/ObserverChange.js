@@ -10,5 +10,6 @@ export const ObserverChange = {
     mazeSolved: "mazeSolved",
     correctNumberPressed: "correctNumberPressed",
     incorrectNumberPressed: "incorrectNumberPressed",
-    saveDataToAPI: "saveDataToApi"
+    saveDataToAPI: "saveDataToApi",
+    incorrectFirstNumberPressed: "incorrectFirstNumberPressed"
 }
