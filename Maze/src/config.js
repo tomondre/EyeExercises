@@ -1,22 +1,27 @@
 export const config = {
     messages: {
-        timeOverMessage:{
+        timeOverMessage: {
             text: "Daily time Over. If you wish to continue press here: ",
-            button: "Yes",
-            buttonTwo: "No"
+            button: "Confirm",
         },
         levelNotPassed: {
             text: "Difficulty Not Passed. Restarting in ",
             textTwo: " seconds.",
             timeLength: 3
         },
-        levelPassedMessage : {
+        levelPassedMessage: {
             text: "Congratulation, you have passed level ",
             textTwo: ". \nNext level starts in : ",
             textThree: " seconds.",
             timeLength: 3
-        }, gameFinished : {
-            text: "Congratulation, you have finished the game!"
+        },
+        gameFinished: {
+            text: "Congratulation, you have finished the game!",
+            button: "Confirm"
+        },
+        rememberToPressNumber: {
+            text: "Remember to follow the numbers from left top tile!",
+            timeLength: 3
         }
     },
     maze: {
@@ -78,7 +83,7 @@ export const config = {
         numberOfMazes: 1,
         numberOfColumns: 8,
         numberOfNumbersWhenLevelTwo: 16
-    },{
+    }, {
         difficulty: 3,
         numberOfMazes: 1,
         numberOfColumns: 9,
