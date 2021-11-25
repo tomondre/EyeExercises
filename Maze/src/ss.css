@@ -5,6 +5,7 @@ body {
     margin: 0px;
     padding: 0px;
     line-height: 24px;
+    overflow: hidden;
 }
 
 .positivesmall, .addsmall, .negativesmall {
@@ -91,7 +92,7 @@ table {
 #actionButtons {
     text-align: center;
     position: absolute;
-    top: 89%;
+    top: 95%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -104,9 +105,6 @@ table {
 #middleButton {
     position: absolute;
     visibility: hidden;
-    top: 53%;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 html, body {
@@ -124,6 +122,4 @@ html, body {
     top: 85%;
     left: 34%;
     font-size: 50px;
-    /*visibility: hidden;*/
 }
-
