@@ -7,7 +7,6 @@ import Timer from "./objects/Timer";
 import NumberButtonManager from "./level2/NumberButtonManager";
 import MessageManager from "./messages/MessageManager";
 import FetchDataManager from "./objects/FetchDataManager";
-import Helper from "./objects/Helper";
 
 let sketch;
 let grid;
@@ -83,6 +82,8 @@ export default class Game {
                 break;
             case ObserverChange.gameFinished:
                 this.pauseGame();
+                FetchDataManager.saveDifficulty(0);
+                FetchDataManager.saveLevelIndex(0);
                 messageManager.displayGameFinishedMessage(() => this.gameFinishedHandler());
                 break;
             case ObserverChange.saveDataToAPI:
@@ -108,6 +109,9 @@ export default class Game {
                 case ObserverChange.incorrectNumberPressed:
                     scoreBoard.decreaseScoreLevelTwo();
                     break;
+                case ObserverChange.incorrectFirstNumberPressed:
+                    this.pauseGame();
+                    messageManager.displayRememberToPressNumberMessage(() => this.continueGame());
             }
         }
     }
@@ -115,6 +119,7 @@ export default class Game {
     pauseGame() {
         timer.remove();
         scoreBoard.clearInterval();
+        cursor.remove();
         if (difficultyManager.getCurrentLevelNo() === 0) {
             grid.stopListening();
         } else {
@@ -177,8 +182,7 @@ export default class Game {
     }
 
     gameFinishedHandler() {
-        FetchDataManager.saveDifficulty(0);
-        FetchDataManager.saveLevelIndex(0);
+
     }
 
     levelFinishedHandler() {
