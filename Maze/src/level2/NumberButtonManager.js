@@ -53,16 +53,18 @@ export default class NumberButtonManager {
         let buttons = document.getElementById("numbersButtons");
         buttons.style.visibility = "visible";
         buttons.childNodes[1].style.left = x + "%";
-        buttons.childNodes[1].style.top = y + "%";
         if (Helper.isMobile())
         {
+            buttons.childNodes[1].style.top = (y + 3) + "%";
             buttons.childNodes[1].style.width = "100%";
             let elements = document.getElementsByClassName("numBut");
             for (let i = 0; i < elements.length; i++) {
                 elements.item(i).style.fontSize = "50px";
             }
         }
-
+        else {
+            buttons.childNodes[1].style.top = (y - 2) + "%";
+        }
 
         for (let i = 0; i < 10; i++) {
             let element = document.getElementById("numberButton" + i);
@@ -122,6 +124,11 @@ export default class NumberButtonManager {
                     difficultyManager.mazeSolved();
                 }
             } else {
+                if (this.isFirstWrongEntry())
+                {
+                    support.fire(ObserverChange.incorrectFirstNumberPressed);
+                    return;
+                }
                 support.fire(ObserverChange.incorrectNumberPressed);
                 numberButtons[i].className = "negativesmall";
                 setTimeout(() => {
@@ -129,6 +136,10 @@ export default class NumberButtonManager {
                 }, 500);
             }
         }
+    }
+
+    isFirstWrongEntry() {
+        return correctCombinationPointer === 0;
     }
 
     checkSelectedNumber(input) {
