@@ -16,6 +16,9 @@ let levelPassedInterval;
 
 let shouldBeGameFinishedMessageDrawn = false;
 
+let shouldBeRememberToPressNumberMessageBeDrawn = false;
+let rememberToPressInterval;
+
 let passedLevel;
 let time = 0;
 
@@ -38,6 +41,8 @@ export default class MessageManager {
             sketch.text(messages.levelPassedMessage.text + passedLevel + messages.levelPassedMessage.textTwo + time + messages.levelPassedMessage.textThree, messagePosition.x, messagePosition.y);
         } else if (shouldBeGameFinishedMessageDrawn) {
             sketch.text(messages.gameFinished.text, messagePosition.x, messagePosition.y);
+        } else if(shouldBeRememberToPressNumberMessageBeDrawn) {
+            sketch.text(messages.rememberToPressNumber.text, messagePosition.x, messagePosition.y);
         }
     }
 
@@ -72,12 +77,34 @@ export default class MessageManager {
         }, 1000);
     }
 
-    displayGameFinishedMessage() {
-        shouldBeGameFinishedMessageDrawn = true;
-        //TODO create handler for continuing the game
+    displayRememberToPressNumberMessage(callback) {
+        time = messages.rememberToPressNumber.timeLength;
+
+        shouldBeRememberToPressNumberMessageBeDrawn = true;
+        clearInterval(rememberToPressInterval);
+        rememberToPressInterval = setInterval(() => {
+            time--;
+            if (time === 0) {
+                shouldBeRememberToPressNumberMessageBeDrawn = false;
+                clearInterval(rememberToPressInterval);
+                callback();
+            }
+        }, 1000);
     }
 
-    displayTimeOverMessage() {
+    displayGameFinishedMessage(callback) {
+        shouldBeGameFinishedMessageDrawn = true;
+        ButtonManager.createMiddleButton(() => {
+            shouldBeGameFinishedMessageDrawn = false;
+            callback();
+        }, messages.gameFinished.button);
+    }
+
+    displayTimeOverMessage(callback) {
         shouldBeTimeOverMessageDrawn = true;
+        ButtonManager.createMiddleButton(() => {
+            shouldBeTimeOverMessageDrawn = false;
+            callback();
+        }, messages.timeOverMessage.button);
     }
 }
