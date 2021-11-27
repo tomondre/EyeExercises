@@ -106,7 +106,7 @@ function setUp() {
 
         function fetchSavedEyeTime() {
             let time = window.localStorage.getItem("908/Time");
-            return time == null ? 10 : time;
+            return time == null ? 10 : parseInt(time);
         }
 
         function timeOverHandler() {

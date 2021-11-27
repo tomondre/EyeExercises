@@ -7,14 +7,19 @@ export default class FetchDataManager {
     {
         var index =  window.localStorage.getItem("904/Level/" + eye.toString());
         if (index === null)
-            return 0
+            return 0;
         else
-            return  index;
+            return parseInt(index);
     }
 
     static getEyeTime(eye)
     {
-        return window.localStorage.getItem("904/Time/" + eye.toString());
+        let time =  window.localStorage.getItem("904/Time/" + eye.toString());
+        if (time === null)
+            return 60;
+        else
+            return parseInt(time);
+
     }
 
     static saveEyeTime(eye, time) {

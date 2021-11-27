@@ -9,12 +9,16 @@ export default class FetchDataManager {
         if (index === null)
             return 1;
         else
-            return  index;
+            return  parseInt(index);
     }
 
     static getEyeTime(eye)
     {
-        return window.localStorage.getItem("903/Time/" + eye.toString());
+        let time = window.localStorage.getItem("903/Time/" + eye.toString());
+        if (time === null)
+            return 30;
+        else
+            return parseInt(time);
     }
 
     static saveEyeTime(eye, time) {
