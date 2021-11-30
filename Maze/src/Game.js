@@ -17,7 +17,6 @@ let timer;
 let numberButtons;
 let messageManager;
 
-//TODO Fetch difficulties
 //TODO API call
 
 export default class Game {
