@@ -15,7 +15,7 @@ export default class ScoreBoard {
 
     create() {
         this.reset();
-        scoreBoardText = this.scene.add.text(this.scene.game.canvas.width * 0.5, 5, "");
+        scoreBoardText = this.scene.add.text(this.scene.game.canvas.width * 0.5, this.scene.game.canvas.height * 0.07, "");
         scoreBoardText.setOrigin(0.5, 0);
         let scoreBoardStyle = TextStyleManager.getTextStyle();
         scoreBoardText.setStyle(scoreBoardStyle);

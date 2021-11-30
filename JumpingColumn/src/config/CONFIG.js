@@ -11,7 +11,7 @@ export const CONFIG = {
         decrease: 5,
     },
     responsiveness: {
-        normalTextSize: 35,
+        normalTextSize: 40,
         normalButtonTextSize: "23px",
         switchSizesWhenResolutionLowerThan: 1000,
         smallerTextSize: 25,

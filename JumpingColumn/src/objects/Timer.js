@@ -19,7 +19,7 @@ export default class Timer {
     create() {
         clearInterval(timerInterval);
         let style = TextStyleManager.getTextStyle();
-        timerObject = scene.add.text(window.innerWidth * 0.05, window.innerHeight * 0.035, "", style);
+        timerObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.07, "", style);
 
         this.update();
         this.continue();

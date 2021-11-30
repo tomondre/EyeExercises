@@ -20,7 +20,7 @@ export default class Timer {
         }
         this.timeOverCB = callback;
         let timerTextStyle = TextStyleManager.getTextStyle()
-        this.timerText = this.scene.add.text(this.scene.game.canvas.width * 0.1,this.scene.game.canvas.width * 0.01, "", timerTextStyle);
+        this.timerText = this.scene.add.text(this.scene.game.canvas.width * 0.1, this.scene.game.canvas.height * 0.07, "", timerTextStyle);
         this.interval = setInterval(() => this.sec(), 1000);
         this.update();
     }

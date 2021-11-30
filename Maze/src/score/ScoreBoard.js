@@ -38,8 +38,9 @@ export default class ScoreBoard {
         } else {
             sketch.fill(config.colors.scoreBoard);
         }
-        sketch.textSize(30);
-        scoreBoard = sketch.text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.1);
+        sketch.textAlign(sketch.LEFT, sketch.TOP);
+        sketch.textSize(config.textSize.normalScreen);
+        scoreBoard = sketch.text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.07);
     }
 
     increaseScore() {

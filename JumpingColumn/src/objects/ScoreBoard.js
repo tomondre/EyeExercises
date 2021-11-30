@@ -15,7 +15,7 @@ export default class ScoreBoard {
 
     create() {
         let style = TextStyleManager.getTextStyle()
-        scoreBoardObject = scene.add.text(window.innerWidth * 0.05, window.innerHeight * 0.08, "Score: " + scoreCount, style)
+        scoreBoardObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.125, "Score: " + scoreCount, style)
     }
 
     update() {

@@ -31,6 +31,10 @@ export const config = {
         frameRate: 30,
         collisionCountForGameOver: 3
     },
+    textSize:{
+        mobileScreen: 25,
+        normalScreen: 40
+    },
     score: {
         scoreIncrease: 1,
         scoreDecrease: 1,

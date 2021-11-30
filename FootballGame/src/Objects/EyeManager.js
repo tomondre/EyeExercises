@@ -14,7 +14,7 @@ export default class EyeManager {
     create() {
         let endMessageStyle = TextStyleManager.getTextStyle();
         eyeDisplayObject?.destroy();
-        eyeDisplayObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.07, this.eyeDisplayTextCamelCase(), endMessageStyle);
+        eyeDisplayObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.125, this.eyeDisplayTextCamelCase(), endMessageStyle);
         this.updateEyeDisplay();
     }
 

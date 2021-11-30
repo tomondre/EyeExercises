@@ -13,7 +13,7 @@ export default class EyeManager {
 
     create() {
         let endMessageStyle = TextStyleManager.getTextStyle()
-        eyeDisplayObject = scene.add.text(window.innerWidth * 0.05, window.innerHeight * 0.125, this.eyeDisplayTextCamelCase(), endMessageStyle);
+        eyeDisplayObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.180, this.eyeDisplayTextCamelCase(), endMessageStyle);
         this.updateEyeDisplay();
     }
 
