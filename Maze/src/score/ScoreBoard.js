@@ -2,6 +2,7 @@ import {config} from "../config";
 import ObserverSupport from "../observer/ObserverSupport";
 import CollisionCounter from "./CollisionCounter";
 import {ObserverChange} from "../observer/ObserverChange";
+import Helper from "../objects/Helper";
 
 let scoreDecreaseEvery = config.score.scoreDecreaseEvery;
 let score = config.score.defaultScore;
@@ -33,13 +34,19 @@ export default class ScoreBoard {
     }
 
     draw() {
+        if (Helper.isMobile())
+        {
+            sketch.textSize(config.textSize.mobileScreen);
+        }
+        else {
+            sketch.textSize(config.textSize.normalScreen);
+        }
         if (coolDown) {
             sketch.fill(config.colors.scoreBoardWhenHit);
         } else {
             sketch.fill(config.colors.scoreBoard);
         }
         sketch.textAlign(sketch.LEFT, sketch.TOP);
-        sketch.textSize(config.textSize.normalScreen);
         scoreBoard = sketch.text("Score: " + score, window.innerWidth * 0.1, window.innerHeight * 0.07);
     }
 

@@ -32,7 +32,7 @@ export const config = {
         collisionCountForGameOver: 3
     },
     textSize:{
-        mobileScreen: 25,
+        mobileScreen: 60,
         normalScreen: 40
     },
     score: {
@@ -68,7 +68,7 @@ export const config = {
         afterCollisionCooldown: 100
     },
     levelTwoNumbers: {
-        selectedGap: 20,
+        selectedGap: 30,
         gapBetweenGridAndNumberButton: 10,
         gapBetweenButtonsAnsSelectedNumbers: 50
     },

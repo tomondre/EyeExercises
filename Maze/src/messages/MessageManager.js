@@ -97,7 +97,7 @@ export default class MessageManager {
         ButtonManager.createMiddleButton(() => {
             shouldBeGameFinishedMessageDrawn = false;
             callback();
-        }, messages.gameFinished.button);
+        }, messages.gameFinished.button, messagePosition.y);
     }
 
     displayTimeOverMessage(callback) {
@@ -105,6 +105,6 @@ export default class MessageManager {
         ButtonManager.createMiddleButton(() => {
             shouldBeTimeOverMessageDrawn = false;
             callback();
-        }, messages.timeOverMessage.button);
+        }, messages.timeOverMessage.button,  messagePosition.y);
     }
 }

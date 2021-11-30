@@ -98,13 +98,14 @@ table {
     z-index: 1;
 }
 
-#goLeftButton, #goRightButton{
-    font-size: 20px;
+#middleButton {
+    visibility: hidden;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-#middleButton {
-    position: absolute;
-    visibility: hidden;
+#goLeftButton, #goRightButton{
+    font-size: 20px;
 }
 
 html, body {
@@ -122,4 +123,7 @@ html, body {
     top: 85%;
     left: 34%;
     font-size: 50px;
+}
+.numBut {
+    font-size: 20px;
 }

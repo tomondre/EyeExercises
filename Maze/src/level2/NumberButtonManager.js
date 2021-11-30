@@ -34,8 +34,8 @@ export default class NumberButtonManager {
             for (let i = 0; i < selectedNumbersList.length; i++) {
                 if (Helper.isMobile())
                 {
-                    sketch.textSize(50);
-                    sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * 50 + 20), selectedNumbersDefaultCoordinates.y + 60);
+                    sketch.textSize(config.textSize.mobileScreen);
+                    sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * 50 + 20), selectedNumbersDefaultCoordinates.y + 90);
                 }
                 else {
                     sketch.text(selectedNumbersList[i], selectedNumbersDefaultCoordinates.x + (i * selectedNumbersGap), selectedNumbersDefaultCoordinates.y);
@@ -63,7 +63,7 @@ export default class NumberButtonManager {
             }
         }
         else {
-            buttons.childNodes[1].style.top = (y - 2) + "%";
+            buttons.childNodes[1].style.top = (y) + "%";
         }
 
         for (let i = 0; i < 10; i++) {
@@ -130,9 +130,9 @@ export default class NumberButtonManager {
                     return;
                 }
                 support.fire(ObserverChange.incorrectNumberPressed);
-                numberButtons[i].className = "negativesmall";
+                numberButtons[i].className = "numBut negativesmall";
                 setTimeout(() => {
-                    numberButtons[i].className = "positivesmall";
+                    numberButtons[i].className = "numBut positivesmall";
                 }, 500);
             }
         }

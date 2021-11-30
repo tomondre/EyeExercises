@@ -2,7 +2,7 @@ import FetchDataManager from "./FetchDataManager";
 import ObserverSupport from "../observer/ObserverSupport";
 import {ObserverChange} from "../observer/ObserverChange";
 import {config} from "../config";
-import TextStyler from "./TextStyler";
+import Helper from "./Helper";
 
 let sketch;
 let time;
@@ -19,7 +19,13 @@ export default class Timer {
     draw() {
         sketch.fill(config.colors.timer);
         sketch.textAlign(sketch.LEFT, sketch.TOP);
-        sketch.textSize(config.textSize.normalScreen);
+        if (Helper.isMobile())
+        {
+            sketch.textSize(config.textSize.mobileScreen);
+        }
+        else {
+            sketch.textSize(config.textSize.normalScreen);
+        }
         sketch.text("Time: " + time, window.innerWidth * 0.1, window.innerHeight * 0.125);
     }
 
