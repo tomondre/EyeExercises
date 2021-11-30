@@ -5,6 +5,7 @@ body {
     margin: 0px;
     padding: 0px;
     line-height: 24px;
+    overflow: hidden;
 }
 
 .positivesmall, .addsmall, .negativesmall {
