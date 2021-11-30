@@ -59,7 +59,7 @@ export const CONFIG = {
         normalTextSize: 35,
         normalButtonTextSize: "23px",
         switchSizesWhenResolutionLowerThan: 1000,
-        smallerTextSize: 15,
+        smallerTextSize: 25,
         smallerButtonTextSize: "10px"
     },
     difficulty: [{
