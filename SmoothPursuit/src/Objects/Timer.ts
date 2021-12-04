@@ -11,6 +11,7 @@ export default class Timer {
     private support : ObserverSupport
 
     constructor(sketch : p5) {
+        this.support = new ObserverSupport();
         this.sketch = sketch;
         this.time = 0;
     }
