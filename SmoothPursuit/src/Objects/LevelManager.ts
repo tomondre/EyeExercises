@@ -12,7 +12,7 @@ export default class LevelManager {
         this.support = new ObserverSupport();
     }
 
-    public correctEntry() {
+    public correctEntry() : void {
         this.difficultyEntries++;
         if (this.difficultyEntries === 4) {
             this.difficultyEntries = 0;
@@ -38,7 +38,19 @@ export default class LevelManager {
         }
     }
 
-    public subscribe(observer : Observer){
+    public getCurrentDifficulty() : number {
+        return this.currentDifficulty;
+    }
+
+    public getCurrentLevel() : number {
+        return this.currentLevel;
+    }
+
+    public getDifficultyEntries() : number {
+        return this.difficultyEntries;
+    }
+
+    public subscribe(observer : Observer) : void{
         this.support.subscribe(observer);
     }
 
