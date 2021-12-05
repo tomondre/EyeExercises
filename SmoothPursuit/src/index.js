@@ -1,5 +1,6 @@
 import p5 from "p5";
 import Game from "./Game";
+import {config} from "./Objects/config";
 
 //Wrapper for p5.js
 const s = (sketch) => {
@@ -7,7 +8,8 @@ const s = (sketch) => {
 
     sketch.setup = function () {
         sketch.createCanvas(window.innerWidth, window.innerHeight);
-        sketch.frameRate(config.game.frameRate);
+        sketch.frameRate(50);
+        sketch.angleMode(sketch.DEGREES);
         game = new Game(sketch);
     }
 
