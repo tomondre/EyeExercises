@@ -2,13 +2,11 @@ import * as p5 from "p5";
 import * as config from '../config'
 import ISubject from "./ISubject";
 
-export default class DifficultyTwoSubject implements ISubject{
-
+export default class DifficultyFiveSubject implements ISubject {
     private image: p5.Image;
-    private x: number;
-    private y: number;
     private sketch: p5;
     private goingUp: boolean;
+    private angle: number;
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
@@ -16,6 +14,7 @@ export default class DifficultyTwoSubject implements ISubject{
     constructor(sketch: p5, image: p5.Image) {
         this.image = image;
         this.sketch = sketch;
+        this.angle = 0;
         this.reset();
     }
 
@@ -24,47 +23,26 @@ export default class DifficultyTwoSubject implements ISubject{
             return;
 
         this.sketch.push();
-        this.sketch.translate(this.x, this.y);
+
+        this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
         this.sketch.imageMode(this.sketch.CENTER);
-        if (this.goingUp)
-        {
-            this.sketch.rotate(270);
-        }
-        else {
-            this.sketch.rotate(90);
-        }
-        this.sketch.image(this.image, 0, 0);
+        this.sketch.rotate(this.angle);
+        this.sketch.image(this.image, 100, 0);
         this.sketch.pop();
         this.move();
-        this.checkBoundaries();
     }
 
     private move(): void {
-        if (this.goingUp) {
-            this.y = this.y + config.config.difficulties[0].subjectSpeedPerFrame * this.speed;
-
-        } else {
-            this.y = this.y - config.config.difficulties[0].subjectSpeedPerFrame * this.speed;
-        }
-    }
-
-    private checkBoundaries() {
-        if (this.goingUp && (this.y + (this.image.height / 2)) > this.sketch.canvas.height) {
-            this.goingUp = false;
-        } else if (!this.goingUp && this.y  - (this.image.height / 2) < 0) {
-            this.goingUp = true;
-        }
+        this.angle++;
     }
 
     public setImage(image: p5.Image): void {
-
     }
 
     public reset(): void {
-        this.x = this.sketch.canvas.width / 2;
-        this.y = this.sketch.canvas.height / 2;
+        this.angle = 0;
         this.speed = config.config.game.defaultSpeed;
-        this.createSpeedInterval();
+        this.createSpeedInterval()
     }
 
     public continue(): void {
@@ -83,5 +61,4 @@ export default class DifficultyTwoSubject implements ISubject{
             this.speed += config.config.game.increaseSpeedEverySecondBy;
         }, 1000);
     }
-
 }

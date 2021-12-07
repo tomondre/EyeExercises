@@ -11,64 +11,54 @@ export default class DifficultyFourSubject implements ISubject {
     private yInc: number;
     private sketch: p5;
     private goingRightUp: boolean;
-    private speed : number;
-    private speedInterval : number;
-    private isPaused : boolean;
+    private speed: number;
+    private speedInterval: number;
+    private isPaused: boolean;
 
     constructor(sketch: p5, image: p5.Image) {
         this.image = image;
         this.sketch = sketch;
         this.goingRightUp = true;
-        this.reset();
         let subjectSpeedPerFrame = this.sketch.canvas.width / 1000;
         this.xInc = subjectSpeedPerFrame;
         let number = this.sketch.canvas.width / subjectSpeedPerFrame;
         this.yInc = this.sketch.canvas.height / number;
-
-        this.createSpeedInterval();
-    }
-
-    private createSpeedInterval() {
-        clearInterval(this.speedInterval);
-        this.speedInterval = setInterval(() => {
-            this.speed += 0.1;
-        }, 1000);
+        this.reset();
     }
 
     public draw(): void {
-        if (this.isPaused) {
-            if (this.goingRightUp) {
-                this.sketch.push();
-                this.sketch.scale(-1, 1);
-                this.sketch.image(this.image, -this.x, this.y);
-                this.sketch.pop();
-            } else {
-                this.sketch.image(this.image, this.x, this.y);
-            }
-            this.move();
-            this.checkBoundaries();
+        if (this.isPaused)
+            return;
+
+        if (this.goingRightUp) {
+            this.sketch.push();
+            this.sketch.scale(-1, 1);
+            this.sketch.image(this.image, -this.x, this.y);
+            this.sketch.pop();
+        } else {
+            this.sketch.image(this.image, this.x, this.y);
         }
+        this.move();
+        this.checkBoundaries();
     }
 
     private move(): void {
         if (this.goingRightUp) {
-            this.x += this.xInc * this.speed;
-            this.y -= this.yInc * this.speed;
+            this.x = this.x + this.xInc * this.speed;
+            this.y = this.y - this.yInc * this.speed;
         } else {
-            this.x -= this.xInc * this.speed;
-            this.y += this.yInc * this.speed;
+            this.x = this.x - this.xInc * this.speed;
+            this.y = this.y + this.yInc * this.speed;
         }
     }
 
     private checkBoundaries() {
         if (this.goingRightUp) {
-            if ((this.x + this.image.width) > this.sketch.canvas.width)
-            {
+            if ((this.x + this.image.width) > this.sketch.canvas.width) {
                 this.goingRightUp = false;
             }
         } else {
-            if ((this.x - this.image.width) < 0)
-            {
+            if ((this.x - this.image.width) < 0) {
                 this.goingRightUp = true;
             }
         }
@@ -80,17 +70,24 @@ export default class DifficultyFourSubject implements ISubject {
     public reset(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
-        this.speed = 0;
-        clearInterval(this.speedInterval);
+        this.speed = config.config.game.defaultSpeed;
+        this.createSpeedInterval();
     }
 
-    continue(): void {
+    public continue(): void {
         this.createSpeedInterval();
         this.isPaused = false;
     }
 
-    pause(): void {
+    public pause(): void {
         clearInterval(this.speedInterval);
         this.isPaused = true;
+    }
+
+    private createSpeedInterval() {
+        clearInterval(this.speedInterval);
+        this.speedInterval = setInterval(() => {
+            this.speed += config.config.game.increaseSpeedEverySecondBy;
+        }, 1000);
     }
 }
