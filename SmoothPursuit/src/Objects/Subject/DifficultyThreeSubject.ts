@@ -1,6 +1,7 @@
 import ISubject from "./ISubject";
 import * as p5 from "p5";
 import * as config from '../config'
+import SymbolManager from "../SymbolManager";
 
 
 export default class DifficultyThreeSubject implements ISubject {
@@ -15,11 +16,13 @@ export default class DifficultyThreeSubject implements ISubject {
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
+    private symbolManager : SymbolManager;
 
-    constructor(sketch: p5, image: p5.Image) {
+    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolManager) {
+        this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        let subjectSpeedPerFrame = this.sketch.canvas.width / 1000;
+        let subjectSpeedPerFrame = config.config.game.subjectSpeedPerFrame;
         this.xInc = subjectSpeedPerFrame;
         let number = this.sketch.canvas.width / subjectSpeedPerFrame;
         this.yInc = this.sketch.canvas.height / number;
@@ -70,7 +73,7 @@ export default class DifficultyThreeSubject implements ISubject {
     public reset(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
-        this.speed = config.config.game.defaultSpeed;
+        this.speed = config.config.difficulties[2].defaultSpeed;
         this.createSpeedInterval();
     }
 

@@ -1,8 +1,9 @@
 export const config = {
     game: {
         frameRate: 50,
-        increaseSpeedEverySecondBy: 0.5,
-        defaultSpeed : 1
+        increaseSpeedEverySecondBy: 0.01,
+        subjectSpeedPerFrame : 5,
+        angleIncrease: 0.8
     },
     levels: {
         levels: 4,
@@ -12,19 +13,20 @@ export const config = {
     difficulties:
         [{
             difficultyNo : 1,
-            subjectSpeedPerFrame : 10
+            defaultSpeed : 1
         },{
             difficultyNo : 2,
-            subjectSpeedPerFrame : 10
+            defaultSpeed : 1
         },{
             difficultyNo : 3,
+            defaultSpeed : 1
         },{
             difficultyNo : 4,
+            defaultSpeed : 1
         },{
             difficultyNo : 5,
-            subjectSpeedPerFrame : 10
+            defaultSpeed : 1
         },{
             difficultyNo : 6,
-            subjectSpeedPerFrame : 10
         }],
 }

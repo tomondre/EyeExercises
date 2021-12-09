@@ -5,22 +5,26 @@ import {Observer} from "./Objects/Observer";
 import {ObserverAction} from "./Objects/ObserverAction";
 import LevelManager from "./Objects/LevelManager";
 import SubjectManager from "./Objects/Subject/SubjectManager";
+import SymbolManager from "./Objects/SymbolManager";
 
 export default class Game implements Observer{
 
+    private sketch : p5;
     private scoreBoard : ScoreBoard;
     private timer : Timer;
     private levelManger : LevelManager;
     private subject : SubjectManager;
-    private sketch : p5;
+    private symbolManager : SymbolManager;
 
     constructor(sketch : p5) {
         this.sketch = sketch;
         this.scoreBoard = new ScoreBoard(sketch);
         this.timer = new Timer(sketch);
+        this.symbolManager = new SymbolManager(sketch);
         this.levelManger = new LevelManager();
-        this.subject = new SubjectManager(sketch);
+        this.subject = new SubjectManager(sketch, this.symbolManager);
 
+        this.symbolManager.subscribe(this);
         this.levelManger.subscribe(this);
         this.timer.subscribe(this);
     }

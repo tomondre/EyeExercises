@@ -1,6 +1,7 @@
 import ISubject from "./ISubject";
 import * as p5 from "p5";
 import * as config from '../config'
+import SymbolManager from "../SymbolManager";
 
 
 export default class DifficultyOneSubject implements ISubject {
@@ -13,8 +14,10 @@ export default class DifficultyOneSubject implements ISubject {
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
+    private symbolManager : SymbolManager;
 
-    constructor(sketch: p5, image: p5.Image) {
+    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolManager) {
+        this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
         this.reset();
@@ -39,10 +42,10 @@ export default class DifficultyOneSubject implements ISubject {
 
     private move(): void {
         if (this.goingRight) {
-            this.x = this.x + config.config.difficulties[0].subjectSpeedPerFrame  * this.speed;
+            this.x = this.x + config.config.game.subjectSpeedPerFrame  * this.speed;
 
         } else {
-            this.x = this.x -  config.config.difficulties[0].subjectSpeedPerFrame  * this.speed;
+            this.x = this.x -  config.config.game.subjectSpeedPerFrame  * this.speed;
         }
     }
 
@@ -60,7 +63,7 @@ export default class DifficultyOneSubject implements ISubject {
     public reset(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
-        this.speed = config.config.game.defaultSpeed
+        this.speed = config.config.difficulties[0].defaultSpeed;
         this.createSpeedInterval();
     }
 
