@@ -18,10 +18,12 @@ export default class Game implements Observer{
 
     constructor(sketch : p5) {
         this.sketch = sketch;
+        let savedLevel = 0;
+        let savedDifficulty = 0;
+        this.levelManger = new LevelManager(savedLevel, savedDifficulty);
         this.scoreBoard = new ScoreBoard(sketch);
         this.timer = new Timer(sketch);
-        this.symbolManager = new SymbolManager(sketch);
-        this.levelManger = new LevelManager();
+        this.symbolManager = new SymbolManager(sketch, this.levelManger.getCurrentLevel());
         this.subject = new SubjectManager(sketch, this.symbolManager);
 
         this.symbolManager.subscribe(this);

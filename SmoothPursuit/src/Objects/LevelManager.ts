@@ -8,7 +8,9 @@ export default class LevelManager {
     private difficultyEntries : number;
     private support : ObserverSupport;
 
-    constructor() {
+    constructor(savedLevel : number, savedDifficulty : number) {
+        this.currentLevel = savedLevel;
+        this.currentDifficulty = savedDifficulty;
         this.support = new ObserverSupport();
     }
 
