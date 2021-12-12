@@ -6,15 +6,14 @@ import DifficultyFiveSubject from "./DifficultyFiveSubject";
 import DifficultyThreeSubject from "./DifficultyThreeSubject";
 import DifficultyFourSubject from "./DifficultyFourSubject";
 import DifficultySixSubject from "./DifficultySixSubject";
-import SymbolManager from "../SymbolManager";
+import SymbolLevelManager from "../Symbol/SymbolLevelManager";
 
 export default class SubjectManager {
     private currentDifficulty : number;
     private subjects : ISubject[];
 
-    constructor(sketch : p5, symbolManager : SymbolManager) {
-        this.currentDifficulty = 4;
-
+    constructor(savedDifficulty : number, sketch : p5, symbolManager : SymbolLevelManager) {
+        this.currentDifficulty = savedDifficulty;
         let image = sketch.loadImage('assets/Bee.png');
         this.subjects = [];
         this.subjects.push(new DifficultyOneSubject(sketch, image, symbolManager));
@@ -25,11 +24,19 @@ export default class SubjectManager {
         this.subjects.push(new DifficultySixSubject(sketch, image, symbolManager));
     }
 
-    draw() : void {
+    public draw() : void {
         this.subjects[this.currentDifficulty].draw();
     }
 
-    public setCurrentDifficulty(difficulty : number) {
+    public pause() : void {
+        this.subjects[this.currentDifficulty].pause();
+    }
+
+    public continue() : void {
+        this.subjects[this.currentDifficulty].continue();
+    }
+
+    public setCurrentDifficulty(difficulty : number) : void {
         this.currentDifficulty = difficulty;
         this.subjects[this.currentDifficulty].reset();
     }
