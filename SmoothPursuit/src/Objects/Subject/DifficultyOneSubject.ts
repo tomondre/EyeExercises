@@ -1,7 +1,7 @@
 import ISubject from "./ISubject";
 import * as p5 from "p5";
 import * as config from '../config'
-import SymbolManager from "../SymbolManager";
+import SymbolLevelManager from "../Symbol/SymbolLevelManager";
 
 
 export default class DifficultyOneSubject implements ISubject {
@@ -14,9 +14,9 @@ export default class DifficultyOneSubject implements ISubject {
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
-    private symbolManager : SymbolManager;
+    private symbolManager : SymbolLevelManager;
 
-    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolManager) {
+    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolLevelManager) {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
@@ -24,28 +24,34 @@ export default class DifficultyOneSubject implements ISubject {
     }
 
     public draw(): void {
-        if (this.isPaused)
-            return;
+        this.sketch.push();
+        this.sketch.translate(this.x, this.y);
+        this.sketch.imageMode(this.sketch.CENTER);
         if (this.goingRight)
         {
-            this.sketch.push();
+            this.sketch.rotate(270);
             this.sketch.scale(-1, 1);
-            this.sketch.image(this.image, -this.x, this.y);
-            this.sketch.pop();
+            this.sketch.image(this.image, 0, 0);
         }
         else {
-            this.sketch.image(this.image, this.x, this.y);
+            this.sketch.rotate(90);
+            this.sketch.image(this.image, 0, 0);
         }
+        this.sketch.pop();
+        if (this.isPaused) {
+            return;
+        }
+        this.symbolManager.draw(this.x, this.y );
         this.move();
         this.checkBoundaries();
     }
 
     private move(): void {
         if (this.goingRight) {
-            this.x = this.x + config.config.game.subjectSpeedPerFrame  * this.speed;
+            this.x = this.x + config.config.game.subjectSpeedPerFrame * this.speed;
 
         } else {
-            this.x = this.x -  config.config.game.subjectSpeedPerFrame  * this.speed;
+            this.x = this.x -  config.config.game.subjectSpeedPerFrame * this.speed;
         }
     }
 
@@ -68,11 +74,13 @@ export default class DifficultyOneSubject implements ISubject {
     }
 
     public continue(): void {
+        this.symbolManager.continue();
         this.createSpeedInterval();
         this.isPaused = false;
     }
 
     public pause(): void {
+        this.symbolManager.pause();
         clearInterval(this.speedInterval);
         this.isPaused = true;
     }
@@ -81,8 +89,6 @@ export default class DifficultyOneSubject implements ISubject {
         clearInterval(this.speedInterval);
         this.speedInterval = setInterval(() => {
             this.speed += config.config.game.increaseSpeedEverySecondBy;
-            console.log("increased");
-            console.log(this.speed);
             }, 1000);
     }
 }

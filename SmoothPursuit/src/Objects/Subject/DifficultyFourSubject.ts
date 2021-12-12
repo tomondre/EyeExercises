@@ -1,7 +1,7 @@
 import ISubject from "./ISubject";
 import * as p5 from "p5";
 import * as config from '../config'
-import SymbolManager from "../SymbolManager";
+import SymbolLevelManager from "../Symbol/SymbolLevelManager";
 
 export default class DifficultyFourSubject implements ISubject {
 
@@ -15,9 +15,9 @@ export default class DifficultyFourSubject implements ISubject {
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
-    private symbolManager : SymbolManager;
+    private symbolManager : SymbolLevelManager;
 
-    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolManager) {
+    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolLevelManager) {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
@@ -30,17 +30,22 @@ export default class DifficultyFourSubject implements ISubject {
     }
 
     public draw(): void {
-        if (this.isPaused)
-            return;
+        this.sketch.push();
+        this.sketch.translate(this.x, this.y);
+        this.sketch.imageMode(this.sketch.CENTER);
 
         if (this.goingRightUp) {
-            this.sketch.push();
+            this.sketch.rotate(240);
             this.sketch.scale(-1, 1);
-            this.sketch.image(this.image, -this.x, this.y);
-            this.sketch.pop();
+            this.sketch.image(this.image, 0, 0);
         } else {
-            this.sketch.image(this.image, this.x, this.y);
+            this.sketch.rotate(60);
+            this.sketch.image(this.image, 0, 0);
         }
+        this.sketch.pop();
+        if (this.isPaused)
+            return;
+        this.symbolManager.draw(this.x, this.y);
         this.move();
         this.checkBoundaries();
     }
@@ -78,11 +83,13 @@ export default class DifficultyFourSubject implements ISubject {
     }
 
     public continue(): void {
+        this.symbolManager.continue();
         this.createSpeedInterval();
         this.isPaused = false;
     }
 
     public pause(): void {
+        this.symbolManager.pause();
         clearInterval(this.speedInterval);
         this.isPaused = true;
     }

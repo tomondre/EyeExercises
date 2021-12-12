@@ -1,7 +1,7 @@
 import * as p5 from "p5";
 import * as config from '../config'
 import ISubject from "./ISubject";
-import SymbolManager from "../SymbolManager";
+import SymbolLevelManager from "../Symbol/SymbolLevelManager";
 
 export default class DifficultyTwoSubject implements ISubject{
 
@@ -13,9 +13,9 @@ export default class DifficultyTwoSubject implements ISubject{
     private speed: number;
     private speedInterval: number;
     private isPaused: boolean;
-    private symbolManager : SymbolManager;
+    private symbolManager : SymbolLevelManager;
 
-    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolManager) {
+    constructor(sketch: p5, image: p5.Image, symbolManager : SymbolLevelManager) {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
@@ -23,21 +23,22 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     public draw(): void {
-        if (this.isPaused)
-            return;
-
         this.sketch.push();
         this.sketch.translate(this.x, this.y);
         this.sketch.imageMode(this.sketch.CENTER);
         if (this.goingUp)
         {
-            this.sketch.rotate(270);
+            this.sketch.rotate(0);
         }
         else {
-            this.sketch.rotate(90);
+            this.sketch.rotate(180);
         }
         this.sketch.image(this.image, 0, 0);
         this.sketch.pop();
+        if (this.isPaused) {
+            return;
+        }
+        this.symbolManager.draw(this.x, this.y);
         this.move();
         this.checkBoundaries();
     }
@@ -71,11 +72,13 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     public continue(): void {
+        this.symbolManager.continue();
         this.createSpeedInterval();
         this.isPaused = false;
     }
 
     public pause(): void {
+        this.symbolManager.pause();
         clearInterval(this.speedInterval);
         this.isPaused = true;
     }
