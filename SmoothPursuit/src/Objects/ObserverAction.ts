@@ -5,6 +5,7 @@ export enum ObserverAction {
     difficultyFinished,
     gameFinished,
     levelFinished,
-
-
+    redDotGenerated,
+    redDotNotChecked,
+    incorrectEntry,
 }

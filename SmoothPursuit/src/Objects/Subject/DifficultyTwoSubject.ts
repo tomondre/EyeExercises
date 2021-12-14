@@ -19,7 +19,6 @@ export default class DifficultyTwoSubject implements ISubject{
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        this.reset();
     }
 
     public draw(): void {
@@ -64,11 +63,11 @@ export default class DifficultyTwoSubject implements ISubject{
 
     }
 
-    public reset(): void {
+    public create(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
         this.speed = config.config.difficulties[1].defaultSpeed;
-        this.createSpeedInterval();
+        this.continue();
     }
 
     public continue(): void {

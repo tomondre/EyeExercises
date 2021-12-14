@@ -21,12 +21,7 @@ export default class DifficultyFourSubject implements ISubject {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        this.goingRightUp = true;
-        let subjectSpeedPerFrame = config.config.game.subjectSpeedPerFrame;
-        this.xInc = subjectSpeedPerFrame;
-        let number = this.sketch.canvas.width / subjectSpeedPerFrame;
-        this.yInc = this.sketch.canvas.height / number;
-        this.reset();
+        this.create();
     }
 
     public draw(): void {
@@ -75,11 +70,17 @@ export default class DifficultyFourSubject implements ISubject {
     public setImage(image: p5.Image): void {
     }
 
-    public reset(): void {
+    public create(): void {
+        this.pause();
+        this.goingRightUp = true;
+        let subjectSpeedPerFrame = config.config.game.subjectSpeedPerFrame;
+        this.xInc = subjectSpeedPerFrame;
+        let number = this.sketch.canvas.width / subjectSpeedPerFrame;
+        this.yInc = this.sketch.canvas.height / number;
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
         this.speed = config.config.difficulties[3].defaultSpeed;
-        this.createSpeedInterval();
+        this.continue();
     }
 
     public continue(): void {

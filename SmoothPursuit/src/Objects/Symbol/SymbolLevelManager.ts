@@ -16,8 +16,8 @@ export default class SymbolLevelManager {
         this.support = new ObserverSupport();
 
         this.symbols = [];
-        this.symbols.push(new SymbolLevelOne(sketch));
-        this.symbols.push(new SymbolLevelTwo(sketch));
+        this.symbols.push(new SymbolLevelOne(sketch, this.support));
+        this.symbols.push(new SymbolLevelTwo(sketch, this.support));
 
         this.setLevelIndex(savedLevel);
     }
@@ -33,6 +33,12 @@ export default class SymbolLevelManager {
         this.symbols[levelIndex].continue();
     }
 
+    public redDotEntry() : void {
+        if (this.levelIndex === 0) {
+            this.symbols[0].redDotEntry();
+        }
+    }
+
     public subscribe(observer : Observer) {
         this.support.subscribe(observer);
     }
@@ -43,5 +49,9 @@ export default class SymbolLevelManager {
 
     public continue() : void {
         this.symbols[this.levelIndex].continue();
+    }
+
+    public create() : void {
+        this.symbols[this.levelIndex].create();
     }
 }

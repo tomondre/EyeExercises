@@ -11,19 +11,19 @@ export default class LevelManager {
     constructor(savedLevel : number, savedDifficulty : number) {
         this.currentLevel = savedLevel;
         this.currentDifficulty = savedDifficulty;
+        this.difficultyEntries = 0;
         this.support = new ObserverSupport();
     }
 
     public correctEntry() : void {
         this.difficultyEntries++;
-        if (this.difficultyEntries === 4) {
+        if (this.difficultyEntries === 2) {
             this.difficultyEntries = 0;
             this.currentDifficulty++;
 
             if (this.currentDifficulty === 6) {
                 this.currentDifficulty = 0;
                 this.currentLevel++;
-
                 if (this.currentLevel === 4)
                 {
                     this.support.fire(ObserverAction.gameFinished)
@@ -34,9 +34,6 @@ export default class LevelManager {
             else {
                 this.support.fire(ObserverAction.difficultyFinished);
             }
-        }
-        else {
-            this.support.fire(ObserverAction.correctEntry);
         }
     }
 

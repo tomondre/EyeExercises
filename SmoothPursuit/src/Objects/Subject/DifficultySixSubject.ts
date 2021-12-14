@@ -6,7 +6,6 @@ import SymbolLevelManager from "../Symbol/SymbolLevelManager";
 export default class DifficultySixSubject implements ISubject {
     private image: p5.Image;
     private sketch: p5;
-    private goingUp: boolean;
     private angle: number;
     private speed: number;
     private speedInterval: number;
@@ -17,8 +16,7 @@ export default class DifficultySixSubject implements ISubject {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        this.angle = 0;
-        this.reset();
+        this.create();
     }
 
     public draw(): void {
@@ -27,26 +25,32 @@ export default class DifficultySixSubject implements ISubject {
         this.sketch.scale(-1, 1);
         this.sketch.imageMode(this.sketch.CENTER);
         this.sketch.rotate(this.angle);
-        let semicircle = this.sketch.canvas.height * 0.9 / 2;
-        this.sketch.image(this.image, semicircle, 0);
+        let radius = this.sketch.canvas.height * 0.9 / 2;
+        this.sketch.image(this.image, radius, 0);
         this.sketch.pop();
         if (this.isPaused)
             return;
-        this.symbolManager.draw(this.x, this.y);
+
+        //Please dont ask how does it work cuz I have no idea. It just works
+        let x = this.sketch.canvas.width / 2 + (radius * Math.sin(Math.PI * 2 * (this.angle  % 360 - 90) / 360));
+        let y = this.sketch.canvas.height / 2 + (radius * Math.cos(Math.PI * 2 * (this.angle  % 360 - 90) / 360));
+
+        this.symbolManager.draw(x, y);
         this.move();
     }
 
     private move(): void {
-        this.angle += config.config.game.angleIncrease;
+        this.angle += config.config.game.angleIncrease + (config.config.game.angleIncrease * config.config.game.increaseSpeedEverySecondBy);
     }
 
     public setImage(image: p5.Image): void {
     }
 
-    public reset(): void {
+    public create(): void {
+        this.pause();
         this.angle = 0;
         this.speed = config.config.difficulties[5].defaultSpeed;
-        this.createSpeedInterval()
+        this.continue();
     }
 
     public continue(): void {

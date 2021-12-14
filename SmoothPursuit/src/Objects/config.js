@@ -1,9 +1,11 @@
 export const config = {
     game: {
         frameRate: 50,
-        increaseSpeedEverySecondBy: 0.01,
+        increaseSpeedEverySecondBy: 0.1,
         subjectSpeedPerFrame : 5,
-        angleIncrease: 0.8
+
+        angleIncrease: 0.8,
+        increaseAngleSpeedEverySecondBy: 0.0001,
     },
     levels: {
         levels: 4,

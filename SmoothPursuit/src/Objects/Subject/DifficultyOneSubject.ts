@@ -20,7 +20,6 @@ export default class DifficultyOneSubject implements ISubject {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        this.reset();
     }
 
     public draw(): void {
@@ -49,7 +48,6 @@ export default class DifficultyOneSubject implements ISubject {
     private move(): void {
         if (this.goingRight) {
             this.x = this.x + config.config.game.subjectSpeedPerFrame * this.speed;
-
         } else {
             this.x = this.x -  config.config.game.subjectSpeedPerFrame * this.speed;
         }
@@ -66,11 +64,12 @@ export default class DifficultyOneSubject implements ISubject {
     public setImage(image: p5.Image): void {
     }
 
-    public reset(): void {
+    public create(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
         this.speed = config.config.difficulties[0].defaultSpeed;
-        this.createSpeedInterval();
+        this.symbolManager.create();
+        this.continue();
     }
 
     public continue(): void {
@@ -88,7 +87,7 @@ export default class DifficultyOneSubject implements ISubject {
     private createSpeedInterval() {
         clearInterval(this.speedInterval);
         this.speedInterval = setInterval(() => {
-            this.speed += config.config.game.increaseSpeedEverySecondBy;
+                this.speed += config.config.game.increaseSpeedEverySecondBy;
             }, 1000);
     }
 }

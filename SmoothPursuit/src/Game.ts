@@ -19,7 +19,7 @@ export default class Game implements Observer{
     constructor(sketch : p5) {
         this.sketch = sketch;
         let savedLevel = 0;
-        let savedDifficulty = 3;
+        let savedDifficulty = 2;
         this.levelManger = new LevelManager(savedLevel, savedDifficulty);
         this.scoreBoard = new ScoreBoard(sketch);
         this.timer = new Timer(sketch);
@@ -29,6 +29,23 @@ export default class Game implements Observer{
         this.symbolManager.subscribe(this);
         this.levelManger.subscribe(this);
         this.timer.subscribe(this);
+
+        if (savedLevel === 0) {
+            this.createSpaceHandler();
+        }
+
+
+        //TODO remove - testing
+        let bool;
+        document.getElementById("slowDownButton").addEventListener("pointerdown", () => {
+            if (bool) {
+                this.subject.setCurrentDifficulty(++savedDifficulty);
+                bool = false;
+            }
+            else  {
+                bool = true;
+            }
+        });
     }
 
 
@@ -46,18 +63,28 @@ export default class Game implements Observer{
                 this.timeOverHandler();
                 break;
             case ObserverAction.correctEntry:
+                this.levelManger.correctEntry();
+                this.increaseScore();
                 break;
             case ObserverAction.difficultyFinished:
+                console.log("setting up diff: " + this.levelManger.getCurrentDifficulty())
+                this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
                 break;
             case ObserverAction.levelFinished:
+                this.subject.setCurrentDifficulty(0);
+                this.symbolManager.setLevelIndex(this.levelManger.getCurrentLevel());
                 break;
             case ObserverAction.gameFinished:
+                break;
+            case ObserverAction.incorrectEntry:
+                this.decreaseScore();
                 break;
         }
     }
 
+
+
     private timeOverHandler() {
-        console.log("timeOVer")
         this.continueGame();
     }
 
@@ -67,5 +94,25 @@ export default class Game implements Observer{
 
     private continueGame() {
         this.timer.continue();
+    }
+
+    private createSpaceHandler() : void {
+        document.addEventListener('keyup', (event) => {
+            if (event.code === 'Space') {
+                this.spaceHandler();
+            }
+        });
+    }
+
+    private spaceHandler() : void {
+        this.symbolManager.redDotEntry()
+    }
+
+    private decreaseScore() : void {
+        this.scoreBoard.decreaseScore();
+    }
+
+    private increaseScore() : void {
+        this.scoreBoard.increaseScore();
     }
 }

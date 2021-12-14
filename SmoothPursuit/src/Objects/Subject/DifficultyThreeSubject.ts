@@ -26,7 +26,7 @@ export default class DifficultyThreeSubject implements ISubject {
         this.xInc = subjectSpeedPerFrame;
         let number = this.sketch.canvas.width / subjectSpeedPerFrame;
         this.yInc = this.sketch.canvas.height / number;
-        this.reset();
+        this.create();
     }
 
     public draw(): void {
@@ -74,11 +74,11 @@ export default class DifficultyThreeSubject implements ISubject {
     public setImage(image: p5.Image): void {
     }
 
-    public reset(): void {
+    public create(): void {
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
         this.speed = config.config.difficulties[2].defaultSpeed;
-        this.createSpeedInterval();
+        this.continue();
     }
 
     public continue(): void {

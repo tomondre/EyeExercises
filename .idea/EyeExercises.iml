@@ -7,11 +7,17 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/FootballGame/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/FootballGame/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
-      <excludeFolder url="file://$MODULE_DIR$/FootballGame" />
-      <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
       <excludeFolder url="file://$MODULE_DIR$/Maze/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/Maze/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/FootballGame/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
+      <excludeFolder url="file://$MODULE_DIR$/FootballGame" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
     </content>
     <content url="file://$MODULE_DIR$/FootballGame/node_modules" />
     <orderEntry type="inheritedJdk" />

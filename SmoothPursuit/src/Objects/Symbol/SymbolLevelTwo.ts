@@ -1,19 +1,20 @@
 import * as p5 from "p5";
 import {SymbolLevel} from "./SymbolLevel";
+import ObserverSupport from "../ObserverSupport";
 
 export default class SymbolLevelTwo implements SymbolLevel {
-
     private sketch : p5;
+
     private symbols : string = "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞";
     private symbolInterval : number;
     private symbolTimeout : number;
     private numberOfSymbols : number = 1;
     private generatedSymbols : string = "";
     private shouldBeSymbolGenerated : boolean;
-
-    constructor(sketch : p5) {
+    private support : ObserverSupport;
+    constructor(sketch, support: ObserverSupport) {
         this.sketch = sketch;
-        this.continue();
+        this.support = support;
     }
 
     public draw(x: number, y: number) {
@@ -51,5 +52,15 @@ export default class SymbolLevelTwo implements SymbolLevel {
             this.generatedSymbols += this.symbols[this.sketch.int(this.sketch.random(0, this.symbols.length))];
         }
         this.numberOfSymbols++;
+    }
+
+    public create() : void {
+        this.pause();
+        this.generatedSymbols = "";
+        this.numberOfSymbols = 1;
+        this.continue();
+    }
+
+    redDotEntry() : void {
     }
 }
