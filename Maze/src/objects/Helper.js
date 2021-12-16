@@ -18,6 +18,6 @@ export default class Helper {
 
     static isMobile()
     {
-        return window.innerWidth < 1000 && window.innerHeight > window.innerWidth
+        return window.innerWidth < 960 && window.innerHeight > window.innerWidth
     }
 }
