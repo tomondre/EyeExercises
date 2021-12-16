@@ -1,6 +1,6 @@
 
 //TODO change game code accordingly to the levels code
-let gameCode = "904";
+let gameCode = "909";
 
 export default class FetchDataManager {
 
@@ -34,7 +34,7 @@ export default class FetchDataManager {
         let time = window.localStorage.getItem(gameCode + "/Time");
         if (time === null)
         {
-            return 5;
+            return 120;
         }
         return time;
     }
