@@ -52,9 +52,9 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     private checkBoundaries() {
-        if (this.goingUp && (this.y + (this.image.height / 2)) > this.sketch.canvas.height) {
+        if (this.goingUp && (this.y + this.image.height) > this.sketch.canvas.height) {
             this.goingUp = false;
-        } else if (!this.goingUp && this.y  - (this.image.height / 2) < 0) {
+        } else if (!this.goingUp && this.y - this.image.height < 0) {
             this.goingUp = true;
         }
     }

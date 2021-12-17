@@ -21,7 +21,6 @@ export default class DifficultyFourSubject implements ISubject {
         this.symbolManager = symbolManager;
         this.image = image;
         this.sketch = sketch;
-        this.create();
     }
 
     public draw(): void {

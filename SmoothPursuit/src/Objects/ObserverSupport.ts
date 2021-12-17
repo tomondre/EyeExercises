@@ -17,7 +17,7 @@ export default class ObserverSupport{
         this.observers = this.observers.filter((o) => o !== observer);
     }
 
-    public fire(action : ObserverAction) {
-        this.observers.forEach((o) => o.update(action));
+    public fire(action : ObserverAction, props? : object) {
+        this.observers.forEach((o) => o.update(action, props == null ? {} : props));
     }
 }

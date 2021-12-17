@@ -1,5 +1,5 @@
 import {ObserverAction} from "./ObserverAction";
 
 export interface Observer {
-    update(change : ObserverAction): void
+    update(change : ObserverAction, props : object): void
 }

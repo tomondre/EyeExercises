@@ -1,7 +1,6 @@
 import ObserverSupport from "../ObserverSupport";
 import {Observer} from "../Observer";
 import * as p5 from "p5";
-import LevelManager from "../LevelManager";
 import {SymbolLevel} from "./SymbolLevel";
 import SymbolLevelOne from "./SymbolLevelOne";
 import SymbolLevelTwo from "./SymbolLevelTwo";
@@ -22,15 +21,15 @@ export default class SymbolLevelManager {
         this.setLevelIndex(savedLevel);
     }
 
-    public draw(x : number, y : number) {
+    public draw(x : number, y : number) : void{
         this.symbols[this.levelIndex].draw(x, y);
     }
 
-    public setLevelIndex(levelIndex : number)
+    public setLevelIndex(levelIndex : number) : void
     {
         this.symbols[this.levelIndex].pause();
         this.levelIndex = levelIndex;
-        this.symbols[levelIndex].continue();
+        this.symbols[levelIndex].create();
     }
 
     public redDotEntry() : void {
@@ -39,7 +38,7 @@ export default class SymbolLevelManager {
         }
     }
 
-    public subscribe(observer : Observer) {
+    public subscribe(observer : Observer) : void {
         this.support.subscribe(observer);
     }
 

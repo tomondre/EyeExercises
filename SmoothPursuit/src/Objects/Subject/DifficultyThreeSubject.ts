@@ -26,7 +26,6 @@ export default class DifficultyThreeSubject implements ISubject {
         this.xInc = subjectSpeedPerFrame;
         let number = this.sketch.canvas.width / subjectSpeedPerFrame;
         this.yInc = this.sketch.canvas.height / number;
-        this.create();
     }
 
     public draw(): void {
@@ -65,7 +64,7 @@ export default class DifficultyThreeSubject implements ISubject {
                 this.goingRightBottom = false;
             }
         } else {
-            if ((this.x) < 0) {
+            if ((this.x - this.image.width) < 0) {
                 this.goingRightBottom = true;
             }
         }

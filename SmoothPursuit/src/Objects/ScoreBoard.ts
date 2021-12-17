@@ -11,7 +11,6 @@ export default class ScoreBoard {
 
     public draw() : void {
         this.sketch.push();
-        this.sketch.textSize(30);
         this.sketch.text("Score: " + this.score, this.sketch.canvas.width * 0.1, this.sketch.canvas.height * 0.07)
         this.sketch.pop();
     }

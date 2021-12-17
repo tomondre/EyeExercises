@@ -6,8 +6,10 @@ import {ObserverAction} from "./Objects/ObserverAction";
 import LevelManager from "./Objects/LevelManager";
 import SubjectManager from "./Objects/Subject/SubjectManager";
 import SymbolLevelManager from "./Objects/Symbol/SymbolLevelManager";
+import Helper from "./Objects/Helper";
+import ButtonManager from "./Objects/ButtonManager";
 
-export default class Game implements Observer{
+export default class Game implements Observer {
 
     private sketch : p5;
     private scoreBoard : ScoreBoard;
@@ -15,6 +17,7 @@ export default class Game implements Observer{
     private levelManger : LevelManager;
     private subject : SubjectManager;
     private symbolManager : SymbolLevelManager;
+    private buttonManager : ButtonManager;
 
     constructor(sketch : p5) {
         this.sketch = sketch;
@@ -25,38 +28,41 @@ export default class Game implements Observer{
         this.timer = new Timer(sketch);
         this.symbolManager = new SymbolLevelManager(sketch, this.levelManger.getCurrentLevel());
         this.subject = new SubjectManager(savedDifficulty, sketch, this.symbolManager);
+        this.buttonManager = new ButtonManager(sketch);
 
         this.symbolManager.subscribe(this);
         this.levelManger.subscribe(this);
         this.timer.subscribe(this);
+        this.buttonManager.subscribe(this);
 
         if (savedLevel === 0) {
             this.createSpaceHandler();
         }
 
-
         //TODO remove - testing
-        let bool;
-        document.getElementById("slowDownButton").addEventListener("pointerdown", () => {
-            if (bool) {
-                this.subject.setCurrentDifficulty(++savedDifficulty);
-                bool = false;
-            }
-            else  {
-                bool = true;
-            }
-        });
+        // let bool;
+        // document.getElementById("slowDownButton").addEventListener("pointerdown", () => {
+        //     if (bool) {
+        //         this.subject.setCurrentDifficulty(++savedDifficulty);
+        //         bool = false;
+        //     }
+        //     else  {
+        //         bool = true;
+        //     }
+        // });
     }
 
 
-    public draw() {
-        this.sketch.background(255)
+    public draw() : void{
+        this.sketch.textSize(40);
+        this.sketch.background(255);
         this.scoreBoard.draw();
         this.timer.draw();
         this.subject.draw();
+        this.buttonManager.draw();
     }
 
-    public update(change: ObserverAction): void {
+    public update(change : ObserverAction, props): void {
         switch (change) {
             case ObserverAction.timeOver:
                 this.pauseGame();
@@ -67,7 +73,6 @@ export default class Game implements Observer{
                 this.increaseScore();
                 break;
             case ObserverAction.difficultyFinished:
-                console.log("setting up diff: " + this.levelManger.getCurrentDifficulty())
                 this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
                 break;
             case ObserverAction.levelFinished:
@@ -79,22 +84,31 @@ export default class Game implements Observer{
             case ObserverAction.incorrectEntry:
                 this.decreaseScore();
                 break;
+            case ObserverAction.symbolsDisplayed:
+                this.displaySymbolsHandler(props.data);
+                break;
+            case ObserverAction.correctEntrySymbolLevel:
+                this.continueGame();
+
+                break;
         }
     }
 
-
-
-    private timeOverHandler() {
+    private timeOverHandler() : void {
         this.continueGame();
     }
 
-    private pauseGame() {
+    private pauseGame() : void {
         this.timer.pause();
+        this.subject.pause();
     }
 
     private continueGame() {
         this.timer.continue();
+        this.subject.continue();
     }
+
+    private
 
     private createSpaceHandler() : void {
         document.addEventListener('keyup', (event) => {
@@ -114,5 +128,12 @@ export default class Game implements Observer{
 
     private increaseScore() : void {
         this.scoreBoard.increaseScore();
+    }
+
+    private displaySymbolsHandler(props : string) {
+        this.pauseGame();
+        let arr = props;
+        let randomOptions = Helper.get().getRandomOptions(this.levelManger.getCurrentLevel(), arr.length);
+        this.buttonManager.displayButtonOptions(arr, randomOptions);
     }
 }

@@ -16,7 +16,7 @@ export default class SymbolLevelOne implements SymbolLevel {
         this.support = support;
     }
 
-    draw(x: number, y: number) {
+    draw(x: number, y: number) : void {
         this.sketch.push();
         if (this.shouldRedDotBeDisplayed) {
             let c = this.sketch.color('red');
@@ -26,7 +26,7 @@ export default class SymbolLevelOne implements SymbolLevel {
         this.sketch.pop();
     }
 
-    continue() {
+    public continue() : void {
         clearInterval(this.redDotInterval);
         this.redDotInterval = setInterval(() => {
             this.shouldRedDotBeDisplayed = true;
@@ -40,7 +40,7 @@ export default class SymbolLevelOne implements SymbolLevel {
         this.isPause = false;
     }
 
-    public redDotEntry() : void{
+    public redDotEntry() : void {
         if (this.shouldRedDotBeDisplayed)
         {
             this.support.fire(ObserverAction.correctEntry);
@@ -51,14 +51,14 @@ export default class SymbolLevelOne implements SymbolLevel {
         }
     }
 
-    public pause(): void {
+    public pause() : void {
         this.shouldRedDotBeDisplayed = false;
         this.isPause = true;
         clearInterval(this.redDotInterval);
         clearTimeout(this.redDotTimeout);
     }
 
-    public create(): void {
+    public create() : void {
         this.pause();
         this.continue();
     }

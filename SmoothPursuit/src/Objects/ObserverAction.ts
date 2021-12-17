@@ -8,4 +8,6 @@ export enum ObserverAction {
     redDotGenerated,
     redDotNotChecked,
     incorrectEntry,
+    symbolsDisplayed,
+    correctEntrySymbolLevel,
 }
