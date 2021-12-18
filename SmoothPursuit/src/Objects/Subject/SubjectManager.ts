@@ -41,4 +41,8 @@ export default class SubjectManager {
         this.currentDifficulty = difficulty;
         this.subjects[this.currentDifficulty].create();
     }
+
+    public continueSymbolLevel(difficultyEntries: number) : void {
+        this.subjects[this.currentDifficulty].continueSymbolLevel(difficultyEntries);
+    }
 }

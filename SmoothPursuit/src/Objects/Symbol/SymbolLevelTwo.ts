@@ -35,10 +35,10 @@ export default class SymbolLevelTwo implements SymbolLevel {
     }
 
     public createSymbolsShowingSequence(): void {
-        clearInterval(this.symbolAppearTimeout);
+        clearTimeout(this.symbolAppearTimeout);
 
         let timeoutTime = this.sketch.random(3000, 4000);
-        let timeout: number = window.setTimeout(() => {
+        let timeout : number = window.setTimeout(() => {
             this.shouldBeSymbolGenerated = true;
             this.symbolRemovingTimeout = setTimeout(() => {
                 this.shouldBeSymbolGenerated = false;
@@ -57,7 +57,7 @@ export default class SymbolLevelTwo implements SymbolLevel {
 
     public pause(): void {
         this.shouldBeSymbolGenerated = false;
-        clearInterval(this.symbolAppearTimeout);
+        clearTimeout(this.symbolAppearTimeout);
         clearTimeout(this.symbolRemovingTimeout);
     }
 
@@ -69,14 +69,25 @@ export default class SymbolLevelTwo implements SymbolLevel {
         this.numberOfSymbols++;
     }
 
-    public create(): void {
+    public create(difficultyEntries : number): void {
+        // if (difficultyEntries === this.numberOfSymbols)
+        //     return;
         this.pause();
-        this.generatedSymbols = [];
-        this.numberOfSymbols = 1;
+        this.numberOfSymbols = difficultyEntries;
+        this.symbolPointer = 0;
         this.generateSymbols();
         this.createSymbolsShowingSequence();
     }
 
     public redDotEntry(): void {
+    }
+
+    continueSymbolLevel(difficultyEntries: number): void {
+        this.symbolPointer = 0;
+        this.generateSymbols();
+        this.createSymbolsShowingSequence();
+    }
+
+    reset(): void {
     }
 }

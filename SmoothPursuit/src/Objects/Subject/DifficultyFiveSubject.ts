@@ -18,6 +18,12 @@ export default class DifficultyFiveSubject implements ISubject {
         this.sketch = sketch;
     }
 
+    public continueSymbolLevel(difficultyEntries: number): void {
+        this.symbolManager.create(difficultyEntries);
+        this.createSpeedInterval();
+        this.isPaused = false;
+    }
+
     public draw(): void {
         this.sketch.push();
         this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
@@ -47,6 +53,7 @@ export default class DifficultyFiveSubject implements ISubject {
         this.pause();
         this.angle = 0;
         this.speed = config.config.difficulties[5].defaultSpeed;
+        this.symbolManager.create(1);
         this.continue();
     }
 

@@ -13,12 +13,10 @@ export default class SymbolLevelManager {
 
     constructor(sketch : p5, savedLevel : number) {
         this.support = new ObserverSupport();
-
+        this.levelIndex = savedLevel;
         this.symbols = [];
         this.symbols.push(new SymbolLevelOne(sketch, this.support));
         this.symbols.push(new SymbolLevelTwo(sketch, this.support));
-
-        this.setLevelIndex(savedLevel);
     }
 
     public draw(x : number, y : number) : void{
@@ -29,7 +27,7 @@ export default class SymbolLevelManager {
     {
         this.symbols[this.levelIndex].pause();
         this.levelIndex = levelIndex;
-        this.symbols[levelIndex].create();
+        this.symbols[levelIndex].create(1);
     }
 
     public redDotEntry() : void {
@@ -50,7 +48,15 @@ export default class SymbolLevelManager {
         this.symbols[this.levelIndex].continue();
     }
 
-    public create() : void {
-        this.symbols[this.levelIndex].create();
+    public create(difficultyEntries : number) : void {
+        this.symbols[this.levelIndex].create(difficultyEntries);
+    }
+
+    public reset() : void {
+        this.symbols[this.levelIndex].reset();
+    }
+
+    continueSymbolLevel(difficultyEntries: number) {
+        this.symbols[this.levelIndex].continueSymbolLevel(difficultyEntries);
     }
 }

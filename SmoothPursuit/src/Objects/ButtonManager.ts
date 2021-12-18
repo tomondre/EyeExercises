@@ -29,7 +29,7 @@ export default class ButtonManager {
             this.observerSupport.fire(ObserverAction.correctEntrySymbolLevel);
         }
         else {
-            this.observerSupport.fire(ObserverAction.incorrectEntry);
+            this.observerSupport.fire(ObserverAction.incorrectEntrySymbolLevel);
         }
     }
 

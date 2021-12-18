@@ -16,6 +16,10 @@ export default class SymbolLevelOne implements SymbolLevel {
         this.support = support;
     }
 
+    continueSymbolLevel(difficultyEntries: number): void {
+        this.continue();
+    }
+
     draw(x: number, y: number) : void {
         this.sketch.push();
         if (this.shouldRedDotBeDisplayed) {
@@ -27,16 +31,7 @@ export default class SymbolLevelOne implements SymbolLevel {
     }
 
     public continue() : void {
-        clearInterval(this.redDotInterval);
-        this.redDotInterval = setInterval(() => {
-            this.shouldRedDotBeDisplayed = true;
-            this.redDotTimeout = setTimeout(() => {
-                if (this.shouldRedDotBeDisplayed) {
-                    this.support.fire(ObserverAction.incorrectEntry)
-                }
-                this.shouldRedDotBeDisplayed = false;
-            }, 1000);
-        }, this.sketch.random(3000, 4000));
+        this.createTimeouts();
         this.isPause = false;
     }
 
@@ -58,8 +53,24 @@ export default class SymbolLevelOne implements SymbolLevel {
         clearTimeout(this.redDotTimeout);
     }
 
-    public create() : void {
+    public create(difficultyEntries : number) : void {
         this.pause();
         this.continue();
+    }
+
+    private createTimeouts() : void {
+        clearInterval(this.redDotInterval);
+        this.redDotInterval = setInterval(() => {
+            this.shouldRedDotBeDisplayed = true;
+            this.redDotTimeout = setTimeout(() => {
+                if (this.shouldRedDotBeDisplayed) {
+                    this.support.fire(ObserverAction.incorrectEntry)
+                }
+                this.shouldRedDotBeDisplayed = false;
+            }, 1000);
+        }, this.sketch.random(3000, 4000));
+    }
+
+    reset(): void {
     }
 }

@@ -6,4 +6,5 @@ export default interface ISubject {
     create() : void;
     pause() : void;
     continue() : void;
+    continueSymbolLevel(difficultyEntries: number): void;
 }

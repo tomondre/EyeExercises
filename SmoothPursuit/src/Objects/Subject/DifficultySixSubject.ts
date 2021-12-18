@@ -49,7 +49,14 @@ export default class DifficultySixSubject implements ISubject {
         this.pause();
         this.angle = 0;
         this.speed = config.config.difficulties[5].defaultSpeed;
+        this.symbolManager.create(1);
         this.continue();
+    }
+
+    public continueSymbolLevel(difficultyEntries: number): void {
+        this.symbolManager.create(difficultyEntries);
+        this.createSpeedInterval();
+        this.isPaused = false;
     }
 
     public continue(): void {

@@ -10,4 +10,5 @@ export enum ObserverAction {
     incorrectEntry,
     symbolsDisplayed,
     correctEntrySymbolLevel,
+    incorrectEntrySymbolLevel,
 }

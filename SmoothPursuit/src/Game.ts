@@ -88,8 +88,12 @@ export default class Game implements Observer {
                 this.displaySymbolsHandler(props.data);
                 break;
             case ObserverAction.correctEntrySymbolLevel:
-                this.continueGame();
-
+                this.levelManger.correctEntry();
+                this.continueGameSymbolLevel();
+                break;
+            case ObserverAction.incorrectEntrySymbolLevel:
+                this.levelManger.correctEntry();
+                this.continueGameSymbolLevel();
                 break;
         }
     }
@@ -107,8 +111,6 @@ export default class Game implements Observer {
         this.timer.continue();
         this.subject.continue();
     }
-
-    private
 
     private createSpaceHandler() : void {
         document.addEventListener('keyup', (event) => {
@@ -135,5 +137,10 @@ export default class Game implements Observer {
         let arr = props;
         let randomOptions = Helper.get().getRandomOptions(this.levelManger.getCurrentLevel(), arr.length);
         this.buttonManager.displayButtonOptions(arr, randomOptions);
+    }
+
+    private continueGameSymbolLevel() : void {
+        this.timer.continue();
+        this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
     }
 }

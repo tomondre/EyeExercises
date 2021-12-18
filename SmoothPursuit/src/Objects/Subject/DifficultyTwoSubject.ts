@@ -67,11 +67,18 @@ export default class DifficultyTwoSubject implements ISubject{
         this.x = this.sketch.canvas.width / 2;
         this.y = this.sketch.canvas.height / 2;
         this.speed = config.config.difficulties[1].defaultSpeed;
+        this.symbolManager.create(1);
         this.continue();
     }
 
     public continue(): void {
         this.symbolManager.continue();
+        this.createSpeedInterval();
+        this.isPaused = false;
+    }
+
+    public continueSymbolLevel(difficultyEntries: number): void {
+        this.symbolManager.create(difficultyEntries);
         this.createSpeedInterval();
         this.isPaused = false;
     }
