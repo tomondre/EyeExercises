@@ -8,6 +8,8 @@ import SubjectManager from "./Objects/Subject/SubjectManager";
 import SymbolLevelManager from "./Objects/Symbol/SymbolLevelManager";
 import Helper from "./Objects/Helper";
 import ButtonManager from "./Objects/ButtonManager";
+import FetchDataManager from "./Objects/FetchDataManager";
+import {Eyes} from "./Objects/Eyes";
 
 export default class Game implements Observer {
 
@@ -20,12 +22,14 @@ export default class Game implements Observer {
     private buttonManager : ButtonManager;
 
     constructor(sketch : p5) {
+        let savedLevel = FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+        let savedDifficulty = FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
+        let savedTime = FetchDataManager.getEyeTime(Eyes.RIGHT);
+
         this.sketch = sketch;
-        let savedLevel = 0;
-        let savedDifficulty = 2;
         this.levelManger = new LevelManager(savedLevel, savedDifficulty);
         this.scoreBoard = new ScoreBoard(sketch);
-        this.timer = new Timer(sketch);
+        this.timer = new Timer(savedTime, sketch);
         this.symbolManager = new SymbolLevelManager(sketch, this.levelManger.getCurrentLevel());
         this.subject = new SubjectManager(savedDifficulty, sketch, this.symbolManager);
         this.buttonManager = new ButtonManager(sketch);
@@ -88,14 +92,24 @@ export default class Game implements Observer {
                 this.displaySymbolsHandler(props.data);
                 break;
             case ObserverAction.correctEntrySymbolLevel:
-                this.levelManger.correctEntry();
-                this.continueGameSymbolLevel();
+                this.correctSymbolEntryHandler();
                 break;
             case ObserverAction.incorrectEntrySymbolLevel:
-                this.levelManger.correctEntry();
-                this.continueGameSymbolLevel();
+                this.incorrectSymbolEntryHandler();
                 break;
         }
+    }
+
+    private correctSymbolEntryHandler() {
+        this.levelManger.correctEntry();
+        this.scoreBoard.increaseScore();
+        this.continueGameSymbolLevel();
+    }
+
+    private incorrectSymbolEntryHandler() {
+        this.levelManger.correctEntry();
+        this.scoreBoard.decreaseScore();
+        this.continueGameSymbolLevel();
     }
 
     private timeOverHandler() : void {
