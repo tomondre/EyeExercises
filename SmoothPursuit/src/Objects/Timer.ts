@@ -10,34 +10,42 @@ export default class Timer {
     private intervalNum : number;
     private support : ObserverSupport
 
-    constructor(sketch : p5) {
+    constructor(time : number, sketch : p5) {
         this.support = new ObserverSupport();
         this.sketch = sketch;
-        this.time = 0;
+        this.time = time;
+        this.continue();
     }
 
-    public continue() {
+    public continue() : void {
         clearInterval(this.intervalNum);
         this.intervalNum = setInterval(() => this.sec(), 1000)
     }
 
-    public pause() {
+    public pause() : void{
         clearInterval(this.intervalNum);
     }
 
-    public draw() {
-
+    public draw() : void{
+        this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.125 * this.sketch.canvas.height);
     }
 
-    private sec() {
+    private sec() : void{
+        if (this.time === 0)
+            return;
         this.time--;
         if (this.time === 0) {
-            clearInterval();
+            clearInterval(this.intervalNum);
             this.support.fire(ObserverAction.timeOver);
         }
     }
 
-    public subscribe(observer : Observer) {
+    public subscribe(observer : Observer) : void {
         this.support.subscribe(observer);
+    }
+
+    public create(time: number) : void {
+        this.time = time;
+        this.continue();
     }
 }
