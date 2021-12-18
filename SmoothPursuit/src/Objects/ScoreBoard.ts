@@ -26,4 +26,8 @@ export default class ScoreBoard {
     public decreaseScore() : void {
         this.score -= 5;
     }
+
+    public saveData(eye : string, level : number, difficulty : number) : void {
+        console.log("Data: eye-" + eye + " level-" + level + " difficulty-" + difficulty + " score-" + this.score);
+    }
 }
