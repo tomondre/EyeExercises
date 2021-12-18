@@ -10,6 +10,7 @@ import Helper from "./Objects/Helper";
 import ButtonManager from "./Objects/ButtonManager";
 import FetchDataManager from "./Objects/FetchDataManager";
 import {Eyes} from "./Objects/Eyes";
+import EyeManager from "./Objects/EyeManager";
 
 export default class Game implements Observer {
 
@@ -20,6 +21,7 @@ export default class Game implements Observer {
     private subject : SubjectManager;
     private symbolManager : SymbolLevelManager;
     private buttonManager : ButtonManager;
+    private eyeManager : EyeManager;
 
     constructor(sketch : p5) {
         let savedLevel = FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
@@ -33,6 +35,7 @@ export default class Game implements Observer {
         this.symbolManager = new SymbolLevelManager(sketch, this.levelManger.getCurrentLevel());
         this.subject = new SubjectManager(savedDifficulty, sketch, this.symbolManager);
         this.buttonManager = new ButtonManager(sketch);
+        this.eyeManager = new EyeManager(sketch);
 
         this.symbolManager.subscribe(this);
         this.levelManger.subscribe(this);
@@ -62,6 +65,7 @@ export default class Game implements Observer {
         this.sketch.background(255);
         this.scoreBoard.draw();
         this.timer.draw();
+        this.eyeManager.draw();
         this.subject.draw();
         this.buttonManager.draw();
     }
@@ -69,7 +73,6 @@ export default class Game implements Observer {
     public update(change : ObserverAction, props): void {
         switch (change) {
             case ObserverAction.timeOver:
-                this.pauseGame();
                 this.timeOverHandler();
                 break;
             case ObserverAction.correctEntry:
@@ -77,11 +80,10 @@ export default class Game implements Observer {
                 this.increaseScore();
                 break;
             case ObserverAction.difficultyFinished:
-                this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
+                this.difficultyFinishedHandler();
                 break;
             case ObserverAction.levelFinished:
-                this.subject.setCurrentDifficulty(0);
-                this.symbolManager.setLevelIndex(this.levelManger.getCurrentLevel());
+                this.levelFinishedHandler();
                 break;
             case ObserverAction.gameFinished:
                 break;
@@ -113,7 +115,13 @@ export default class Game implements Observer {
     }
 
     private timeOverHandler() : void {
-        this.continueGame();
+        if (this.eyeManager.getCurrentEye() === Eyes.LEFT)
+        {
+            console.log("time for both eyes over");
+            this.timeForBothEyesOverHandler();
+            return;
+        }
+        this.changeEyeHandler();
     }
 
     private pauseGame() : void {
@@ -156,5 +164,35 @@ export default class Game implements Observer {
     private continueGameSymbolLevel() : void {
         this.timer.continue();
         this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
+    }
+
+    private levelFinishedHandler() {
+        this.scoreBoard.saveData(this.eyeManager.getEyeValue(), this.levelManger.getCurrentLevel(), this.levelManger.getCurrentDifficulty())
+        this.subject.setCurrentDifficulty(0);
+        this.symbolManager.setLevelIndex(this.levelManger.getCurrentLevel());
+    }
+
+    private difficultyFinishedHandler() {
+        this.scoreBoard.saveData(this.eyeManager.getEyeValue(), this.levelManger.getCurrentLevel(), this.levelManger.getCurrentDifficulty())
+        this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
+    }
+
+    private changeEyeHandler() {
+
+        //TODO uncomment
+        let level = 1
+            // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
+        let difficulty = 0
+            // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
+        let time = FetchDataManager.getEyeTime(Eyes.LEFT);
+        this.timer.create(time);
+        this.levelManger.setEye(level, difficulty);
+        this.symbolManager.setLevelIndex(level);
+        this.subject.setCurrentDifficulty(difficulty);
+        this.eyeManager.setEye(Eyes.LEFT);
+    }
+
+    private timeForBothEyesOverHandler() : void {
+
     }
 }
