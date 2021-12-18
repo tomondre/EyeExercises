@@ -46,7 +46,9 @@ export default class SymbolLevelTwo implements SymbolLevel {
                 if (this.symbolPointer < this.generatedSymbols.length) {
                     this.createSymbolsShowingSequence()
                 } else {
-                    this.support.fire(ObserverAction.symbolsDisplayed, {data: this.generatedSymbols.join("")});
+                    setTimeout(() => {
+                        this.support.fire(ObserverAction.symbolsDisplayed, {data: this.generatedSymbols.join("")});
+                    }, 1000)
                 }
             }, 1000);
         }, timeoutTime);
@@ -66,12 +68,11 @@ export default class SymbolLevelTwo implements SymbolLevel {
         for (let i = 0; i < this.numberOfSymbols; i++) {
             this.generatedSymbols.push(this.symbols[this.sketch.int(this.sketch.random(0, this.symbols.length))]);
         }
-        this.numberOfSymbols++;
     }
 
     public create(difficultyEntries : number): void {
-        // if (difficultyEntries === this.numberOfSymbols)
-        //     return;
+        if (difficultyEntries === this.numberOfSymbols)
+            return;
         this.pause();
         this.numberOfSymbols = difficultyEntries;
         this.symbolPointer = 0;
