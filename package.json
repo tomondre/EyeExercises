@@ -1,0 +1,25 @@
+{
+  "name": "eyeexercises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Deploy.js",
+  "scripts": {
+    "deployAll": "cd FootballGame && npm run build && cd .. && cd JumpingColumn && npm run build && cd .. && cd Maze && npm run build && cd .. && cd SmoothPursuit && npm run build && cd .. && node Deploy.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installAll": "cd FootballGame && npm install && cd .. && cd JumpingColumn && npm install && cd .. && cd Maze && npm install && cd .. && cd SmoothPursuit && npm install && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomondre/EyeExercises.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomondre/EyeExercises/issues"
+  },
+  "homepage": "https://github.com/tomondre/EyeExercises#readme",
+  "dependencies": {
+    "ajax": "^0.0.4",
+    "gh-pages": "^3.2.3"
+  }
+}
