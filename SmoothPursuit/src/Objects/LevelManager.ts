@@ -17,7 +17,7 @@ export default class LevelManager {
 
     public correctEntry() : void {
         this.difficultyEntries++;
-        if (this.difficultyEntries === 2) {
+        if (this.difficultyEntries === 3) {
             this.difficultyEntries = 0;
             this.currentDifficulty++;
 
@@ -51,6 +51,13 @@ export default class LevelManager {
 
     public subscribe(observer : Observer) : void{
         this.support.subscribe(observer);
+    }
+
+    public set(level : number, difficulty : number) : void {
+        this.currentLevel = level;
+        this.currentDifficulty = difficulty;
+        this.difficultyEntries = 0;
+
     }
 
 }
