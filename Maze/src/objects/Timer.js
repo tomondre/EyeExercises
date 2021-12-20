@@ -8,15 +8,22 @@ let sketch;
 let time;
 let interval;
 let support;
+let shouldBeTimerDisplayed = true;
 
 export default class Timer {
     constructor(Sketch) {
         sketch = Sketch;
         time = FetchDataManager.getTime();
+        if (time === -1)
+        {
+            shouldBeTimerDisplayed = false;
+        }
         support = new ObserverSupport();
     }
 
     draw() {
+        if (!shouldBeTimerDisplayed)
+            return;
         sketch.fill(config.colors.timer);
         sketch.textAlign(sketch.LEFT, sketch.TOP);
         if (Helper.isMobile())
@@ -30,6 +37,8 @@ export default class Timer {
     }
 
     create() {
+        if (!shouldBeTimerDisplayed)
+            return;
         if (time !== 0) {
             clearInterval(interval);
             interval = setInterval(() => this.sec(), 1000);
