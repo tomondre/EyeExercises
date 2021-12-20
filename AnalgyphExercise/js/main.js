@@ -1,7 +1,5 @@
 //TODO uncomment ajax call andcheck if works
-//TODO make arrows instead of buttons?
 //TODO make close button works
-//TODO calibrate color
 
 window.addEventListener("orientationchange", () => {
     location.reload();
@@ -19,7 +17,6 @@ if (window.innerWidth < window.innerHeight) {
     context.textAlign = "center";
     context.fillStyle = "white";
     context.fillText("Please, rotate your screen", window.innerWidth / 2, window.innerHeight / 2);
-    console.log(window.innerWidth + " " + window.innerHeight)
 } else {
     const canvas = document.createElement('canvas');
     canvas.id = 'halabala';
@@ -48,6 +45,7 @@ if (window.innerWidth < window.innerHeight) {
     let startTime;
 
     let displayEndOfRoundMessage;
+    let shouldTimerBeDisplayed = true;
 
     window.onload = constructor;
 
@@ -61,9 +59,8 @@ if (window.innerWidth < window.innerHeight) {
     function setUp() {
         setUpCanvasForAnalgyphs();
         setUpPictures();
-        createListeners()
+        createListeners();
         createTimer();
-
         function setUpCanvasForAnalgyphs() {
             context.globalAlpha = 0.5;
             context.globalCompositeOperation = "lighter";
@@ -113,6 +110,12 @@ if (window.innerWidth < window.innerHeight) {
 
         function createTimer() {
             seconds = fetchSavedEyeTime();
+            console.log(seconds);
+            if (seconds === -1)
+            {
+                shouldTimerBeDisplayed = false;
+                return;
+            }
             startTime = getCurrentDateTime();
             let interval = setInterval(sec, 1000);
 
@@ -140,11 +143,7 @@ if (window.innerWidth < window.innerHeight) {
                 let exitButton = document.getElementById("middleButton");
                 exitButton.style.visibility = 'visible';
                 exitButton.addEventListener("keydown", () => {
-                    let new_window =
-                        open(location, '_self');
-
-                    // Close this window
-                    new_window.close();
+                    window.close();
                 })
 
                 function removeListeners() {
@@ -172,8 +171,6 @@ if (window.innerWidth < window.innerHeight) {
                     attribName: "both" // (left, right or both) depending on current eye (blank if no eye-switching)
 
                 };
-                console.log(currentLog);
-
                 // window.$.ajax({
                 //     type: "POST",
                 //     url: "/Exercise/PostScore",
@@ -208,11 +205,12 @@ if (window.innerWidth < window.innerHeight) {
 
     function draw() {
         clearCanvas();
-        drawTimer();
         drawScore();
         drawEndOfTheRoundMessage();
         renderPictures();
-
+        if (shouldTimerBeDisplayed) {
+            drawTimer();
+        }
         function drawEndOfTheRoundMessage() {
             if (displayEndOfRoundMessage) {
                 context.textAlign = "center";
