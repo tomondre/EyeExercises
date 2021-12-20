@@ -44,6 +44,7 @@ export default class ButtonManager {
             let button = this.sketch.createButton(this.options[i]);
             button.position(currentButtonX, this.sketch.height * 0.9);
             button.mousePressed(() => this.handler(this.options[i]));
+            button.addClass("positivesmall");
             this.buttons.push(button);
         }
     }
