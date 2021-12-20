@@ -8,15 +8,22 @@ let time;
 let timerInterval;
 let callback;
 let shouldTimerBeContinued = true;
+let shouldTimerBeDisplayed = true;
 
 export default class Timer {
     constructor(Scene, cb) {
         scene = Scene;
         callback = cb;
         time = FetchDataManager.getEyeTime(CST.eye.RIGHT);
+        if (time === -1)
+        {
+            shouldTimerBeDisplayed = false;
+        }
     }
 
     create() {
+        if (!shouldTimerBeDisplayed)
+            return;
         clearInterval(timerInterval);
         let style = TextStyleManager.getTextStyle();
         timerObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.07, "", style);
@@ -26,6 +33,8 @@ export default class Timer {
     }
 
     update() {
+        if (!shouldTimerBeDisplayed)
+            return;
         timerObject.setText("Daily training: " + time);
     }
 
@@ -49,6 +58,8 @@ export default class Timer {
     }
 
     continue() {
+        if(!shouldTimerBeDisplayed)
+            return;
         if (shouldTimerBeContinued)
             timerInterval = setInterval(() => this.tick(), 1000);
     }

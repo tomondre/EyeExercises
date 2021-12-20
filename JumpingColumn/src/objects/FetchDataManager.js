@@ -16,7 +16,7 @@ export default class FetchDataManager {
     {
         let time =  window.localStorage.getItem("904/Time/" + eye.toString());
         if (time === null)
-            return 60;
+            return -1;
         else
             return parseInt(time);
 
