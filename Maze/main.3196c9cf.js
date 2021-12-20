@@ -37,4 +37,4 @@ var e,t=arguments[3];!function(r){"object"==typeof exports&&"undefined"!=typeof 
 },{"./objects/Grid":"BJcA","./score/ScoreBoard":"DhdD","./observer/ObserverChange":"T9J1","./objects/CarCursor":"rqcx","./objects/DifficultyManager":"EEeI","./objects/Timer":"NupP","./level2/NumberButtonManager":"PcN2","./messages/MessageManager":"lnXZ","./objects/FetchDataManager":"En44"}],"HJDO":[function(require,module,exports) {
 "use strict";var e=require("./config"),n=t(require("p5")),i=t(require("./Game"));function t(e){return e&&e.__esModule?e:{default:e}}var a=function(n){var t;n.setup=function(){n.createCanvas(window.innerWidth,window.innerHeight),n.frameRate(e.config.game.frameRate),t=new i.default(n)},n.draw=function(){t.draw()}};new n.default(a),window.addEventListener("orientationchange",function(){location.reload()}),window.addEventListener("resize",function(e){location.reload()},!0);
 },{"./config":"nZps","p5":"SOQY","./Game":"GLet"}]},{},["HJDO"], null)
-//# sourceMappingURL=/main.3196c9cf.js.map
+//# sourceMappingURL=%27.%27/main.3196c9cf.js.map
