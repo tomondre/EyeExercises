@@ -110,7 +110,6 @@ if (window.innerWidth < window.innerHeight) {
 
         function createTimer() {
             seconds = fetchSavedEyeTime();
-            console.log(seconds);
             if (seconds === -1)
             {
                 shouldTimerBeDisplayed = false;
