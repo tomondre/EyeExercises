@@ -1,9 +1,9 @@
 export const config = {
     game: {
+        number : 909,
         frameRate: 50,
         increaseSpeedEverySecondBy: 0.001,
         subjectSpeedPerFrame : 5,
-
         angleIncrease: 0.8,
         increaseAngleSpeedEverySecondBy: 0.00005,
     },
@@ -15,6 +15,14 @@ export const config = {
         levelThreeSymbols : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         levelFourSymbols : "abcdefghijklmnopqrstuvwxyz",
         levelFiveSymbols: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    },
+    messages : {
+        levelFinished : {
+            first : "Congratlations, you have passed level ",
+            second : ".\n Next level starts in ",
+            third : " seconds.",
+            time: 3
+        }
     },
     difficulties:
         [{
