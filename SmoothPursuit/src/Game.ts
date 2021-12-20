@@ -186,7 +186,7 @@ export default class Game implements Observer {
             // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
         let time = FetchDataManager.getEyeTime(Eyes.LEFT);
         this.timer.create(time);
-        this.levelManger.setEye(level, difficulty);
+        this.levelManger.set(level, difficulty);
         this.symbolManager.setLevelIndex(level);
         this.subject.setCurrentDifficulty(difficulty);
         this.eyeManager.setEye(Eyes.LEFT);
