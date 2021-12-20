@@ -9,6 +9,7 @@ export default class Timer {
         this.timerText = null;
         this.interval = null;
         this.time = 10;
+        this.shouldTimerBeDisplayed = true;
     }
 
     create(callback, eye) {
@@ -18,6 +19,12 @@ export default class Timer {
         } else {
             this.time = FetchDataManager.getEyeTime(CST.EYE.LEFT);
         }
+        console.log(FetchDataManager.getEyeTime(CST.EYE.RIGHT));
+        if (this.time === -1)
+        {
+            this.shouldTimerBeDisplayed = false;
+            return;
+        }
         this.timeOverCB = callback;
         let timerTextStyle = TextStyleManager.getTextStyle()
         this.timerText = this.scene.add.text(this.scene.game.canvas.width * 0.1, this.scene.game.canvas.height * 0.07, "", timerTextStyle);
@@ -26,7 +33,10 @@ export default class Timer {
     }
 
     update() {
-        this.timerText.setText("Time: " + this.time)
+        if (this.shouldTimerBeDisplayed)
+        {
+            this.timerText.setText("Time: " + this.time)
+        }
     }
 
     reset() {
