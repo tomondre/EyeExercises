@@ -9,8 +9,13 @@ export default class Timer {
     private time : number;
     private intervalNum : number;
     private support : ObserverSupport
+    private shouldTimerBeDisplayed : boolean = true;
 
     constructor(time : number, sketch : p5) {
+        if (time === -1) {
+            this.shouldTimerBeDisplayed = false;
+        }
+
         this.support = new ObserverSupport();
         this.sketch = sketch;
         this.time = time;
@@ -18,6 +23,9 @@ export default class Timer {
     }
 
     public continue() : void {
+        if (!this.shouldTimerBeDisplayed)
+            return;
+
         clearInterval(this.intervalNum);
         this.intervalNum = setInterval(() => this.sec(), 1000)
     }
@@ -27,7 +35,9 @@ export default class Timer {
     }
 
     public draw() : void{
-        this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.125 * this.sketch.canvas.height);
+        if (!this.shouldTimerBeDisplayed)
+            return;
+        this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
     }
 
     private sec() : void{
@@ -45,6 +55,8 @@ export default class Timer {
     }
 
     public create(time: number) : void {
+        if (!this.shouldTimerBeDisplayed)
+            return;
         this.time = time;
         this.continue();
     }

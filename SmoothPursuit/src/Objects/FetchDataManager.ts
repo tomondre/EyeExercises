@@ -35,7 +35,7 @@ export default class FetchDataManager {
         let time = window.localStorage.getItem(gameCode + "/Time/" + eye.toString());
         if (time === null)
         {
-            return 120;
+            return -1;
         }
         return parseInt(time);
     }
