@@ -71,11 +71,11 @@ if (window.innerWidth < window.innerHeight) {
             leftImage = setUpPicture(leftPictureOffset, "../assets/elephant/RedElephant.png");
         }
 
-    function setUpPicture(offset, path) {
-        let image = new Image();
-        image.src = path;
-        return image;
-    }
+        function setUpPicture(offset, path) {
+            let image = new Image();
+            image.src = path;
+            return image;
+        }
 
         function createListeners() {
             easierButton.onpointerdown = () => easier = true;
@@ -250,15 +250,15 @@ if (window.innerWidth < window.innerHeight) {
             context.globalAlpha = 0.5;
         }
 
-    function renderPicture(image, offset) {
-        let scale = 0.3;
-        let middleX = ((image.width * scale) / 2);
-        let middleY = ((image.height * scale) / 2);
-        let offsetX = context.canvas.width * offset;
-        image.style.background = "#FF0010";
-        context.drawImage(image, context.canvas.width * 0.5 - middleX + offsetX, context.canvas.height * 0.5 - middleY, image.width * scale, image.height * scale);
+        function renderPicture(image, offset, composite) {
+            let scale = 0.3;
+            let middleX = ((image.width * scale) / 2);
+            let middleY = ((image.height * scale) / 2);
+            let offsetX = context.canvas.width * offset;
+            context.globalAlpha = 0.5;
+            context.drawImage(image, context.canvas.width * 0.5 - middleX + offsetX, context.canvas.height * 0.5 - middleY, image.width * scale, image.height * scale);
+        }
     }
-}
 
     function checkButtons() {
         if (easier) {
