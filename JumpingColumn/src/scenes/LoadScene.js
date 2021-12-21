@@ -7,7 +7,7 @@ export default class LoadScene extends Phaser.Scene {
     }
 
     preload() {
-     this.load.image("arrow", "../assets/Arrow.png");
+     this.load.image("arrow", "./assets/Arrow.png");
     }
 
     init() {
