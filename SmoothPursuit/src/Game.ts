@@ -24,9 +24,12 @@ export default class Game implements Observer {
     private eyeManager : EyeManager;
 
     constructor(sketch : p5) {
-        let savedLevel = FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
-        let savedDifficulty = FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = FetchDataManager.getEyeTime(Eyes.RIGHT);
+        let savedLevel = 1;
+            // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+        let savedDifficulty = 5;
+            // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
+        let savedTime = 10;
+            // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
         this.levelManger = new LevelManager(savedLevel, savedDifficulty);
@@ -100,11 +103,12 @@ export default class Game implements Observer {
                 this.incorrectSymbolEntryHandler();
                 break;
         }
+        // console.log(ObserverAction[change]);
     }
 
     private correctSymbolEntryHandler() {
-        this.levelManger.correctEntry();
         this.scoreBoard.increaseScore();
+        this.levelManger.correctEntry();
         this.continueGameSymbolLevel();
     }
 
@@ -173,19 +177,23 @@ export default class Game implements Observer {
     }
 
     private difficultyFinishedHandler() {
-        this.scoreBoard.saveData(this.eyeManager.getEyeValue(), this.levelManger.getCurrentLevel(), this.levelManger.getCurrentDifficulty())
+        this.saveData();
         this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
     }
 
     private changeEyeHandler() {
+
+        this.saveData();
 
         //TODO uncomment
         let level = 1
             // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
         let difficulty = 0
             // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
-        let time = FetchDataManager.getEyeTime(Eyes.LEFT);
+        let time = 10;
+            // FetchDataManager.getEyeTime(Eyes.LEFT);
         this.timer.create(time);
+        this.scoreBoard.resetScore();
         this.levelManger.set(level, difficulty);
         this.symbolManager.setLevelIndex(level);
         this.subject.setCurrentDifficulty(difficulty);
@@ -194,5 +202,12 @@ export default class Game implements Observer {
 
     private timeForBothEyesOverHandler() : void {
 
+    }
+
+    private saveData() {
+        let eyeValue = this.eyeManager.getEyeValue();
+        let currentLevel = this.levelManger.getCurrentLevel();
+        let currentDifficulty = this.levelManger.getCurrentDifficulty();
+        this.scoreBoard.saveData(eyeValue, currentLevel, currentDifficulty);
     }
 }
