@@ -55,6 +55,10 @@ export default class Timer {
     }
 
     public create(time: number) : void {
+        if (time === -1)
+        {
+            this.shouldTimerBeDisplayed = false;
+        }
         if (!this.shouldTimerBeDisplayed)
             return;
         this.time = time;
