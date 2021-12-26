@@ -12,9 +12,7 @@ export const config = {
         difficulties: 6,
         subDifficulties: 4,
         levelTwoSymbols : "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
-        levelThreeSymbols : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        levelFourSymbols : "abcdefghijklmnopqrstuvwxyz",
-        levelFiveSymbols: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        levelThreeSymbols : "0123456789",
     },
     messages : {
         levelFinished : {

@@ -3,7 +3,9 @@ import {Observer} from "../Observer";
 import * as p5 from "p5";
 import {SymbolLevel} from "./SymbolLevel";
 import SymbolLevelOne from "./SymbolLevelOne";
+import SymbolLevelImpl from "./SymbolLevelImpl";
 import SymbolLevelTwo from "./SymbolLevelTwo";
+import SymbolLevelThree from "./SymbolLevelThree";
 
 export default class SymbolLevelManager {
 
@@ -17,6 +19,7 @@ export default class SymbolLevelManager {
         this.symbols = [];
         this.symbols.push(new SymbolLevelOne(sketch, this.support));
         this.symbols.push(new SymbolLevelTwo(sketch, this.support));
+        this.symbols.push(new SymbolLevelThree(sketch, this.support));
     }
 
     public draw(x : number, y : number) : void{
