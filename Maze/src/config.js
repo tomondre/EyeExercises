@@ -24,9 +24,6 @@ export const config = {
             timeLength: 3
         }
     },
-    maze: {
-        lineWidth: 5,
-    },
     game: {
         frameRate: 30,
         collisionCountForGameOver: 3
@@ -44,8 +41,10 @@ export const config = {
         scoreDecreaseLevelTwo: 10,
         defaultScore: 100
     },
-    canvas: {
-        width: 600
+    maze: {
+        lineWidth: 5,
+        width: 600,
+        mobileWidthToScreenSizeRatio: 0.8
     },
     car: {
         size: {
