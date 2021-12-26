@@ -1,5 +1,6 @@
 import ButtonManager from "./ButtonManager";
 import {config} from "../config";
+import Helper from "../objects/Helper";
 
 let sketch;
 let buttonManager;
@@ -32,6 +33,12 @@ export default class MessageManager {
     }
 
     draw() {
+        sketch.push();
+        if (Helper.isMobile()) {
+            sketch.textSize(40);
+        } else{
+            sketch.textSize(40);
+        }
         sketch.textAlign(sketch.CENTER);
         if (shouldBeLevelNotPassedDrawn) {
             sketch.text(messages.levelNotPassed.text + time + messages.levelNotPassed.textTwo, messagePosition.x, messagePosition.y);
@@ -44,6 +51,7 @@ export default class MessageManager {
         } else if(shouldBeRememberToPressNumberMessageBeDrawn) {
             sketch.text(messages.rememberToPressNumber.text, messagePosition.x, messagePosition.y);
         }
+        sketch.pop();
     }
 
     displayLevelNotPassedMessage(callback) {
