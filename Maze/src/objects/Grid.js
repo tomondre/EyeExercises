@@ -20,7 +20,7 @@ let gameStarted = false;
 let isCooldown = false;
 
 let sketch;
-let mazeWidth = config.canvas.width;
+let mazeWidth = config.maze.width;
 let mazeOffsetX = Helper.getOffsets().offsetX;
 let mazeOffsetY = Helper.getOffsets().offsetY;
 
@@ -37,10 +37,10 @@ export default class Grid {
         observerSupport = new ObserverSupport();
         if (Helper.isMobile())
         {
-            mazeWidth = window.innerWidth;
+            mazeWidth = window.innerWidth * config.maze.mobileWidthToScreenSizeRatio;
         }
         else {
-            mazeWidth = config.canvas.width;
+            mazeWidth = config.maze.width;
         }
     }
 
