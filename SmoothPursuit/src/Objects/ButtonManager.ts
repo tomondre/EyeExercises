@@ -37,12 +37,13 @@ export default class ButtonManager {
         this.buttons = [];
         let areaPercentage = 0.4;
         let buttonArea = this.sketch.canvas.width * areaPercentage;
-        let gap = buttonArea / 4;
+        let gap = buttonArea / 3;
         let firstX = this.sketch.canvas.width * (1 - areaPercentage) / 2;
         for (let i = 0; i < 4; i++) {
             let currentButtonX = firstX + (gap * i + 1);
             let button = this.sketch.createButton(this.options[i]);
             button.position(currentButtonX, this.sketch.height * 0.9);
+            button.style("font-size", "30px");
             button.mousePressed(() => this.handler(this.options[i]));
             button.addClass("positivesmall");
             this.buttons.push(button);
