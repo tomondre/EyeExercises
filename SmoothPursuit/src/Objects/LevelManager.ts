@@ -17,7 +17,7 @@ export default class LevelManager {
 
     public correctEntry() : void {
         this.difficultyEntries++;
-        if (this.difficultyEntries === 3) {
+        if (this.difficultyEntries === 2) {
             this.difficultyEntries = 0;
             this.currentDifficulty++;
 
@@ -57,7 +57,5 @@ export default class LevelManager {
         this.currentLevel = level;
         this.currentDifficulty = difficulty;
         this.difficultyEntries = 0;
-
     }
-
 }

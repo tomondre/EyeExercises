@@ -28,11 +28,8 @@ export default class SymbolLevelManager {
 
     public setLevelIndex(levelIndex : number) : void
     {
-        if (this.levelIndex === levelIndex)
-            return;
         this.symbols[this.levelIndex].pause();
         this.levelIndex = levelIndex;
-        this.symbols[levelIndex].create(1);
     }
 
     public redDotEntry() : void {

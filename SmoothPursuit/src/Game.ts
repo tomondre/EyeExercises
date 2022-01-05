@@ -12,24 +12,28 @@ import FetchDataManager from "./Objects/FetchDataManager";
 import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
 
+//TODO last level with calculation
+//TODO massages
+//TODO remove listeners when paused game
+
 export default class Game implements Observer {
 
-    private sketch : p5;
-    private scoreBoard : ScoreBoard;
-    private timer : Timer;
-    private levelManger : LevelManager;
-    private subject : SubjectManager;
-    private symbolManager : SymbolLevelManager;
-    private buttonManager : ButtonManager;
-    private eyeManager : EyeManager;
+    private sketch: p5;
+    private scoreBoard: ScoreBoard;
+    private timer: Timer;
+    private levelManger: LevelManager;
+    private subject: SubjectManager;
+    private symbolManager: SymbolLevelManager;
+    private buttonManager: ButtonManager;
+    private eyeManager: EyeManager;
 
-    constructor(sketch : p5) {
-        let savedLevel = 1;
-            // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
-        let savedDifficulty = 5;
-            // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 10;
-            // FetchDataManager.getEyeTime(Eyes.RIGHT);
+    constructor(sketch: p5) {
+        let savedLevel = 0;
+        // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+        let savedDifficulty = 0;
+        // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
+        let savedTime = 30;
+        // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
         this.levelManger = new LevelManager(savedLevel, savedDifficulty);
@@ -48,22 +52,10 @@ export default class Game implements Observer {
         if (savedLevel === 0) {
             this.createSpaceHandler();
         }
-
-        //TODO remove - testing
-        // let bool;
-        // document.getElementById("slowDownButton").addEventListener("pointerdown", () => {
-        //     if (bool) {
-        //         this.subject.setCurrentDifficulty(++savedDifficulty);
-        //         bool = false;
-        //     }
-        //     else  {
-        //         bool = true;
-        //     }
-        // });
     }
 
 
-    public draw() : void{
+    public draw(): void {
         this.sketch.textSize(40);
         this.sketch.background(255);
         this.scoreBoard.draw();
@@ -73,7 +65,7 @@ export default class Game implements Observer {
         this.buttonManager.draw();
     }
 
-    public update(change : ObserverAction, props): void {
+    public update(change: ObserverAction, props): void {
         switch (change) {
             case ObserverAction.timeOver:
                 this.timeOverHandler();
@@ -86,7 +78,7 @@ export default class Game implements Observer {
                 this.difficultyFinishedHandler();
                 break;
             case ObserverAction.levelFinished:
-                this.levelFinishedHandler();
+                this.levelUp();
                 break;
             case ObserverAction.gameFinished:
                 break;
@@ -103,7 +95,6 @@ export default class Game implements Observer {
                 this.incorrectSymbolEntryHandler();
                 break;
         }
-        // console.log(ObserverAction[change]);
     }
 
     private correctSymbolEntryHandler() {
@@ -118,17 +109,15 @@ export default class Game implements Observer {
         this.continueGameSymbolLevel();
     }
 
-    private timeOverHandler() : void {
-        if (this.eyeManager.getCurrentEye() === Eyes.LEFT)
-        {
-            console.log("time for both eyes over");
+    private timeOverHandler(): void {
+        if (this.eyeManager.getCurrentEye() === Eyes.LEFT) {
             this.timeForBothEyesOverHandler();
             return;
         }
         this.changeEyeHandler();
     }
 
-    private pauseGame() : void {
+    private pauseGame(): void {
         this.timer.pause();
         this.subject.pause();
     }
@@ -138,42 +127,51 @@ export default class Game implements Observer {
         this.subject.continue();
     }
 
-    private createSpaceHandler() : void {
-        document.addEventListener('keyup', (event) => {
-            if (event.code === 'Space') {
-                this.spaceHandler();
-            }
-        });
+    private createSpaceHandler(): void {
+        document.addEventListener('keyup', (event) => this.spaceHandler(event));
     }
 
-    private spaceHandler() : void {
-        this.symbolManager.redDotEntry()
+    private removeSpaceListener() {
+        document.removeEventListener('keyup', (event) => this.spaceHandler(event));
     }
 
-    private decreaseScore() : void {
+    private spaceHandler(event : KeyboardEvent): void {
+        if (event.code === 'Space') {
+            this.symbolManager.redDotEntry()
+        }
+    }
+
+    private decreaseScore(): void {
         this.scoreBoard.decreaseScore();
     }
 
-    private increaseScore() : void {
+    private increaseScore(): void {
         this.scoreBoard.increaseScore();
     }
 
-    private displaySymbolsHandler(props : string) {
+    private displaySymbolsHandler(props: string) {
         this.pauseGame();
         let arr = props;
         let randomOptions = Helper.get().getRandomOptions(this.levelManger.getCurrentLevel(), arr.length);
         this.buttonManager.displayButtonOptions(arr, randomOptions);
     }
 
-    private continueGameSymbolLevel() : void {
+    private continueGameSymbolLevel(): void {
         this.timer.continue();
         this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
     }
 
-    private levelFinishedHandler() {
-        this.scoreBoard.saveData(this.eyeManager.getEyeValue(), this.levelManger.getCurrentLevel(), this.levelManger.getCurrentDifficulty())
-        this.subject.setCurrentDifficulty(0);
-        this.symbolManager.setLevelIndex(this.levelManger.getCurrentLevel());
+    private levelUp() {
+        this.saveData();
+        let level = this.levelManger.getCurrentLevel();
+        let diff = 0;
+        this.set(level, diff);
+    }
+
+    private set(level : number, difficulty : number): void {
+        this.symbolManager.setLevelIndex(level);
+        this.subject.setCurrentDifficulty(difficulty);
+        this.levelManger.set(level, difficulty);
     }
 
     private difficultyFinishedHandler() {
@@ -186,22 +184,20 @@ export default class Game implements Observer {
         this.saveData();
 
         //TODO uncomment
-        let level = 1
-            // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
-        let difficulty = 0
-            // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
+        let level = 0;
+        // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
+        let difficulty = 0;
+        // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
         let time = 10;
-            // FetchDataManager.getEyeTime(Eyes.LEFT);
+        // FetchDataManager.getEyeTime(Eyes.LEFT);
         this.timer.create(time);
         this.scoreBoard.resetScore();
-        this.levelManger.set(level, difficulty);
-        this.symbolManager.setLevelIndex(level);
-        this.subject.setCurrentDifficulty(difficulty);
         this.eyeManager.setEye(Eyes.LEFT);
+        this.set(level, difficulty);
     }
 
-    private timeForBothEyesOverHandler() : void {
-
+    private timeForBothEyesOverHandler(): void {
+        this.pauseGame();
     }
 
     private saveData() {

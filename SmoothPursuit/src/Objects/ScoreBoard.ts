@@ -29,5 +29,6 @@ export default class ScoreBoard {
 
     public saveData(eye : string, level : number, difficulty : number) : void {
         console.log("Data: eye-" + eye + " level-" + level + " difficulty-" + difficulty + " score-" + this.score);
+        this.resetScore();
     }
 }
