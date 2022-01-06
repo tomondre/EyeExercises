@@ -8,7 +8,6 @@ import SubjectManager from "./Objects/Subject/SubjectManager";
 import SymbolLevelManager from "./Objects/Symbol/SymbolLevelManager";
 import Helper from "./Objects/Helper";
 import ButtonManager from "./Objects/ButtonManager";
-import FetchDataManager from "./Objects/FetchDataManager";
 import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
 
@@ -28,7 +27,7 @@ export default class Game implements Observer {
     private eyeManager: EyeManager;
 
     constructor(sketch: p5) {
-        let savedLevel = 0;
+        let savedLevel = 3;
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty = 0;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
@@ -48,11 +47,7 @@ export default class Game implements Observer {
         this.levelManger.subscribe(this);
         this.timer.subscribe(this);
         this.buttonManager.subscribe(this);
-
-        if (savedLevel === 0) {
-            this.createSpaceHandler();
-        }
-    }
+}
 
 
     public draw(): void {
@@ -125,20 +120,6 @@ export default class Game implements Observer {
     private continueGame() {
         this.timer.continue();
         this.subject.continue();
-    }
-
-    private createSpaceHandler(): void {
-        document.addEventListener('keyup', (event) => this.spaceHandler(event));
-    }
-
-    private removeSpaceListener() {
-        document.removeEventListener('keyup', (event) => this.spaceHandler(event));
-    }
-
-    private spaceHandler(event : KeyboardEvent): void {
-        if (event.code === 'Space') {
-            this.symbolManager.redDotEntry()
-        }
     }
 
     private decreaseScore(): void {

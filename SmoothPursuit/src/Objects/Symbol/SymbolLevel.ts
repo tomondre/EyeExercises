@@ -3,7 +3,7 @@ export interface SymbolLevel {
     continue() : void;
     pause() : void;
     create(difficultyEntries : number) : void;
-    redDotEntry(): void;
+    entry(data?): void;
     continueSymbolLevel(difficultyEntries : number): void;
     reset() : void;
 }

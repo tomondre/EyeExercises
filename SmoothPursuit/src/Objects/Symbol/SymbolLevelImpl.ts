@@ -77,7 +77,7 @@ export default class SymbolLevelImpl implements SymbolLevel {
         this.createSymbolsShowingSequence();
     }
 
-    public redDotEntry(): void {
+    public entry(): void {
     }
 
     continueSymbolLevel(difficultyEntries: number): void {

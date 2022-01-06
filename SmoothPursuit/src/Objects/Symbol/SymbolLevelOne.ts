@@ -33,9 +33,25 @@ export default class SymbolLevelOne implements SymbolLevel {
     public continue() : void {
         this.createTimeouts();
         this.isPause = false;
+        this.createSpaceListener();
     }
 
-    public redDotEntry() : void {
+    private spaceHandler(event : KeyboardEvent): void {
+        if (event.code === 'Space') {
+            this.entry();
+        }
+    }
+
+    private createSpaceListener() : void {
+        this.removeSpaceListener();
+        document.addEventListener('keyup', (event) => this.spaceHandler(event));
+    }
+
+    private removeSpaceListener() : void {
+        document.removeEventListener('keyup', (event) => this.spaceHandler(event));
+    }
+
+    public entry() : void {
         if (this.shouldRedDotBeDisplayed)
         {
             this.support.fire(ObserverAction.correctEntry);
@@ -51,6 +67,7 @@ export default class SymbolLevelOne implements SymbolLevel {
         this.isPause = true;
         clearInterval(this.redDotInterval);
         clearTimeout(this.redDotTimeout);
+        this.removeSpaceListener();
     }
 
     public create(difficultyEntries : number) : void {

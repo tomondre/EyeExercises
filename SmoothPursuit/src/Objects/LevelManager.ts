@@ -1,6 +1,7 @@
 import ObserverSupport from "./ObserverSupport";
 import {ObserverAction} from "./ObserverAction";
 import {Observer} from "./Observer";
+import {config} from "./config";
 
 export default class LevelManager {
     private currentLevel : number;
@@ -17,7 +18,7 @@ export default class LevelManager {
 
     public correctEntry() : void {
         this.difficultyEntries++;
-        if (this.difficultyEntries === 2) {
+        if (this.difficultyEntries === config.levels.subDifficulties) {
             this.difficultyEntries = 0;
             this.currentDifficulty++;
 
