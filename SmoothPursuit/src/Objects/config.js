@@ -7,6 +7,10 @@ export const config = {
         angleIncrease: 0.8,
         increaseAngleSpeedEverySecondBy: 0.00005,
     },
+    scoreBoard : {
+      increase : 11,
+      decrease : 5
+    },
     levels: {
         levels: 4,
         difficulties: 6,
@@ -29,7 +33,13 @@ export const config = {
             firstDigit: [10, 11, 12, 13, 14, 15],
             secondDigit: [10, 11, 12, 13, 14, 15],
             answerRange : [20, 30]
-        }]
+        }],
+        levelFourMath:{
+            answerGapX: 50,
+            answerGapY : 40,
+            middleAnswerGapY : 50,
+            arrowSize: 65
+        }
     },
     messages: {
         levelFinished: {
