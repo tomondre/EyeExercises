@@ -14,6 +14,7 @@ import EyeManager from "./Objects/EyeManager";
 //TODO last level with calculation
 //TODO massages
 //TODO remove listeners when paused game
+//TODO implement slow down button
 
 export default class Game implements Observer {
 
@@ -31,7 +32,7 @@ export default class Game implements Observer {
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty = 0;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 30;
+        let savedTime = 10;
         // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
@@ -43,11 +44,13 @@ export default class Game implements Observer {
         this.buttonManager = new ButtonManager(sketch);
         this.eyeManager = new EyeManager(sketch);
 
+        this.removePictureIfLevelFour()
+
         this.symbolManager.subscribe(this);
         this.levelManger.subscribe(this);
         this.timer.subscribe(this);
         this.buttonManager.subscribe(this);
-}
+    }
 
 
     public draw(): void {
@@ -90,6 +93,7 @@ export default class Game implements Observer {
                 this.incorrectSymbolEntryHandler();
                 break;
         }
+        console.log(ObserverAction[change]);
     }
 
     private correctSymbolEntryHandler() {
@@ -149,15 +153,17 @@ export default class Game implements Observer {
         this.set(level, diff);
     }
 
-    private set(level : number, difficulty : number): void {
+    private set(level: number, difficulty: number): void {
         this.symbolManager.setLevelIndex(level);
         this.subject.setCurrentDifficulty(difficulty);
         this.levelManger.set(level, difficulty);
+        this.removePictureIfLevelFour()
     }
 
     private difficultyFinishedHandler() {
         this.saveData();
         this.subject.setCurrentDifficulty(this.levelManger.getCurrentDifficulty());
+        this.removePictureIfLevelFour()
     }
 
     private changeEyeHandler() {
@@ -165,9 +171,9 @@ export default class Game implements Observer {
         this.saveData();
 
         //TODO uncomment
-        let level = 0;
+        let level = 3;
         // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
-        let difficulty = 0;
+        let difficulty = 1;
         // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
         let time = 10;
         // FetchDataManager.getEyeTime(Eyes.LEFT);
@@ -186,5 +192,12 @@ export default class Game implements Observer {
         let currentLevel = this.levelManger.getCurrentLevel();
         let currentDifficulty = this.levelManger.getCurrentDifficulty();
         this.scoreBoard.saveData(eyeValue, currentLevel, currentDifficulty);
+        this.scoreBoard.resetScore();
+    }
+
+    public removePictureIfLevelFour(): void {
+        if (this.levelManger.getCurrentLevel() === 3){
+            this.subject.removePicture();
+        }
     }
 }

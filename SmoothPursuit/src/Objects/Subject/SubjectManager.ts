@@ -45,4 +45,8 @@ export default class SubjectManager {
     public continueSymbolLevel(difficultyEntries: number) : void {
         this.subjects[this.currentDifficulty].continueSymbolLevel(difficultyEntries);
     }
+
+    public removePicture() : void {
+        this.subjects[this.currentDifficulty].removePicture();
+    }
 }
