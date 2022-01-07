@@ -15,6 +15,7 @@ export default class SymbolLevelFour implements SymbolLevel {
     private generatedAnswers: number[] = [];
     private listener = this.spaceHandler.bind(this);
     private arrowImage: p5.Image;
+    // @ts-ignore
     private mathData: { answerGapX, answerGapY, middleAnswerGapY, arrowSize } = config.levels.levelFourMath;
 
 
