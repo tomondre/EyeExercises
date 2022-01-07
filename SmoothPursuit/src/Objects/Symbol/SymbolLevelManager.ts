@@ -33,12 +33,6 @@ export default class SymbolLevelManager {
         this.levelIndex = levelIndex;
     }
 
-    public redDotEntry() : void {
-        if (this.levelIndex === 0) {
-            this.symbols[0].entry();
-        }
-    }
-
     public subscribe(observer : Observer) : void {
         this.support.subscribe(observer);
     }
