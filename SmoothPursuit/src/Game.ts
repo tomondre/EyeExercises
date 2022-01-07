@@ -30,11 +30,11 @@ export default class Game implements Observer {
     private messageManager: MessageManager;
 
     constructor(sketch: p5) {
-        let savedLevel = 3;
+        let savedLevel = 0;
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty = 0;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 5;
+        let savedTime = 100;
         // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
@@ -80,7 +80,8 @@ export default class Game implements Observer {
                 this.difficultyFinishedHandler();
                 break;
             case ObserverAction.levelFinished:
-                this.levelUp();
+                this.pauseGame();
+                this.messageManager.levelFinishedMessage(this.levelUp.bind(this), this.levelManger.getCurrentLevel());
                 break;
             case ObserverAction.gameFinished:
                 break;
