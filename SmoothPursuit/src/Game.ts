@@ -10,6 +10,7 @@ import Helper from "./Objects/Helper";
 import ButtonManager from "./Objects/ButtonManager";
 import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
+import MessageManager from "./Objects/MessageManager";
 
 //TODO last level with calculation
 //TODO massages
@@ -26,13 +27,14 @@ export default class Game implements Observer {
     private symbolManager: SymbolLevelManager;
     private buttonManager: ButtonManager;
     private eyeManager: EyeManager;
+    private messageManager: MessageManager;
 
     constructor(sketch: p5) {
         let savedLevel = 3;
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty = 0;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 10;
+        let savedTime = 5;
         // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
@@ -43,6 +45,7 @@ export default class Game implements Observer {
         this.subject = new SubjectManager(savedDifficulty, sketch, this.symbolManager);
         this.buttonManager = new ButtonManager(sketch);
         this.eyeManager = new EyeManager(sketch);
+        this.messageManager = new MessageManager(sketch);
 
         this.removePictureIfLevelFour()
 
@@ -66,7 +69,8 @@ export default class Game implements Observer {
     public update(change: ObserverAction, props): void {
         switch (change) {
             case ObserverAction.timeOver:
-                this.timeOverHandler();
+                this.pauseGame();
+                this.messageManager.changeEyeMessage(this.timeOverHandler.bind(this), this.continueGame.bind(this))
                 break;
             case ObserverAction.correctEntry:
                 this.levelManger.correctEntry();
@@ -196,7 +200,7 @@ export default class Game implements Observer {
     }
 
     public removePictureIfLevelFour(): void {
-        if (this.levelManger.getCurrentLevel() === 3){
+        if (this.levelManger.getCurrentLevel() === 3) {
             this.subject.removePicture();
         }
     }
