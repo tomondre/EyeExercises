@@ -14,10 +14,14 @@ export default class SymbolLevelFour implements SymbolLevel {
     private generatedEquation: number[] = [];
     private generatedAnswers: number[] = [];
     private listener = this.spaceHandler.bind(this);
+    private arrowImage: p5.Image;
+    private mathData: { answerGapX, answerGapY, middleAnswerGapY, arrowSize } = config.levels.levelFourMath;
+
 
     constructor(sketch, support: ObserverSupport) {
         this.sketch = sketch;
         this.support = support;
+        this.arrowImage = this.sketch.loadImage('assets/Arrow.png');
     }
 
     continue(): void {
@@ -29,23 +33,62 @@ export default class SymbolLevelFour implements SymbolLevel {
     }
 
     create(difficultyEntries: number): void {
-        this.numberPointer = difficultyEntries - 1 ;
+        this.numberPointer = difficultyEntries - 1;
 
-        this.continue();
         this.generateNumbers();
-        console.log(this.generatedAnswers);
-        console.log(this.generatedEquation);
+        this.continue();
     }
 
     draw(x: number, y: number): void {
+        this.sketch.push();
+        let center = this.sketch.LEFT;
+        this.sketch.textAlign(center, center);
+        this.sketch.text(this.generatedEquation[0] + " + " + this.generatedEquation[1], x, y);
+        this.sketch.pop();
+        let arrowX: number;
+        let arrowY: number;
 
+
+        arrowY = y + this.mathData.answerGapY;
+        arrowX = x - this.mathData.answerGapX;
+        this.drawArrow(arrowX, arrowY, 0, 0);
+
+        arrowY = y + this.mathData.answerGapY + this.mathData.middleAnswerGapY;
+        arrowX = x;
+        this.drawArrow(arrowX, arrowY, 270, 1);
+
+        arrowY = y + this.mathData.answerGapY;
+        arrowX = x + this.mathData.answerGapX;
+        this.drawArrow(arrowX, arrowY, 180, 2);
     }
 
-    pause(): void {
+    private drawArrow(x: number, y: number, rotation: number, answerIndex: number): void {
+        let center = this.sketch.CENTER;
+
+        this.sketch.push();
+        x = x + this.mathData.answerGapX;
+        this.sketch.translate(x, y);
+
+        this.sketch.push();
+        this.sketch.imageMode(center);
+        this.sketch.rotate(rotation);
+        this.sketch.image(this.arrowImage, 0, 0);
+        this.sketch.pop();
+
+        this.sketch.fill("white")
+        this.sketch.textAlign(center, center);
+        this.sketch.text(this.generatedAnswers[answerIndex], 0, 0);
+        this.sketch.pop();
+
+        let size = config.levels.levelFourMath.arrowSize;
+        this.arrowImage.resize(size, size);
+    }
+
+    public pause(): void {
         this.removeKeyboardListener();
     }
 
-    entry(key: KeyType): void {
+    public entry(key: KeyType): void {
         let sum: number = 0;
         for (let i = 0; i < this.generatedEquation.length; i++) {
             sum += this.generatedEquation[i];
@@ -66,13 +109,10 @@ export default class SymbolLevelFour implements SymbolLevel {
         }
 
         if (valueToCompare == sum) {
-            console.log("correct");
             this.support.fire(ObserverAction.correctEntrySymbolLevel);
         } else {
-            console.log("incorrect");
             this.support.fire(ObserverAction.incorrectEntrySymbolLevel);
         }
-        console.log(this.numberPointer);
     }
 
     public reset(): void {
@@ -110,17 +150,18 @@ export default class SymbolLevelFour implements SymbolLevel {
     private generateAnswers(): void {
         let object: { firstDigit, secondDigit, answerRange } = this.data[this.numberPointer];
 
-        this.generatedAnswers = [];
-        for (let i = 0; i < 2; i++) {
-            let min: number = object.answerRange[0];
-            let max: number = object.answerRange[1];
+        do {
+            this.generatedAnswers = [];
+            for (let i = 0; i < 2; i++) {
+                let min: number = object.answerRange[0];
+                let max: number = object.answerRange[1];
 
-            let answer = this.sketch.floor(this.sketch.random(min, max));
-            this.generatedAnswers.push(answer);
-        }
-
-        let number: number = this.generatedEquation[0] + this.generatedEquation[1];
-        this.generatedAnswers.push(number);
+                let answer = this.sketch.floor(this.sketch.random(min, max));
+                this.generatedAnswers.push(answer);
+            }
+            let correctAnswer: number = this.generatedEquation[0] + this.generatedEquation[1];
+            this.generatedAnswers.push(correctAnswer);
+        } while (new Set(this.generatedAnswers).size != this.generatedAnswers.length)
 
         this.generatedAnswers = this.shuffle(this.generatedAnswers);
     }
