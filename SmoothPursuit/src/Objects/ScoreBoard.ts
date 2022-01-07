@@ -1,4 +1,5 @@
 import p5 = require("p5");
+import {config} from "./config";
 
 export default class ScoreBoard {
     private score : number;
@@ -20,15 +21,14 @@ export default class ScoreBoard {
     }
 
     public increaseScore() : void {
-        this.score += 10;
+        this.score += config.scoreBoard.increase;
     }
 
     public decreaseScore() : void {
-        this.score -= 5;
+        this.score -= config.scoreBoard.decrease;
     }
 
     public saveData(eye : string, level : number, difficulty : number) : void {
         console.log("Data: eye-" + eye + " level-" + level + " difficulty-" + difficulty + " score-" + this.score);
-        this.resetScore();
     }
 }
