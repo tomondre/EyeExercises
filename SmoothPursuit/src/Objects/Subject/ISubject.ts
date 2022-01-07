@@ -7,4 +7,5 @@ export default interface ISubject {
     pause() : void;
     continue() : void;
     continueSymbolLevel(difficultyEntries: number): void;
+    removePicture(): void;
 }

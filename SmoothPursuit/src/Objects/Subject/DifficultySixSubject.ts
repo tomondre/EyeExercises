@@ -8,9 +8,10 @@ export default class DifficultySixSubject implements ISubject {
     private sketch: p5;
     private angle: number;
     private speed: number;
-    private speedInterval: number;
+    private speedInterval: NodeJS.Timer;
     private isPaused: boolean;
     private symbolManager : SymbolLevelManager;
+    private shouldBePictureDrawn: boolean = true;
 
     constructor(sketch: p5, image: p5.Image, symbolManager : SymbolLevelManager) {
         this.symbolManager = symbolManager;
@@ -19,14 +20,16 @@ export default class DifficultySixSubject implements ISubject {
     }
 
     public draw(): void {
-        this.sketch.push();
-        this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
-        this.sketch.scale(-1, 1);
-        this.sketch.imageMode(this.sketch.CENTER);
-        this.sketch.rotate(this.angle);
         let radius = this.sketch.canvas.height * 0.9 / 2;
-        this.sketch.image(this.image, radius, 0);
-        this.sketch.pop();
+        if (this.shouldBePictureDrawn) {
+            this.sketch.push();
+            this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
+            this.sketch.scale(-1, 1);
+            this.sketch.imageMode(this.sketch.CENTER);
+            this.sketch.rotate(this.angle);
+            this.sketch.image(this.image, radius, 0);
+            this.sketch.pop();
+        }
         if (this.isPaused)
             return;
 
@@ -76,5 +79,9 @@ export default class DifficultySixSubject implements ISubject {
         this.speedInterval = setInterval(() => {
             this.speed += config.config.game.increaseSpeedEverySecondBy;
         }, 1000);
+    }
+
+    public removePicture(): void {
+        this.shouldBePictureDrawn = false;
     }
 }

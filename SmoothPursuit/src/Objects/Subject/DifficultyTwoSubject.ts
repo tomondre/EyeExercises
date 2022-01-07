@@ -11,9 +11,10 @@ export default class DifficultyTwoSubject implements ISubject{
     private sketch: p5;
     private goingUp: boolean;
     private speed: number;
-    private speedInterval: number;
+    private speedInterval: NodeJS.Timer;
     private isPaused: boolean;
     private symbolManager : SymbolLevelManager;
+    private shouldBePictureDrawn: boolean = true;
 
     constructor(sketch: p5, image: p5.Image, symbolManager : SymbolLevelManager) {
         this.symbolManager = symbolManager;
@@ -22,18 +23,18 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     public draw(): void {
-        this.sketch.push();
-        this.sketch.translate(this.x, this.y);
-        this.sketch.imageMode(this.sketch.CENTER);
-        if (this.goingUp)
-        {
-            this.sketch.rotate(0);
+        if (this.shouldBePictureDrawn) {
+            this.sketch.push();
+            this.sketch.translate(this.x, this.y);
+            this.sketch.imageMode(this.sketch.CENTER);
+            if (this.goingUp) {
+                this.sketch.rotate(0);
+            } else {
+                this.sketch.rotate(180);
+            }
+            this.sketch.image(this.image, 0, 0);
+            this.sketch.pop();
         }
-        else {
-            this.sketch.rotate(180);
-        }
-        this.sketch.image(this.image, 0, 0);
-        this.sketch.pop();
         if (this.isPaused) {
             return;
         }
@@ -96,4 +97,7 @@ export default class DifficultyTwoSubject implements ISubject{
         }, 1000);
     }
 
+    public removePicture(): void {
+        this.shouldBePictureDrawn = false;
+    }
 }
