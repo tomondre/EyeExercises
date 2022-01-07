@@ -7,7 +7,7 @@ export default class Timer {
 
     private sketch : p5;
     private time : number;
-    private intervalNum : number;
+    private intervalNum : NodeJS.Timer;
     private support : ObserverSupport
     private shouldTimerBeDisplayed : boolean = true;
 
