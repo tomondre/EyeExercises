@@ -4,12 +4,13 @@ import ObserverSupport from "../ObserverSupport";
 import {ObserverAction} from "../ObserverAction";
 
 export default class SymbolLevelOne implements SymbolLevel {
-    private redDotTimeout: number;
-    private redDotInterval: number;
+    private redDotTimeout: NodeJS.Timeout;
+    private redDotInterval: NodeJS.Timer;
     private shouldRedDotBeDisplayed: boolean;
     private sketch: p5;
     private isPause: boolean;
     private support: ObserverSupport;
+    private listener = this.spaceHandler.bind(this);
 
     constructor(sketch, support: ObserverSupport) {
         this.sketch = sketch;
@@ -44,11 +45,11 @@ export default class SymbolLevelOne implements SymbolLevel {
 
     private createSpaceListener() : void {
         this.removeSpaceListener();
-        document.addEventListener('keyup', (event) => this.spaceHandler(event));
+        document.addEventListener('keyup', this.listener);
     }
 
     private removeSpaceListener() : void {
-        document.removeEventListener('keyup', (event) => this.spaceHandler(event));
+        document.removeEventListener('keyup', this.listener);
     }
 
     public entry() : void {
