@@ -1,6 +1,5 @@
 import * as p5 from "p5";
 import {config} from "./config";
-import {create} from "domain";
 
 export default class MessageManager {
 
@@ -11,29 +10,78 @@ export default class MessageManager {
     constructor(sketch: p5) {
         this.messages = config.messages
         this.sketch = sketch;
+        console.log(config.messages)
     }
 
-    public draw(): void {
+    public levelFinishedMessage(callback: () => void, finishedLevel: number): void {
+
+        let textConfig: string[] = config.messages.levelFinished.text;
+
+        let firstPart: string = textConfig[0] + finishedLevel + textConfig[1];
+        let secondPart: string = textConfig[2];
+        this.createTimerMessage(firstPart, secondPart, callback);
 
     }
 
-    public levelFinishedMessage(callback: void, finishedLevel: number): void {
+    private createTimerMessage(partOne: string, partTwo: string, callback: () => void): void {
+        let createTextFunction = (time: number) => {
+            this.removeAllElements();
+            let element: p5.Element = this.sketch.createElement("h5", partOne + time + partTwo);
+            element.center();
+            this.elements.push(element);
+        };
 
+        let time = config.messages.levelFinished.time;
+        createTextFunction(time);
+        let interval = setInterval(() => {
+            time--;
+            createTextFunction(time);
+            if (time === 0) {
+                this.removeAllElements();
+                callback();
+                clearInterval(interval);
+            }
+        }, 1000);
     }
 
     public changeEyeMessage(okCallback: () => void, rejectCallback: () => void): void {
         let text = config.messages.changeEye.text[0];
-        let element: p5.Element = this.sketch.createElement("h5", text);
-        this.elements.push(element);
-        let x = this.sketch.canvas.width / 2;
-        let y = this.sketch.canvas.height / 2;
-        element.style("color", "black");
-        element.position(x, y);
-
+        this.createMessage(text);
         let leftButtonText = config.messages.changeEye.okButtonText;
         let rightButtonText = config.messages.changeEye.rejectButtonText;
+        let rejectCB : () => void = () => {
+            rejectCallback();
+            let text : string = config.messages.changeEye.buttonText;
+            this.displayChangeEyeButton(okCallback, text);
+        };
 
-        this.createChooseOneButton(leftButtonText, rightButtonText, okCallback, rejectCallback);
+        this.createChooseOneButton(leftButtonText, rightButtonText, okCallback, rejectCB);
+    }
+
+    public displayChangeEyeButton(callback : () => void, text : string){
+        let x : number = this.sketch.canvas.width * 0.1;
+        let y : number = this.sketch.canvas.height * 0.235;
+        this.createSingleButton(text, callback, x, y);
+    }
+
+    private createMessage(text: string): p5.Element {
+        let element: p5.Element = this.sketch.createElement("h5", text);
+        this.elements.push(element);
+        element.center();
+        element.style("color", "black");
+        return element;
+    }
+
+    private createSingleButton(text: string, callback: () => void, x: number, y: number) {
+        let leftButton = this.sketch.createButton(text);
+        leftButton.center();
+        this.elements.push(leftButton);
+        leftButton.position(x, y);
+        leftButton.mousePressed(() => {
+            this.removeAllElements();
+            callback();
+        });
+        leftButton.class("positivesmall");
     }
 
     public createChooseOneButton(leftText: string, rightText: string, leftCallback: () => void, rightCallback: () => void): void {
@@ -42,30 +90,36 @@ export default class MessageManager {
         let x = this.sketch.canvas.width / 2;
         let y = config.messages.buttons.heightPositionRatio * this.sketch.canvas.height;
 
-        let leftButton = this.sketch.createButton(leftText);
-        this.elements.push(leftButton);
-        leftButton.position(x - xOffset, y);
-        leftButton.mousePressed(() => {
-            this.removeAllElements();
-            leftCallback();
-        });
-        leftButton.class("positivesmall");
-
-        let rightButton = this.sketch.createButton(rightText);
-        this.elements.push(rightButton);
-        rightButton.position(x + xOffset, y);
-        rightButton.mousePressed(() => {
-            this.removeAllElements();
-            rightCallback();
-        });
-        rightButton.class("negativesmall");
-
-        // leftButton.mousePressed(this.removeAllElements.bind(this));
-        // rightButton.mousePressed(this.removeAllElements.bind(this));
+        this.createSingleButton(leftText, leftCallback, x - xOffset, y);
+        this.createSingleButton(rightText, rightCallback, x + xOffset, y);
     }
 
     private removeAllElements(): void {
         this.elements.forEach((e) => e.remove());
         this.elements = [];
+    }
+
+    public bothEyesTimeOverMessage(closeGame: () => void, continueGame: () => void): void {
+        let text: string = config.messages.timeForBothEyesOver.text[0];
+        this.createMessage(text);
+
+        let leftText: string = config.messages.timeForBothEyesOver.okButtonText;
+        let rightText: string = config.messages.timeForBothEyesOver.rejectButtonText;
+
+        let rightCB : () => void = () => {
+            continueGame();
+            let buttonText : string = config.messages.timeForBothEyesOver.buttonText;
+            this.displayChangeEyeButton(closeGame, buttonText);
+        };
+
+        this.createChooseOneButton(leftText, rightText, closeGame, rightCB);
+    }
+
+    public gameFinishedMessage(callback: () => void, currentLevel: number) : void {
+        let text : string = config.messages.gameFinished.text[0];
+        let element = this.createMessage(text);
+
+        let buttonText : string = config.messages.gameFinished.button;
+        this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100);
     }
 }

@@ -6,7 +6,6 @@ import {ObserverAction} from "./ObserverAction";
 export default class ButtonManager {
 
     private sketch : p5;
-    private shouldBeButtonOptionsDrawn: boolean = false;
     private correctOption : string;
     private options : string[];
     private buttons : p5.element[] = [];
@@ -21,10 +20,14 @@ export default class ButtonManager {
 
     }
 
-    private handler(selectedButton : string) : void {
+    public removeButtons() : void{
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].remove();
         }
+    }
+
+    private handler(selectedButton : string) : void {
+        this.removeButtons();
         if (selectedButton === this.correctOption) {
             this.observerSupport.fire(ObserverAction.correctEntrySymbolLevel);
         }
@@ -34,6 +37,7 @@ export default class ButtonManager {
     }
 
     public create() : void {
+        this.removeButtons();
         this.buttons = [];
         let areaPercentage = 0.4;
         let buttonArea = this.sketch.canvas.width * areaPercentage;
