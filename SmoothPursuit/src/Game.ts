@@ -30,11 +30,11 @@ export default class Game implements Observer {
     private messageManager: MessageManager;
 
     constructor(sketch: p5) {
-        let savedLevel = 0;
+        let savedLevel = 1;
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
-        let savedDifficulty = 0;
+        let savedDifficulty = 4;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 100;
+        let savedTime = 5;
         // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
@@ -70,7 +70,7 @@ export default class Game implements Observer {
         switch (change) {
             case ObserverAction.timeOver:
                 this.pauseGame();
-                this.messageManager.changeEyeMessage(this.timeOverHandler.bind(this), this.continueGame.bind(this))
+                this.timeOverHandler()
                 break;
             case ObserverAction.correctEntry:
                 this.levelManger.correctEntry();
@@ -84,6 +84,8 @@ export default class Game implements Observer {
                 this.messageManager.levelFinishedMessage(this.levelUp.bind(this), this.levelManger.getCurrentLevel());
                 break;
             case ObserverAction.gameFinished:
+                this.pauseGame();
+                this.messageManager.gameFinishedMessage(this.closeGame.bind(this), this.levelManger.getCurrentLevel());
                 break;
             case ObserverAction.incorrectEntry:
                 this.decreaseScore();
@@ -102,23 +104,34 @@ export default class Game implements Observer {
     }
 
     private correctSymbolEntryHandler() {
+        this.continueGameSymbolLevel();
         this.scoreBoard.increaseScore();
         this.levelManger.correctEntry();
-        this.continueGameSymbolLevel();
     }
 
     private incorrectSymbolEntryHandler() {
-        this.levelManger.correctEntry();
-        this.scoreBoard.decreaseScore();
         this.continueGameSymbolLevel();
+        this.scoreBoard.decreaseScore();
+        this.levelManger.correctEntry();
     }
 
     private timeOverHandler(): void {
         if (this.eyeManager.getCurrentEye() === Eyes.LEFT) {
-            this.timeForBothEyesOverHandler();
+            this.messageManager.bothEyesTimeOverMessage(this.closeGame.bind(this), () => {
+                this.buttonManager.removeButtons();
+                this.continueGame();
+            });
             return;
+        } else {
+            this.messageManager.changeEyeMessage(this.changeEyeHandler.bind(this), () => {
+                this.buttonManager.removeButtons();
+                this.continueGame();
+            });
         }
-        this.changeEyeHandler();
+    }
+
+    private closeGame(): void {
+        window.close();
     }
 
     private pauseGame(): void {
@@ -148,7 +161,7 @@ export default class Game implements Observer {
 
     private continueGameSymbolLevel(): void {
         this.timer.continue();
-        this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
+        this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 2);
     }
 
     private levelUp() {
@@ -156,12 +169,13 @@ export default class Game implements Observer {
         let level = this.levelManger.getCurrentLevel();
         let diff = 0;
         this.set(level, diff);
+        this.timer.continue();
     }
 
     private set(level: number, difficulty: number): void {
+        this.levelManger.set(level, difficulty);
         this.symbolManager.setLevelIndex(level);
         this.subject.setCurrentDifficulty(difficulty);
-        this.levelManger.set(level, difficulty);
         this.removePictureIfLevelFour()
     }
 
@@ -172,7 +186,7 @@ export default class Game implements Observer {
     }
 
     private changeEyeHandler() {
-
+        this.buttonManager.removeButtons();
         this.saveData();
 
         //TODO uncomment
