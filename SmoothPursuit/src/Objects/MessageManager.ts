@@ -61,7 +61,7 @@ export default class MessageManager {
     public displayChangeEyeButton(callback : () => void, text : string){
         let x : number = this.sketch.canvas.width * 0.1;
         let y : number = this.sketch.canvas.height * 0.235;
-        this.createSingleButton(text, callback, x, y);
+        this.createSingleButton(text, callback, x, y, true);
     }
 
     private createMessage(text: string): p5.Element {
@@ -72,12 +72,16 @@ export default class MessageManager {
         return element;
     }
 
-    private createSingleButton(text: string, callback: () => void, x: number, y: number) {
+    private createSingleButton(text: string, callback: () => void, x: number, y: number, isIndependent : boolean) {
         let leftButton = this.sketch.createButton(text);
         leftButton.center();
-        this.elements.push(leftButton);
+        if (!isIndependent)
+        {
+            this.elements.push(leftButton);
+        }
         leftButton.position(x, y);
         leftButton.mousePressed(() => {
+            leftButton.remove();
             this.removeAllElements();
             callback();
         });
@@ -90,8 +94,8 @@ export default class MessageManager {
         let x = this.sketch.canvas.width / 2;
         let y = config.messages.buttons.heightPositionRatio * this.sketch.canvas.height;
 
-        this.createSingleButton(leftText, leftCallback, x - xOffset, y);
-        this.createSingleButton(rightText, rightCallback, x + xOffset, y);
+        this.createSingleButton(leftText, leftCallback, x - xOffset, y, false);
+        this.createSingleButton(rightText, rightCallback, x + xOffset, y, false);
     }
 
     private removeAllElements(): void {
@@ -120,6 +124,6 @@ export default class MessageManager {
         let element = this.createMessage(text);
 
         let buttonText : string = config.messages.gameFinished.button;
-        this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100);
+        this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100, false);
     }
 }
