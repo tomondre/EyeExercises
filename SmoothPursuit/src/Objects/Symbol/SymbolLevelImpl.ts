@@ -31,7 +31,7 @@ export default class SymbolLevelImpl implements SymbolLevel {
     }
 
     public continue(): void {
-
+        this.create(this.numberOfSymbols);
     }
 
     public createSymbolsShowingSequence(): void {
@@ -68,8 +68,9 @@ export default class SymbolLevelImpl implements SymbolLevel {
     }
 
     public create(difficultyEntries : number): void {
-        if (difficultyEntries === this.numberOfSymbols)
-            return;
+        //TODO
+        // if (difficultyEntries === this.numberOfSymbols)
+        //     return;
         this.pause();
         this.numberOfSymbols = difficultyEntries;
         this.symbolPointer = 0;
