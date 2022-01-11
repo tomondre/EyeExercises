@@ -14,7 +14,7 @@ export const config = {
     levels: {
         levels: 4,
         difficulties: 6,
-        subDifficulties: 4,
+        subDifficulties: 2,
         levelTwoSymbols: "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
         levelThreeSymbols: "0123456789",
         levelFour: [{
@@ -43,24 +43,32 @@ export const config = {
     },
     messages: {
         levelFinished: {
-            text: [{
-                text: "Congratlations, you have passed level ",
-            }, {
-                text: ".\n Next level starts in ",
-            }, {
-                text: " seconds.",
-            }],
+            text: [
+                "Congratlations, you have passed level ",
+                ".\n Next level starts in ",
+                " seconds.",],
             time: 3
+        },
+        timeForBothEyesOver: {
+            text: ["Time for both eyes is over. Would you like exit the game?"],
+            okButtonText: "Yes",
+            rejectButtonText: "No",
+            buttonText : "Exit game"
         },
         changeEye: {
             text: ["Time for right eye is over. Would you like to change eyes?"],
             okButtonText: "Yes",
-            rejectButtonText: "No"
+            rejectButtonText: "No",
+            buttonText: "Change eye"
         },
         buttons: {
             heightPositionRatio: 0.70,
             chooseOneButtonsXOffsetInPixels: 50
-        }
+        },
+        gameFinished: {
+            text: ["Congratulation, you have finished the game"],
+            button: "Exit game."
+        },
     },
     difficulties:
         [{
