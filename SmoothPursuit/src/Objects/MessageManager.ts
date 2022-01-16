@@ -24,18 +24,14 @@ export default class MessageManager {
     }
 
     private createTimerMessage(partOne: string, partTwo: string, callback: () => void): void {
-        let createTextFunction = (time: number) => {
-            this.removeAllElements();
-            let element: p5.Element = this.sketch.createElement("h5", partOne + time + partTwo);
-            element.center();
-            this.elements.push(element);
-        };
-
         let time = config.messages.levelFinished.time;
-        createTextFunction(time);
+        let text = partOne + time + partTwo;
+        this.createMessage(text);
         let interval = setInterval(() => {
             time--;
-            createTextFunction(time);
+            let text = partOne + time + partTwo;
+            this.removeAllElements();
+            this.createMessage(text);
             if (time === 0) {
                 this.removeAllElements();
                 callback();
@@ -67,8 +63,9 @@ export default class MessageManager {
     private createMessage(text: string): p5.Element {
         let element: p5.Element = this.sketch.createElement("h5", text);
         this.elements.push(element);
-        element.center();
+        element.style("font-size", "40px");
         element.style("color", "black");
+        element.center();
         return element;
     }
 
@@ -119,7 +116,7 @@ export default class MessageManager {
         this.createChooseOneButton(leftText, rightText, closeGame, rightCB);
     }
 
-    public gameFinishedMessage(callback: () => void, currentLevel: number) : void {
+    public gameFinishedMessage(callback: () => void) : void {
         let text : string = config.messages.gameFinished.text[0];
         let element = this.createMessage(text);
 
