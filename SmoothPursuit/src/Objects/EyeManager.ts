@@ -12,7 +12,10 @@ export default class EyeManager {
     }
 
     public draw() : void {
+        this.sketch.push();
+        this.sketch.textSize(40);
         this.sketch.text("Eye: " + this.getEyeValue(), 0.1 * this.sketch.canvas.width, 0.18 * this.sketch.canvas.height);
+        this.sketch.pop();
     }
 
     public getCurrentEye() : Eyes {

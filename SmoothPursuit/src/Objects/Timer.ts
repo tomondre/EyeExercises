@@ -37,7 +37,10 @@ export default class Timer {
     public draw() : void{
         if (!this.shouldTimerBeDisplayed)
             return;
+        this.sketch.push();
+        this.sketch.textSize(40);
         this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
+        this.sketch.pop();
     }
 
     private sec() : void{
