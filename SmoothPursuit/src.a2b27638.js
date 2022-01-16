@@ -28850,7 +28850,8 @@ var config = {
     increaseSpeedEverySecondBy: 0.001,
     subjectSpeedPerFrame: 5,
     angleIncrease: 0.8,
-    increaseAngleSpeedEverySecondBy: 0.00005
+    increaseAngleSpeedEverySecondBy: 0.00005,
+    slowDownBy: 0.1
   },
   scoreBoard: {
     increase: 11,
@@ -28928,7 +28929,8 @@ var config = {
     difficultyNo: 5,
     defaultSpeed: 1
   }, {
-    difficultyNo: 6
+    difficultyNo: 6,
+    defaultSpeed: 1
   }]
 };
 exports.config = config;
@@ -28951,6 +28953,7 @@ function () {
 
   ScoreBoard.prototype.draw = function () {
     this.sketch.push();
+    this.sketch.textSize(40);
     this.sketch.text("Score: " + this.score, this.sketch.canvas.width * 0.1, this.sketch.canvas.height * 0.125);
     this.sketch.pop();
   };
@@ -29080,7 +29083,10 @@ function () {
 
   Timer.prototype.draw = function () {
     if (!this.shouldTimerBeDisplayed) return;
+    this.sketch.push();
+    this.sketch.textSize(40);
     this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
+    this.sketch.pop();
   };
 
   Timer.prototype.sec = function () {
@@ -29188,7 +29194,73 @@ function () {
 }();
 
 exports.default = LevelManager;
-},{"./ObserverSupport":"src/Objects/ObserverSupport.ts","./ObserverAction":"src/Objects/ObserverAction.ts","./config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyOneSubject.ts":[function(require,module,exports) {
+},{"./ObserverSupport":"src/Objects/ObserverSupport.ts","./ObserverAction":"src/Objects/ObserverAction.ts","./config":"src/Objects/config.js"}],"src/Objects/Helper.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var config_1 = require("./config");
+
+var Helper =
+/** @class */
+function () {
+  function Helper() {}
+
+  Helper.get = function () {
+    if (this.instance === undefined) {
+      this.instance = new Helper();
+    }
+
+    return this.instance;
+  };
+
+  Helper.prototype.getRandomOptions = function (currentLevel, noOfSymbols) {
+    var result = [];
+    var singleString;
+    var symbols;
+
+    if (currentLevel === 1) {
+      symbols = config_1.config.levels.levelTwoSymbols;
+    } else if (currentLevel === 2) {
+      symbols = config_1.config.levels.levelThreeSymbols;
+    } else if (currentLevel === 3) {
+      symbols = config_1.config.levels.levelFourSymbols;
+    } else if (currentLevel === 4) {
+      symbols = config_1.config.levels.levelFiveSymbols;
+    }
+
+    for (var i = 0; i < 3; i++) {
+      singleString = "";
+
+      for (var i_1 = 0; i_1 < noOfSymbols; i_1++) {
+        singleString += symbols.charAt(Math.floor(Math.random() * symbols.length));
+      }
+
+      result.push(singleString);
+    }
+
+    return result;
+  };
+
+  Helper.createSlowdownListener = function (handler) {
+    this.removeSlowdownListener(handler);
+    var elementById = document.getElementById("slowDownButton");
+    elementById.addEventListener("pointerdown", handler);
+  };
+
+  Helper.removeSlowdownListener = function (handler) {
+    var elementById = document.getElementById("slowDownButton");
+    elementById.removeEventListener("pointerdown", handler);
+  };
+
+  Helper.instance = new Helper();
+  return Helper;
+}();
+
+exports.default = Helper;
+},{"./config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyOneSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29225,17 +29297,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultyOneSubject =
 /** @class */
 function () {
   function DifficultyOneSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler.bind(this);
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29297,11 +29378,14 @@ function () {
 
   DifficultyOneSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
+    this.createSlowDownListener();
     this.createSpeedInterval();
     this.isPaused = false;
   };
 
   DifficultyOneSubject.prototype.continue = function () {
+    this.createSlowDownListener();
+    ;
     this.symbolManager.continue();
     this.createSpeedInterval();
     this.isPaused = false;
@@ -29309,6 +29393,7 @@ function () {
 
   DifficultyOneSubject.prototype.pause = function () {
     this.symbolManager.pause();
+    this.removeSlowdownListener();
     clearInterval(this.speedInterval);
     this.isPaused = true;
   };
@@ -29322,6 +29407,18 @@ function () {
     }, 1000);
   };
 
+  DifficultyOneSubject.prototype.slowDownHandler = function () {
+    this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultyOneSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultyOneSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
+  };
+
   DifficultyOneSubject.prototype.removePicture = function () {
     this.shouldBePictureDrawn = false;
   };
@@ -29330,7 +29427,7 @@ function () {
 }();
 
 exports.default = DifficultyOneSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyTwoSubject.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/DifficultyTwoSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29367,17 +29464,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultyTwoSubject =
 /** @class */
 function () {
   function DifficultyTwoSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler.bind(this);
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29437,18 +29543,21 @@ function () {
   DifficultyTwoSubject.prototype.continue = function () {
     this.symbolManager.continue();
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyTwoSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyTwoSubject.prototype.pause = function () {
     this.symbolManager.pause();
     clearInterval(this.speedInterval);
+    this.removeSlowdownListener();
     this.isPaused = true;
   };
 
@@ -29461,6 +29570,18 @@ function () {
     }, 1000);
   };
 
+  DifficultyTwoSubject.prototype.slowDownHandler = function () {
+    this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultyTwoSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultyTwoSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
+  };
+
   DifficultyTwoSubject.prototype.removePicture = function () {
     this.shouldBePictureDrawn = false;
   };
@@ -29469,7 +29590,7 @@ function () {
 }();
 
 exports.default = DifficultyTwoSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyFiveSubject.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/DifficultyFiveSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29506,17 +29627,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultyFiveSubject =
 /** @class */
 function () {
   function DifficultyFiveSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler.bind(this);
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29525,6 +29655,7 @@ function () {
   DifficultyFiveSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
@@ -29541,14 +29672,15 @@ function () {
     }
 
     if (this.isPaused) return;
-    var x = this.sketch.canvas.width / 2 + radius * Math.cos(Math.PI * 2 * (this.angle % 360) / 360);
-    var y = this.sketch.canvas.height / 2 + radius * Math.sin(Math.PI * 2 * (this.angle % 360) / 360);
+    var num = Math.PI * 2 * (this.angle % 360) / 360;
+    var x = this.sketch.canvas.width / 2 + radius * Math.cos(num);
+    var y = this.sketch.canvas.height / 2 + radius * Math.sin(num);
     this.symbolManager.draw(x, y);
     this.move();
   };
 
   DifficultyFiveSubject.prototype.move = function () {
-    this.angle += config.config.game.angleIncrease + this.angle * config.config.game.increaseAngleSpeedEverySecondBy;
+    this.angle += (config.config.game.angleIncrease + this.angle * config.config.game.increaseAngleSpeedEverySecondBy) * this.speed;
   };
 
   DifficultyFiveSubject.prototype.setImage = function (image) {};
@@ -29556,7 +29688,7 @@ function () {
   DifficultyFiveSubject.prototype.create = function () {
     this.pause();
     this.angle = 0;
-    this.speed = config.config.difficulties[5].defaultSpeed;
+    this.speed = config.config.difficulties[4].defaultSpeed;
     this.symbolManager.create(1);
     this.continue();
   };
@@ -29564,12 +29696,14 @@ function () {
   DifficultyFiveSubject.prototype.continue = function () {
     this.symbolManager.continue();
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyFiveSubject.prototype.pause = function () {
     this.symbolManager.pause();
     clearInterval(this.speedInterval);
+    this.removeSlowdownListener();
     this.isPaused = true;
   };
 
@@ -29582,6 +29716,18 @@ function () {
     }, 1000);
   };
 
+  DifficultyFiveSubject.prototype.slowDownHandler = function () {
+    if (this.speed > 0.5) this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultyFiveSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultyFiveSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
+  };
+
   DifficultyFiveSubject.prototype.removePicture = function () {
     this.shouldBePictureDrawn = false;
   };
@@ -29590,7 +29736,7 @@ function () {
 }();
 
 exports.default = DifficultyFiveSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyThreeSubject.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/DifficultyThreeSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29627,17 +29773,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultyThreeSubject =
 /** @class */
 function () {
   function DifficultyThreeSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler.bind(this);
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29706,19 +29861,34 @@ function () {
   DifficultyThreeSubject.prototype.continue = function () {
     this.symbolManager.continue();
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyThreeSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyThreeSubject.prototype.pause = function () {
     this.symbolManager.pause();
     clearInterval(this.speedInterval);
+    this.removeSlowdownListener();
     this.isPaused = true;
+  };
+
+  DifficultyThreeSubject.prototype.slowDownHandler = function () {
+    this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultyThreeSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultyThreeSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
   };
 
   DifficultyThreeSubject.prototype.createSpeedInterval = function () {
@@ -29738,7 +29908,7 @@ function () {
 }();
 
 exports.default = DifficultyThreeSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultyFourSubject.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/DifficultyFourSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29775,17 +29945,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultyFourSubject =
 /** @class */
 function () {
   function DifficultyFourSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler;
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29856,18 +30035,21 @@ function () {
   DifficultyFourSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyFourSubject.prototype.continue = function () {
     this.symbolManager.continue();
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultyFourSubject.prototype.pause = function () {
     this.symbolManager.pause();
     clearInterval(this.speedInterval);
+    this.removeSlowdownListener();
     this.isPaused = true;
   };
 
@@ -29880,6 +30062,18 @@ function () {
     }, 1000);
   };
 
+  DifficultyFourSubject.prototype.slowDownHandler = function () {
+    this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultyFourSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultyFourSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
+  };
+
   DifficultyFourSubject.prototype.removePicture = function () {
     this.shouldBePictureDrawn = false;
   };
@@ -29888,7 +30082,7 @@ function () {
 }();
 
 exports.default = DifficultyFourSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/DifficultySixSubject.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/DifficultySixSubject.ts":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -29925,17 +30119,26 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var config = __importStar(require("../config"));
 
+var Helper_1 = __importDefault(require("../Helper"));
+
 var DifficultySixSubject =
 /** @class */
 function () {
   function DifficultySixSubject(sketch, image, symbolManager) {
     this.shouldBePictureDrawn = true;
+    this.slowDownListener = this.slowDownHandler.bind(this);
     this.symbolManager = symbolManager;
     this.image = image;
     this.sketch = sketch;
@@ -29954,16 +30157,17 @@ function () {
       this.sketch.pop();
     }
 
-    if (this.isPaused) return; //Please dont ask how does it work cuz I have no idea. It just works
+    if (this.isPaused) return; //Please dont ask how does it work cuz I have no idea. It just works...
 
-    var x = this.sketch.canvas.width / 2 + radius * Math.sin(Math.PI * 2 * (this.angle % 360 - 90) / 360);
-    var y = this.sketch.canvas.height / 2 + radius * Math.cos(Math.PI * 2 * (this.angle % 360 - 90) / 360);
+    var num = Math.PI * 2 * (this.angle % 360 - 90) / 360;
+    var x = this.sketch.canvas.width / 2 + radius * Math.sin(num);
+    var y = this.sketch.canvas.height / 2 + radius * Math.cos(num);
     this.symbolManager.draw(x, y);
     this.move();
   };
 
   DifficultySixSubject.prototype.move = function () {
-    this.angle += config.config.game.angleIncrease + config.config.game.angleIncrease * config.config.game.increaseSpeedEverySecondBy;
+    this.angle += (config.config.game.angleIncrease + config.config.game.angleIncrease * config.config.game.increaseSpeedEverySecondBy) * this.speed;
   };
 
   DifficultySixSubject.prototype.setImage = function (image) {};
@@ -29979,18 +30183,21 @@ function () {
   DifficultySixSubject.prototype.continueSymbolLevel = function (difficultyEntries) {
     this.symbolManager.create(difficultyEntries);
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultySixSubject.prototype.continue = function () {
     this.symbolManager.continue();
     this.createSpeedInterval();
+    this.createSlowDownListener();
     this.isPaused = false;
   };
 
   DifficultySixSubject.prototype.pause = function () {
     this.symbolManager.pause();
     clearInterval(this.speedInterval);
+    this.removeSlowdownListener();
     this.isPaused = true;
   };
 
@@ -30003,6 +30210,18 @@ function () {
     }, 1000);
   };
 
+  DifficultySixSubject.prototype.slowDownHandler = function () {
+    if (this.speed > 0) this.speed -= config.config.game.slowDownBy;
+  };
+
+  DifficultySixSubject.prototype.createSlowDownListener = function () {
+    Helper_1.default.createSlowdownListener(this.slowDownListener);
+  };
+
+  DifficultySixSubject.prototype.removeSlowdownListener = function () {
+    Helper_1.default.removeSlowdownListener(this.slowDownListener);
+  };
+
   DifficultySixSubject.prototype.removePicture = function () {
     this.shouldBePictureDrawn = false;
   };
@@ -30011,7 +30230,7 @@ function () {
 }();
 
 exports.default = DifficultySixSubject;
-},{"../config":"src/Objects/config.js"}],"src/Objects/Subject/SubjectManager.ts":[function(require,module,exports) {
+},{"../config":"src/Objects/config.js","../Helper":"src/Objects/Helper.ts"}],"src/Objects/Subject/SubjectManager.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -30250,11 +30469,13 @@ function () {
   };
 
   SymbolLevelImpl.prototype.generateSymbols = function () {
-    this.generatedSymbols = [];
+    do {
+      this.generatedSymbols = [];
 
-    for (var i = 0; i < this.numberOfSymbols; i++) {
-      this.generatedSymbols.push(this.symbols[this.sketch.int(this.sketch.random(0, this.symbols.length))]);
-    }
+      for (var i = 0; i < this.numberOfSymbols; i++) {
+        this.generatedSymbols.push(this.symbols[this.sketch.int(this.sketch.random(0, this.symbols.length))]);
+      }
+    } while (new Set(this.generatedSymbols).size !== this.generatedSymbols.length);
   };
 
   SymbolLevelImpl.prototype.create = function (difficultyEntries) {
@@ -30689,62 +30910,7 @@ function () {
 }();
 
 exports.default = SymbolLevelManager;
-},{"../ObserverSupport":"src/Objects/ObserverSupport.ts","./SymbolLevelOne":"src/Objects/Symbol/SymbolLevelOne.ts","./SymbolLevelTwo":"src/Objects/Symbol/SymbolLevelTwo.ts","./SymbolLevelThree":"src/Objects/Symbol/SymbolLevelThree.ts","./SymbolLevelFour":"src/Objects/Symbol/SymbolLevelFour.ts"}],"src/Objects/Helper.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var config_1 = require("./config");
-
-var Helper =
-/** @class */
-function () {
-  function Helper() {}
-
-  Helper.get = function () {
-    if (this.instance === undefined) {
-      this.instance = new Helper();
-    }
-
-    return this.instance;
-  };
-
-  Helper.prototype.getRandomOptions = function (currentLevel, noOfSymbols) {
-    var result = [];
-    var singleString;
-    var symbols;
-
-    if (currentLevel === 1) {
-      symbols = config_1.config.levels.levelTwoSymbols;
-    } else if (currentLevel === 2) {
-      symbols = config_1.config.levels.levelThreeSymbols;
-    } else if (currentLevel === 3) {
-      symbols = config_1.config.levels.levelFourSymbols;
-    } else if (currentLevel === 4) {
-      symbols = config_1.config.levels.levelFiveSymbols;
-    }
-
-    for (var i = 0; i < 3; i++) {
-      singleString = "";
-
-      for (var i_1 = 0; i_1 < noOfSymbols; i_1++) {
-        singleString += symbols.charAt(Math.floor(Math.random() * symbols.length));
-      }
-
-      result.push(singleString);
-    }
-
-    return result;
-  };
-
-  Helper.instance = new Helper();
-  return Helper;
-}();
-
-exports.default = Helper;
-},{"./config":"src/Objects/config.js"}],"src/Objects/ButtonManager.ts":[function(require,module,exports) {
+},{"../ObserverSupport":"src/Objects/ObserverSupport.ts","./SymbolLevelOne":"src/Objects/Symbol/SymbolLevelOne.ts","./SymbolLevelTwo":"src/Objects/Symbol/SymbolLevelTwo.ts","./SymbolLevelThree":"src/Objects/Symbol/SymbolLevelThree.ts","./SymbolLevelFour":"src/Objects/Symbol/SymbolLevelFour.ts"}],"src/Objects/ButtonManager.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -30882,7 +31048,10 @@ function () {
   }
 
   EyeManager.prototype.draw = function () {
+    this.sketch.push();
+    this.sketch.textSize(40);
     this.sketch.text("Eye: " + this.getEyeValue(), 0.1 * this.sketch.canvas.width, 0.18 * this.sketch.canvas.height);
+    this.sketch.pop();
   };
 
   EyeManager.prototype.getCurrentEye = function () {
@@ -30931,21 +31100,16 @@ function () {
   MessageManager.prototype.createTimerMessage = function (partOne, partTwo, callback) {
     var _this = this;
 
-    var createTextFunction = function createTextFunction(time) {
-      _this.removeAllElements();
-
-      var element = _this.sketch.createElement("h5", partOne + time + partTwo);
-
-      element.center();
-
-      _this.elements.push(element);
-    };
-
     var time = config_1.config.messages.levelFinished.time;
-    createTextFunction(time);
+    var text = partOne + time + partTwo;
+    this.createMessage(text);
     var interval = setInterval(function () {
       time--;
-      createTextFunction(time);
+      var text = partOne + time + partTwo;
+
+      _this.removeAllElements();
+
+      _this.createMessage(text);
 
       if (time === 0) {
         _this.removeAllElements();
@@ -30977,25 +31141,32 @@ function () {
   MessageManager.prototype.displayChangeEyeButton = function (callback, text) {
     var x = this.sketch.canvas.width * 0.1;
     var y = this.sketch.canvas.height * 0.235;
-    this.createSingleButton(text, callback, x, y);
+    this.createSingleButton(text, callback, x, y, true);
   };
 
   MessageManager.prototype.createMessage = function (text) {
     var element = this.sketch.createElement("h5", text);
     this.elements.push(element);
-    element.center();
+    element.style("font-size", "40px");
     element.style("color", "black");
+    element.center();
     return element;
   };
 
-  MessageManager.prototype.createSingleButton = function (text, callback, x, y) {
+  MessageManager.prototype.createSingleButton = function (text, callback, x, y, isIndependent) {
     var _this = this;
 
     var leftButton = this.sketch.createButton(text);
     leftButton.center();
-    this.elements.push(leftButton);
+
+    if (!isIndependent) {
+      this.elements.push(leftButton);
+    }
+
     leftButton.position(x, y);
     leftButton.mousePressed(function () {
+      leftButton.remove();
+
       _this.removeAllElements();
 
       callback();
@@ -31007,8 +31178,8 @@ function () {
     var xOffset = config_1.config.messages.buttons.chooseOneButtonsXOffsetInPixels;
     var x = this.sketch.canvas.width / 2;
     var y = config_1.config.messages.buttons.heightPositionRatio * this.sketch.canvas.height;
-    this.createSingleButton(leftText, leftCallback, x - xOffset, y);
-    this.createSingleButton(rightText, rightCallback, x + xOffset, y);
+    this.createSingleButton(leftText, leftCallback, x - xOffset, y, false);
+    this.createSingleButton(rightText, rightCallback, x + xOffset, y, false);
   };
 
   MessageManager.prototype.removeAllElements = function () {
@@ -31036,11 +31207,11 @@ function () {
     this.createChooseOneButton(leftText, rightText, closeGame, rightCB);
   };
 
-  MessageManager.prototype.gameFinishedMessage = function (callback, currentLevel) {
+  MessageManager.prototype.gameFinishedMessage = function (callback) {
     var text = config_1.config.messages.gameFinished.text[0];
     var element = this.createMessage(text);
     var buttonText = config_1.config.messages.gameFinished.button;
-    this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100);
+    this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100, false);
   };
 
   return MessageManager;
@@ -31080,8 +31251,7 @@ var Eyes_1 = require("./Objects/Eyes");
 
 var EyeManager_1 = __importDefault(require("./Objects/EyeManager"));
 
-var MessageManager_1 = __importDefault(require("./Objects/MessageManager")); //TODO last level with calculation
-//TODO massages
+var MessageManager_1 = __importDefault(require("./Objects/MessageManager")); //TODO massages
 //TODO remove listeners when paused game
 //TODO implement slow down button
 
@@ -31094,7 +31264,7 @@ function () {
 
     var savedDifficulty = 4; // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
 
-    var savedTime = 5; // FetchDataManager.getEyeTime(Eyes.RIGHT);
+    var savedTime = 100; // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
     this.sketch = sketch;
     this.levelManger = new LevelManager_1.default(savedLevel, savedDifficulty);
@@ -31113,7 +31283,6 @@ function () {
   }
 
   Game.prototype.draw = function () {
-    this.sketch.textSize(40);
     this.sketch.background(255);
     this.scoreBoard.draw();
     this.timer.draw();
@@ -31130,8 +31299,8 @@ function () {
         break;
 
       case ObserverAction_1.ObserverAction.correctEntry:
-        this.levelManger.correctEntry();
         this.increaseScore();
+        this.levelManger.correctEntry();
         break;
 
       case ObserverAction_1.ObserverAction.difficultyFinished:
@@ -31145,7 +31314,7 @@ function () {
 
       case ObserverAction_1.ObserverAction.gameFinished:
         this.pauseGame();
-        this.messageManager.gameFinishedMessage(this.closeGame.bind(this), this.levelManger.getCurrentLevel());
+        this.messageManager.gameFinishedMessage(this.closeGame.bind(this));
         break;
 
       case ObserverAction_1.ObserverAction.incorrectEntry:
@@ -31258,11 +31427,11 @@ function () {
     this.buttonManager.removeButtons();
     this.saveData(); //TODO uncomment
 
-    var level = 3; // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
+    var level = 0; // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
 
-    var difficulty = 1; // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
+    var difficulty = 0; // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
 
-    var time = 10; // FetchDataManager.getEyeTime(Eyes.LEFT);
+    var time = 100; // FetchDataManager.getEyeTime(Eyes.LEFT);
 
     this.timer.create(time);
     this.scoreBoard.resetScore();
@@ -31309,7 +31478,7 @@ var s = function s(sketch) {
 
   sketch.setup = function () {
     sketch.createCanvas(window.innerWidth, window.innerHeight);
-    sketch.frameRate(50);
+    sketch.frameRate(_config.config.game.frameRate);
     sketch.angleMode(sketch.DEGREES);
     game = new _Game.default(sketch);
   };
@@ -31348,7 +31517,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59984" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49832" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

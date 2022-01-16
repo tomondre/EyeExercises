@@ -2,8 +2,6 @@ body {
     font-family: Arial, Tahoma;
     font-size: 14px;
     color: #000000;
-    margin: 0px;
-    padding: 0px;
     line-height: 24px;
     overflow: hidden;
 }
@@ -110,12 +108,6 @@ table {
     top: 54%;
     transform: translateX(-50%);
     visibility: hidden;
-}
-
-@media screen and (min-width: 1204px) {
-    #spaceButton {
-        font-size: xx-large;
-    }
 }
 
 /*# sourceMappingURL=/game.347d5918.css.map */
