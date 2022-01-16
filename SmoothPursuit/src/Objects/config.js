@@ -1,11 +1,12 @@
 export const config = {
     game: {
         number: 909,
-        frameRate: 50,
+        frameRate: 90,
         increaseSpeedEverySecondBy: 0.001,
         subjectSpeedPerFrame: 5,
         angleIncrease: 0.8,
         increaseAngleSpeedEverySecondBy: 0.00005,
+        slowDownBy: 0.1,
     },
     scoreBoard: {
         increase: 11,
@@ -88,5 +89,6 @@ export const config = {
             defaultSpeed: 1
         }, {
             difficultyNo: 6,
+            defaultSpeed: 1
         }],
 }

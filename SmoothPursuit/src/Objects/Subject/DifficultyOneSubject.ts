@@ -2,6 +2,7 @@ import ISubject from "./ISubject";
 import * as p5 from "p5";
 import * as config from '../config'
 import SymbolLevelManager from "../Symbol/SymbolLevelManager";
+import Helper from "../Helper";
 
 
 export default class DifficultyOneSubject implements ISubject {
@@ -16,6 +17,7 @@ export default class DifficultyOneSubject implements ISubject {
     private isPaused: boolean;
     private symbolManager: SymbolLevelManager;
     private shouldBePictureDrawn: boolean = true;
+    private slowDownListener : () => void = this.slowDownHandler.bind(this);
 
     constructor(sketch: p5, image: p5.Image, symbolManager: SymbolLevelManager) {
         this.symbolManager = symbolManager;
@@ -76,11 +78,13 @@ export default class DifficultyOneSubject implements ISubject {
 
     public continueSymbolLevel(difficultyEntries: number): void {
         this.symbolManager.create(difficultyEntries);
+        this.createSlowDownListener();
         this.createSpeedInterval();
         this.isPaused = false;
     }
 
     public continue(): void {
+        this.createSlowDownListener();;
         this.symbolManager.continue();
         this.createSpeedInterval();
         this.isPaused = false;
@@ -88,15 +92,28 @@ export default class DifficultyOneSubject implements ISubject {
 
     public pause(): void {
         this.symbolManager.pause();
+        this.removeSlowdownListener();
         clearInterval(this.speedInterval);
         this.isPaused = true;
     }
 
-    private createSpeedInterval() {
+    private createSpeedInterval(): void {
         clearInterval(this.speedInterval);
         this.speedInterval = setInterval(() => {
             this.speed += config.config.game.increaseSpeedEverySecondBy;
         }, 1000);
+    }
+
+    public slowDownHandler(): void {
+        this.speed -= config.config.game.slowDownBy;
+    }
+
+    public createSlowDownListener(): void {
+        Helper.createSlowdownListener(this.slowDownListener);
+    }
+
+    public removeSlowdownListener(): void {
+        Helper.removeSlowdownListener(this.slowDownListener);
     }
 
     public removePicture(): void {

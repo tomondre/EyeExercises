@@ -46,5 +46,14 @@ export default class Helper {
         return result;
     }
 
+    public static createSlowdownListener(handler : () => void){
+        this.removeSlowdownListener(handler);
+        let elementById = document.getElementById("slowDownButton");
+        elementById.addEventListener("pointerdown", handler);
+    }
 
+    public static removeSlowdownListener(handler : () => void){
+        let elementById = document.getElementById("slowDownButton");
+        elementById.removeEventListener("pointerdown", handler);
+    }
 }
