@@ -12,7 +12,6 @@ import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
 import MessageManager from "./Objects/MessageManager";
 
-//TODO last level with calculation
 //TODO massages
 //TODO remove listeners when paused game
 //TODO implement slow down button
@@ -34,7 +33,7 @@ export default class Game implements Observer {
         // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty = 4;
         // FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime = 5;
+        let savedTime = 100;
         // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
@@ -57,7 +56,6 @@ export default class Game implements Observer {
 
 
     public draw(): void {
-        this.sketch.textSize(40);
         this.sketch.background(255);
         this.scoreBoard.draw();
         this.timer.draw();
@@ -73,8 +71,8 @@ export default class Game implements Observer {
                 this.timeOverHandler()
                 break;
             case ObserverAction.correctEntry:
-                this.levelManger.correctEntry();
                 this.increaseScore();
+                this.levelManger.correctEntry();
                 break;
             case ObserverAction.difficultyFinished:
                 this.difficultyFinishedHandler();
@@ -85,7 +83,7 @@ export default class Game implements Observer {
                 break;
             case ObserverAction.gameFinished:
                 this.pauseGame();
-                this.messageManager.gameFinishedMessage(this.closeGame.bind(this), this.levelManger.getCurrentLevel());
+                this.messageManager.gameFinishedMessage(this.closeGame.bind(this));
                 break;
             case ObserverAction.incorrectEntry:
                 this.decreaseScore();
@@ -190,11 +188,11 @@ export default class Game implements Observer {
         this.saveData();
 
         //TODO uncomment
-        let level = 3;
+        let level = 0;
         // FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
-        let difficulty = 1;
+        let difficulty = 0;
         // FetchDataManager.getEyeDifficulty(Eyes.LEFT);
-        let time = 10;
+        let time = 100;
         // FetchDataManager.getEyeTime(Eyes.LEFT);
         this.timer.create(time);
         this.scoreBoard.resetScore();
