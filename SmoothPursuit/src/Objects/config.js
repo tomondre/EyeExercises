@@ -75,6 +75,9 @@ export const config = {
             text: ["Congratulation, you have finished the game"],
             button: "Exit game."
         },
+        yGapBetweenMessageAndButtons: 50,
+        messageButtonTextSize: "20px",
+        messagesTextSize: "35px"
     },
     difficulties:
         [{

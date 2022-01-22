@@ -64,7 +64,6 @@ export default class SymbolLevelImpl implements SymbolLevel {
 
     private generateSymbols(): void {
         do {
-            console.log("iter");
             this.generatedSymbols = [];
             for (let i = 0; i < this.numberOfSymbols; i++) {
                 let randomIndex = this.sketch.int(this.sketch.random(0, this.symbols.length));
