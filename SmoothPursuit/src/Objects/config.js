@@ -1,16 +1,21 @@
 export const config = {
     game: {
         number: 909,
-        frameRate: 90,
+        frameRate: 50,
         increaseSpeedEverySecondBy: 0.001,
         subjectSpeedPerFrame: 5,
         angleIncrease: 0.8,
         increaseAngleSpeedEverySecondBy: 0.00005,
         slowDownBy: 0.1,
+        heightToRotationRatio: 0.8
     },
     scoreBoard: {
         increase: 11,
         decrease: 5
+    },
+    colors: {
+        symbolColor: "red",
+        answerSymbolColor : "white"
     },
     levels: {
         levels: 4,
@@ -54,7 +59,7 @@ export const config = {
             text: ["Time for both eyes is over. Would you like exit the game?"],
             okButtonText: "Yes",
             rejectButtonText: "No",
-            buttonText : "Exit game"
+            buttonText: "Exit game"
         },
         changeEye: {
             text: ["Time for right eye is over. Would you like to change eyes?"],
