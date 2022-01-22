@@ -22,7 +22,7 @@ export default class DifficultySixSubject implements ISubject {
     }
 
     public draw(): void {
-        let radius = this.sketch.canvas.height * 0.9 / 2;
+        let radius = this.sketch.canvas.height * config.config.game.heightToRotationRatio / 2;
         if (this.shouldBePictureDrawn) {
             this.sketch.push();
             this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
