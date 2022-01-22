@@ -2,6 +2,8 @@ import * as p5 from "p5";
 import ObserverSupport from "./ObserverSupport";
 import {Observer} from "./Observer";
 import {ObserverAction} from "./ObserverAction";
+import Helper from "./Helper";
+import {config} from "./config";
 
 export default class ButtonManager {
 
@@ -10,6 +12,7 @@ export default class ButtonManager {
     private options : string[];
     private buttons : p5.element[] = [];
     private observerSupport : ObserverSupport;
+    private buttonTextColor : string =  config.colors.answerSymbolColor;
 
     constructor(sketch : p5) {
         this.sketch = sketch;
@@ -48,29 +51,20 @@ export default class ButtonManager {
             let button = this.sketch.createButton(this.options[i]);
             button.position(currentButtonX, this.sketch.height * 0.9);
             button.style("font-size", "30px");
+            button.style("color", this.buttonTextColor);
             button.mousePressed(() => this.handler(this.options[i]));
             button.addClass("positivesmall");
             this.buttons.push(button);
         }
     }
 
-    public displayButtonOptions(correctOption: string, otherOptions: string[]): void {
+    public displayButtonOptions(correctOption: string, currentLevel : number): void {
+        let randomOptions = Helper.getOptions(currentLevel, correctOption);
         this.correctOption = correctOption;
-        otherOptions.push(correctOption);
-        this.options = this.shuffleArray(otherOptions);
+        this.options = Helper.shuffleArray(randomOptions);
         this.create();
     }
 
-    private shuffleArray(array) : string[] {
-        let currentIndex = array.length, randomIndex;
-        while (currentIndex != 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex], array[currentIndex]];
-        }
-        return array;
-    }
 
     public subscribe(observer : Observer) : void {
         this.observerSupport.subscribe(observer);
