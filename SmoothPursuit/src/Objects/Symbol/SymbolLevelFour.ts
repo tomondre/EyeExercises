@@ -40,15 +40,15 @@ export default class SymbolLevelFour implements SymbolLevel {
         this.continue();
     }
 
-    draw(x: number, y: number): void {
+    public draw(x: number, y: number): void {
         this.sketch.push();
         let center = this.sketch.LEFT;
         this.sketch.textAlign(center, center);
+        this.sketch.textSize(50);
         this.sketch.text(this.generatedEquation[0] + " + " + this.generatedEquation[1], x, y);
         this.sketch.pop();
         let arrowX: number;
         let arrowY: number;
-
 
         arrowY = y + this.mathData.answerGapY;
         arrowX = x - this.mathData.answerGapX;
@@ -77,8 +77,10 @@ export default class SymbolLevelFour implements SymbolLevel {
         this.sketch.pop();
 
         this.sketch.fill("white")
+        this.sketch.textSize(30);
         this.sketch.textAlign(center, center);
         this.sketch.text(this.generatedAnswers[answerIndex], 0, 0);
+
         this.sketch.pop();
 
         let size = config.levels.levelFourMath.arrowSize;
