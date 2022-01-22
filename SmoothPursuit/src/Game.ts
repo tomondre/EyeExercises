@@ -153,8 +153,7 @@ export default class Game implements Observer {
     private displaySymbolsHandler(props: string) {
         this.pauseGame();
         let arr = props;
-        let randomOptions = Helper.get().getRandomOptions(this.levelManger.getCurrentLevel(), arr.length);
-        this.buttonManager.displayButtonOptions(arr, randomOptions);
+        this.buttonManager.displayButtonOptions(arr, this.levelManger.getCurrentLevel());
     }
 
     private continueGameSymbolLevel(): void {
