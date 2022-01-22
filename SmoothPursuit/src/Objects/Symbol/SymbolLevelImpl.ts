@@ -2,17 +2,19 @@ import * as p5 from "p5";
 import {SymbolLevel} from "./SymbolLevel";
 import ObserverSupport from "../ObserverSupport";
 import {ObserverAction} from "../ObserverAction";
+import {config} from "../config";
 
 export default class SymbolLevelImpl implements SymbolLevel {
     private sketch: p5;
     public symbols: string;
     private symbolAppearTimeout: number = 0;
-    private symbolRemovingTimeout: number;
+    private symbolRemovingTimeout: NodeJS.Timeout;
     private numberOfSymbols: number;
     private generatedSymbols: string[] = [];
     private shouldBeSymbolGenerated: boolean;
     private support: ObserverSupport;
     private symbolPointer: number = 0;
+    private symbolColor : string = config.colors.symbolColor;
 
     constructor(sketch: p5, support: ObserverSupport) {
         this.sketch = sketch;
@@ -23,7 +25,7 @@ export default class SymbolLevelImpl implements SymbolLevel {
         this.sketch.push();
         if (this.shouldBeSymbolGenerated) {
             this.sketch.textSize(50);
-            this.sketch.fill('black');
+            this.sketch.fill(this.symbolColor);
             this.sketch.textAlign(this.sketch.CENTER, this.sketch.CENTER);
             this.sketch.text(this.generatedSymbols[this.symbolPointer], x, y);
         }
@@ -61,13 +63,17 @@ export default class SymbolLevelImpl implements SymbolLevel {
     }
 
     private generateSymbols(): void {
-        this.generatedSymbols = [];
-        for (let i = 0; i < this.numberOfSymbols; i++) {
-            this.generatedSymbols.push(this.symbols[this.sketch.int(this.sketch.random(0, this.symbols.length))]);
-        }
+        do {
+            console.log("iter");
+            this.generatedSymbols = [];
+            for (let i = 0; i < this.numberOfSymbols; i++) {
+                let randomIndex = this.sketch.int(this.sketch.random(0, this.symbols.length));
+                this.generatedSymbols.push(this.symbols[randomIndex]);
+            }
+        } while (new Set(this.generatedSymbols).size !== this.generatedSymbols.length)
     }
 
-    public create(difficultyEntries : number): void {
+    public create(difficultyEntries: number): void {
         //TODO
         // if (difficultyEntries === this.numberOfSymbols)
         //     return;
