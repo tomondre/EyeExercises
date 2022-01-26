@@ -6,7 +6,6 @@ import {ObserverAction} from "./Objects/ObserverAction";
 import LevelManager from "./Objects/LevelManager";
 import SubjectManager from "./Objects/Subject/SubjectManager";
 import SymbolLevelManager from "./Objects/Symbol/SymbolLevelManager";
-import Helper from "./Objects/Helper";
 import ButtonManager from "./Objects/ButtonManager";
 import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
@@ -79,6 +78,8 @@ export default class Game implements Observer {
                 this.messageManager.levelFinishedMessage(this.levelUp.bind(this), this.levelManger.getCurrentLevel());
                 break;
             case ObserverAction.gameFinished:
+                FetchDataManager.saveEyeDifficulty(0, this.eyeManager.getCurrentEye());
+                FetchDataManager.saveEyeLevelIndex(0, this.eyeManager.getCurrentEye());
                 this.pauseGame();
                 this.messageManager.gameFinishedMessage(this.closeGame.bind(this));
                 break;
