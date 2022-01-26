@@ -50,7 +50,7 @@ export const config = {
     messages: {
         levelFinished: {
             text: [
-                "Congratlations, you have passed level ",
+                "Congratulations, you have passed level ",
                 ".\n Next level starts in ",
                 " seconds.",],
             time: 3
