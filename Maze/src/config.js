@@ -78,17 +78,17 @@ export const config = {
         numberOfNumbersWhenLevelTwo: 12
     }, {
         difficulty: 2,
-        numberOfMazes: 1,
+        numberOfMazes: 4,
         numberOfColumns: 7,
         numberOfNumbersWhenLevelTwo: 14
     }, {
         difficulty: 3,
-        numberOfMazes: 1,
+        numberOfMazes: 4,
         numberOfColumns: 8,
         numberOfNumbersWhenLevelTwo: 16
     }, {
         difficulty: 3,
-        numberOfMazes: 1,
+        numberOfMazes: 4,
         numberOfColumns: 9,
         numberOfNumbersWhenLevelTwo: 18
     }]

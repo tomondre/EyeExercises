@@ -2,6 +2,7 @@ import p5 = require("p5");
 import {Observer} from "./Observer";
 import ObserverSupport from "./ObserverSupport";
 import {ObserverAction} from "./ObserverAction";
+import {config} from "./config";
 
 export default class Timer {
 
@@ -10,6 +11,7 @@ export default class Timer {
     private intervalNum : NodeJS.Timer;
     private support : ObserverSupport
     private shouldTimerBeDisplayed : boolean = true;
+    private color : string = config.colors.textColor;
 
     constructor(time : number, sketch : p5) {
         if (time === -1) {
@@ -39,6 +41,7 @@ export default class Timer {
             return;
         this.sketch.push();
         this.sketch.textSize(40);
+        this.sketch.fill(this.color);
         this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
         this.sketch.pop();
     }
