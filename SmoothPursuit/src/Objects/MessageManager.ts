@@ -61,15 +61,15 @@ export default class MessageManager {
     private createMessage(text: string): p5.Element {
         let element: p5.Element = this.sketch.createElement("h5", text);
         this.elements.push(element);
-        element.style("font-size", config.messages.messagesTextSize);
-        element.style("color", "black");
+        element.style("font-size", "35px");
+        element.style("color", config.colors.messageColor);
         element.center();
         return element;
     }
 
     private createSingleButton(text: string, callback: () => void, x: number, y: number, isIndependent: boolean) {
         let leftButton = this.sketch.createButton(text);
-        leftButton.style("font-size", config.messages.messageButtonTextSize);
+        leftButton.style("font-size", config.messages.messageButtonSize);
         leftButton.center();
         if (!isIndependent) {
             this.elements.push(leftButton);
