@@ -11,6 +11,7 @@ import {Eyes} from "./Objects/Eyes";
 import EyeManager from "./Objects/EyeManager";
 import MessageManager from "./Objects/MessageManager";
 import FetchDataManager from "./Objects/FetchDataManager";
+import {config} from "./Objects/config";
 
 export default class Game implements Observer {
 
@@ -23,14 +24,15 @@ export default class Game implements Observer {
     private buttonManager: ButtonManager;
     private eyeManager: EyeManager;
     private messageManager: MessageManager;
+    private backgroundColor : string = config.colors.backgroundColor;
 
     constructor(sketch: p5) {
-        let savedLevel =
-            FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+        let savedLevel = 1;
+            // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty =
             FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
-        let savedTime =
-            FetchDataManager.getEyeTime(Eyes.RIGHT);
+        let savedTime = 2;
+            // FetchDataManager.getEyeTime(Eyes.RIGHT);
 
         this.sketch = sketch;
         this.levelManger = new LevelManager(savedLevel, savedDifficulty);
@@ -52,7 +54,7 @@ export default class Game implements Observer {
 
 
     public draw(): void {
-        this.sketch.background(255);
+        this.sketch.background(this.backgroundColor);
         this.scoreBoard.draw();
         this.timer.draw();
         this.eyeManager.draw();
