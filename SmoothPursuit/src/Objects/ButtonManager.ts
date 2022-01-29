@@ -70,16 +70,17 @@ export default class ButtonManager {
         this.removeButtons();
         this.buttons = [];
         let areaPercentage = 0.4;
-        let buttonArea = this.sketch.canvas.width * areaPercentage;
+        let buttonArea = window.innerWidth * areaPercentage;
         let gap = buttonArea / 3;
-        let firstX = this.sketch.canvas.width * (1 - areaPercentage) / 2;
+        let firstX = window.innerWidth * (1 - areaPercentage) / 2;
+        console.log(firstX);
         for (let i = 0; i < 4; i++) {
             let currentButtonX = firstX + (gap * i + 1);
             let button = this.sketch.createButton(this.options[i]);
-            button.position(currentButtonX, this.sketch.height * 0.9);
+            button.position(currentButtonX, window.innerHeight * 0.9);
             button.style("font-size", "30px");
             button.style("color", this.buttonTextColor);
-            button.mousePressed(() => this.handler(this.options[i]));
+            button.mousePressed( () => this.handler(this.options[i]));
             button.addClass("positivesmall");
             this.buttons.push(button);
         }

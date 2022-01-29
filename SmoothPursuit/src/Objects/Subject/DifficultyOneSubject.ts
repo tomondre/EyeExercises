@@ -57,7 +57,7 @@ export default class DifficultyOneSubject implements ISubject {
     }
 
     private checkBoundaries() {
-        if (this.goingRight && (this.x + this.image.width) > this.sketch.canvas.width) {
+        if (this.goingRight && (this.x + this.image.width) > window.innerWidth) {
             this.goingRight = false;
         } else if (!this.goingRight && this.x - this.image.width < 0) {
             this.goingRight = true;
@@ -68,8 +68,8 @@ export default class DifficultyOneSubject implements ISubject {
     }
 
     public create(): void {
-        this.x = this.sketch.canvas.width / 2;
-        this.y = this.sketch.canvas.height / 2;
+        this.x = window.innerWidth / 2;
+        this.y = window.innerHeight / 2;
         this.speed = config.config.difficulties[0].defaultSpeed;
         this.shouldBePictureDrawn = true;
         this.symbolManager.create(1);
@@ -84,7 +84,7 @@ export default class DifficultyOneSubject implements ISubject {
     }
 
     public continue(): void {
-        this.createSlowDownListener();;
+        this.createSlowDownListener();
         this.symbolManager.continue();
         this.createSpeedInterval();
         this.isPaused = false;

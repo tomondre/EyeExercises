@@ -22,10 +22,10 @@ export default class DifficultySixSubject implements ISubject {
     }
 
     public draw(): void {
-        let radius = this.sketch.canvas.height * config.config.game.heightToRotationRatio / 2;
+        let radius = window.innerHeight * config.config.game.heightToRotationRatio / 2;
         if (this.shouldBePictureDrawn) {
             this.sketch.push();
-            this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
+            this.sketch.translate(window.innerWidth / 2, this.sketch.height / 2);
             this.sketch.scale(-1, 1);
             this.sketch.imageMode(this.sketch.CENTER);
             this.sketch.rotate(this.angle);
@@ -37,8 +37,8 @@ export default class DifficultySixSubject implements ISubject {
 
         //Please dont ask how does it work cuz I have no idea. It just works...
         let num = Math.PI * 2 * (this.angle % 360 - 90) / 360
-        let x = this.sketch.canvas.width / 2 + (radius * Math.sin(num));
-        let y = this.sketch.canvas.height / 2 + (radius * Math.cos(num));
+        let x = window.innerWidth / 2 + (radius * Math.sin(num));
+        let y = window.innerHeight / 2 + (radius * Math.cos(num));
 
         this.symbolManager.draw(x, y);
         this.move();

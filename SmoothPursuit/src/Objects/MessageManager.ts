@@ -53,8 +53,8 @@ export default class MessageManager {
     }
 
     public displayChangeEyeButton(callback: () => void, text: string) {
-        let x: number = this.sketch.canvas.width * 0.1;
-        let y: number = this.sketch.canvas.height * 0.235;
+        let x: number = window.innerWidth * 0.1;
+        let y: number = window.innerHeight * 0.235;
         this.createSingleButton(text, callback, x, y, true);
     }
 
@@ -85,7 +85,7 @@ export default class MessageManager {
 
     public createChooseOneButton(y: number, leftText: string, rightText: string, leftCallback: () => void, rightCallback: () => void): void {
         let xOffset = config.messages.buttons.chooseOneButtonsXOffsetInPixels
-        let x = this.sketch.canvas.width / 2;
+        let x = window.innerWidth / 2;
 
         this.createSingleButton(leftText, leftCallback, x - xOffset, y, false);
         this.createSingleButton(rightText, rightCallback, x + xOffset, y, false);
@@ -118,6 +118,6 @@ export default class MessageManager {
         let element = this.createMessage(text);
 
         let buttonText: string = config.messages.gameFinished.button;
-        this.createSingleButton(buttonText, callback, this.sketch.canvas.width / 2, element.position().y + 100, false);
+        this.createSingleButton(buttonText, callback, window.innerWidth / 2, element.position().y + 100, false);
     }
 }

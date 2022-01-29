@@ -16,7 +16,7 @@ export default class EyeManager {
         this.sketch.push();
         this.sketch.textSize(40);
         this.sketch.fill(this.color);
-        this.sketch.text("Eye: " + this.getEyeValue(), 0.1 * this.sketch.canvas.width, 0.18 * this.sketch.canvas.height);
+        this.sketch.text("Eye: " + this.getEyeValue(), window.innerWidth * 0.1, window.innerHeight * 0.18);
         this.sketch.pop();
     }
 

@@ -42,7 +42,7 @@ export default class Timer {
         this.sketch.push();
         this.sketch.textSize(40);
         this.sketch.fill(this.color);
-        this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
+        this.sketch.text("Time: " + this.time, window.innerWidth * 0.1,  window.innerHeight * 0.07);
         this.sketch.pop();
     }
 

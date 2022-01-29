@@ -61,7 +61,7 @@ export default class DifficultyFourSubject implements ISubject {
 
     private checkBoundaries() {
         if (this.goingRightUp) {
-            if ((this.x + this.image.width) > this.sketch.canvas.width) {
+            if ((this.x + this.image.width) > window.innerWidth) {
                 this.goingRightUp = false;
             }
         } else {
@@ -79,10 +79,10 @@ export default class DifficultyFourSubject implements ISubject {
         this.goingRightUp = true;
         let subjectSpeedPerFrame = config.config.game.subjectSpeedPerFrame;
         this.xInc = subjectSpeedPerFrame;
-        let number = this.sketch.canvas.width / subjectSpeedPerFrame;
-        this.yInc = this.sketch.canvas.height / number;
-        this.x = this.sketch.canvas.width / 2;
-        this.y = this.sketch.canvas.height / 2;
+        let number = window.innerWidth / subjectSpeedPerFrame;
+        this.yInc = window.innerHeight / number;
+        this.x = window.innerWidth / 2;
+        this.y = window.innerHeight / 2;
         this.speed = config.config.difficulties[3].defaultSpeed;
         this.symbolManager.create(1);
         this.continue();

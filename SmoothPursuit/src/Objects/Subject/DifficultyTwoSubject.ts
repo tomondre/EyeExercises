@@ -56,7 +56,7 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     private checkBoundaries() {
-        if (this.goingUp && (this.y + this.image.height) > this.sketch.canvas.height) {
+        if (this.goingUp && (this.y + this.image.height) > window.innerHeight) {
             this.goingUp = false;
         } else if (!this.goingUp && this.y - this.image.height < 0) {
             this.goingUp = true;
@@ -68,8 +68,8 @@ export default class DifficultyTwoSubject implements ISubject{
     }
 
     public create(): void {
-        this.x = this.sketch.canvas.width / 2;
-        this.y = this.sketch.canvas.height / 2;
+        this.x = window.innerWidth / 2;
+        this.y = window.innerHeight / 2;
         this.speed = config.config.difficulties[1].defaultSpeed;
         this.symbolManager.create(1);
         this.continue();

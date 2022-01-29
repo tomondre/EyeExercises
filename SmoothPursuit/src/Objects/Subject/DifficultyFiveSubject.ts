@@ -29,10 +29,10 @@ export default class DifficultyFiveSubject implements ISubject {
     }
 
     public draw(): void {
-        let radius = this.sketch.canvas.height * config.config.game.heightToRotationRatio / 2;
+        let radius = window.innerHeight * config.config.game.heightToRotationRatio / 2;
         if (this.shouldBePictureDrawn) {
             this.sketch.push();
-            this.sketch.translate(this.sketch.width / 2, this.sketch.height / 2);
+            this.sketch.translate(window.innerWidth / 2, window.innerHeight / 2);
             this.sketch.imageMode(this.sketch.CENTER);
             this.sketch.rotate(this.angle);
             this.sketch.image(this.image, radius, 0);
@@ -42,8 +42,8 @@ export default class DifficultyFiveSubject implements ISubject {
             return;
 
         let num = Math.PI * 2 * (this.angle % 360) / 360;
-        let x = this.sketch.canvas.width / 2 + (radius * Math.cos(num));
-        let y = this.sketch.canvas.height / 2 + (radius * Math.sin(num));
+        let x = window.innerWidth / 2 + (radius * Math.cos(num));
+        let y = window.innerHeight / 2 + (radius * Math.sin(num));
         this.symbolManager.draw(x, y);
 
         this.move();
