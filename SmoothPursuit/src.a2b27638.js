@@ -28859,8 +28859,11 @@ var config = {
     decrease: 5
   },
   colors: {
-    symbolColor: "red",
-    answerSymbolColor: "white"
+    backgroundColor: "black",
+    symbolColor: "white",
+    answerSymbolColor: "white",
+    textColor: "white",
+    messageColor: "white"
   },
   levels: {
     levels: 4,
@@ -28909,6 +28912,9 @@ var config = {
       rejectButtonText: "No",
       buttonText: "Change eye"
     },
+    message: {
+      positionToHeightRatio: 0.5
+    },
     buttons: {
       heightPositionRatio: 0.70,
       chooseOneButtonsXOffsetInPixels: 50
@@ -28955,12 +28961,14 @@ var ScoreBoard =
 /** @class */
 function () {
   function ScoreBoard(sketch) {
+    this.color = config_1.config.colors.textColor;
     this.score = 0;
     this.sketch = sketch;
   }
 
   ScoreBoard.prototype.draw = function () {
     this.sketch.push();
+    this.sketch.fill(this.color);
     this.sketch.textSize(40);
     this.sketch.text("Score: " + this.score, this.sketch.canvas.width * 0.1, this.sketch.canvas.height * 0.125);
     this.sketch.pop();
@@ -29059,11 +29067,14 @@ var ObserverSupport_1 = __importDefault(require("./ObserverSupport"));
 
 var ObserverAction_1 = require("./ObserverAction");
 
+var config_1 = require("./config");
+
 var Timer =
 /** @class */
 function () {
   function Timer(time, sketch) {
     this.shouldTimerBeDisplayed = true;
+    this.color = config_1.config.colors.textColor;
 
     if (time === -1) {
       this.shouldTimerBeDisplayed = false;
@@ -29093,6 +29104,7 @@ function () {
     if (!this.shouldTimerBeDisplayed) return;
     this.sketch.push();
     this.sketch.textSize(40);
+    this.sketch.fill(this.color);
     this.sketch.text("Time: " + this.time, 0.1 * this.sketch.canvas.width, 0.07 * this.sketch.canvas.height);
     this.sketch.pop();
   };
@@ -29125,7 +29137,7 @@ function () {
 }();
 
 exports.default = Timer;
-},{"./ObserverSupport":"src/Objects/ObserverSupport.ts","./ObserverAction":"src/Objects/ObserverAction.ts"}],"src/Objects/LevelManager.ts":[function(require,module,exports) {
+},{"./ObserverSupport":"src/Objects/ObserverSupport.ts","./ObserverAction":"src/Objects/ObserverAction.ts","./config":"src/Objects/config.js"}],"src/Objects/LevelManager.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -30293,7 +30305,7 @@ var SubjectManager =
 function () {
   function SubjectManager(savedDifficulty, sketch, symbolManager) {
     this.currentDifficulty = 0;
-    var image = sketch.loadImage('assets/Bee.png');
+    var image = sketch.loadImage('assets/Ball.png');
     this.subjects = [];
     this.subjects.push(new DifficultyOneSubject_1.default(sketch, image, symbolManager));
     this.subjects.push(new DifficultyTwoSubject_1.default(sketch, image, symbolManager));
@@ -30976,6 +30988,7 @@ function () {
   function ButtonManager(sketch) {
     this.buttons = [];
     this.buttonTextColor = config_1.config.colors.answerSymbolColor;
+    this.keyboardEvent = this.keyboardHandler.bind(this);
     this.sketch = sketch;
     this.observerSupport = new ObserverSupport_1.default();
   }
@@ -30990,12 +31003,45 @@ function () {
 
   ButtonManager.prototype.handler = function (selectedButton) {
     this.removeButtons();
+    this.removeKeyboardListener();
 
     if (selectedButton === this.correctOption) {
       this.observerSupport.fire(ObserverAction_1.ObserverAction.correctEntrySymbolLevel);
     } else {
       this.observerSupport.fire(ObserverAction_1.ObserverAction.incorrectEntrySymbolLevel);
     }
+  };
+
+  ButtonManager.prototype.keyboardHandler = function (event) {
+    var option;
+
+    switch (event.key) {
+      case "1":
+        option = this.options[0];
+        break;
+
+      case "2":
+        option = this.options[1];
+        break;
+
+      case "3":
+        option = this.options[2];
+        break;
+
+      case "4":
+        option = this.options[3];
+        break;
+
+      default:
+        return;
+    }
+
+    this.handler(option);
+  };
+
+  ButtonManager.prototype.createKeyboardListener = function () {
+    this.removeKeyboardListener();
+    document.addEventListener('keydown', this.keyboardEvent);
   };
 
   ButtonManager.prototype.create = function () {
@@ -31026,6 +31072,8 @@ function () {
     for (var i = 0; i < 4; i++) {
       _loop_1(i);
     }
+
+    this.createKeyboardListener();
   };
 
   ButtonManager.prototype.displayButtonOptions = function (correctOption, currentLevel) {
@@ -31041,6 +31089,10 @@ function () {
 
   ButtonManager.prototype.unsubscribe = function (observer) {
     this.observerSupport.unsubscribe(observer);
+  };
+
+  ButtonManager.prototype.removeKeyboardListener = function () {
+    document.removeEventListener('keydown', this.keyboardEvent);
   };
 
   return ButtonManager;
@@ -31069,10 +31121,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var Eyes_1 = require("./Eyes");
 
+var config_1 = require("./config");
+
 var EyeManager =
 /** @class */
 function () {
   function EyeManager(sketch) {
+    this.color = config_1.config.colors.textColor;
     this.sketch = sketch;
     this.eye = Eyes_1.Eyes.RIGHT;
   }
@@ -31080,6 +31135,7 @@ function () {
   EyeManager.prototype.draw = function () {
     this.sketch.push();
     this.sketch.textSize(40);
+    this.sketch.fill(this.color);
     this.sketch.text("Eye: " + this.getEyeValue(), 0.1 * this.sketch.canvas.width, 0.18 * this.sketch.canvas.height);
     this.sketch.pop();
   };
@@ -31101,7 +31157,7 @@ function () {
 }();
 
 exports.default = EyeManager;
-},{"./Eyes":"src/Objects/Eyes.ts"}],"src/Objects/MessageManager.ts":[function(require,module,exports) {
+},{"./Eyes":"src/Objects/Eyes.ts","./config":"src/Objects/config.js"}],"src/Objects/MessageManager.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31177,8 +31233,8 @@ function () {
   MessageManager.prototype.createMessage = function (text) {
     var element = this.sketch.createElement("h5", text);
     this.elements.push(element);
-    element.style("font-size", config_1.config.messages.messagesTextSize);
-    element.style("color", "black");
+    element.style("font-size", "35px");
+    element.style("color", config_1.config.colors.messageColor);
     element.center();
     return element;
   };
@@ -31187,7 +31243,7 @@ function () {
     var _this = this;
 
     var leftButton = this.sketch.createButton(text);
-    leftButton.style("font-size", config_1.config.messages.messageButtonTextSize);
+    leftButton.style("font-size", config_1.config.messages.messageButtonSize);
     leftButton.center();
 
     if (!isIndependent) {
@@ -31287,7 +31343,7 @@ function () {
     var time = window.localStorage.getItem(gameCode + "/Time/" + eye.toString());
 
     if (time === null) {
-      return 2;
+      return 150;
     }
 
     return parseInt(time);
@@ -31336,13 +31392,18 @@ var MessageManager_1 = __importDefault(require("./Objects/MessageManager"));
 
 var FetchDataManager_1 = __importDefault(require("./Objects/FetchDataManager"));
 
+var config_1 = require("./Objects/config");
+
 var Game =
 /** @class */
 function () {
   function Game(sketch) {
-    var savedLevel = FetchDataManager_1.default.getEyeLevelIndex(Eyes_1.Eyes.RIGHT);
+    this.backgroundColor = config_1.config.colors.backgroundColor;
+    var savedLevel = 1; // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+
     var savedDifficulty = FetchDataManager_1.default.getEyeDifficulty(Eyes_1.Eyes.RIGHT);
-    var savedTime = FetchDataManager_1.default.getEyeTime(Eyes_1.Eyes.RIGHT);
+    var savedTime = 2; // FetchDataManager.getEyeTime(Eyes.RIGHT);
+
     this.sketch = sketch;
     this.levelManger = new LevelManager_1.default(savedLevel, savedDifficulty);
     this.scoreBoard = new ScoreBoard_1.default(sketch);
@@ -31360,7 +31421,7 @@ function () {
   }
 
   Game.prototype.draw = function () {
-    this.sketch.background(255);
+    this.sketch.background(this.backgroundColor);
     this.scoreBoard.draw();
     this.timer.draw();
     this.eyeManager.draw();
@@ -31533,7 +31594,7 @@ function () {
 }();
 
 exports.default = Game;
-},{"./Objects/ScoreBoard":"src/Objects/ScoreBoard.ts","./Objects/Timer":"src/Objects/Timer.ts","./Objects/ObserverAction":"src/Objects/ObserverAction.ts","./Objects/LevelManager":"src/Objects/LevelManager.ts","./Objects/Subject/SubjectManager":"src/Objects/Subject/SubjectManager.ts","./Objects/Symbol/SymbolLevelManager":"src/Objects/Symbol/SymbolLevelManager.ts","./Objects/ButtonManager":"src/Objects/ButtonManager.ts","./Objects/Eyes":"src/Objects/Eyes.ts","./Objects/EyeManager":"src/Objects/EyeManager.ts","./Objects/MessageManager":"src/Objects/MessageManager.ts","./Objects/FetchDataManager":"src/Objects/FetchDataManager.ts"}],"src/index.js":[function(require,module,exports) {
+},{"./Objects/ScoreBoard":"src/Objects/ScoreBoard.ts","./Objects/Timer":"src/Objects/Timer.ts","./Objects/ObserverAction":"src/Objects/ObserverAction.ts","./Objects/LevelManager":"src/Objects/LevelManager.ts","./Objects/Subject/SubjectManager":"src/Objects/Subject/SubjectManager.ts","./Objects/Symbol/SymbolLevelManager":"src/Objects/Symbol/SymbolLevelManager.ts","./Objects/ButtonManager":"src/Objects/ButtonManager.ts","./Objects/Eyes":"src/Objects/Eyes.ts","./Objects/EyeManager":"src/Objects/EyeManager.ts","./Objects/MessageManager":"src/Objects/MessageManager.ts","./Objects/FetchDataManager":"src/Objects/FetchDataManager.ts","./Objects/config":"src/Objects/config.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _p = _interopRequireDefault(require("p5"));
@@ -31589,7 +31650,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59109" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
