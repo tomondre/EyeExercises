@@ -1,10 +1,11 @@
 import {Eyes} from "./Eyes";
 import * as p5 from "p5";
-
+import {config} from "./config";
 
 export default class EyeManager {
     private eye : Eyes;
     private sketch : p5;
+    private color : string = config.colors.textColor;
 
     constructor(sketch : p5) {
         this.sketch = sketch;
@@ -14,6 +15,7 @@ export default class EyeManager {
     public draw() : void {
         this.sketch.push();
         this.sketch.textSize(40);
+        this.sketch.fill(this.color);
         this.sketch.text("Eye: " + this.getEyeValue(), 0.1 * this.sketch.canvas.width, 0.18 * this.sketch.canvas.height);
         this.sketch.pop();
     }
