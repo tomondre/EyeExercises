@@ -18,3 +18,7 @@ const s = (sketch) => {
     }
 }
 new p5(s);
+
+window.addEventListener("resize", () => {
+    window.location.reload();
+});
