@@ -13,7 +13,7 @@ export default class SubjectManager {
     private subjects : ISubject[];
 
     constructor(savedDifficulty : number, sketch : p5, symbolManager : SymbolLevelManager) {
-        let image = sketch.loadImage('assets/Bee.png');
+        let image = sketch.loadImage('assets/Ball.png');
         this.subjects = [];
         this.subjects.push(new DifficultyOneSubject(sketch, image, symbolManager));
         this.subjects.push(new DifficultyTwoSubject(sketch, image, symbolManager));
