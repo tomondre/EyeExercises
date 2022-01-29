@@ -128,7 +128,7 @@ if (window.innerWidth < window.innerHeight) {
 
             function fetchSavedEyeTime() {
                 let time = window.localStorage.getItem("908/Time");
-                return time == null ? -1 : parseInt(time);
+                return time == null ? 150 : parseInt(time);
             }
 
             function timeOverHandler() {
