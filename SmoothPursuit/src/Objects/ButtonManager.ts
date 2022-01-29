@@ -6,15 +6,15 @@ import Helper from "./Helper";
 import {config} from "./config";
 
 export default class ButtonManager {
+    private sketch: p5;
+    private correctOption: string;
+    private options: string[];
+    private buttons: p5.element[] = [];
+    private observerSupport: ObserverSupport;
+    private buttonTextColor: string = config.colors.answerSymbolColor;
+    private keyboardEvent: () => void = this.keyboardHandler.bind(this);
 
-    private sketch : p5;
-    private correctOption : string;
-    private options : string[];
-    private buttons : p5.element[] = [];
-    private observerSupport : ObserverSupport;
-    private buttonTextColor : string =  config.colors.answerSymbolColor;
-
-    constructor(sketch : p5) {
+    constructor(sketch: p5) {
         this.sketch = sketch;
         this.observerSupport = new ObserverSupport();
     }
@@ -23,23 +23,50 @@ export default class ButtonManager {
 
     }
 
-    public removeButtons() : void{
+
+    public removeButtons(): void {
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].remove();
         }
     }
 
-    private handler(selectedButton : string) : void {
+    private handler(selectedButton: string): void {
         this.removeButtons();
+        this.removeKeyboardListener();
         if (selectedButton === this.correctOption) {
             this.observerSupport.fire(ObserverAction.correctEntrySymbolLevel);
-        }
-        else {
+        } else {
             this.observerSupport.fire(ObserverAction.incorrectEntrySymbolLevel);
         }
     }
 
-    public create() : void {
+    public keyboardHandler(event: KeyboardEvent): void {
+        let option: string;
+        switch (event.key) {
+            case "1":
+                option = this.options[0];
+                break;
+            case "2":
+                option = this.options[1];
+                break;
+            case "3":
+                option = this.options[2];
+                break;
+            case "4":
+                option = this.options[3];
+                break;
+            default:
+                return;
+        }
+        this.handler(option);
+    }
+
+    public createKeyboardListener(): void {
+        this.removeKeyboardListener();
+        document.addEventListener('keydown', this.keyboardEvent);
+    }
+
+    public create(): void {
         this.removeButtons();
         this.buttons = [];
         let areaPercentage = 0.4;
@@ -56,9 +83,10 @@ export default class ButtonManager {
             button.addClass("positivesmall");
             this.buttons.push(button);
         }
+        this.createKeyboardListener();
     }
 
-    public displayButtonOptions(correctOption: string, currentLevel : number): void {
+    public displayButtonOptions(correctOption: string, currentLevel: number): void {
         let randomOptions = Helper.getOptions(currentLevel, correctOption);
         this.correctOption = correctOption;
         this.options = Helper.shuffleArray(randomOptions);
@@ -66,11 +94,15 @@ export default class ButtonManager {
     }
 
 
-    public subscribe(observer : Observer) : void {
+    public subscribe(observer: Observer): void {
         this.observerSupport.subscribe(observer);
     }
 
-    public unsubscribe(observer : Observer) : void {
+    public unsubscribe(observer: Observer): void {
         this.observerSupport.unsubscribe(observer);
+    }
+
+    private removeKeyboardListener() {
+        document.removeEventListener('keydown', this.keyboardEvent);
     }
 }
