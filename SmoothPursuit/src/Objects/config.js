@@ -14,8 +14,11 @@ export const config = {
         decrease: 5
     },
     colors: {
-        symbolColor: "red",
-        answerSymbolColor : "white"
+        backgroundColor: "black",
+        symbolColor: "white",
+        answerSymbolColor : "white",
+        textColor: "white",
+        messageColor: "white"
     },
     levels: {
         levels: 4,
@@ -66,6 +69,9 @@ export const config = {
             okButtonText: "Yes",
             rejectButtonText: "No",
             buttonText: "Change eye"
+        },
+        message: {
+            positionToHeightRatio: 0.5
         },
         buttons: {
             heightPositionRatio: 0.70,
