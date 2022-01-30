@@ -61,6 +61,7 @@ if (window.innerWidth < window.innerHeight) {
         setUpPictures();
         createListeners();
         createTimer();
+
         function setUpCanvasForAnalgyphs() {
             context.globalAlpha = 0.5;
             context.globalCompositeOperation = "lighter";
@@ -110,8 +111,7 @@ if (window.innerWidth < window.innerHeight) {
 
         function createTimer() {
             seconds = fetchSavedEyeTime();
-            if (seconds === -1)
-            {
+            if (seconds === -1) {
                 shouldTimerBeDisplayed = false;
                 return;
             }
@@ -132,7 +132,6 @@ if (window.innerWidth < window.innerHeight) {
             }
 
             function timeOverHandler() {
-                displayEndOfRoundMessage = true;
                 removeListeners();
                 saveDataToAPI()
 
@@ -141,9 +140,12 @@ if (window.innerWidth < window.innerHeight) {
 
                 let exitButton = document.getElementById("middleButton");
                 exitButton.style.visibility = 'visible';
+                exitButton.style.top = (window.innerHeight * 0.5 + 50) + "px";
                 exitButton.addEventListener("keydown", () => {
                     window.close();
                 })
+
+                displayEndOfRoundMessage = true;
 
                 function removeListeners() {
                     removeElementAllListeners("goLeftButton");
@@ -210,6 +212,7 @@ if (window.innerWidth < window.innerHeight) {
         if (shouldTimerBeDisplayed) {
             drawTimer();
         }
+
         function drawEndOfTheRoundMessage() {
             if (displayEndOfRoundMessage) {
                 context.textAlign = "center";
