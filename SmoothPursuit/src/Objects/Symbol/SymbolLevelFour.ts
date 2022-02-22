@@ -45,6 +45,7 @@ export default class SymbolLevelFour implements SymbolLevel {
         let center = this.sketch.LEFT;
         this.sketch.textAlign(center, center);
         this.sketch.textSize(50);
+        this.sketch.fill(config.colors.levelFour.equation);
         this.sketch.text(this.generatedEquation[0] + " + " + this.generatedEquation[1], x, y);
         this.sketch.pop();
         let arrowX: number;
@@ -76,7 +77,7 @@ export default class SymbolLevelFour implements SymbolLevel {
         this.sketch.image(this.arrowImage, 0, 0);
         this.sketch.pop();
 
-        this.sketch.fill("white")
+        this.sketch.fill(config.colors.levelFour.arrowTextColor)
         this.sketch.textSize(30);
         this.sketch.textAlign(center, center);
         this.sketch.text(this.generatedAnswers[answerIndex], 0, 0);
@@ -132,8 +133,10 @@ export default class SymbolLevelFour implements SymbolLevel {
     }
 
     private generateNumbers(): void {
-        this.generateEquation();
-        this.generateAnswers();
+        if (this.numberPointer <= this.data.length -1) {
+            this.generateEquation();
+            this.generateAnswers();
+        }
     }
 
     private generateEquation(): void {

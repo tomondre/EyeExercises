@@ -18,12 +18,17 @@ export const config = {
         symbolColor: "white",
         answerSymbolColor : "white",
         textColor: "white",
-        messageColor: "white"
+        messageColor: "white",
+        levelFour: {
+            arrowTextColor: "black",
+            equation: "white"
+
+        }
     },
     levels: {
         levels: 4,
         difficulties: 6,
-        subDifficulties: 2,
+        subDifficulties: 4,
         levelTwoSymbols: "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
         levelThreeSymbols: "0123456789",
         levelFour: [{

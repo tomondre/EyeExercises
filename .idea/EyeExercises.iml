@@ -22,6 +22,5 @@
     <content url="file://$MODULE_DIR$/FootballGame/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/p5" level="application" />
   </component>
 </module>

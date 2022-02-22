@@ -9,7 +9,7 @@ const config = {
     scene: [LoadScene, GameScene]
 }
 
-window.addEventListener("orientationchange", () => {
+window.addEventListener("resize", () => {
     location.reload();
 });
 

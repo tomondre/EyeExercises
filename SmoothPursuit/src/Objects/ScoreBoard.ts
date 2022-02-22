@@ -15,7 +15,7 @@ export default class ScoreBoard {
         this.sketch.push();
         this.sketch.fill(this.color);
         this.sketch.textSize(40);
-        this.sketch.text("Score: " + this.score, window.innerWidth * 0.1, window.innerHeight * 0.125)
+        this.sketch.text("Score: " + this.score, window.innerWidth * 0.1, window.innerHeight * 0.125);
         this.sketch.pop();
     }
 
