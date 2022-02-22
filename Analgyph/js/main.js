@@ -1,7 +1,7 @@
 //TODO uncomment ajax call andcheck if works
 //TODO make close button works
 
-window.addEventListener("orientationchange", () => {
+window.addEventListener("resize", () => {
     location.reload();
 });
 if (window.innerWidth < window.innerHeight) {
