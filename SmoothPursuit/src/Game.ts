@@ -12,6 +12,7 @@ import EyeManager from "./Objects/EyeManager";
 import MessageManager from "./Objects/MessageManager";
 import FetchDataManager from "./Objects/FetchDataManager";
 import {config} from "./Objects/config";
+import SaveAPI from "./Objects/SaveAPI";
 
 export default class Game implements Observer {
 
@@ -24,6 +25,7 @@ export default class Game implements Observer {
     private buttonManager: ButtonManager;
     private eyeManager: EyeManager;
     private messageManager: MessageManager;
+    private api: SaveAPI;
     private backgroundColor : string = config.colors.backgroundColor;
 
     constructor(sketch: p5) {
@@ -43,6 +45,7 @@ export default class Game implements Observer {
         this.buttonManager = new ButtonManager(sketch);
         this.eyeManager = new EyeManager(sketch);
         this.messageManager = new MessageManager(sketch);
+        this.api = new SaveAPI();
 
         this.removePictureIfLevelFour()
 
@@ -203,7 +206,8 @@ export default class Game implements Observer {
         let currentEye = this.eyeManager.getCurrentEye();
         let currentLevel = this.levelManger.getCurrentLevel();
         let currentDifficulty = this.levelManger.getCurrentDifficulty();
-        this.scoreBoard.saveData(currentEye.toString(), currentLevel, currentDifficulty);
+        let score = this.scoreBoard.getScore();
+        this.api.uploadData(score, currentEye, currentLevel.toString());
         FetchDataManager.saveEyeLevelIndex(currentLevel, currentEye);
         FetchDataManager.saveEyeDifficulty(currentDifficulty, currentEye);
         this.scoreBoard.resetScore();

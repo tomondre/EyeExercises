@@ -120,18 +120,18 @@ export default class ScoreBoard {
             attribName: "difficulty " + difficulty,        // (left, right or both) depending on current eye (blank if no eye-switching)
         }
         console.log(currentLog);
-        //
-        // // TODO: check work request on TYE website
-        // window.$.ajax({
-        //     type: "POST",
-        //     url: `/Exercise/PostScore`,
-        //     data: {score: currentLog},
-        //     success: function (data) {
-        //         if (data.success) {
-        //         } else {
-        //         }
-        //     }
-        // })
+
+        // TODO: check work request on TYE website
+        window.$.ajax({
+            type: "POST",
+            url: `/Exercise/PostScore`,
+            data: {score: currentLog},
+            success: function (data) {
+                if (data.success) {
+                } else {
+                }
+            }
+        })
     }
 
     getCurrentDateTime() {

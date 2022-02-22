@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^17.0.8",
+    "ajax": "^0.0.4",
+    "jquery": "^3.6.0",
     "p5": "^1.4.0",
     "parcel-bundler": "^1.12.5",
     "typescript": "^4.5.2"
