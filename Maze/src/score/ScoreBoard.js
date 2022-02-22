@@ -121,7 +121,6 @@ export default class ScoreBoard {
         }
         console.log(currentLog);
 
-        // TODO: check work request on TYE website
         window.$.ajax({
             type: "POST",
             url: `/Exercise/PostScore`,
