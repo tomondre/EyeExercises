@@ -28872,7 +28872,8 @@ var config = {
   levels: {
     levels: 4,
     difficulties: 6,
-    subDifficulties: 6,
+    subDifficulties: 4,
+    subDiffEntries: 2,
     levelTwoSymbols: "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
     levelThreeSymbols: "0123456789",
     levelFour: [{
@@ -29167,27 +29168,34 @@ function () {
     this.currentLevel = savedLevel;
     this.currentDifficulty = savedDifficulty;
     this.difficultyEntries = 0;
+    this.subDifficultyEntries = 1;
     this.support = new ObserverSupport_1.default();
   }
 
   LevelManager.prototype.correctEntry = function () {
-    this.difficultyEntries++;
+    this.subDifficultyEntries++;
+    console.log("Correct entry " + this.subDifficultyEntries);
 
-    if (this.difficultyEntries === config_1.config.levels.subDifficulties) {
-      this.difficultyEntries = 0;
-      this.currentDifficulty++;
+    if (this.subDifficultyEntries === config_1.config.levels.subDiffEntries) {
+      this.subDifficultyEntries = 0;
+      this.difficultyEntries++;
 
-      if (this.currentDifficulty === 6) {
-        this.currentDifficulty = 0;
-        this.currentLevel++;
+      if (this.difficultyEntries === config_1.config.levels.subDifficulties) {
+        this.difficultyEntries = 0;
+        this.currentDifficulty++;
 
-        if (this.currentLevel === 4) {
-          this.support.fire(ObserverAction_1.ObserverAction.gameFinished);
+        if (this.currentDifficulty === 6) {
+          this.currentDifficulty = 0;
+          this.currentLevel++;
+
+          if (this.currentLevel === 4) {
+            this.support.fire(ObserverAction_1.ObserverAction.gameFinished);
+          } else {
+            this.support.fire(ObserverAction_1.ObserverAction.levelFinished);
+          }
         } else {
-          this.support.fire(ObserverAction_1.ObserverAction.levelFinished);
+          this.support.fire(ObserverAction_1.ObserverAction.difficultyFinished);
         }
-      } else {
-        this.support.fire(ObserverAction_1.ObserverAction.difficultyFinished);
       }
     }
   };
@@ -29209,9 +29217,11 @@ function () {
   };
 
   LevelManager.prototype.set = function (level, difficulty) {
+    console.log("entry reset");
     this.currentLevel = level;
     this.currentDifficulty = difficulty;
     this.difficultyEntries = 0;
+    this.subDifficultyEntries = 0;
   };
 
   return LevelManager;
@@ -31472,8 +31482,7 @@ var Game =
 function () {
   function Game(sketch) {
     this.backgroundColor = config_1.config.colors.backgroundColor;
-    var savedLevel = 1; // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
-
+    var savedLevel = FetchDataManager_1.default.getEyeLevelIndex(Eyes_1.Eyes.RIGHT);
     var savedDifficulty = FetchDataManager_1.default.getEyeDifficulty(Eyes_1.Eyes.RIGHT);
     var savedTime = FetchDataManager_1.default.getEyeTime(Eyes_1.Eyes.RIGHT);
     this.sketch = sketch;
@@ -31610,7 +31619,7 @@ function () {
 
   Game.prototype.continueGameSymbolLevel = function () {
     this.timer.continue();
-    this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 2);
+    this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
   };
 
   Game.prototype.levelUp = function () {
@@ -31726,7 +31735,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56521" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64477" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
