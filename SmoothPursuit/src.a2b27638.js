@@ -28872,7 +28872,7 @@ var config = {
   levels: {
     levels: 4,
     difficulties: 6,
-    subDifficulties: 4,
+    subDifficulties: 6,
     levelTwoSymbols: "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
     levelThreeSymbols: "0123456789",
     levelFour: [{
@@ -28990,42 +28990,8 @@ function () {
     this.score -= config_1.config.scoreBoard.decrease;
   };
 
-  ScoreBoard.prototype.saveData = function (eye, level, difficulty) {
-    console.log("Data: eye-" + eye + " level-" + level + " difficulty-" + difficulty + " score-" + this.score);
-  };
-
-  ScoreBoard.prototype.saveDataToApi = function (level, difficulty) {
-    var currentLog = {
-      score: this.score,
-      startTimeStr: startTime,
-      endTimeStr: this.getCurrentDateTime(),
-      exerciseName: "JumpingColumn",
-      attribValue: "level " + level,
-      attribName: "difficulty " + difficulty // (left, right or both) depending on current eye (blank if no eye-switching)
-
-    };
-    console.log(currentLog); // TODO: check work request on TYE website
-
-    window.$.ajax({
-      type: "POST",
-      url: "/Exercise/PostScore",
-      data: {
-        score: currentLog
-      },
-      success: function success(data) {
-        if (data.success) {} else {}
-      }
-    });
-  };
-
-  ScoreBoard.prototype.getCurrentDateTime = function () {
-    var date = new Date().toLocaleString("en-GB"); // from js: 07/10/2021, 19:05:51
-    // to   cs: 07-10-2021 19:05:51
-
-    date = date.replace("/", "-");
-    date = date.replace("/", "-");
-    date = date.replace(",", "");
-    return date;
+  ScoreBoard.prototype.getScore = function () {
+    return this.score;
   };
 
   return ScoreBoard;
@@ -31398,7 +31364,71 @@ function () {
 }();
 
 exports.default = FetchDataManager;
-},{"./config":"src/Objects/config.js"}],"src/Game.ts":[function(require,module,exports) {
+},{"./config":"src/Objects/config.js"}],"src/Objects/SaveAPI.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var SaveAPI =
+/** @class */
+function () {
+  function SaveAPI() {
+    this.startTimer();
+  }
+
+  SaveAPI.prototype.startTimer = function () {
+    this.start = this.getCurrentDateTime();
+  };
+
+  SaveAPI.prototype.uploadData = function (score, eye, level) {
+    var currentLog = {
+      score: score,
+      startTimeStr: this.start,
+      endTimeStr: this.getCurrentDateTime(),
+      exerciseName: "SmoothPursuit",
+      attribValue: "level " + level,
+      attribName: eye.toLowerCase() // (left, right or both) depending on current eye (blank if no eye-switching)
+
+    };
+    console.log(currentLog);
+
+    try {
+      // @ts-ignore
+      window.$.ajax({
+        type: "POST",
+        url: "/Exercise/PostScore",
+        data: {
+          score: currentLog
+        },
+        success: function success(data) {
+          if (data.success) {} else {}
+        }
+      });
+      this.startTimer();
+    } catch (e) {}
+  }; // Expected exerciseName:
+  // Football             (football game)
+  // JumpingColumn        (arrows game)
+  // SmoothPursuit        (idk, lol)
+
+
+  SaveAPI.prototype.getCurrentDateTime = function () {
+    var date = new Date().toLocaleString("en-GB"); // from js: 07/10/2021, 19:05:51
+    // to   cs: 07-10-2021 19:05:51
+
+    date = date.replace("/", "-");
+    date = date.replace("/", "-");
+    date = date.replace(",", "");
+    return date;
+  };
+
+  return SaveAPI;
+}();
+
+exports.default = SaveAPI;
+},{}],"src/Game.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31435,12 +31465,14 @@ var FetchDataManager_1 = __importDefault(require("./Objects/FetchDataManager"));
 
 var config_1 = require("./Objects/config");
 
+var SaveAPI_1 = __importDefault(require("./Objects/SaveAPI"));
+
 var Game =
 /** @class */
 function () {
   function Game(sketch) {
     this.backgroundColor = config_1.config.colors.backgroundColor;
-    var savedLevel = 3; // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+    var savedLevel = 1; // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
 
     var savedDifficulty = FetchDataManager_1.default.getEyeDifficulty(Eyes_1.Eyes.RIGHT);
     var savedTime = FetchDataManager_1.default.getEyeTime(Eyes_1.Eyes.RIGHT);
@@ -31453,6 +31485,7 @@ function () {
     this.buttonManager = new ButtonManager_1.default(sketch);
     this.eyeManager = new EyeManager_1.default(sketch);
     this.messageManager = new MessageManager_1.default(sketch);
+    this.api = new SaveAPI_1.default();
     this.removePictureIfLevelFour();
     this.symbolManager.subscribe(this);
     this.levelManger.subscribe(this);
@@ -31603,8 +31636,7 @@ function () {
 
   Game.prototype.changeEyeHandler = function () {
     this.buttonManager.removeButtons();
-    this.saveData(); //TODO uncomment
-
+    this.saveData();
     var level = FetchDataManager_1.default.getEyeLevelIndex(Eyes_1.Eyes.LEFT);
     var difficulty = FetchDataManager_1.default.getEyeDifficulty(Eyes_1.Eyes.LEFT);
     var time = FetchDataManager_1.default.getEyeTime(Eyes_1.Eyes.LEFT);
@@ -31618,7 +31650,8 @@ function () {
     var currentEye = this.eyeManager.getCurrentEye();
     var currentLevel = this.levelManger.getCurrentLevel();
     var currentDifficulty = this.levelManger.getCurrentDifficulty();
-    this.scoreBoard.saveData(currentEye.toString(), currentLevel, currentDifficulty);
+    var score = this.scoreBoard.getScore();
+    this.api.uploadData(score, currentEye.toString(), currentLevel);
     FetchDataManager_1.default.saveEyeLevelIndex(currentLevel, currentEye);
     FetchDataManager_1.default.saveEyeDifficulty(currentDifficulty, currentEye);
     this.scoreBoard.resetScore();
@@ -31634,7 +31667,7 @@ function () {
 }();
 
 exports.default = Game;
-},{"./Objects/ScoreBoard":"src/Objects/ScoreBoard.ts","./Objects/Timer":"src/Objects/Timer.ts","./Objects/ObserverAction":"src/Objects/ObserverAction.ts","./Objects/LevelManager":"src/Objects/LevelManager.ts","./Objects/Subject/SubjectManager":"src/Objects/Subject/SubjectManager.ts","./Objects/Symbol/SymbolLevelManager":"src/Objects/Symbol/SymbolLevelManager.ts","./Objects/ButtonManager":"src/Objects/ButtonManager.ts","./Objects/Eyes":"src/Objects/Eyes.ts","./Objects/EyeManager":"src/Objects/EyeManager.ts","./Objects/MessageManager":"src/Objects/MessageManager.ts","./Objects/FetchDataManager":"src/Objects/FetchDataManager.ts","./Objects/config":"src/Objects/config.js"}],"src/index.js":[function(require,module,exports) {
+},{"./Objects/ScoreBoard":"src/Objects/ScoreBoard.ts","./Objects/Timer":"src/Objects/Timer.ts","./Objects/ObserverAction":"src/Objects/ObserverAction.ts","./Objects/LevelManager":"src/Objects/LevelManager.ts","./Objects/Subject/SubjectManager":"src/Objects/Subject/SubjectManager.ts","./Objects/Symbol/SymbolLevelManager":"src/Objects/Symbol/SymbolLevelManager.ts","./Objects/ButtonManager":"src/Objects/ButtonManager.ts","./Objects/Eyes":"src/Objects/Eyes.ts","./Objects/EyeManager":"src/Objects/EyeManager.ts","./Objects/MessageManager":"src/Objects/MessageManager.ts","./Objects/FetchDataManager":"src/Objects/FetchDataManager.ts","./Objects/config":"src/Objects/config.js","./Objects/SaveAPI":"src/Objects/SaveAPI.ts"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _p = _interopRequireDefault(require("p5"));
@@ -31693,7 +31726,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56760" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56521" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
