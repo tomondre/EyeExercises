@@ -29,6 +29,7 @@ export const config = {
         levels: 4,
         difficulties: 6,
         subDifficulties: 4,
+        subDiffEntries: 2,
         levelTwoSymbols: "☺☽♘♡♫⚅⚐✂☃✈✔✏✰❆➔☏☘☞",
         levelThreeSymbols: "0123456789",
         levelFour: [{

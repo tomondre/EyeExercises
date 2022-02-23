@@ -12,7 +12,7 @@ export default class SaveAPI {
         this.start = this.getCurrentDateTime();
     }
 
-    public uploadData(score, eye, level): void {
+    public uploadData(score, eye: string, level): void {
         let currentLog = {
             score: score,
             startTimeStr: this.start,
@@ -23,18 +23,22 @@ export default class SaveAPI {
         }
         console.log(currentLog);
 
-        // @ts-ignore
-        window.$.ajax({
-            type: "POST",
-            url: `/Exercise/PostScore`,
-            data: {score: currentLog},
-            success: function (data) {
-                if (data.success) {
-                } else {
+        try {
+            // @ts-ignore
+            window.$.ajax({
+                type: "POST",
+                url: `/Exercise/PostScore`,
+                data: {score: currentLog},
+                success: function (data) {
+                    if (data.success) {
+                    } else {
+                    }
                 }
-            }
-        })
-        this.startTimer();
+            })
+            this.startTimer();
+        } catch (e) {
+
+        }
     }
 
     // Expected exerciseName:

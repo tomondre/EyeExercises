@@ -29,8 +29,8 @@ export default class Game implements Observer {
     private backgroundColor : string = config.colors.backgroundColor;
 
     constructor(sketch: p5) {
-        let savedLevel = 3
-            // FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
+        let savedLevel = 1;
+            FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty =
             FetchDataManager.getEyeDifficulty(Eyes.RIGHT);
         let savedTime =
@@ -161,7 +161,7 @@ export default class Game implements Observer {
 
     private continueGameSymbolLevel(): void {
         this.timer.continue();
-        this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 2);
+        this.subject.continueSymbolLevel(this.levelManger.getDifficultyEntries() + 1);
     }
 
     private levelUp() {
@@ -189,7 +189,6 @@ export default class Game implements Observer {
         this.buttonManager.removeButtons();
         this.saveData();
 
-        //TODO uncomment
         let level =
             FetchDataManager.getEyeLevelIndex(Eyes.LEFT);
         let difficulty =
@@ -207,7 +206,7 @@ export default class Game implements Observer {
         let currentLevel = this.levelManger.getCurrentLevel();
         let currentDifficulty = this.levelManger.getCurrentDifficulty();
         let score = this.scoreBoard.getScore();
-        this.api.uploadData(score, currentEye, currentLevel.toString());
+        this.api.uploadData(score, currentEye.toString(), currentLevel);
         FetchDataManager.saveEyeLevelIndex(currentLevel, currentEye);
         FetchDataManager.saveEyeDifficulty(currentDifficulty, currentEye);
         this.scoreBoard.resetScore();
