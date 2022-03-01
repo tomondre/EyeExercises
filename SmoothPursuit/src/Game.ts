@@ -29,7 +29,7 @@ export default class Game implements Observer {
     private backgroundColor : string = config.colors.backgroundColor;
 
     constructor(sketch: p5) {
-        let savedLevel = 1;
+        let savedLevel =
             FetchDataManager.getEyeLevelIndex(Eyes.RIGHT);
         let savedDifficulty =
             FetchDataManager.getEyeDifficulty(Eyes.RIGHT);

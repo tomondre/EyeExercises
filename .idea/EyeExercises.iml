@@ -16,7 +16,6 @@
       <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/dist" />
       <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
-      <excludeFolder url="file://$MODULE_DIR$/FootballGame" />
       <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
     </content>
     <content url="file://$MODULE_DIR$/FootballGame/node_modules" />
