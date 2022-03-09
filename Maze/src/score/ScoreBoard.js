@@ -121,16 +121,21 @@ export default class ScoreBoard {
         }
         console.log(currentLog);
 
-        window.$.ajax({
-            type: "POST",
-            url: `/Exercise/PostScore`,
-            data: {score: currentLog},
-            success: function (data) {
-                if (data.success) {
-                } else {
+        try {
+            window.$.ajax({
+                type: "POST",
+                url: `/Exercise/PostScore`,
+                data: {score: currentLog},
+                success: function (data) {
+                    if (data.success) {
+                    } else {
+                    }
                 }
-            }
-        })
+            })
+        }
+        catch (e) {
+            console.log(e , "API error")
+        }
     }
 
     getCurrentDateTime() {

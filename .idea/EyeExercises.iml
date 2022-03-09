@@ -15,10 +15,12 @@
       <excludeFolder url="file://$MODULE_DIR$/JumpingColumn/dist" />
       <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/dist" />
       <excludeFolder url="file://$MODULE_DIR$/SmoothPursuit/.cache" />
-      <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise" />
-      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn" />
+      <excludeFolder url="file://$MODULE_DIR$/AnalgyphExercise/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/JumpingColumn/node_modules" />
     </content>
+    <content url="file://$MODULE_DIR$/AnalgyphExercise/.idea" />
     <content url="file://$MODULE_DIR$/FootballGame/node_modules" />
+    <content url="file://$MODULE_DIR$/JumpingColumn/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
