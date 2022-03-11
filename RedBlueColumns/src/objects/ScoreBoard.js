@@ -1,4 +1,4 @@
-import {CONFIG} from "../CONFIG";
+import {CONFIG} from "../configs/CONFIG";
 import TextStyleManager from "./TextStyleManager";
 
 let scene = null;

@@ -1,4 +1,4 @@
-import {CONFIG} from "../CONFIG";
+import {CONFIG} from "../configs/CONFIG";
 
 export default class TextStyleManager {
     static getTextStyle() {
@@ -9,11 +9,11 @@ export default class TextStyleManager {
         }
     }
 
-    // static getButtonTextSize() {
-    //     if (window.innerWidth > CONFIG.responsiveness.switchSizesWhenResolutionLowerThan) {
-    //         return CONFIG.responsiveness.normalButtonTextSize;
-    //     } else {
-    //         return CONFIG.responsiveness.smallerButtonTextSize;
-    //     }
-    // }
+    static getButtonTextSize() {
+        if (window.innerWidth > CONFIG.responsiveness.switchSizesWhenResolutionLowerThan) {
+            return {font: CONFIG.responsiveness.normalButtonTextSize + "px Arial", fill: "#FFFFFF"};
+        } else {
+            return {font: CONFIG.responsiveness.smallerButtonTextSize + "px Arial", fill: "#FFFFFF"};
+        }
+    }
 }

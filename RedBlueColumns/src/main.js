@@ -1,6 +1,6 @@
  import * as Phaser from 'phaser';
-import GameScene from "./objects/GameScene";
-import LoadScene from "./objects/LoadScene";
+import GameScene from "./scenes/GameScene";
+import LoadScene from "./scenes/LoadScene";
 
 
 

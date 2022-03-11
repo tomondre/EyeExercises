@@ -12,10 +12,10 @@ export const CONFIG = {
     },
     responsiveness: {
         normalTextSize: 40,
-        normalButtonTextSize: "23px",
+        normalButtonTextSize: 23,
         switchSizesWhenResolutionLowerThan: 1000,
         smallerTextSize: 25,
-        smallerButtonTextSize: "20px"
+        smallerButtonTextSize: 20
     },
     buttons: {
         pointeroutColor: 0xffA500,

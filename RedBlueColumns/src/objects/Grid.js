@@ -1,5 +1,5 @@
 import {CST} from "./CST";
-import {CONFIG} from "../CONFIG";
+import {CONFIG} from "../configs/CONFIG";
 import TextStyleManager from "./TextStyleManager";
 import OuterArrowsManager from "./OuterArrowsManager";
 

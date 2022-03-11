@@ -1,4 +1,4 @@
-import {CST} from "./CST";
+import {CST} from "../objects/CST";
 
 export default class LoadScene extends Phaser.Scene {
 

@@ -8,7 +8,7 @@ const s = (sketch) => {
 
     sketch.setup = function () {
         sketch.createCanvas(window.innerWidth, window.innerHeight);
-        // sketch.frameRate(config.game.frameRate);
+        // sketch.frameRate(configs.game.frameRate);
         sketch.angleMode(sketch.DEGREES)
         game = new Game(sketch);
     }
