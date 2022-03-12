@@ -18,10 +18,10 @@ export default class GameScene extends Phaser.Scene {
     constructor() {
         super({key: CST.scene.GAME});
         levelManager = new LevelsManager();
-        grid = new Grid(this, levelManager);
-        scoreBoard = new ScoreBoard(this);
+        grid = new Grid(this, levelManager, () => this.puzzleFinished());
+        scoreBoard = new ScoreBoard(this, levelManager);
         timer = new Timer(this);
-        numberButtonManager = new NumberButtonManager(this, levelManager);
+        numberButtonManager = new NumberButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
 
     }
 
@@ -33,4 +33,33 @@ export default class GameScene extends Phaser.Scene {
         numberButtonManager.create()
     }
 
+    levelFinished() {
+        levelManager.resetPuzzleCount();
+        scoreBoard.reset();
+        levelManager.levelFinished();
+        this.restartScene();
+    }
+
+    puzzleFinished() {
+        timer.pause();
+        levelManager.puzzlePassed();
+        if (scoreBoard.isLevelPassed()) {
+            this.levelFinished();
+        } else {
+            this.restartScene();
+        }
+        this.restartScene();
+    }
+
+    symbolCheck(symbol) {
+        if (grid.checkKeyboardEntry(symbol)) {
+            scoreBoard.increaseScore();
+        } else {
+            scoreBoard.decreaseScore();
+        }
+    }
+
+    restartScene() {
+        this.scene.restart();
+    }
 }

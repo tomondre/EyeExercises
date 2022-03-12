@@ -73,24 +73,37 @@ export const CONFIG = {
             verticalOuterArrows: 1,
             horizontalOuterArrows: 0,
             correctPuzzlesToPassLevel: 2
-        }],
+        }, {
+            levelNo: 2,
+            rows: 7,
+            verticalOuterArrows: 1,
+            horizontalOuterArrows: 0,
+            correctPuzzlesToPassLevel: 2
+            }],
     symbolAmount: {
         amount: 6
     },
     symbols:
-            [{
-                value: "8"
-            }, {
-                value: "3"
-            }, {
-                value: "B"
-            }, {
-                value: "R"
-            }, {
-                value: "D"
-            }, {
-                value: "E"
-            }],
+        [{
+            value: "8"
+        }, {
+            value: "3"
+        }, {
+            value: "B"
+        }, {
+            value: "R"
+        }, {
+            value: "D"
+        }, {
+            value: "E"
+        }],
     percentOfSuccessToPassLevel: 0.89,
+    colors:
+        [
+            {value: "0x66ffff"},
+            {value: "0xFFFFFF"},
+            {value: "0xff6666"},
+            {value: "0xffffff"}
+        ],
 
 }

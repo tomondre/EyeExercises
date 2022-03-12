@@ -16,7 +16,7 @@ export default class OuterArrowsManager {
 
     create() {
         this.generateOuterArrows();
-        this.displayOuterArrows()
+        this.displayOuterArrows();
     }
 
     generateOuterArrows() {
@@ -38,9 +38,13 @@ export default class OuterArrowsManager {
         arrowReading = 0;
     }
 
-    getArrowReading() {
+    getArrowReadingX() {
         let arrow = outerArrows[arrowReading];
-        return [arrow.getArrowPlace(), arrow.getDepthReading()]
+        return arrow.getArrowPlace() - levelManager.getRowCount();
+    }
+    getArrowReadingY() {
+        let arrow = outerArrows[arrowReading];
+        return arrow.getDepthReading();
     }
 
     nextArrowToRead() {
@@ -55,7 +59,7 @@ export default class OuterArrowsManager {
     displayOuterArrows() {
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
-        let x = (windowWidth - gridLength) / 2;
+        let x = ((windowWidth - gridLength) / 2) + 10;
         let y = (window.innerHeight - gridLength) / 2;
         let gap = gridLength / levelManager.getRowCount();
 

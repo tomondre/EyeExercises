@@ -11,7 +11,7 @@ export default class LevelsManager {
 
     create() {
         if (firstFetch) {
-            currentLevelIndex = FetchDataManager.getEyeLevelIndex(CST.eye.RIGHT);
+            currentLevelIndex = 0;
             firstFetch = false;
         }
     }
