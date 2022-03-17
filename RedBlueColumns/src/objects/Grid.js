@@ -21,7 +21,6 @@ export default class Grid {
     }
 
     create() {
-        //this.generateColumns();
         this.generateGrid();
         outerArrows.create();
     }
@@ -31,7 +30,7 @@ export default class Grid {
         symbol = [];
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
-        let x = (windowWidth - gridLength) / 2  ;
+        let x = (windowWidth - gridLength) / 2;
         let y = (window.innerHeight - gridLength) / 2;
         let numberOfSymbols = levelManager.getRowCount();
         let gap = gridLength / numberOfSymbols;
@@ -40,7 +39,7 @@ export default class Grid {
             let row = [];
             for (let j = 0; j < numberOfSymbols; j++) {
 
-                let style = TextStyleManager.getTextStyleGrid(j%3)
+                let style = TextStyleManager.getTextStyleGrid(j % 3)
                 let text = scene.add.text(x + (j * gap), y + (i * gap), this.getRandomSymbol(), style)
 
                 row.push(text);
@@ -49,43 +48,9 @@ export default class Grid {
             symbol.push(row);
         }
     }
-    // generateColumns(){
-    //     let windowWidth = window.innerWidth;
-    //     let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
-    //     let x = ((windowWidth - gridLength) / 2) + 15  ;
-    //     let y = ((window.innerHeight - gridLength) / 2);
-    //     let numberOfSymbols = levelManager.getRowCount();
-    //     let gap = gridLength / numberOfSymbols;
-    //     let graphics = scene.add.graphics();
-    //     graphics.setAlpha(0.3);
-    //
-    //
-    //     for (let i = 0; i < numberOfSymbols; i++) {
-    //         let color;
-    //         if(i >= CONFIG.colors.length){
-    //             let x = Math.round(i%CONFIG.colors.length);
-    //             color = CONFIG.colors[x]?.value;
-    //         }
-    //         else if (i < CONFIG.colors.length) {
-    //             color = CONFIG.colors[i]?.value;
-    //         }
-    //         graphics.lineStyle(30, color);
-    //         graphics.beginPath();
-    //         for (let j = 0; j < numberOfSymbols + 1; j++) {
-    //             if(j === 0) {
-    //                 graphics.moveTo(x + (i * gap), y + (j * gap));
-    //                 graphics.lineTo(x + (i * gap), y + (j * gap));
-    //             }
-    //             else{
-    //                 graphics.lineTo(x + (i * gap), y + (j * gap));
-    //             }
-    //         }
-    //         graphics.closePath();
-    //         graphics.strokePath();
-    //     }
-    // }
 
-    getRandomSymbol(){
+
+    getRandomSymbol() {
         return CONFIG.symbols[Math.floor(Math.random() * CONFIG.symbols.length)].value;
     }
 
@@ -97,7 +62,7 @@ export default class Grid {
         }
     }
 
-    checkKeyboardEntry(enteredSymbol){
+    checkKeyboardEntry(enteredSymbol) {
         let x = outerArrows.getArrowReadingX()
         let y = outerArrows.getArrowReadingY()
 
@@ -105,26 +70,26 @@ export default class Grid {
         let correctSymbol = symbol[y][x].text
         let stilingSymbol = symbol[y][x]
 
-        console.log(enteredSymbol, correctSymbol)
+        let style = TextStyleManager.getTextStyleGrid(x % 3).fill
 
-        let style = TextStyleManager.getTextStyleGrid(x%3).fill
 
-        if(correctSymbol === enteredSymbol.toString()){
-            stilingSymbol.setStyle({ color: '#FFF' })
-            setTimeout(() => stilingSymbol.setStyle({color: style}), 500)
+        if (correctSymbol === enteredSymbol.toString()) {
+            if ((x + 1) < CONFIG.levels[levelManager.getCurrentLevelIndex()].rows) {
+                stilingSymbol.setStyle({color: CONFIG.blinking.correct})
+                setTimeout(() => stilingSymbol.setStyle({color: style}), 500)
+            }
             if (!outerArrows.nextArrowToRead()) {
                 levelUpCB();
             }
             return true;
-        }
-        else {
-            stilingSymbol.setStyle({ color: '#FF0000' });
+        } else {
+            stilingSymbol.setStyle({color: CONFIG.blinking.wrong});
             setTimeout(() => stilingSymbol.setStyle({color: style}), 500);
             return false;
         }
     }
 
-    getSymbol(x,y){
+    getSymbol(x, y) {
         return symbol[x][y];
     }
 

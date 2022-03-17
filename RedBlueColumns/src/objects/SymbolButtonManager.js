@@ -34,7 +34,7 @@ export default class SymbolButtonManager {
                     .setPadding(8)
                     .setStyle({ backgroundColor: '#006400' })
                     .setInteractive({ useHandCursor: true })
-                    .on('pointerdown', () => callBack(symbol[i]))
+                    .on('pointerdown', () => callBack(symbol[i].value))
                     .on('pointerover', () => button[i].setStyle({ backgroundColor: '#003C00' }))
                     .on('pointerout', () => button[i].setStyle({ backgroundColor: '#006400' }))
             }
@@ -48,6 +48,10 @@ export default class SymbolButtonManager {
             }
         })
     }
+    removeListener(){
+        document.removeEventListener('keydown', function (event) {})
+    }
+
 
 
 

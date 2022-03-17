@@ -26,10 +26,10 @@ export const CONFIG = {
             textFirstPart: "Great Job! Level ",
             textSecondPart: " has been passed,\n Next level starts in: ",
             textThirdPart: " seconds",
-            timeLength: 2
+            timeLength: 3
         },
-        levelNotPassed: {
-            text: "Level failed. Try again",
+        puzzleNotPassed: {
+            text: "Puzzle failed. Try again on next one.",
         },
         changeEye: {
             text: "Change Eye",
@@ -226,5 +226,8 @@ export const CONFIG = {
             {value: "#000000"},
             {value: "#ff6666"},
         ],
-
+    blinking:{
+        wrong:"#8b0000",
+        correct:"#FFFFFF"
+    },
 }

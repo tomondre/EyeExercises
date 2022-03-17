@@ -5,6 +5,7 @@ import LevelsManager from "../objects/LevelsManager";
 import Timer from "../objects/Timer";
 import Grid from "../objects/Grid";
 import SymbolButtonManager from "../objects/SymbolButtonManager";
+import MessageManager from "../objects/MessageManager";
 
 
 let levelManager;
@@ -12,6 +13,7 @@ let scoreBoard;
 let timer;
 let grid;
 let symbolButtonManager;
+let messageManager;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -20,9 +22,9 @@ export default class GameScene extends Phaser.Scene {
         levelManager = new LevelsManager();
         grid = new Grid(this, levelManager, () => this.puzzleFinished());
         scoreBoard = new ScoreBoard(this, levelManager);
-        timer = new Timer(this);
+        timer = new Timer(this, () => this.timeOver());
         symbolButtonManager = new SymbolButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
-
+        messageManager = new MessageManager(this);
     }
 
     create() {
@@ -46,10 +48,21 @@ export default class GameScene extends Phaser.Scene {
         timer.pause();
         levelManager.puzzlePassed();
         if (scoreBoard.isLevelPassed()) {
-            this.levelFinished();
+            messageManager.displayLevelPassedMessage(() => this.levelFinished(), levelManager.getCurrentLevel())
         } else {
-            this.restartScene();
+            if(!scoreBoard.isPuzzlePassed()) {
+                messageManager.displayLevelNotPassedMessage(() => this.levelNotFinished())
+            }
+            else {
+                this.levelNotFinished()
+            }
         }
+
+    }
+
+    levelNotFinished() {
+        scoreBoard.resetEntryValues();
+        levelManager.resetPuzzleCount();
         this.restartScene();
     }
 
@@ -63,5 +76,9 @@ export default class GameScene extends Phaser.Scene {
 
     restartScene() {
         this.scene.restart();
+    }
+    pauseGame() {
+        timer.pause();
+        symbolButtonManager.removeListener();
     }
 }

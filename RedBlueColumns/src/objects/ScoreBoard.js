@@ -49,6 +49,11 @@ export default class ScoreBoard {
         this.update();
     }
 
+    resetEntryValues(){
+        numberOfIncorrectEntries = 0;
+        numberOfEntries = 0;
+        numberOfCorrectEntries = 0;
+    }
     reset()
     {
         numberOfIncorrectEntries = 0;
@@ -58,10 +63,13 @@ export default class ScoreBoard {
     }
     isLevelPassed()
     {
-        if(numberOfCorrectEntries - numberOfIncorrectEntries === numberOfEntries){
+        if(this.isPuzzlePassed()){
             passed++;
         }
         return passed >= CONFIG.levels[levelManager.getCurrentLevelIndex()].correctPuzzlesToPassLevel;
+    }
+    isPuzzlePassed(){
+        return numberOfCorrectEntries - numberOfIncorrectEntries === numberOfEntries
     }
 
 }
