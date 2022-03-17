@@ -4,14 +4,14 @@ import ScoreBoard from "../objects/ScoreBoard";
 import LevelsManager from "../objects/LevelsManager";
 import Timer from "../objects/Timer";
 import Grid from "../objects/Grid";
-import NumberButtonManager from "../objects/NumberButtonManager";
+import SymbolButtonManager from "../objects/SymbolButtonManager";
 
 
 let levelManager;
 let scoreBoard;
 let timer;
 let grid;
-let numberButtonManager
+let symbolButtonManager;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -21,7 +21,7 @@ export default class GameScene extends Phaser.Scene {
         grid = new Grid(this, levelManager, () => this.puzzleFinished());
         scoreBoard = new ScoreBoard(this, levelManager);
         timer = new Timer(this);
-        numberButtonManager = new NumberButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
+        symbolButtonManager = new SymbolButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
 
     }
 
@@ -30,8 +30,10 @@ export default class GameScene extends Phaser.Scene {
         timer.create();
         scoreBoard.create();
         grid.create();
-        numberButtonManager.create()
+        symbolButtonManager.create()
+        symbolButtonManager.createKeyboardListener()
     }
+
 
     levelFinished() {
         levelManager.resetPuzzleCount();

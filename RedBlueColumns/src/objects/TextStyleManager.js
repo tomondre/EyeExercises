@@ -9,6 +9,14 @@ export default class TextStyleManager {
         }
     }
 
+    static getTextStyleGrid(x) {
+        if (window.innerWidth > CONFIG.responsiveness.switchSizesWhenResolutionLowerThan) {
+            return {font: CONFIG.responsiveness.normalTextSize + "px Arial", fill: CONFIG.colors[x].value};
+        } else {
+            return {font: CONFIG.responsiveness.smallerTextSize + "px Arial", fill: CONFIG.colors[x].value};
+        }
+    }
+
     static getButtonTextSize() {
         if (window.innerWidth > CONFIG.responsiveness.switchSizesWhenResolutionLowerThan) {
             return {font: CONFIG.responsiveness.normalButtonTextSize + "px Arial", fill: "#FFFFFF"};

@@ -3,12 +3,12 @@ export const CONFIG = {
         arrowSizeToWindowWidthRatio: 0.03,
         arrowScale: 0.8,
         arrowsNo: 4,
-        arrowSizeToTotalSpaceRatio: 0.9
+        arrowSizeToTotalSpaceRatio: 1
     },
     arrowImageAngle: 90,
     scoreBoard: {
         increase: 10,
-        decrease: 5,
+        decrease: 10,
     },
     responsiveness: {
         normalTextSize: 40,
@@ -70,16 +70,138 @@ export const CONFIG = {
         [{
             levelNo: 1,
             rows: 6,
-            verticalOuterArrows: 1,
-            horizontalOuterArrows: 0,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
             correctPuzzlesToPassLevel: 2
         }, {
             levelNo: 2,
             rows: 7,
-            verticalOuterArrows: 1,
-            horizontalOuterArrows: 0,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
             correctPuzzlesToPassLevel: 2
-            }],
+        },{
+            levelNo: 3,
+            rows: 8,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 4,
+            rows: 9,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
+            correctPuzzlesToPassLevel: 2
+        },{
+            levelNo: 5,
+            rows: 10,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 6,
+            rows: 11,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 7,
+            rows: 12,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 1,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 8,
+            rows: 6,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 9,
+            rows: 7,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 10,
+            rows: 8,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 11,
+            rows: 9,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 12,
+            rows: 10,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }, {
+            levelNo: 13,
+            rows: 11,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 14,
+            rows: 12,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 2,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 15,
+            rows: 6,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 16,
+            rows: 7,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 17,
+            rows: 8,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 18,
+            rows: 9,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 19,
+            rows: 10,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 20,
+            rows: 11,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }
+            , {
+            levelNo: 21,
+            rows: 12,
+            verticalOuterArrows: 0,
+            horizontalOuterArrows: 3,
+            correctPuzzlesToPassLevel: 2
+        }],
     symbolAmount: {
         amount: 6
     },
@@ -100,10 +222,9 @@ export const CONFIG = {
     percentOfSuccessToPassLevel: 0.89,
     colors:
         [
-            {value: "0x66ffff"},
-            {value: "0xFFFFFF"},
-            {value: "0xff6666"},
-            {value: "0xffffff"}
+            {value: "#66ffff"},
+            {value: "#000000"},
+            {value: "#ff6666"},
         ],
 
 }

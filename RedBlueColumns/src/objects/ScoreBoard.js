@@ -11,6 +11,8 @@ let numberOfIncorrectEntries = 0;
 let passed = 0;
 let levelManager;
 
+let streak = 0;
+
 export default class ScoreBoard {
     constructor(Scene, LeveManager) {
         scene = Scene;
@@ -30,23 +32,29 @@ export default class ScoreBoard {
         scoreCount += CONFIG.scoreBoard.increase;
         numberOfCorrectEntries++;
         numberOfEntries++;
+        if(streak >= 3){
+            scoreCount += CONFIG.scoreBoard.increase;
+            streak = 0;
+        }
+        else {
+            streak++;
+        }
         this.update();
     }
     decreaseScore(){
         scoreCount -= CONFIG.scoreBoard.decrease;
         numberOfIncorrectEntries++;
         numberOfEntries++;
+        streak = 0;
         this.update();
     }
-    reset() {
-        scoreCount = 0;
-    }
 
-    resetLevelCheck()
+    reset()
     {
         numberOfIncorrectEntries = 0;
         numberOfEntries = 0;
         numberOfCorrectEntries = 0;
+        passed = 0;
     }
     isLevelPassed()
     {

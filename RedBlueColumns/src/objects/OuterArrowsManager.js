@@ -38,11 +38,15 @@ export default class OuterArrowsManager {
         arrowReading = 0;
     }
 
-    getArrowReadingX() {
-        let arrow = outerArrows[arrowReading];
-        return arrow.getArrowPlace() - levelManager.getRowCount();
-    }
     getArrowReadingY() {
+        let arrow = outerArrows[arrowReading];
+        let y = arrow.getArrowPlace() - levelManager.getRowCount();
+        if(y < 0){
+            y = (y * -1) - 1
+        }
+        return y;
+    }
+    getArrowReadingX() {
         let arrow = outerArrows[arrowReading];
         return arrow.getDepthReading();
     }
@@ -60,7 +64,7 @@ export default class OuterArrowsManager {
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
         let x = ((windowWidth - gridLength) / 2) + 10;
-        let y = (window.innerHeight - gridLength) / 2;
+        let y = ((window.innerHeight - gridLength) / 2) + 20;
         let gap = gridLength / levelManager.getRowCount();
 
         let arrowCount = 1;
@@ -90,7 +94,7 @@ export default class OuterArrowsManager {
             image.setScale((arrowGridLengthRatio / image.width) * CONFIG.grid.arrowSizeToTotalSpaceRatio);
             image.setTint(0x00ff00);
 
-            let style = TextStyleManager.getTextStyle()
+            let style = TextStyleManager.getButtonTextSize()
             let text = scene.add.text(arrowX, arrowY, arrowCount++, style).setOrigin(0.5)
             text.setAngle(textAngle);
             outerArrowsImages[i] = image;

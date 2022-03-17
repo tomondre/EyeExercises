@@ -1,5 +1,5 @@
 import TextStyleManager from "./TextStyleManager";
-import {CONFIG, config} from "../configs/config";
+import {CONFIG} from "../configs/config";
 
 
 let scene;
@@ -12,7 +12,7 @@ let callBack;
 
 
 //TODO set numbers position so it is responsive to all screens (X, Y of left bottom of grid and start generating from there)
-export default class NumberButtonManager {
+export default class SymbolButtonManager {
     constructor(Scene, levesManager, CallBack) {
         scene = Scene;
         levelManager = levesManager;
@@ -34,16 +34,21 @@ export default class NumberButtonManager {
                     .setPadding(8)
                     .setStyle({ backgroundColor: '#006400' })
                     .setInteractive({ useHandCursor: true })
-                    .on('pointerdown', () => this.getClickedButton(symbol[i]))
+                    .on('pointerdown', () => callBack(symbol[i]))
                     .on('pointerover', () => button[i].setStyle({ backgroundColor: '#003C00' }))
                     .on('pointerout', () => button[i].setStyle({ backgroundColor: '#006400' }))
             }
         }
     }
 
-    getClickedButton(i) {
-        callBack(i.value);
+    createKeyboardListener(){
+        document.addEventListener('keydown', function (event) {
+            if(event.key != null){
+                callBack(event.key.toUpperCase());
+            }
+        })
     }
+
 
 
 
