@@ -32,7 +32,6 @@ ghpages.publish('AnalgyphExercise', AnalgyphExerciseSettings, () => {
                     dest: 'SmoothPursuit',
                     branch: 'gh-pages'
                 };
-
                 ghpages.publish('SmoothPursuit/dist', SmoothPursuitSettings, () => {
                     console.log("SmoothPursuit deployed")
                 }).then(() => console.log("Great Success!"));
