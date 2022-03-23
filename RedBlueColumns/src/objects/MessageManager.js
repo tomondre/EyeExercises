@@ -25,6 +25,18 @@ export default class MessageManager {
         }, 1000);
     }
 
+    displayTimePassed(callback){
+        let text = CONFIG.messages.timeOver.text;
+        let textObject = this.displayMessage(text);
+        levelPassedInterval = setInterval(() => {
+            if (--nextLevelTimeDuration === 0) {
+                clearInterval(levelPassedInterval);
+                callback();
+            }
+            textObject.setText(text);
+        }, 1000);
+    }
+
     displayLevelNotPassedMessage(callback) {
         this.displayMessage(CONFIG.messages.puzzleNotPassed.text);
         this.displayConfirmButton(callback);

@@ -81,4 +81,11 @@ export default class GameScene extends Phaser.Scene {
         timer.pause();
         symbolButtonManager.removeListener();
     }
+    timeOver() {
+        this.pauseGame();
+        messageManager.displayTimePassed(() => this.timeOverAction());
+    }
+    timeOverAction(){
+
+    }
 }

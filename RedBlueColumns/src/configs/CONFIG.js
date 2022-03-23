@@ -21,6 +21,12 @@ export const CONFIG = {
         pointeroutColor: 0xffA500,
         pointeroverColor: 0xff0000
     },
+    Board:{
+        timerHeight:0.01,
+        scoreHeight:0.07,
+        timerWidth:0.02,
+        scoreWidth:0.02,
+    },
     messages: {
         levelPassed: {
             textFirstPart: "Great Job! Level ",
@@ -31,11 +37,6 @@ export const CONFIG = {
         puzzleNotPassed: {
             text: "Puzzle failed. Try again on next one.",
         },
-        changeEye: {
-            text: "Change Eye",
-            buttonOne: "Change Eye",
-            buttonTwo: "Continue Level"
-        },
         gameFinished: {
             text: "Congratulation, you have successfully finished the game!",
         },
@@ -43,10 +44,6 @@ export const CONFIG = {
             text: "Do you wish to go down one level?",
             buttonOne: "Confirm",
             buttonTwo: "Reject"
-        }, lastChangeEye: {
-            text: "You have finished daily exercise. Would you like to continue or exit the game?",
-            buttonOne: "Exit",
-            buttonTwo: "Continue"
         },
         rotateScreen: {
             text: "Please, rotate your screen."
@@ -54,16 +51,16 @@ export const CONFIG = {
         exitMessage: {
             text: "Thank you"
         },
-        changeEyeButton: {
-            text: "Press here to change eye"
-        },
         exitGameButton: {
             text: "Press here to exit the game"
         },
         confirmButton: {
             text: "Confirm"
         },
-        height: 0.84,
+        timeOver: {
+            text: "Daily training finished"
+        },
+        height: 0.065,
         buttonHeight: 0.88
     },
     levels:

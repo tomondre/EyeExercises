@@ -1,4 +1,5 @@
 import TextStyleManager from "./TextStyleManager";
+import {CONFIG} from "../configs/CONFIG";
 import {CST} from "./CST";
 
 let scene;
@@ -13,7 +14,7 @@ export default class Timer {
     constructor(Scene, cb) {
         scene = Scene;
         callback = cb;
-        time = 150;
+        time = 2;
         if (time === -1)
         {
             shouldTimerBeDisplayed = false;
@@ -25,7 +26,7 @@ export default class Timer {
             return;
         clearInterval(timerInterval);
         let style = TextStyleManager.getTextStyle();
-        timerObject = scene.add.text(window.innerWidth * 0.1, window.innerHeight * 0.07, "", style);
+        timerObject = scene.add.text(window.innerWidth * CONFIG.Board.timerWidth, window.innerHeight * CONFIG.Board.timerHeight, "", style);
 
         this.update();
         this.continue();
