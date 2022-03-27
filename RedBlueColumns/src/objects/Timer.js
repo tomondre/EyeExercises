@@ -1,4 +1,5 @@
 import TextStyleManager from "./TextStyleManager";
+import FetchDataManager from "./FetchDataManager";
 import {CONFIG} from "../configs/CONFIG";
 import {CST} from "./CST";
 
@@ -14,7 +15,6 @@ export default class Timer {
     constructor(Scene, cb) {
         scene = Scene;
         callback = cb;
-        time = 2;
         if (time === -1)
         {
             shouldTimerBeDisplayed = false;
@@ -22,6 +22,7 @@ export default class Timer {
     }
 
     create() {
+        time = FetchDataManager.getTrainingTime();
         if (!shouldTimerBeDisplayed)
             return;
         clearInterval(timerInterval);

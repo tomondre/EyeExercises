@@ -227,4 +227,8 @@ export const CONFIG = {
         wrong:"#8b0000",
         correct:"#FFFFFF"
     },
+    timerSettings:{
+        buttonSymbols:["-", "Confirm", "+"],
+        text: "Time for daily training"
+    },
 }

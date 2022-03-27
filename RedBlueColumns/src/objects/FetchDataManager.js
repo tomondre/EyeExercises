@@ -1,30 +1,29 @@
 
 export default class FetchDataManager {
-    static saveEyeLevelIndex(eye, level){
-            window.localStorage.setItem("904/Level/" + eye.toString(), level);
+    static saveLevelIndex(level){
+        window.localStorage.setItem("904/Level/", level);
     }
 
-    static getEyeLevelIndex(eye)
+    static getLevelIndex()
     {
-        var index =  window.localStorage.getItem("904/Level/" + eye.toString());
+        var index =  window.localStorage.getItem("904/Level/");
         if (index === null)
             return 0;
         else
-            console.log(parseInt(index));
             return parseInt(index);
     }
 
-    static getEyeTime(eye)
+    static saveTrainingTime(time){
+        window.localStorage.setItem("905/Time/", time);
+    }
+
+    static getTrainingTime()
     {
-        let time =  window.localStorage.getItem("904/Time/" + eye.toString());
-        if (time === null)
+        var index =  window.localStorage.getItem("905/Time/");
+        if (index === null)
             return 150;
         else
-            return parseInt(time);
-
+            return parseInt(index);
     }
 
-    static saveEyeTime(eye, time) {
-        window.localStorage.setItem("904/Time/" + eye.toString(), time);
-    }
 }

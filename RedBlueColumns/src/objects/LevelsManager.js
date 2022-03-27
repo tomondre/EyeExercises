@@ -11,7 +11,7 @@ export default class LevelsManager {
 
     create() {
         if (firstFetch) {
-            currentLevelIndex = 0;
+            currentLevelIndex = FetchDataManager.getLevelIndex();
             firstFetch = false;
         }
     }

@@ -52,6 +52,16 @@ export default class MessageManager {
             call();
         };
     }
+    displayConfirmLevelDownMassage(confirmCallback, rejectCallback) {
+        let text = this.displayMessage(CONFIG.messages.confirmLevelDown.text);
+        this.displayChooseOneButtons(CONFIG.messages.confirmLevelDown, () => {
+            text.destroy();
+            confirmCallback();
+        }, () => {
+            text.destroy();
+            rejectCallback();
+        }, text);
+    }
 
     removeInterval()
     {
@@ -65,5 +75,31 @@ export default class MessageManager {
         let messageText = scene.add.text(windowWidth * 0.5, windowHeight * CONFIG.messages.height, message, endMessageStyle);
         messageText.setOrigin(0.5);
         return messageText;
+    }
+
+
+
+
+
+    displayChooseOneButtons(message, confirmCallback, rejectCallback) {
+        let acceptButton = document.getElementById("confirmButton");
+        acceptButton.style.visibility = "visible";
+        acceptButton.innerText = message.buttonOne;
+        acceptButton.style.fontSize = TextStyleManager.getButtonTextSize();
+        acceptButton.onclick = () => {
+            acceptButton.style.visibility = "hidden";
+            rejectButton.style.visibility = "hidden";
+            confirmCallback();
+        }
+
+        let rejectButton = document.getElementById("rejectButton");
+        rejectButton.style.visibility = "visible";
+        rejectButton.innerText = message.buttonTwo;
+        rejectButton.style.fontSize = TextStyleManager.getButtonTextSize();
+        rejectButton.onclick = () => {
+            acceptButton.style.visibility = "hidden";
+            rejectButton.style.visibility = "hidden";
+            rejectCallback();
+        };
     }
 }

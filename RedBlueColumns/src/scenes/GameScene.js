@@ -6,6 +6,8 @@ import Timer from "../objects/Timer";
 import Grid from "../objects/Grid";
 import SymbolButtonManager from "../objects/SymbolButtonManager";
 import MessageManager from "../objects/MessageManager";
+import FetchDataManager from "../objects/FetchDataManager";
+import TimerSetting from "../objects/TimerSetting";
 
 
 let levelManager;
@@ -14,6 +16,9 @@ let timer;
 let grid;
 let symbolButtonManager;
 let messageManager;
+let timeSetting;
+
+let isTimeSet = false;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -23,17 +28,39 @@ export default class GameScene extends Phaser.Scene {
         grid = new Grid(this, levelManager, () => this.puzzleFinished());
         scoreBoard = new ScoreBoard(this, levelManager);
         timer = new Timer(this, () => this.timeOver());
+        timeSetting = new TimerSetting(this, () => this.switchView())
         symbolButtonManager = new SymbolButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
         messageManager = new MessageManager(this);
     }
 
     create() {
+        console.log("hmmm" + isTimeSet)
+        if(!isTimeSet)
+            this.createBeforeGame()
+        else
+            this.createGame()
+    }
+    switchView(){
+        timeSetting.destroy();
+        isTimeSet = true;
+        console.log("hmmm")
+        this.create();
+    }
+    createBeforeGame(){
+        document.getElementById("levelDown").style.visibility = "hidden";
+        timeSetting.create();
+    }
+    createGame(){
+        document.getElementById("levelDown").style.visibility = "visible";
         levelManager.create();
         timer.create();
         scoreBoard.create();
         grid.create();
         symbolButtonManager.create()
         symbolButtonManager.createKeyboardListener()
+        FetchDataManager.saveLevelIndex( levelManager.getCurrentLevelIndex());
+        if (levelManager.getCurrentLevel() !== 1)
+            document.getElementById("levelDown").onclick = () => this.confirmLevelDown();
     }
 
 
@@ -87,5 +114,20 @@ export default class GameScene extends Phaser.Scene {
     }
     timeOverAction(){
 
+    }
+    confirmLevelDown() {
+        this.pauseGame();
+        messageManager.displayConfirmLevelDownMassage(() => this.levelDown(), () => this.continueGame());
+    }
+    continueGame() {
+        timer.continue();
+        this.createKeyboardListeners();
+    }
+    levelDown() {
+        scoreBoard.reset();
+        scoreBoard.resetEntryValues();
+        levelManager.goDownOneLevel();
+        grid.destroy();
+        this.restartScene();
     }
 }
