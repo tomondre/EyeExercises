@@ -10,6 +10,7 @@ import FetchDataManager from "../objects/FetchDataManager";
 import TimerSetting from "../objects/TimerSetting";
 
 
+
 let levelManager;
 let scoreBoard;
 let timer;
@@ -18,7 +19,7 @@ let symbolButtonManager;
 let messageManager;
 let timeSetting;
 
-let isTimeSet = false;
+let isTimeSet;
 
 
 export default class GameScene extends Phaser.Scene {
@@ -31,10 +32,10 @@ export default class GameScene extends Phaser.Scene {
         timeSetting = new TimerSetting(this, () => this.switchView())
         symbolButtonManager = new SymbolButtonManager(this, levelManager, (symbol) => this.symbolCheck(symbol));
         messageManager = new MessageManager(this);
+        isTimeSet = FetchDataManager.isTimeSet();
     }
 
     create() {
-        console.log("hmmm" + isTimeSet)
         if(!isTimeSet)
             this.createBeforeGame()
         else
@@ -43,10 +44,11 @@ export default class GameScene extends Phaser.Scene {
     switchView(){
         timeSetting.destroy();
         isTimeSet = true;
-        console.log("hmmm")
         this.create();
     }
     createBeforeGame(){
+        document.getElementById("restartWindowButton").style.visibility = "visible";
+        document.getElementById("restartWindowButton").onclick = () => this.restartScene();
         document.getElementById("levelDown").style.visibility = "hidden";
         timeSetting.create();
     }
@@ -102,11 +104,17 @@ export default class GameScene extends Phaser.Scene {
     }
 
     restartScene() {
+        timer.saveCurrent();
+        timer.updateTime();
+        timer.setToContinue();
+
+        //FetchDataManager.switchTimeSet();
+
         this.scene.restart();
     }
     pauseGame() {
         timer.pause();
-        symbolButtonManager.removeListener();
+        //symbolButtonManager.removeListener();
     }
     timeOver() {
         this.pauseGame();

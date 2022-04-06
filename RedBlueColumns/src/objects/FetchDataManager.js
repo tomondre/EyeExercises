@@ -25,5 +25,35 @@ export default class FetchDataManager {
         else
             return parseInt(index);
     }
+    static saveCurrentTrainingTime(time){
+        window.localStorage.setItem("906/CurrentTime/", time);
+    }
+
+    static getCurrentTrainingTime()
+    {
+        var index =  window.localStorage.getItem("906/CurrentTime/");
+        if (index === null)
+            return 150;
+        else
+            return parseInt(index);
+    }
+
+    static switchTimeSet(){
+        if(this.isTimeSet() === false){
+            window.localStorage.setItem("907/TimeSet/", true);
+        }
+        else{
+            window.localStorage.setItem("907/TimeSet/", false);
+        }
+    }
+
+    static isTimeSet()
+    {
+        var bol =  window.localStorage.getItem("907/TimeSet/");
+        if (bol === null)
+            return false;
+        else
+            return parseInt(bol);
+    }
 
 }

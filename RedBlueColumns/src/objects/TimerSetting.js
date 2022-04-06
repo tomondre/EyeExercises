@@ -79,6 +79,8 @@ export default class TimerSetting {
                 break;
             case "Confirm":
                 FetchDataManager.saveTrainingTime(time);
+                FetchDataManager.saveCurrentTrainingTime(time);
+                FetchDataManager.switchTimeSet();
                 callback();
                 break;
         }

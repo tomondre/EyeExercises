@@ -22,7 +22,7 @@ export default class Timer {
     }
 
     create() {
-        time = FetchDataManager.getTrainingTime();
+        this.updateTime()
         if (!shouldTimerBeDisplayed)
             return;
         clearInterval(timerInterval);
@@ -37,6 +37,24 @@ export default class Timer {
         if (!shouldTimerBeDisplayed)
             return;
         timerObject.setText("Daily training: " + time);
+    }
+
+    updateTime(){
+        if(FetchDataManager.getCurrentTrainingTime() !== 0 || FetchDataManager.getCurrentTrainingTime() !== null){
+            time = FetchDataManager.getCurrentTrainingTime();
+        }
+        else{
+            time = FetchDataManager.getTrainingTime()
+        }
+    }
+
+    saveCurrent(){
+        if(time !== 0) {
+            FetchDataManager.saveCurrentTrainingTime(time);
+        }
+        else {
+            FetchDataManager.saveCurrentTrainingTime(FetchDataManager.getTrainingTime())
+        }
     }
 
     destroy() {
@@ -65,6 +83,10 @@ export default class Timer {
             return;
         if (shouldTimerBeContinued)
             timerInterval = setInterval(() => this.tick(), 1000);
+    }
+
+    setToContinue(){
+        shouldTimerBeContinued = true;
     }
 
 
