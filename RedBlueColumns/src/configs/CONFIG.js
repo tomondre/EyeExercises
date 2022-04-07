@@ -66,7 +66,7 @@ export const CONFIG = {
     levels:
         [{
             levelNo: 1,
-            rows: 3,
+            rows: 6,
             verticalOuterArrows: 0,
             horizontalOuterArrows: 1,
             correctPuzzlesToPassLevel: 2
