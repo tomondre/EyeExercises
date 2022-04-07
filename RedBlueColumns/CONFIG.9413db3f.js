@@ -149,7 +149,7 @@ var CONFIG = {
   },
   Board: {
     timerHeight: 0.01,
-    scoreHeight: 0.07,
+    scoreHeight: 0.05,
     timerWidth: 0.02,
     scoreWidth: 0.02
   },
@@ -186,12 +186,12 @@ var CONFIG = {
     timeOver: {
       text: "Daily training finished"
     },
-    height: 0.065,
+    height: 0.045,
     buttonHeight: 0.88
   },
   levels: [{
     levelNo: 1,
-    rows: 6,
+    rows: 3,
     verticalOuterArrows: 0,
     horizontalOuterArrows: 1,
     correctPuzzlesToPassLevel: 2
@@ -378,7 +378,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53175" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51908" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
