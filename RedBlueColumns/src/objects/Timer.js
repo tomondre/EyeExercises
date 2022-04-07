@@ -26,7 +26,7 @@ export default class Timer {
         if (!shouldTimerBeDisplayed)
             return;
         clearInterval(timerInterval);
-        let style = TextStyleManager.getTextStyle();
+        let style = TextStyleManager.getSmallerTextSize();
         timerObject = scene.add.text(window.innerWidth * CONFIG.Board.timerWidth, window.innerHeight * CONFIG.Board.timerHeight, "", style);
 
         this.update();

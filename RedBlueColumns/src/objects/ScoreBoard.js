@@ -20,7 +20,7 @@ export default class ScoreBoard {
     }
 
     create() {
-        let style = TextStyleManager.getTextStyle();
+        let style = TextStyleManager.getSmallerTextSize();
         scoreBoardObject = scene.add.text(window.innerWidth * CONFIG.Board.scoreWidth, window.innerHeight * CONFIG.Board.scoreHeight, "Score: " + scoreCount, style);
     }
 

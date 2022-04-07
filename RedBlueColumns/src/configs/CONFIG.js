@@ -23,7 +23,7 @@ export const CONFIG = {
     },
     Board:{
         timerHeight:0.01,
-        scoreHeight:0.07,
+        scoreHeight:0.05,
         timerWidth:0.02,
         scoreWidth:0.02,
     },
@@ -60,13 +60,13 @@ export const CONFIG = {
         timeOver: {
             text: "Daily training finished"
         },
-        height: 0.065,
+        height: 0.045,
         buttonHeight: 0.88
     },
     levels:
         [{
             levelNo: 1,
-            rows: 6,
+            rows: 3,
             verticalOuterArrows: 0,
             horizontalOuterArrows: 1,
             correctPuzzlesToPassLevel: 2

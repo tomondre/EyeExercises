@@ -24,4 +24,8 @@ export default class TextStyleManager {
             return {font: CONFIG.responsiveness.smallerButtonTextSize + "px Arial", fill: "#FFFFFF"};
         }
     }
+
+    static getSmallerTextSize(){
+        return {font: CONFIG.responsiveness.smallerTextSize + "px Arial", fill: "#000000"};
+    }
 }

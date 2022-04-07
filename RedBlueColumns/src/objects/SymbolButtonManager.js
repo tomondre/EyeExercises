@@ -23,7 +23,7 @@ export default class SymbolButtonManager {
         symbol = CONFIG.symbols;
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
-        let gap = gridLength / levelManager.getRowCount();
+        let gap = 45;
         let x = ((windowWidth - gridLength) / 2);
         let y = ((window.innerHeight - gridLength) / 2) + (levelManager.getRowCount() + 1) * gap ;
 

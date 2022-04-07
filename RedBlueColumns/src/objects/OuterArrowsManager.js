@@ -61,11 +61,12 @@ export default class OuterArrowsManager {
     }
 
     displayOuterArrows() {
+        let gap = 45;
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
-        let x = ((windowWidth - gridLength) / 2) + 10;
-        let y = ((window.innerHeight - gridLength) / 2) + 20;
-        let gap = gridLength / levelManager.getRowCount();
+        let x = ((windowWidth - gridLength) / 2) + gap / 3;
+        let y = ((window.innerHeight - gridLength) / 3) + gap / 3;
+
 
         let arrowCount = 1;
 

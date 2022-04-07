@@ -12,6 +12,7 @@ let outerArrows;
 let levelUpCB;
 
 
+
 export default class Grid {
     constructor(Scene, levelsManager, levelUpCb) {
         scene = Scene;
@@ -31,9 +32,9 @@ export default class Grid {
         let windowWidth = window.innerWidth;
         let gridLength = windowWidth * (CONFIG.grid.arrowSizeToWindowWidthRatio * levelManager.getRowCount());
         let x = (windowWidth - gridLength) / 2;
-        let y = (window.innerHeight - gridLength) / 2;
+        let y = (window.innerHeight - gridLength) / 3;
         let numberOfSymbols = levelManager.getRowCount();
-        let gap = gridLength / numberOfSymbols;
+        let gap = 45;
 
         for (let i = 0; i < numberOfSymbols; i++) {
             let row = [];
