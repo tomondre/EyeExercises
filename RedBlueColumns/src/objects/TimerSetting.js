@@ -60,13 +60,17 @@ export default class TimerSetting {
     }
 
     increase() {
-        time += 20;
-        this.update();
+        if(time < 600) {
+            time += 10;
+            this.update();
+        }
     }
 
     decrease() {
-        time -= 20;
-        this.update();
+        if(time > 60) {
+            time -= 10;
+            this.update();
+        }
     }
 
     onClick(x){
