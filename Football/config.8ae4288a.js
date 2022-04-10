@@ -137,8 +137,9 @@ var CONFIG = {
   ball: {
     ballSize: 100,
     defaultSpeed: 60000 / 80,
-    speedIncreaseInMilliseconds: 50,
-    speedDecreaseInMilliseconds: 50
+    speedIncreaseInMilliseconds: 30,
+    speedDecreaseInMilliseconds: 30,
+    maxSpeedInMilliseconds: 300
   },
   score: {
     increase: 10,
@@ -192,7 +193,7 @@ var CONFIG = {
     rightSpanXMin: 0.74,
     rightSpanXMax: 0.75,
     dotSize: 10,
-    lowerIntervalLimit: 599,
+    lowerIntervalLimit: 601,
     upperIntervalLimit: 1200,
     numberOfSymbols: 1
   }, {
@@ -204,7 +205,7 @@ var CONFIG = {
     rightSpanXMin: 0.74,
     rightSpanXMax: 0.75,
     dotSize: 9,
-    lowerIntervalLimit: 501,
+    lowerIntervalLimit: 561,
     upperIntervalLimit: 600,
     numberOfSymbols: 1
   }, {
@@ -216,8 +217,8 @@ var CONFIG = {
     rightSpanXMin: 0.70,
     rightSpanXMax: 0.80,
     dotSize: 8,
-    lowerIntervalLimit: 429,
-    upperIntervalLimit: 500,
+    lowerIntervalLimit: 521,
+    upperIntervalLimit: 560,
     numberOfSymbols: 2
   }, {
     //D
@@ -228,8 +229,8 @@ var CONFIG = {
     rightSpanXMin: 0.70,
     rightSpanXMax: 0.80,
     dotSize: 7,
-    lowerIntervalLimit: 376,
-    upperIntervalLimit: 428,
+    lowerIntervalLimit: 481,
+    upperIntervalLimit: 520,
     numberOfSymbols: 2
   }, {
     //E
@@ -240,8 +241,8 @@ var CONFIG = {
     rightSpanXMin: 0.65,
     rightSpanXMax: 0.85,
     dotSize: 6,
-    lowerIntervalLimit: 334,
-    upperIntervalLimit: 375,
+    lowerIntervalLimit: 441,
+    upperIntervalLimit: 480,
     numberOfSymbols: 3
   }, {
     //F
@@ -252,8 +253,8 @@ var CONFIG = {
     rightSpanXMin: 0.65,
     rightSpanXMax: 0.85,
     dotSize: 5,
-    lowerIntervalLimit: 301,
-    upperIntervalLimit: 333,
+    lowerIntervalLimit: 401,
+    upperIntervalLimit: 440,
     numberOfSymbols: 3
   }, {
     //G
@@ -264,8 +265,8 @@ var CONFIG = {
     rightSpanXMin: 0.60,
     rightSpanXMax: 0.90,
     dotSize: 5,
-    lowerIntervalLimit: 273,
-    upperIntervalLimit: 300,
+    lowerIntervalLimit: 361,
+    upperIntervalLimit: 400,
     numberOfSymbols: 4
   }, {
     //H
@@ -276,8 +277,8 @@ var CONFIG = {
     rightSpanXMin: 0.60,
     rightSpanXMax: 0.90,
     dotSize: 5,
-    lowerIntervalLimit: 0,
-    upperIntervalLimit: 372,
+    lowerIntervalLimit: 300,
+    upperIntervalLimit: 321,
     numberOfSymbols: 4
   }],
   eyeDisplay: {
@@ -313,7 +314,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58140" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58272" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
