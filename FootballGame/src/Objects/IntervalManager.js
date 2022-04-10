@@ -72,7 +72,7 @@ export default class IntervalManager {
     }
 
     increaseBallIntervalSpeed() {
-        if (ballIntervalTime > 250)
+        if (ballIntervalTime > CONFIG.ball.maxSpeedInMilliseconds)
             ballIntervalTime -= CONFIG.ball.speedDecreaseInMilliseconds;
         this.createBallInterval();
     }
