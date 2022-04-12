@@ -3,7 +3,8 @@ import TextStyleManager from "./TextStyleManager";
 
 let scene;
 let levelPassedInterval;
-let nextLevelTimeDuration
+let nextLevelTimeDuration;
+let message;
 
 export default class MessageManager {
 
@@ -13,8 +14,14 @@ export default class MessageManager {
 
 
     displayLevelPassedMessage(callback, currentLevel) {
-        let message = CONFIG.messages.levelPassed;
-        nextLevelTimeDuration = CONFIG.messages.levelPassed.timeLength;
+        if(currentLevel < CONFIG.levels.length){
+            message = CONFIG.messages.levelPassed;
+            nextLevelTimeDuration = CONFIG.messages.levelPassed.timeLength;
+        }
+        else{
+            message = CONFIG.messages.exercisesFinished;
+            nextLevelTimeDuration = CONFIG.messages.exercisesFinished.timeLength;
+        }
         let text = message.textFirstPart + currentLevel + message.textSecondPart + nextLevelTimeDuration + message.textThirdPart;
         let textObject = this.displayMessage(text);
          levelPassedInterval = setInterval(() => {

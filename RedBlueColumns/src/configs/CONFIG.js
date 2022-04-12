@@ -34,6 +34,12 @@ export const CONFIG = {
             textThirdPart: " seconds",
             timeLength: 3
         },
+        exercisesFinished: {
+            textFirstPart: "Great Job! Level ",
+            textSecondPart: " has been passed,\n Exercises completed and starts again in: ",
+            textThirdPart: " seconds",
+            timeLength: 5
+        },
         puzzleNotPassed: {
             text: "Puzzle failed. Try again on next one.",
         },

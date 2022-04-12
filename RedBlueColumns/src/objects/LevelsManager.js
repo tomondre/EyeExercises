@@ -17,7 +17,12 @@ export default class LevelsManager {
     }
 
     levelFinished() {
-        currentLevelIndex++;
+        if(currentLevelIndex !== CONFIG.levels.length - 1) {
+            currentLevelIndex++;
+        }
+        else {
+            currentLevelIndex = 0;
+        }
     }
 
     puzzlePassed() {
