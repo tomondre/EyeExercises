@@ -1,0 +1,25 @@
+{
+  "name": "3dtraining",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build index.html --public-url ./",
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^17.0.8",
+    "ajax": "^0.0.4",
+    "jquery": "^3.6.0",
+    "p5": "^1.4.0",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
