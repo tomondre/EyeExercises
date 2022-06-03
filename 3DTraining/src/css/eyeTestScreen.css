@@ -1,0 +1,114 @@
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.keypad-key
+{
+    border: 1px solid #eeeeee;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px 15px;
+    text-align:center;
+    color: #ffffff;
+    font-weight:bold;
+    margin: 1px 15px;
+    display:inline-block;
+}
+.keypad-key.highlight
+{
+    background-color: #999999;
+    color: #000000;
+}
+/*******************************************
+Labyrint styles
+********************************************/
+.LabyrintImage
+{
+    text-align: center;
+    border: 0px;
+}
+
+.LabyrintMenu
+{
+    text-align: center;
+    width: 100%;
+    border: 1px solid black;
+}
+
+/*******************************************
+Extralevel C styles
+********************************************/
+.elcText
+{
+    font-family: Courier New;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.4em;
+}
+
+.rightMenuText
+{
+    background-color: #99D8CE;
+    padding-right: 0px;
+    padding-left: 0px;
+    color: Black;
+}
+
+.rightMenuLabel
+{
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Arial, Verdana;
+    background-color: #99D8CE;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: Black;
+}
+
+/*******************************************
+General styles
+********************************************/
+a { color: #ffffff !important; }
+a:visited
+{
+    /*font-family: Arial, Helvetica, Verdana;
+    font-size: 13px;
+    font-weight: bold;*/
+    color: white;
+    text-decoration: none;
+}
+
+a:link
+{
+    /*font-family: Arial, Helvetica, Verdana;
+    font-size: 13px;
+    font-weight: bold;*/
+    color: white;
+    text-decoration: none;
+}
+
+a:active
+{
+    /*font-family: Arial, Helvetica, Verdana;
+    font-size: 13px;
+    font-weight: bold;*/
+    color: white;
+    text-decoration: none;
+}
+
+a:hover
+{
+    /*	font-family: Arial, Helvetica, Verdana;
+        font-size: 13px;
+        font-weight: bold;*/
+    color: white;
+    text-decoration: underline;
+}
+
+#scoreTime{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}

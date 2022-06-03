@@ -1,31 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>3D Training</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+    Screen test
+</title>
+<!--    <script type="text/javascript" src="src/EditedOriginal/js/jquery1.8.3.min.js"></script>-->
+<!--    <script type="text/javascript" src="src/EditedOriginal/js/tye.js"></script>-->
+<!--    <script type="text/javascript" src="src/EditedOriginal/js/eyetest/flower.js"></script>-->
+    <script src="src/main.js"></script>
+    <link rel="stylesheet" href="src/style.css">
+<!--    <meta http-equiv="Expires" content="Fri, Jun 12 1981 08:20:00 GMT"/>-->
+<!--    <meta http-equiv="Pragma" content="no-cache"/>-->
+<!--    <meta http-equiv="Cache-Control" content="no-cache\"/>-->
 </head>
 <body>
-<!--<table id="defaultButtons">-->
-<!--    <tr>-->
-<!--        <td style="text-align:right;" class="closebuttons">-->
-<!--            <a href="#" id="restartWindowButton" class="positivesmall" onclick="window.location.reload(true);">-->
-<!--                Restart-->
-<!--            </a>-->
-<!--            <a href="#" id="exitWindowButton" class="negativesmall" onclick="window.close()">-->
-<!--                Close window-->
-<!--            </a>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td class="levelDown">-->
-<!--            <a href="#" id="levelDown" class="positivesmall" onclick="">Level Down</a>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--</table>-->
 
-<!--<script src="src/EditedOriginal/eyeTestScreen.js"></script>-->
+
+
+
+<div style="position:relative;margin:auto;top: 10px">
+
+
+    <input name="ctl00$CPHcontent$ctl00$level" type="hidden" id="CPHcontent_ctl00_level"/>
+
+    <div style="text-align:center;">
+        <div id="scoreTime" align="left">
+            <div id="scoreField" style="font-weight:bold">
+                Score: 0
+            </div>
+            <div id="timeField" style="font-weight:bold">
+                Time: 0
+            </div>
+        </div>
+        <div style="">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-spacing: 10px">
+                <tr>
+
+                    <td style="text-align:right;" class="closebuttons">
+                        <a href="#" class="positivesmall" onclick="window.location.reload(true);">
+                            restart
+                        </a>
+                        <a href="#" class="negativesmall" onclick="eyeTestScreen.stop();window.close();">
+                            close window
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="text-align:right;" class="Down">
+                        <a href="#" id="levelDown" onclick="window.location.reload(true);">
+                            level down
+                        </a>
+                        <a href="#" id="puzzleDown" onclick="window.location.reload(true);">
+                            level up
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+<!--        <table style="width: 100%; height: 100%; text-align: center">-->
+<!--            <tr>-->
+<!--                <td valign="middle" >-->
+<!--                    <table >-->
+<!--                        <tr >-->
+<!--                            <td valign="middle"><img src="" id="img3D"/></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td style="TEXT-ALIGN: center" valign="middle"><span-->
+<!--                                    id="input"></span><img id="inputImg" src=""-->
+<!--                                                                                usemap="#starmap" border="0"-->
+<!--                                                                                width="" height=""/></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+        <div>
+            <div  class="center"><img src="" id="img3D"/></div>
+            <div><img id="inputImg" src="" usemap="#starmap" border="0" width="" height=""/></div>
+            <div id="message" class="center"><p>asd</p></div>
+            <div id="confirmButtons">
+                <a id="cancel" class="positivesmall" onclick="">
+                    cancel
+                </a>
+                <a id="accept" class="positivesmall" onclick="">
+                    accept
+                </a>
+            </div>
+        </div>
+        <map id="starmap" name="starmap">
+            <area coords="" id="button1" shape="rect"  style="cursor: pointer" href="#" alt=""/>
+            <area coords="" id="button2" shape="rect"  href="#" alt=""/>
+            <area coords="" id="button3" shape="rect"  href="#" alt=""/>
+            <area coords="" id="button4" shape="rect"  href="#" alt=""/>
+            <area coords="" id="button5" shape="rect"  href="#" alt=""/>
+            <area coords="" id="button6" shape="rect"  href="#" alt=""/>
+        </map>
+
+        <br/><br/>
+        <input style="display:none;" type="button" value="Start" class="link positivesmall" id="btnStart"
+               onclick="Start();"/>
+    </div>
+
+    <br/><br/>
+
+</div>
+
+
+
+</form>
+<div id="stDebug"></div>
+
 
 </body>
 </html>

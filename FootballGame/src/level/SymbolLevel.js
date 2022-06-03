@@ -127,7 +127,7 @@ export default class SymbolLevel extends Phaser.Scene {
         clearTimeout(symbolTimeout);
         if (this.eyeManager.getEye() === CST.EYE.LEFT) {
             if (this.levelPassedManager.isLevelPassed()) {
-                if (levelNo !== 5) {
+                if (levelNo !== 2) {
                     EndLevelMessage(this, levelNo, () => this.symbolLevelUp());
                 } else
                     this.gameFinished();

@@ -1,6 +1,6 @@
-import {config} from "./Config/config";
+
 import p5 from "p5";
-import Game from "./EditedOriginal/game";
+import Game from "./objects/game";
 
 //Wrapper for p5.js
 const s = (sketch) => {
@@ -8,12 +8,11 @@ const s = (sketch) => {
 
     sketch.setup = function () {
         sketch.createCanvas(window.innerWidth, window.innerHeight);
-        sketch.frameRate(config.game.frameRate);
-        game = new Game(sketch);
+        game = new Game();
+        game.create()
     }
 
     sketch.draw = function () {
-        game.draw();
     }
 }
 new p5(s);

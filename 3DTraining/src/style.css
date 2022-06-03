@@ -1,7 +1,7 @@
 body {
     font-family: Arial, Tahoma;
     font-size: 14px;
-    color: #ffffff;
+    color: #000000;
     margin: 0px;
     padding: 0px;
     line-height: 24px;
@@ -80,8 +80,38 @@ body {
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a34c00, endColorstr=#cc3600);
 }
 
-table {
-    position: absolute;
+
+#levelDown,#puzzleDown{
+    font-size: 20px;
+    background: #cdab00;
+    background: -moz-linear-gradient(top, #cdab00 0%, #cdab00 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdab00), color-stop(100%, #cdab00));
+    background: -webkit-linear-gradient(top, #cdab00 0%, #cdab00 100%);
+    background: -o-linear-gradient(top, #cdab00 0%, #cdab00 100%);
+    background: -ms-linear-gradient(top, #cdab00 0%, #cdab00 100%);
+    background: linear-gradient(top, #cdab00 0%, #cdab00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5CCD00', endColorstr='#4AA400', GradientType=0);
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#cdab00, endColorstr=#cdab00);
+    padding: 0px 9px;
+    color: #ffffff;
+    /*font-family:'Helvetica Neue',sans-serif;*/
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #cdab00;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+#levelDown:hover, #puzzleDown:hover {
+    background: -moz-linear-gradient(top, #ffb700 0%, #ffb700 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffb700), color-stop(100%, #ffb700));
+    background: -webkit-linear-gradient(top, #ffb700 0%, #ffb700 100%);
+    background: -o-linear-gradient(top, #ffb700 0%, #ffb700 100%);
+    background: -ms-linear-gradient(top, #ffb700 0%, #ffb700 100%);
+    background: linear-gradient(top, #ffb700 0%, #ffb700 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a34c00', endColorstr='#cc3600', GradientType=0);
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffb700, endColorstr=#ffb700);
 }
 
 #defaultButtons {
@@ -107,4 +137,23 @@ table {
 
 .levelDown {
     text-align: center;
+}
+#scoreTime{
+    position: absolute;
+    left: 20px;
+    font-size: large;
+}
+
+#img3D{
+    width: 90%;
+    height: 90%;
+}
+
+#message{
+    font-size: xx-large;
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

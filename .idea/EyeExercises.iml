@@ -23,5 +23,6 @@
     <content url="file://$MODULE_DIR$/JumpingColumn/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-3.2.1" level="application" />
   </component>
 </module>
