@@ -3,7 +3,7 @@ import MessageManager from "./messageManager";
 
 let data
 let images
-let maxPuzzleLevel = 10
+let maxPuzzleLevel = 3
 
 let message
 
@@ -15,75 +15,74 @@ export default class LevelManager {
         this.setup()
     }
 
-    levelUp(){
-        if(this.getPuzzleIndex() < maxPuzzleLevel) {
+    levelUp() {
+        if (this.getPuzzleIndex() < maxPuzzleLevel) {
             this.puzzleUp()
             this.setup()
-        }
-        else {
-            if(data.getLevelIndex() < config.levels.length - 1) {
-                message.displayMessage(data.getLevelIndex(), () => this.nextPuzzleLevel())
-            }
-            else{
+        } else {
+            if (data.getLevelIndex() < config.levels.length - 1) {
+                data.savePuzzleIndex(0)
+                data.saveLevelIndex(data.getLevelIndex() + 1)
+                message.displayMessage(data.getLevelIndex(), () => this.setup())
+            } else {
                 console.log("congrats of exercise end")
             }
         }
     }
 
-    nextPuzzleLevel(){
-        data.savePuzzleIndex(0)
-        data.saveLevelIndex(data.getLevelIndex() + 1)
-        this.setup()
+
+    levelDown() {
+        if (data.getLevelIndex() > 0 || this.getPuzzleIndex() > 0) {
+            message.displayConfirmLevelDownMassage(() => this.setup(), () => {
+                if (this.getPuzzleIndex() > 0) {
+                    this.puzzleLevelDown()
+                } else if (data.getLevelIndex() > 0) {
+                    data.saveLevelIndex(data.getLevelIndex() - 1)
+                    data.savePuzzleIndex(maxPuzzleLevel)
+                }
+                this.setup()
+            })
+        }
+
     }
 
-
-    levelDown(){
-        if(this.getPuzzleIndex() > 0){
-            this.puzzleLevelDown()
-        }
-        else if(data.getLevelIndex() > 0 || this.getPuzzleIndex() > 0){
-            data.saveLevelIndex(data.getLevelIndex() - 1)
-            data.savePuzzleIndex(maxPuzzleLevel)
-        }
-        this.setup()
-    }
-
-    puzzleUp(){
+    puzzleUp() {
         data.savePuzzleIndex(this.getPuzzleIndex() + 1)
     }
-    puzzleLevelDown(){
+
+    puzzleLevelDown() {
         data.savePuzzleIndex(this.getPuzzleIndex() - 1)
     }
 
 
-    getLevelName(){
+    getLevelName() {
         return config.levels[data.getLevelIndex()].levelName
     }
 
-    getLevelIndex(){
+    getLevelIndex() {
         return data.getLevelIndex()
     }
 
-    getPuzzleIndex(){
+    getPuzzleIndex() {
         return data.getPuzzleIndex()
     }
 
 
-    getImages(){
+    getImages() {
         return images
     }
 
-    getImageDirector(){
-        return  "img/"+ this.getLevelName() +"/";
+    getImageDirector() {
+        return "img/" + this.getLevelName() + "/";
     }
 
-    setup(){
+    setup() {
         this.setupPictures()
         this.setupInputField()
     }
 
-    setupPictures(){
-        switch(this.getLevelName()) {
+    setupPictures() {
+        switch (this.getLevelName()) {
             case "square":
                 this.setupSquarePictures()
                 break;
@@ -101,8 +100,8 @@ export default class LevelManager {
         }
     }
 
-    setupInputField(){
-        document.getElementById("inputImg").src = "img/"+ config.levels[this.getLevelIndex()].levelName+"/exp.png"
+    setupInputField() {
+        document.getElementById("inputImg").src = "img/" + config.levels[this.getLevelIndex()].levelName + "/exp.png"
         document.getElementById("button1").coords = config.levels[this.getLevelIndex()].button1
         document.getElementById("button2").coords = config.levels[this.getLevelIndex()].button2
         document.getElementById("button3").coords = config.levels[this.getLevelIndex()].button3
@@ -285,7 +284,8 @@ export default class LevelManager {
         var rand = parseInt((Math.random() * 2));
         img.src = this.getImageDirector() + images[data.getPuzzleIndex()][rand];
     }
-    setupFlowerPictures(){
+
+    setupFlowerPictures() {
         images = new Array();
         var arr = new Array();
         arr.push('0-4.gif');
@@ -445,7 +445,8 @@ export default class LevelManager {
         var rand = parseInt((Math.random() * 2));
         img.src = this.getImageDirector() + images[data.getPuzzleIndex()][rand];
     }
-    setupCirclePictures(){
+
+    setupCirclePictures() {
         images = new Array();
         var arr = new Array();
         arr.push('0-4.gif');
@@ -609,7 +610,9 @@ export default class LevelManager {
         var rand = parseInt((Math.random() * 2));
         img.src = this.getImageDirector() + images[data.getPuzzleIndex()][rand];
     }
-    setupStarPictures(){images = new Array();
+
+    setupStarPictures() {
+        images = new Array();
         var arr = new Array();
         arr.push('0-4.gif');
         arr.push('0-6.gif');
@@ -778,6 +781,7 @@ export default class LevelManager {
         arr.push('exp.gif');
         var img = document.getElementById("img3D");
         var rand = parseInt((Math.random() * 2));
-        img.src = this.getImageDirector() + images[data.getPuzzleIndex()][rand];}
+        img.src = this.getImageDirector() + images[data.getPuzzleIndex()][rand];
+    }
 
 }

@@ -1,13 +1,26 @@
 import {config} from "../Config/config"
 
+let timer
 
 export default class MessageManager {
 
-    constructor() {
-
+    constructor(timerObject) {
+        timer = timerObject
+        this.hide()
     }
+
+
+    hide(){
+        document.getElementById("confirmButtons").style.visibility = "hidden"
+        document.getElementById("message").innerText = ""
+    }
+    show(){
+        document.getElementById("confirmButtons").style.visibility = "visible"
+    }
+
     displayMessage(level, callback){
         let message;
+        timer.pause()
         if(level < config.levels.length){
             message = config.message.levelPassed
         }
@@ -26,6 +39,7 @@ export default class MessageManager {
             }
             else {
                 document.getElementById("message").innerText = ""
+                timer.continue()
                 callback();
                 clearInterval(interval)
             }
@@ -33,5 +47,17 @@ export default class MessageManager {
         }, 1000)
     }
 
+    displayConfirmLevelDownMassage( cancelCallback, confirmCallBack){
+        this.show()
+        document.getElementById("message").innerText = config.message.confirmLevelDown.text
+        document.getElementById("accept").onclick = () => {
+            confirmCallBack()
+            this.hide()
+        }
+        document.getElementById("cancel").onclick = () => {
+            cancelCallback()
+            this.hide()
+        }
+    }
 
 }

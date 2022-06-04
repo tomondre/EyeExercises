@@ -61,5 +61,8 @@ export const config = {
                 textThirdPart: " seconds",
                 timeLength: 5
             },
+            confirmLevelDown: {
+                text: "Do you wish to go down one level?",
+            }
         },
 }

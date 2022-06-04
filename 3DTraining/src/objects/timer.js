@@ -56,13 +56,13 @@ export default class Timer {
     tick() {
         if(time > 0) {
             time--;
-            clearInterval(timerInterval);
             this.update()
         }
     }
 
     pause() {
         clearInterval(timerInterval);
+        shouldTimerBeContinued = true
     }
 
     continue() {
@@ -70,6 +70,7 @@ export default class Timer {
             return;
         if (shouldTimerBeContinued) {
             timerInterval = setInterval(() => this.tick(), 1000);
+            shouldTimerBeContinued = false;
         }
     }
 
