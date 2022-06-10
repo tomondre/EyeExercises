@@ -63,6 +63,9 @@ export const config = {
             },
             confirmLevelDown: {
                 text: "Do you wish to go down one level?",
-            }
+            },
+            timeOver: {
+                text: "Daily training finished"
+            },
         },
 }

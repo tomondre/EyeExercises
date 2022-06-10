@@ -21,7 +21,7 @@ let images,
 export default class Game{
     constructor() {
         data = new FetchDataManager()
-        timer = new Timer()
+        timer = new Timer(() => this.timePassed())
         pictures = new Pictures()
         message = new MessageManager(timer)
         level = new LevelManager(data, pictures, message)
@@ -70,6 +70,10 @@ export default class Game{
     }
     levelUp(){
         level.levelUp()
+    }
+
+    timePassed(){
+        message.displayTimePassed()
     }
 
 }

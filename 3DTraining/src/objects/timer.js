@@ -9,11 +9,13 @@ let time;
 let timerInterval;
 let shouldTimerBeContinued = true;
 let shouldTimerBeDisplayed = true;
-let sketch
+let call
 
 
 export default class Timer {
-    constructor() {
+    constructor(Callback) {
+
+        call = Callback
 
         time = FetchDataManager.getCurrentTrainingTime()
         if (time === -1)
@@ -57,6 +59,10 @@ export default class Timer {
         if(time > 0) {
             time--;
             this.update()
+        }
+        else {
+            this.pause()
+            call()
         }
     }
 

@@ -34,7 +34,6 @@ export default class FetchDataManager {
     static getCurrentTrainingTime() {
         var index = window.localStorage.getItem("906/CurrentTime/");
         if (index === null || index <= 0) {
-            console.log(1)
             return 150
         } else
             return parseInt(index);

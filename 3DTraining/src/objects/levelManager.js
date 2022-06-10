@@ -1,5 +1,6 @@
 import {config} from "../Config/config";
 import MessageManager from "./messageManager";
+import {fail} from "assert";
 
 let data
 let maxPuzzleLevel = 10
@@ -8,6 +9,7 @@ let pictures
 
 let message
 
+let click = false
 
 export default class LevelManager {
     constructor(dataManager, picturesManager, messageManager) {
@@ -22,11 +24,15 @@ export default class LevelManager {
             this.puzzleUp()
             this.setup()
         } else {
-            if (data.getLevelIndex() < config.levels.length - 1) {
-                data.savePuzzleIndex(0)
-                data.saveLevelIndex(data.getLevelIndex() + 1)
-                message.displayMessage(data.getLevelIndex(), () => this.setup())
-            } else {
+            if (data.getLevelIndex() < config.levels.length - 1 && click === false) {
+                click = true
+                message.displayMessage(data.getLevelIndex(), () => {
+                    data.savePuzzleIndex(0)
+                    data.saveLevelIndex(data.getLevelIndex() + 1)
+                    click = false
+                    this.setup()
+                })
+            } else if (click === false){
                 console.log("congrats of exercise end")
             }
         }

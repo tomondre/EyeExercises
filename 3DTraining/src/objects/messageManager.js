@@ -60,4 +60,10 @@ export default class MessageManager {
         }
     }
 
+    displayTimePassed(){
+        document.getElementById("img3D").style.visibility = "hidden"
+        document.getElementById("inputImg").style.visibility = "hidden"
+        document.getElementById("message").innerText =  config.message.timeOver.text
+    }
+
 }
