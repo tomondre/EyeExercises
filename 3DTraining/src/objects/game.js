@@ -3,11 +3,13 @@ import FetchDataManager from "./fetchData";
 import LevelManager from "./levelManager";
 import Timer from "./timer"
 import MessageManager from "./messageManager";
+import Pictures from "./pictures";
 
 let level,
     data,
     timer,
-    message
+    message,
+    pictures
 
 let images,
     maxTime = 15000,
@@ -19,14 +21,16 @@ let images,
 export default class Game{
     constructor() {
         data = new FetchDataManager()
-        level = new LevelManager(data)
         timer = new Timer()
+        pictures = new Pictures()
         message = new MessageManager(timer)
+        level = new LevelManager(data, pictures, message)
 
         score = 0
     }
 
     create(){
+        //document.getElementById("levelDown").onclick = () => message.displayConfirmLevelDownMassage( () => level.setup(), () => this.levelDown() )
         document.getElementById("levelDown").onclick = this.levelDown
         timer.create()
         document.getElementById("puzzleDown").onclick = this.levelUp
@@ -47,25 +51,15 @@ export default class Game{
     }
 
     DisplayImage(str) {
-        window.clearInterval(interval);
-        images = level.getImages()
-        imgDir = level.getImageDirector()
-
         var img = document.getElementById("img3D");
-        var rand = parseInt((Math.random() * 2));
+
         if (img.src.indexOf("-" + str) !== -1) {
-            img.src = imgDir + images[level.getPuzzleIndex()][rand];
             score += 5;
             this.levelUp()
             mistakes = 0
         } else {
             score = (score <= 2 ? 0 : score - 5);
-            img.src = imgDir + images[level.getPuzzleIndex()][rand];
-            mistakes++
-            if(mistakes === 3){
-                this.levelDown()
-                mistakes = 0
-            }
+            this.levelDown()
         }
 
         this.updateScore(score);
