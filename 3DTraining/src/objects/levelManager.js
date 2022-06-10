@@ -33,7 +33,8 @@ export default class LevelManager {
                     this.setup()
                 })
             } else if (click === false){
-                console.log("congrats of exercise end")
+                message.displayGameFinished()
+                this.setBeginningLevel()
             }
         }
     }
@@ -65,6 +66,11 @@ export default class LevelManager {
             circleLevel = Math.max(puzzleLevelToSave, 0)
         }
         data.savePuzzleIndex(puzzleLevelToSave)
+    }
+
+    setBeginningLevel(){
+        data.saveLevelIndex(0)
+        data.savePuzzleIndex(0)
     }
 
 

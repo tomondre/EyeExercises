@@ -14,10 +14,7 @@ let call
 
 export default class Timer {
     constructor(Callback) {
-
         call = Callback
-
-        time = FetchDataManager.getCurrentTrainingTime()
         if (time === -1)
         {
             shouldTimerBeDisplayed = false;
@@ -26,6 +23,7 @@ export default class Timer {
     }
 
     create() {
+        time = FetchDataManager.getCurrentTrainingTime()
         if (!shouldTimerBeDisplayed)
             return;
         this.update();

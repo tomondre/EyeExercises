@@ -67,5 +67,8 @@ export const config = {
             timeOver: {
                 text: "Daily training finished"
             },
+            gameFinished: {
+                text: "Congratulation, you have successfully finished the game!",
+            },
         },
 }

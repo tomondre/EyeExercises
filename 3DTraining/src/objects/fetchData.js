@@ -28,13 +28,13 @@ export default class FetchDataManager {
     }
 
     static saveCurrentTrainingTime(time) {
-        window.localStorage.setItem("906/CurrentTime/", time);
+        window.localStorage.setItem("907/CurrentTime/", time);
     }
 
     static getCurrentTrainingTime() {
-        var index = window.localStorage.getItem("906/CurrentTime/");
+        var index = window.localStorage.getItem("907/CurrentTime/");
         if (index === null || index <= 0) {
-            return 150
+            return 300
         } else
             return parseInt(index);
     }
