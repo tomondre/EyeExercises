@@ -120,12 +120,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"node_modules/p5/lib/p5.min.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
-/*! p5.js v1.4.0 June 29, 2021 */
+/*! p5.js v1.4.1 February 02, 2022 */
 !function (e) {
   if ("object" == typeof exports && "undefined" != typeof module) module.exports = e();else if ("function" == typeof define && define.amd) define([], e);else {
     ("undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : this).p5 = e();
   }
 }(function () {
+  var i, e, t;
   return function i(a, s, l) {
     function u(t, e) {
       if (!s[t]) {
@@ -319,7 +320,7 @@ var global = arguments[3];
               return r >>> 1;
 
             case "base64":
-              return k(e).length;
+              return A(e).length;
 
             default:
               if (o) return n ? -1 : P(e).length;
@@ -398,7 +399,7 @@ var global = arguments[3];
         }
 
         function g(e, t, r, n) {
-          return A(function (e) {
+          return k(function (e) {
             for (var t = [], r = 0; r < e.length; ++r) t.push(255 & e.charCodeAt(r));
 
             return t;
@@ -406,7 +407,7 @@ var global = arguments[3];
         }
 
         function v(e, t, r, n) {
-          return A(function (e, t) {
+          return k(function (e, t) {
             for (var r, n, o, i = [], a = 0; a < e.length && !((t -= 2) < 0); ++a) r = e.charCodeAt(a), n = r >> 8, o = r % 256, i.push(o), i.push(n);
 
             return i;
@@ -571,7 +572,7 @@ var global = arguments[3];
 
             for (e = e || "utf8";;) switch (e) {
               case "hex":
-                return j(this, t, r);
+                return S(this, t, r);
 
               case "utf8":
               case "utf-8":
@@ -582,7 +583,7 @@ var global = arguments[3];
 
               case "latin1":
               case "binary":
-                return S(this, t, r);
+                return j(this, t, r);
 
               case "base64":
                 return b(this, t, r);
@@ -640,7 +641,7 @@ var global = arguments[3];
 
             case "utf8":
             case "utf-8":
-              return u = t, c = r, A(P(e, (l = this).length - u), l, u, c);
+              return u = t, c = r, k(P(e, (l = this).length - u), l, u, c);
 
             case "ascii":
               return g(this, e, t, r);
@@ -650,7 +651,7 @@ var global = arguments[3];
               return g(this, e, t, r);
 
             case "base64":
-              return i = this, a = t, s = r, A(k(e), i, a, s);
+              return i = this, a = t, s = r, k(A(e), i, a, s);
 
             case "ucs2":
             case "ucs-2":
@@ -679,7 +680,7 @@ var global = arguments[3];
           return n;
         }
 
-        function S(e, t, r) {
+        function j(e, t, r) {
           var n = "";
           r = Math.min(e.length, r);
 
@@ -688,7 +689,7 @@ var global = arguments[3];
           return n;
         }
 
-        function j(e, t, r) {
+        function S(e, t, r) {
           var n = e.length;
           (!t || t < 0) && (t = 0), (!r || r < 0 || n < r) && (r = n);
 
@@ -942,7 +943,7 @@ var global = arguments[3];
           return i;
         }
 
-        function k(e) {
+        function A(e) {
           return n.toByteArray(function (e) {
             if ((e = (e = e.split("=")[0]).trim().replace(t, "")).length < 2) return "";
 
@@ -952,7 +953,7 @@ var global = arguments[3];
           }(e));
         }
 
-        function A(e, t, r, n) {
+        function k(e, t, r, n) {
           for (var o = 0; o < n && !(o + r >= t.length || o >= e.length); ++o) t[o + r] = e[o];
 
           return o;
@@ -975,7 +976,7 @@ var global = arguments[3];
     }, {
       "base64-js": 1,
       buffer: 4,
-      ieee754: 233
+      ieee754: 236
     }],
     5: [function (e, t, r) {
       t.exports = function (e) {
@@ -991,7 +992,7 @@ var global = arguments[3];
         return e;
       };
     }, {
-      "../internals/is-object": 73
+      "../internals/is-object": 74
     }],
     7: [function (e, t, r) {
       var n = e("../internals/well-known-symbol"),
@@ -1006,9 +1007,9 @@ var global = arguments[3];
         s[a][e] = !0;
       };
     }, {
-      "../internals/object-create": 89,
-      "../internals/object-define-property": 91,
-      "../internals/well-known-symbol": 145
+      "../internals/object-create": 90,
+      "../internals/object-define-property": 92,
+      "../internals/well-known-symbol": 146
     }],
     8: [function (e, t, r) {
       "use strict";
@@ -1019,7 +1020,7 @@ var global = arguments[3];
         return t + (r ? n(e, t).length : 1);
       };
     }, {
-      "../internals/string-multibyte": 122
+      "../internals/string-multibyte": 123
     }],
     9: [function (e, t, r) {
       t.exports = function (e, t, r) {
@@ -1035,7 +1036,7 @@ var global = arguments[3];
         return e;
       };
     }, {
-      "../internals/is-object": 73
+      "../internals/is-object": 74
     }],
     11: [function (e, t, r) {
       t.exports = "undefined" != typeof ArrayBuffer && "undefined" != typeof DataView;
@@ -1066,9 +1067,9 @@ var global = arguments[3];
           _ = s.Uint8ClampedArray,
           x = _ && _.prototype,
           w = v && p(v),
-          S = b && p(b),
-          j = Object.prototype,
-          M = j.isPrototypeOf,
+          j = b && p(b),
+          S = Object.prototype,
+          M = S.isPrototypeOf,
           E = m("toStringTag"),
           T = g("TYPED_ARRAY_TAG"),
           O = i && !!y && "Opera" !== c(s.opera),
@@ -1090,8 +1091,8 @@ var global = arguments[3];
       if ((!O || "function" != typeof w || w === Function.prototype) && (w = function () {
         throw TypeError("Incorrect invocation");
       }, O)) for (o in L) s[o] && y(s[o], w);
-      if ((!O || !S || S === j) && (S = w.prototype, O)) for (o in L) s[o] && y(s[o].prototype, S);
-      if (O && p(x) !== S && y(x, S), a && !u(S, E)) for (o in C = !0, h(S, E, {
+      if ((!O || !j || j === S) && (j = w.prototype, O)) for (o in L) s[o] && y(s[o].prototype, j);
+      if (O && p(x) !== j && y(x, j), a && !u(j, E)) for (o in C = !0, h(j, E, {
         get: function () {
           return l(this) ? this[T] : void 0;
         }
@@ -1119,7 +1120,7 @@ var global = arguments[3];
               var o = s[n];
               o && u(o.prototype, e) && delete o.prototype[e];
             }
-            S[e] && !r || f(S, e, r ? t : O && b[e] || t);
+            j[e] && !r || f(j, e, r ? t : O && b[e] || t);
           }
         },
         exportTypedArrayStaticMethod: function (e, t, r) {
@@ -1144,22 +1145,22 @@ var global = arguments[3];
         },
         isTypedArray: n,
         TypedArray: w,
-        TypedArrayPrototype: S
+        TypedArrayPrototype: j
       };
     }, {
       "../internals/array-buffer-native": 11,
       "../internals/classof": 29,
       "../internals/create-non-enumerable-property": 37,
       "../internals/descriptors": 42,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/is-object": 73,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-prototype-of": 96,
-      "../internals/object-set-prototype-of": 100,
-      "../internals/redefine": 107,
-      "../internals/uid": 142,
-      "../internals/well-known-symbol": 145
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/is-object": 74,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-prototype-of": 97,
+      "../internals/object-set-prototype-of": 101,
+      "../internals/redefine": 108,
+      "../internals/uid": 143,
+      "../internals/well-known-symbol": 146
     }],
     13: [function (e, t, r) {
       "use strict";
@@ -1225,8 +1226,8 @@ var global = arguments[3];
           _ = e("../internals/to-length"),
           x = e("../internals/to-index"),
           w = e("../internals/ieee754"),
-          S = e("../internals/object-get-prototype-of"),
-          j = e("../internals/object-set-prototype-of"),
+          j = e("../internals/object-get-prototype-of"),
+          S = e("../internals/object-set-prototype-of"),
           M = e("../internals/object-get-own-property-names").f,
           E = e("../internals/object-define-property").f,
           T = e("../internals/array-fill"),
@@ -1234,13 +1235,13 @@ var global = arguments[3];
           C = e("../internals/internal-state"),
           L = C.get,
           P = C.set,
-          k = "ArrayBuffer",
-          A = "DataView",
+          A = "ArrayBuffer",
+          k = "DataView",
           R = "prototype",
           D = "Wrong index",
-          I = f[k],
+          I = f[A],
           U = I,
-          N = f[A],
+          N = f[k],
           F = N && N[R],
           B = Object.prototype,
           G = f.RangeError,
@@ -1253,7 +1254,7 @@ var global = arguments[3];
         }) || !g(function () {
           new I(-1);
         }) || g(function () {
-          return new I(), new I(1.5), new I(NaN), I.name != k;
+          return new I(), new I(1.5), new I(NaN), I.name != A;
         })) {
           for (var H, W = (U = function (e) {
             return v(this, U), new I(x(e));
@@ -1262,7 +1263,7 @@ var global = arguments[3];
           W.constructor = U;
         }
 
-        j && S(F) !== B && j(F, B);
+        S && j(F) !== B && S(F, B);
         var Y = new N(new U(2)),
             Z = F.setInt8;
         Y.setInt8(0, 2147483648), Y.setInt8(1, 2147483649), !Y.getInt8(0) && Y.getInt8(1) || m(F, {
@@ -1276,14 +1277,14 @@ var global = arguments[3];
           unsafe: !0
         });
       } else U = function (e) {
-        v(this, U, k);
+        v(this, U, A);
         var t = x(e);
         P(this, {
           bytes: T.call(new Array(t), 0),
           byteLength: t
         }), h || (this.byteLength = t);
       }, N = function (e, t, r) {
-        v(this, N, A), v(e, U, A);
+        v(this, N, k), v(e, U, k);
         var n = L(e).byteLength,
             o = b(t);
         if (o < 0 || n < o) throw G("Wrong offset");
@@ -1346,7 +1347,7 @@ var global = arguments[3];
         }
       });
 
-      O(U, k), O(N, A), t.exports = {
+      O(U, A), O(N, k), t.exports = {
         ArrayBuffer: U,
         DataView: N
       };
@@ -1357,18 +1358,18 @@ var global = arguments[3];
       "../internals/create-non-enumerable-property": 37,
       "../internals/descriptors": 42,
       "../internals/fails": 50,
-      "../internals/global": 58,
-      "../internals/ieee754": 64,
-      "../internals/internal-state": 69,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/object-get-prototype-of": 96,
-      "../internals/object-set-prototype-of": 100,
-      "../internals/redefine-all": 106,
-      "../internals/set-to-string-tag": 116,
-      "../internals/to-index": 130,
-      "../internals/to-integer": 132,
-      "../internals/to-length": 133
+      "../internals/global": 59,
+      "../internals/ieee754": 65,
+      "../internals/internal-state": 70,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/object-get-prototype-of": 97,
+      "../internals/object-set-prototype-of": 101,
+      "../internals/redefine-all": 107,
+      "../internals/set-to-string-tag": 117,
+      "../internals/to-index": 131,
+      "../internals/to-integer": 133,
+      "../internals/to-length": 134
     }],
     14: [function (e, t, r) {
       "use strict";
@@ -1392,9 +1393,9 @@ var global = arguments[3];
         return n;
       };
     }, {
-      "../internals/to-absolute-index": 129,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/to-absolute-index": 130,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
     15: [function (e, t, r) {
       "use strict";
@@ -1409,9 +1410,9 @@ var global = arguments[3];
         return n;
       };
     }, {
-      "../internals/to-absolute-index": 129,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/to-absolute-index": 130,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
     16: [function (e, t, r) {
       "use strict";
@@ -1460,11 +1461,11 @@ var global = arguments[3];
     }, {
       "../internals/call-with-safe-iteration-closing": 26,
       "../internals/create-property": 39,
-      "../internals/function-bind-context": 53,
-      "../internals/get-iterator-method": 56,
-      "../internals/is-array-iterator-method": 70,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/function-bind-context": 54,
+      "../internals/get-iterator-method": 57,
+      "../internals/is-array-iterator-method": 71,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
     18: [function (e, t, r) {
       function n(s) {
@@ -1490,9 +1491,9 @@ var global = arguments[3];
         indexOf: n(!1)
       };
     }, {
-      "../internals/to-absolute-index": 129,
-      "../internals/to-indexed-object": 131,
-      "../internals/to-length": 133
+      "../internals/to-absolute-index": 130,
+      "../internals/to-indexed-object": 132,
+      "../internals/to-length": 134
     }],
     19: [function (e, t, r) {
       function n(h) {
@@ -1503,7 +1504,7 @@ var global = arguments[3];
             v = 6 == h,
             b = 5 == h || v;
         return function (e, t, r, n) {
-          for (var o, i, a = w(e), s = x(a), l = _(t, r, 3), u = S(s.length), c = 0, d = n || j, f = p ? d(e, u) : y ? d(e, 0) : void 0; c < u; c++) if ((b || c in s) && (i = l(o = s[c], c, a), h)) if (p) f[c] = i;else if (i) switch (h) {
+          for (var o, i, a = w(e), s = x(a), l = _(t, r, 3), u = j(s.length), c = 0, d = n || S, f = p ? d(e, u) : y ? d(e, 0) : void 0; c < u; c++) if ((b || c in s) && (i = l(o = s[c], c, a), h)) if (p) f[c] = i;else if (i) switch (h) {
             case 3:
               return !0;
 
@@ -1524,8 +1525,8 @@ var global = arguments[3];
       var _ = e("../internals/function-bind-context"),
           x = e("../internals/indexed-object"),
           w = e("../internals/to-object"),
-          S = e("../internals/to-length"),
-          j = e("../internals/array-species-create"),
+          j = e("../internals/to-length"),
+          S = e("../internals/array-species-create"),
           M = [].push;
 
       t.exports = {
@@ -1539,10 +1540,10 @@ var global = arguments[3];
       };
     }, {
       "../internals/array-species-create": 25,
-      "../internals/function-bind-context": 53,
-      "../internals/indexed-object": 65,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/function-bind-context": 54,
+      "../internals/indexed-object": 66,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
     20: [function (e, t, r) {
       "use strict";
@@ -1574,9 +1575,9 @@ var global = arguments[3];
     }, {
       "../internals/array-method-is-strict": 22,
       "../internals/array-method-uses-to-length": 23,
-      "../internals/to-indexed-object": 131,
-      "../internals/to-integer": 132,
-      "../internals/to-length": 133
+      "../internals/to-indexed-object": 132,
+      "../internals/to-integer": 133,
+      "../internals/to-length": 134
     }],
     21: [function (e, t, r) {
       var n = e("../internals/fails"),
@@ -1597,7 +1598,7 @@ var global = arguments[3];
     }, {
       "../internals/engine-v8-version": 47,
       "../internals/fails": 50,
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
     22: [function (e, t, r) {
       "use strict";
@@ -1646,7 +1647,7 @@ var global = arguments[3];
     }, {
       "../internals/descriptors": 42,
       "../internals/fails": 50,
-      "../internals/has": 59
+      "../internals/has": 60
     }],
     24: [function (e, t, r) {
       function n(u) {
@@ -1682,9 +1683,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/a-function": 5,
-      "../internals/indexed-object": 65,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/indexed-object": 66,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
     25: [function (e, t, r) {
       var n = e("../internals/is-object"),
@@ -1696,9 +1697,9 @@ var global = arguments[3];
         return o(e) && ("function" != typeof (r = e.constructor) || r !== Array && !o(r.prototype) ? n(r) && null === (r = r[i]) && (r = void 0) : r = void 0), new (void 0 === r ? Array : r)(0 === t ? 0 : t);
       };
     }, {
-      "../internals/is-array": 71,
-      "../internals/is-object": 73,
-      "../internals/well-known-symbol": 145
+      "../internals/is-array": 72,
+      "../internals/is-object": 74,
+      "../internals/well-known-symbol": 146
     }],
     26: [function (e, t, r) {
       var i = e("../internals/an-object");
@@ -1757,7 +1758,7 @@ var global = arguments[3];
         return r;
       };
     }, {
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
     28: [function (e, t, r) {
       var n = {}.toString;
@@ -1783,8 +1784,8 @@ var global = arguments[3];
       };
     }, {
       "../internals/classof-raw": 28,
-      "../internals/to-string-tag-support": 138,
-      "../internals/well-known-symbol": 145
+      "../internals/to-string-tag-support": 139,
+      "../internals/well-known-symbol": 146
     }],
     30: [function (e, t, r) {
       "use strict";
@@ -1915,14 +1916,14 @@ var global = arguments[3];
       "../internals/an-instance": 9,
       "../internals/define-iterator": 40,
       "../internals/descriptors": 42,
-      "../internals/function-bind-context": 53,
-      "../internals/internal-metadata": 68,
-      "../internals/internal-state": 69,
-      "../internals/iterate": 76,
-      "../internals/object-create": 89,
-      "../internals/object-define-property": 91,
-      "../internals/redefine-all": 106,
-      "../internals/set-species": 115
+      "../internals/function-bind-context": 54,
+      "../internals/internal-metadata": 69,
+      "../internals/internal-state": 70,
+      "../internals/iterate": 77,
+      "../internals/object-create": 90,
+      "../internals/object-define-property": 92,
+      "../internals/redefine-all": 107,
+      "../internals/set-species": 116
     }],
     31: [function (e, t, r) {
       "use strict";
@@ -1934,8 +1935,8 @@ var global = arguments[3];
           _ = e("../internals/internal-metadata"),
           x = e("../internals/iterate"),
           w = e("../internals/an-instance"),
-          S = e("../internals/is-object"),
-          j = e("../internals/fails"),
+          j = e("../internals/is-object"),
+          S = e("../internals/fails"),
           M = e("../internals/check-correctness-of-iteration"),
           E = e("../internals/set-to-string-tag"),
           T = e("../internals/inherit-if-required");
@@ -1946,11 +1947,11 @@ var global = arguments[3];
           b(l, e, "add" == e ? function (e) {
             return r.call(this, 0 === e ? 0 : e), this;
           } : "delete" == e ? function (e) {
-            return !(i && !S(e)) && r.call(this, 0 === e ? 0 : e);
+            return !(i && !j(e)) && r.call(this, 0 === e ? 0 : e);
           } : "get" == e ? function (e) {
-            return i && !S(e) ? void 0 : r.call(this, 0 === e ? 0 : e);
+            return i && !j(e) ? void 0 : r.call(this, 0 === e ? 0 : e);
           } : "has" == e ? function (e) {
-            return !(i && !S(e)) && r.call(this, 0 === e ? 0 : e);
+            return !(i && !j(e)) && r.call(this, 0 === e ? 0 : e);
           } : function (e, t) {
             return r.call(this, 0 === e ? 0 : e, t), this;
           });
@@ -1963,18 +1964,18 @@ var global = arguments[3];
             l = s && s.prototype,
             u = s,
             c = {};
-        if (v(n, "function" != typeof s || !(i || l.forEach && !j(function () {
+        if (v(n, "function" != typeof s || !(i || l.forEach && !S(function () {
           new s().entries().next();
         })))) u = t.getConstructor(e, n, o, a), _.REQUIRED = !0;else if (v(n, !0)) {
           var d = new u(),
               f = d[a](i ? {} : -0, 1) != d,
-              h = j(function () {
+              h = S(function () {
             d.has(1);
           }),
               p = M(function (e) {
             new s(e);
           }),
-              y = !i && j(function () {
+              y = !i && S(function () {
             for (var e = new s(), t = 5; t--;) e[a](t, t);
 
             return !e.has(-0);
@@ -1995,14 +1996,14 @@ var global = arguments[3];
       "../internals/check-correctness-of-iteration": 27,
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/global": 58,
-      "../internals/inherit-if-required": 66,
-      "../internals/internal-metadata": 68,
-      "../internals/is-forced": 72,
-      "../internals/is-object": 73,
-      "../internals/iterate": 76,
-      "../internals/redefine": 107,
-      "../internals/set-to-string-tag": 116
+      "../internals/global": 59,
+      "../internals/inherit-if-required": 67,
+      "../internals/internal-metadata": 69,
+      "../internals/is-forced": 73,
+      "../internals/is-object": 74,
+      "../internals/iterate": 77,
+      "../internals/redefine": 108,
+      "../internals/set-to-string-tag": 117
     }],
     32: [function (e, t, r) {
       var s = e("../internals/has"),
@@ -2017,10 +2018,10 @@ var global = arguments[3];
         }
       };
     }, {
-      "../internals/has": 59,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/own-keys": 102
+      "../internals/has": 60,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/own-keys": 103
     }],
     33: [function (e, t, r) {
       var n = e("../internals/well-known-symbol")("match");
@@ -2039,7 +2040,7 @@ var global = arguments[3];
         return !1;
       };
     }, {
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
     34: [function (e, t, r) {
       var n = e("../internals/fails");
@@ -2061,7 +2062,7 @@ var global = arguments[3];
         return "" !== r && (i += " " + r + '="' + String(n).replace(s, "&quot;") + '"'), i + ">" + o + "</" + t + ">";
       };
     }, {
-      "../internals/require-object-coercible": 112
+      "../internals/require-object-coercible": 113
     }],
     36: [function (e, t, r) {
       "use strict";
@@ -2084,10 +2085,10 @@ var global = arguments[3];
       };
     }, {
       "../internals/create-property-descriptor": 38,
-      "../internals/iterators": 78,
-      "../internals/iterators-core": 77,
-      "../internals/object-create": 89,
-      "../internals/set-to-string-tag": 116
+      "../internals/iterators": 79,
+      "../internals/iterators-core": 78,
+      "../internals/object-create": 90,
+      "../internals/set-to-string-tag": 117
     }],
     37: [function (e, t, r) {
       var n = e("../internals/descriptors"),
@@ -2101,7 +2102,7 @@ var global = arguments[3];
     }, {
       "../internals/create-property-descriptor": 38,
       "../internals/descriptors": 42,
-      "../internals/object-define-property": 91
+      "../internals/object-define-property": 92
     }],
     38: [function (e, t, r) {
       t.exports = function (e, t) {
@@ -2126,8 +2127,8 @@ var global = arguments[3];
       };
     }, {
       "../internals/create-property-descriptor": 38,
-      "../internals/object-define-property": 91,
-      "../internals/to-primitive": 137
+      "../internals/object-define-property": 92,
+      "../internals/to-primitive": 138
     }],
     40: [function (e, t, r) {
       "use strict";
@@ -2141,8 +2142,8 @@ var global = arguments[3];
           _ = e("../internals/object-get-prototype-of"),
           x = e("../internals/object-set-prototype-of"),
           w = e("../internals/set-to-string-tag"),
-          S = e("../internals/create-non-enumerable-property"),
-          j = e("../internals/redefine"),
+          j = e("../internals/create-non-enumerable-property"),
+          S = e("../internals/redefine"),
           n = e("../internals/well-known-symbol"),
           M = e("../internals/is-pure"),
           E = e("../internals/iterators"),
@@ -2183,13 +2184,13 @@ var global = arguments[3];
             p = h[C] || h["@@iterator"] || o && h[o],
             y = !O && p || s(o),
             m = "Array" == t && h.entries || p;
-        if (m && (l = _(m.call(new e())), T !== Object.prototype && l.next && (M || _(l) === T || (x ? x(l, T) : "function" != typeof l[C] && S(l, C, g)), w(l, d, !0, !0), M && (E[d] = g))), o == L && p && p.name !== L && (f = !0, y = function () {
+        if (m && (l = _(m.call(new e())), T !== Object.prototype && l.next && (M || _(l) === T || (x ? x(l, T) : "function" != typeof l[C] && j(l, C, g)), w(l, d, !0, !0), M && (E[d] = g))), o == L && p && p.name !== L && (f = !0, y = function () {
           return p.call(this);
-        }), M && !a || h[C] === y || S(h, C, y), E[t] = y, o) if (u = {
+        }), M && !a || h[C] === y || j(h, C, y), E[t] = y, o) if (u = {
           values: s(L),
           keys: i ? y : s("keys"),
           entries: s(P)
-        }, a) for (c in u) !O && !f && c in h || j(h, c, u[c]);else v({
+        }, a) for (c in u) !O && !f && c in h || S(h, c, u[c]);else v({
           target: t,
           proto: !0,
           forced: O || f
@@ -2200,14 +2201,14 @@ var global = arguments[3];
       "../internals/create-iterator-constructor": 36,
       "../internals/create-non-enumerable-property": 37,
       "../internals/export": 49,
-      "../internals/is-pure": 74,
-      "../internals/iterators": 78,
-      "../internals/iterators-core": 77,
-      "../internals/object-get-prototype-of": 96,
-      "../internals/object-set-prototype-of": 100,
-      "../internals/redefine": 107,
-      "../internals/set-to-string-tag": 116,
-      "../internals/well-known-symbol": 145
+      "../internals/is-pure": 75,
+      "../internals/iterators": 79,
+      "../internals/iterators-core": 78,
+      "../internals/object-get-prototype-of": 97,
+      "../internals/object-set-prototype-of": 101,
+      "../internals/redefine": 108,
+      "../internals/set-to-string-tag": 117,
+      "../internals/well-known-symbol": 146
     }],
     41: [function (e, t, r) {
       var n = e("../internals/path"),
@@ -2222,10 +2223,10 @@ var global = arguments[3];
         });
       };
     }, {
-      "../internals/has": 59,
-      "../internals/object-define-property": 91,
-      "../internals/path": 103,
-      "../internals/well-known-symbol-wrapped": 144
+      "../internals/has": 60,
+      "../internals/object-define-property": 92,
+      "../internals/path": 104,
+      "../internals/well-known-symbol-wrapped": 145
     }],
     42: [function (e, t, r) {
       var n = e("../internals/fails");
@@ -2249,8 +2250,8 @@ var global = arguments[3];
         return a ? i.createElement(e) : {};
       };
     }, {
-      "../internals/global": 58,
-      "../internals/is-object": 73
+      "../internals/global": 59,
+      "../internals/is-object": 74
     }],
     44: [function (e, t, r) {
       t.exports = {
@@ -2297,7 +2298,7 @@ var global = arguments[3];
       var n = e("../internals/get-built-in");
       t.exports = n("navigator", "userAgent") || "";
     }, {
-      "../internals/get-built-in": 55
+      "../internals/get-built-in": 56
     }],
     47: [function (e, t, r) {
       var n,
@@ -2310,7 +2311,7 @@ var global = arguments[3];
       u ? o = (n = u.split("."))[0] + n[1] : a && (!(n = a.match(/Edge\/(\d+)/)) || 74 <= n[1]) && (n = a.match(/Chrome\/(\d+)/)) && (o = n[1]), t.exports = o && +o;
     }, {
       "../internals/engine-user-agent": 46,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
     48: [function (e, t, r) {
       t.exports = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"];
@@ -2345,11 +2346,11 @@ var global = arguments[3];
     }, {
       "../internals/copy-constructor-properties": 32,
       "../internals/create-non-enumerable-property": 37,
-      "../internals/global": 58,
-      "../internals/is-forced": 72,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/redefine": 107,
-      "../internals/set-global": 114
+      "../internals/global": 59,
+      "../internals/is-forced": 73,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/redefine": 108,
+      "../internals/set-global": 115
     }],
     50: [function (e, t, r) {
       t.exports = function (e) {
@@ -2445,12 +2446,40 @@ var global = arguments[3];
     }, {
       "../internals/create-non-enumerable-property": 37,
       "../internals/fails": 50,
-      "../internals/redefine": 107,
-      "../internals/regexp-exec": 109,
-      "../internals/well-known-symbol": 145,
-      "../modules/es.regexp.exec": 178
+      "../internals/redefine": 108,
+      "../internals/regexp-exec": 110,
+      "../internals/well-known-symbol": 146,
+      "../modules/es.regexp.exec": 181
     }],
     52: [function (e, t, r) {
+      "use strict";
+
+      var f = e("../internals/is-array"),
+          h = e("../internals/to-length"),
+          p = e("../internals/function-bind-context"),
+          y = function (e, t, r, n, o, i, a, s) {
+        for (var l, u = o, c = 0, d = !!a && p(a, s, 3); c < n;) {
+          if (c in r) {
+            if (l = d ? d(r[c], c, t) : r[c], 0 < i && f(l)) u = y(e, t, l, h(l.length), u, i - 1) - 1;else {
+              if (9007199254740991 <= u) throw TypeError("Exceed the acceptable array length");
+              e[u] = l;
+            }
+            u++;
+          }
+
+          c++;
+        }
+
+        return u;
+      };
+
+      t.exports = y;
+    }, {
+      "../internals/function-bind-context": 54,
+      "../internals/is-array": 72,
+      "../internals/to-length": 134
+    }],
+    53: [function (e, t, r) {
       var n = e("../internals/fails");
       t.exports = !n(function () {
         return Object.isExtensible(Object.preventExtensions({}));
@@ -2458,7 +2487,7 @@ var global = arguments[3];
     }, {
       "../internals/fails": 50
     }],
-    53: [function (e, t, r) {
+    54: [function (e, t, r) {
       var i = e("../internals/a-function");
 
       t.exports = function (n, o, e) {
@@ -2493,7 +2522,7 @@ var global = arguments[3];
     }, {
       "../internals/a-function": 5
     }],
-    54: [function (e, t, r) {
+    55: [function (e, t, r) {
       "use strict";
 
       var i = e("../internals/a-function"),
@@ -2521,9 +2550,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/a-function": 5,
-      "../internals/is-object": 73
+      "../internals/is-object": 74
     }],
-    55: [function (e, t, r) {
+    56: [function (e, t, r) {
       function n(e) {
         return "function" == typeof e ? e : void 0;
       }
@@ -2535,10 +2564,10 @@ var global = arguments[3];
         return arguments.length < 2 ? n(o[e]) || n(i[e]) : o[e] && o[e][t] || i[e] && i[e][t];
       };
     }, {
-      "../internals/global": 58,
-      "../internals/path": 103
+      "../internals/global": 59,
+      "../internals/path": 104
     }],
-    56: [function (e, t, r) {
+    57: [function (e, t, r) {
       var n = e("../internals/classof"),
           o = e("../internals/iterators"),
           i = e("../internals/well-known-symbol")("iterator");
@@ -2548,10 +2577,10 @@ var global = arguments[3];
       };
     }, {
       "../internals/classof": 29,
-      "../internals/iterators": 78,
-      "../internals/well-known-symbol": 145
+      "../internals/iterators": 79,
+      "../internals/well-known-symbol": 146
     }],
-    57: [function (e, t, r) {
+    58: [function (e, t, r) {
       var n = e("../internals/an-object"),
           o = e("../internals/get-iterator-method");
 
@@ -2562,9 +2591,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/an-object": 10,
-      "../internals/get-iterator-method": 56
+      "../internals/get-iterator-method": 57
     }],
-    58: [function (e, r, t) {
+    59: [function (e, r, t) {
       (function (e) {
         function t(e) {
           return e && e.Math == Math && e;
@@ -2573,17 +2602,17 @@ var global = arguments[3];
         r.exports = t("object" == typeof globalThis && globalThis) || t("object" == typeof window && window) || t("object" == typeof self && self) || t("object" == typeof e && e) || Function("return this")();
       }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
     }, {}],
-    59: [function (e, t, r) {
+    60: [function (e, t, r) {
       var n = {}.hasOwnProperty;
 
       t.exports = function (e, t) {
         return n.call(e, t);
       };
     }, {}],
-    60: [function (e, t, r) {
+    61: [function (e, t, r) {
       t.exports = {};
     }, {}],
-    61: [function (e, t, r) {
+    62: [function (e, t, r) {
       var n = e("../internals/global");
 
       t.exports = function (e, t) {
@@ -2591,15 +2620,15 @@ var global = arguments[3];
         r && r.error && (1 === arguments.length ? r.error(e) : r.error(e, t));
       };
     }, {
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    62: [function (e, t, r) {
+    63: [function (e, t, r) {
       var n = e("../internals/get-built-in");
       t.exports = n("document", "documentElement");
     }, {
-      "../internals/get-built-in": 55
+      "../internals/get-built-in": 56
     }],
-    63: [function (e, t, r) {
+    64: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           o = e("../internals/fails"),
           i = e("../internals/document-create-element");
@@ -2615,7 +2644,7 @@ var global = arguments[3];
       "../internals/document-create-element": 43,
       "../internals/fails": 50
     }],
-    64: [function (e, t, r) {
+    65: [function (e, t, r) {
       var h = Math.abs,
           p = Math.pow,
           y = Math.floor,
@@ -2663,7 +2692,7 @@ var global = arguments[3];
         }
       };
     }, {}],
-    65: [function (e, t, r) {
+    66: [function (e, t, r) {
       var n = e("../internals/fails"),
           o = e("../internals/classof-raw"),
           i = "".split;
@@ -2676,7 +2705,7 @@ var global = arguments[3];
       "../internals/classof-raw": 28,
       "../internals/fails": 50
     }],
-    66: [function (e, t, r) {
+    67: [function (e, t, r) {
       var i = e("../internals/is-object"),
           a = e("../internals/object-set-prototype-of");
 
@@ -2685,19 +2714,19 @@ var global = arguments[3];
         return a && "function" == typeof (n = t.constructor) && n !== r && i(o = n.prototype) && o !== r.prototype && a(e, o), e;
       };
     }, {
-      "../internals/is-object": 73,
-      "../internals/object-set-prototype-of": 100
+      "../internals/is-object": 74,
+      "../internals/object-set-prototype-of": 101
     }],
-    67: [function (e, t, r) {
+    68: [function (e, t, r) {
       var n = e("../internals/shared-store"),
           o = Function.toString;
       "function" != typeof n.inspectSource && (n.inspectSource = function (e) {
         return o.call(e);
       }), t.exports = n.inspectSource;
     }, {
-      "../internals/shared-store": 118
+      "../internals/shared-store": 119
     }],
-    68: [function (e, t, r) {
+    69: [function (e, t, r) {
       function n(e) {
         s(e, c, {
           value: {
@@ -2747,14 +2776,14 @@ var global = arguments[3];
 
       o[c] = !0;
     }, {
-      "../internals/freezing": 52,
-      "../internals/has": 59,
-      "../internals/hidden-keys": 60,
-      "../internals/is-object": 73,
-      "../internals/object-define-property": 91,
-      "../internals/uid": 142
+      "../internals/freezing": 53,
+      "../internals/has": 60,
+      "../internals/hidden-keys": 61,
+      "../internals/is-object": 74,
+      "../internals/object-define-property": 92,
+      "../internals/uid": 143
     }],
-    69: [function (e, t, r) {
+    70: [function (e, t, r) {
       var n,
           o,
           i,
@@ -2807,14 +2836,14 @@ var global = arguments[3];
       };
     }, {
       "../internals/create-non-enumerable-property": 37,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/hidden-keys": 60,
-      "../internals/is-object": 73,
-      "../internals/native-weak-map": 84,
-      "../internals/shared-key": 117
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/hidden-keys": 61,
+      "../internals/is-object": 74,
+      "../internals/native-weak-map": 85,
+      "../internals/shared-key": 118
     }],
-    70: [function (e, t, r) {
+    71: [function (e, t, r) {
       var n = e("../internals/well-known-symbol"),
           o = e("../internals/iterators"),
           i = n("iterator"),
@@ -2824,10 +2853,10 @@ var global = arguments[3];
         return void 0 !== e && (o.Array === e || a[i] === e);
       };
     }, {
-      "../internals/iterators": 78,
-      "../internals/well-known-symbol": 145
+      "../internals/iterators": 79,
+      "../internals/well-known-symbol": 146
     }],
-    71: [function (e, t, r) {
+    72: [function (e, t, r) {
       var n = e("../internals/classof-raw");
 
       t.exports = Array.isArray || function (e) {
@@ -2836,7 +2865,7 @@ var global = arguments[3];
     }, {
       "../internals/classof-raw": 28
     }],
-    72: [function (e, t, r) {
+    73: [function (e, t, r) {
       function n(e, t) {
         var r = s[a(e)];
         return r == u || r != l && ("function" == typeof t ? o(t) : !!t);
@@ -2855,15 +2884,15 @@ var global = arguments[3];
     }, {
       "../internals/fails": 50
     }],
-    73: [function (e, t, r) {
+    74: [function (e, t, r) {
       t.exports = function (e) {
         return "object" == typeof e ? null !== e : "function" == typeof e;
       };
     }, {}],
-    74: [function (e, t, r) {
+    75: [function (e, t, r) {
       t.exports = !1;
     }, {}],
-    75: [function (e, t, r) {
+    76: [function (e, t, r) {
       var n = e("../internals/is-object"),
           o = e("../internals/classof-raw"),
           i = e("../internals/well-known-symbol")("match");
@@ -2874,10 +2903,10 @@ var global = arguments[3];
       };
     }, {
       "../internals/classof-raw": 28,
-      "../internals/is-object": 73,
-      "../internals/well-known-symbol": 145
+      "../internals/is-object": 74,
+      "../internals/well-known-symbol": 146
     }],
-    76: [function (e, t, r) {
+    77: [function (e, t, r) {
       function h(e, t) {
         this.stopped = e, this.result = t;
       }
@@ -2919,12 +2948,12 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10,
       "../internals/call-with-safe-iteration-closing": 26,
-      "../internals/function-bind-context": 53,
-      "../internals/get-iterator-method": 56,
-      "../internals/is-array-iterator-method": 70,
-      "../internals/to-length": 133
+      "../internals/function-bind-context": 54,
+      "../internals/get-iterator-method": 57,
+      "../internals/is-array-iterator-method": 71,
+      "../internals/to-length": 134
     }],
-    77: [function (e, t, r) {
+    78: [function (e, t, r) {
       "use strict";
 
       var n,
@@ -2945,22 +2974,22 @@ var global = arguments[3];
       };
     }, {
       "../internals/create-non-enumerable-property": 37,
-      "../internals/has": 59,
-      "../internals/is-pure": 74,
-      "../internals/object-get-prototype-of": 96,
-      "../internals/well-known-symbol": 145
-    }],
-    78: [function (e, t, r) {
-      arguments[4][60][0].apply(r, arguments);
-    }, {
-      dup: 60
+      "../internals/has": 60,
+      "../internals/is-pure": 75,
+      "../internals/object-get-prototype-of": 97,
+      "../internals/well-known-symbol": 146
     }],
     79: [function (e, t, r) {
+      arguments[4][61][0].apply(r, arguments);
+    }, {
+      dup: 61
+    }],
+    80: [function (e, t, r) {
       t.exports = Math.sign || function (e) {
         return 0 == (e = +e) || e != e ? e : e < 0 ? -1 : 1;
       };
     }, {}],
-    80: [function (e, t, r) {
+    81: [function (e, t, r) {
       var n,
           o,
           i,
@@ -3015,17 +3044,17 @@ var global = arguments[3];
     }, {
       "../internals/classof-raw": 28,
       "../internals/engine-is-ios": 45,
-      "../internals/global": 58,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/task": 127
+      "../internals/global": 59,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/task": 128
     }],
-    81: [function (e, t, r) {
+    82: [function (e, t, r) {
       var n = e("../internals/global");
       t.exports = n.Promise;
     }, {
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    82: [function (e, t, r) {
+    83: [function (e, t, r) {
       var n = e("../internals/fails");
       t.exports = !!Object.getOwnPropertySymbols && !n(function () {
         return !String(Symbol());
@@ -3033,7 +3062,7 @@ var global = arguments[3];
     }, {
       "../internals/fails": 50
     }],
-    83: [function (e, t, r) {
+    84: [function (e, t, r) {
       var n = e("../internals/fails"),
           o = e("../internals/well-known-symbol"),
           i = e("../internals/is-pure"),
@@ -3048,19 +3077,19 @@ var global = arguments[3];
       });
     }, {
       "../internals/fails": 50,
-      "../internals/is-pure": 74,
-      "../internals/well-known-symbol": 145
+      "../internals/is-pure": 75,
+      "../internals/well-known-symbol": 146
     }],
-    84: [function (e, t, r) {
+    85: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/inspect-source"),
           i = n.WeakMap;
       t.exports = "function" == typeof i && /native code/.test(o(i));
     }, {
-      "../internals/global": 58,
-      "../internals/inspect-source": 67
+      "../internals/global": 59,
+      "../internals/inspect-source": 68
     }],
-    85: [function (e, t, r) {
+    86: [function (e, t, r) {
       "use strict";
 
       function n(e) {
@@ -3079,7 +3108,7 @@ var global = arguments[3];
     }, {
       "../internals/a-function": 5
     }],
-    86: [function (e, t, r) {
+    87: [function (e, t, r) {
       var n = e("../internals/is-regexp");
 
       t.exports = function (e) {
@@ -3087,18 +3116,18 @@ var global = arguments[3];
         return e;
       };
     }, {
-      "../internals/is-regexp": 75
+      "../internals/is-regexp": 76
     }],
-    87: [function (e, t, r) {
+    88: [function (e, t, r) {
       var n = e("../internals/global").isFinite;
 
       t.exports = Number.isFinite || function (e) {
         return "number" == typeof e && n(e);
       };
     }, {
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    88: [function (e, t, r) {
+    89: [function (e, t, r) {
       "use strict";
 
       var f = e("../internals/descriptors"),
@@ -3139,13 +3168,13 @@ var global = arguments[3];
     }, {
       "../internals/descriptors": 42,
       "../internals/fails": 50,
-      "../internals/indexed-object": 65,
-      "../internals/object-get-own-property-symbols": 95,
-      "../internals/object-keys": 98,
-      "../internals/object-property-is-enumerable": 99,
-      "../internals/to-object": 134
+      "../internals/indexed-object": 66,
+      "../internals/object-get-own-property-symbols": 96,
+      "../internals/object-keys": 99,
+      "../internals/object-property-is-enumerable": 100,
+      "../internals/to-object": 135
     }],
-    89: [function (e, t, r) {
+    90: [function (e, t, r) {
       function n() {}
 
       function o(e) {
@@ -3188,12 +3217,12 @@ var global = arguments[3];
       "../internals/an-object": 10,
       "../internals/document-create-element": 43,
       "../internals/enum-bug-keys": 48,
-      "../internals/hidden-keys": 60,
-      "../internals/html": 62,
-      "../internals/object-define-properties": 90,
-      "../internals/shared-key": 117
+      "../internals/hidden-keys": 61,
+      "../internals/html": 63,
+      "../internals/object-define-properties": 91,
+      "../internals/shared-key": 118
     }],
-    90: [function (e, t, r) {
+    91: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           a = e("../internals/object-define-property"),
           s = e("../internals/an-object"),
@@ -3208,10 +3237,10 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10,
       "../internals/descriptors": 42,
-      "../internals/object-define-property": 91,
-      "../internals/object-keys": 98
+      "../internals/object-define-property": 92,
+      "../internals/object-keys": 99
     }],
-    91: [function (e, t, r) {
+    92: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           o = e("../internals/ie8-dom-define"),
           i = e("../internals/an-object"),
@@ -3227,10 +3256,10 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10,
       "../internals/descriptors": 42,
-      "../internals/ie8-dom-define": 63,
-      "../internals/to-primitive": 137
+      "../internals/ie8-dom-define": 64,
+      "../internals/to-primitive": 138
     }],
-    92: [function (e, t, r) {
+    93: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           o = e("../internals/object-property-is-enumerable"),
           i = e("../internals/create-property-descriptor"),
@@ -3248,13 +3277,13 @@ var global = arguments[3];
     }, {
       "../internals/create-property-descriptor": 38,
       "../internals/descriptors": 42,
-      "../internals/has": 59,
-      "../internals/ie8-dom-define": 63,
-      "../internals/object-property-is-enumerable": 99,
-      "../internals/to-indexed-object": 131,
-      "../internals/to-primitive": 137
+      "../internals/has": 60,
+      "../internals/ie8-dom-define": 64,
+      "../internals/object-property-is-enumerable": 100,
+      "../internals/to-indexed-object": 132,
+      "../internals/to-primitive": 138
     }],
-    93: [function (e, t, r) {
+    94: [function (e, t, r) {
       var n = e("../internals/to-indexed-object"),
           o = e("../internals/object-get-own-property-names").f,
           i = {}.toString,
@@ -3270,10 +3299,10 @@ var global = arguments[3];
         }(e) : o(n(e));
       };
     }, {
-      "../internals/object-get-own-property-names": 94,
-      "../internals/to-indexed-object": 131
+      "../internals/object-get-own-property-names": 95,
+      "../internals/to-indexed-object": 132
     }],
-    94: [function (e, t, r) {
+    95: [function (e, t, r) {
       var n = e("../internals/object-keys-internal"),
           o = e("../internals/enum-bug-keys").concat("length", "prototype");
 
@@ -3282,12 +3311,12 @@ var global = arguments[3];
       };
     }, {
       "../internals/enum-bug-keys": 48,
-      "../internals/object-keys-internal": 97
+      "../internals/object-keys-internal": 98
     }],
-    95: [function (e, t, r) {
+    96: [function (e, t, r) {
       r.f = Object.getOwnPropertySymbols;
     }, {}],
-    96: [function (e, t, r) {
+    97: [function (e, t, r) {
       var n = e("../internals/has"),
           o = e("../internals/to-object"),
           i = e("../internals/shared-key"),
@@ -3299,11 +3328,11 @@ var global = arguments[3];
       };
     }, {
       "../internals/correct-prototype-getter": 34,
-      "../internals/has": 59,
-      "../internals/shared-key": 117,
-      "../internals/to-object": 134
+      "../internals/has": 60,
+      "../internals/shared-key": 118,
+      "../internals/to-object": 135
     }],
-    97: [function (e, t, r) {
+    98: [function (e, t, r) {
       var a = e("../internals/has"),
           s = e("../internals/to-indexed-object"),
           l = e("../internals/array-includes").indexOf,
@@ -3323,11 +3352,11 @@ var global = arguments[3];
       };
     }, {
       "../internals/array-includes": 18,
-      "../internals/has": 59,
-      "../internals/hidden-keys": 60,
-      "../internals/to-indexed-object": 131
+      "../internals/has": 60,
+      "../internals/hidden-keys": 61,
+      "../internals/to-indexed-object": 132
     }],
-    98: [function (e, t, r) {
+    99: [function (e, t, r) {
       var n = e("../internals/object-keys-internal"),
           o = e("../internals/enum-bug-keys");
 
@@ -3336,9 +3365,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/enum-bug-keys": 48,
-      "../internals/object-keys-internal": 97
+      "../internals/object-keys-internal": 98
     }],
-    99: [function (e, t, r) {
+    100: [function (e, t, r) {
       "use strict";
 
       var n = {}.propertyIsEnumerable,
@@ -3351,7 +3380,7 @@ var global = arguments[3];
         return !!t && t.enumerable;
       } : n;
     }, {}],
-    100: [function (e, t, r) {
+    101: [function (e, t, r) {
       var o = e("../internals/an-object"),
           i = e("../internals/a-possible-prototype");
       t.exports = Object.setPrototypeOf || ("__proto__" in {} ? function () {
@@ -3371,7 +3400,7 @@ var global = arguments[3];
       "../internals/a-possible-prototype": 6,
       "../internals/an-object": 10
     }],
-    101: [function (e, t, r) {
+    102: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/to-string-tag-support"),
@@ -3381,9 +3410,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/classof": 29,
-      "../internals/to-string-tag-support": 138
+      "../internals/to-string-tag-support": 139
     }],
-    102: [function (e, t, r) {
+    103: [function (e, t, r) {
       var n = e("../internals/get-built-in"),
           o = e("../internals/object-get-own-property-names"),
           i = e("../internals/object-get-own-property-symbols"),
@@ -3396,17 +3425,17 @@ var global = arguments[3];
       };
     }, {
       "../internals/an-object": 10,
-      "../internals/get-built-in": 55,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/object-get-own-property-symbols": 95
+      "../internals/get-built-in": 56,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/object-get-own-property-symbols": 96
     }],
-    103: [function (e, t, r) {
+    104: [function (e, t, r) {
       var n = e("../internals/global");
       t.exports = n;
     }, {
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    104: [function (e, t, r) {
+    105: [function (e, t, r) {
       t.exports = function (e) {
         try {
           return {
@@ -3421,7 +3450,7 @@ var global = arguments[3];
         }
       };
     }, {}],
-    105: [function (e, t, r) {
+    106: [function (e, t, r) {
       var n = e("../internals/an-object"),
           o = e("../internals/is-object"),
           i = e("../internals/new-promise-capability");
@@ -3433,10 +3462,10 @@ var global = arguments[3];
       };
     }, {
       "../internals/an-object": 10,
-      "../internals/is-object": 73,
-      "../internals/new-promise-capability": 85
+      "../internals/is-object": 74,
+      "../internals/new-promise-capability": 86
     }],
-    106: [function (e, t, r) {
+    107: [function (e, t, r) {
       var o = e("../internals/redefine");
 
       t.exports = function (e, t, r) {
@@ -3445,9 +3474,9 @@ var global = arguments[3];
         return e;
       };
     }, {
-      "../internals/redefine": 107
+      "../internals/redefine": 108
     }],
-    107: [function (e, t, r) {
+    108: [function (e, t, r) {
       var s = e("../internals/global"),
           l = e("../internals/create-non-enumerable-property"),
           u = e("../internals/has"),
@@ -3467,13 +3496,13 @@ var global = arguments[3];
       });
     }, {
       "../internals/create-non-enumerable-property": 37,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/inspect-source": 67,
-      "../internals/internal-state": 69,
-      "../internals/set-global": 114
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/inspect-source": 68,
+      "../internals/internal-state": 70,
+      "../internals/set-global": 115
     }],
-    108: [function (e, t, r) {
+    109: [function (e, t, r) {
       var o = e("./classof-raw"),
           i = e("./regexp-exec");
 
@@ -3491,9 +3520,9 @@ var global = arguments[3];
       };
     }, {
       "./classof-raw": 28,
-      "./regexp-exec": 109
+      "./regexp-exec": 110
     }],
-    109: [function (e, t, r) {
+    110: [function (e, t, r) {
       "use strict";
 
       var n,
@@ -3522,10 +3551,10 @@ var global = arguments[3];
         }), n;
       }), t.exports = a;
     }, {
-      "./regexp-flags": 110,
-      "./regexp-sticky-helpers": 111
+      "./regexp-flags": 111,
+      "./regexp-sticky-helpers": 112
     }],
-    110: [function (e, t, r) {
+    111: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/an-object");
@@ -3538,7 +3567,7 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10
     }],
-    111: [function (e, t, r) {
+    112: [function (e, t, r) {
       "use strict";
 
       var n = e("./fails");
@@ -3557,18 +3586,18 @@ var global = arguments[3];
     }, {
       "./fails": 50
     }],
-    112: [function (e, t, r) {
+    113: [function (e, t, r) {
       t.exports = function (e) {
         if (null == e) throw TypeError("Can't call method on " + e);
         return e;
       };
     }, {}],
-    113: [function (e, t, r) {
+    114: [function (e, t, r) {
       t.exports = Object.is || function (e, t) {
         return e === t ? 0 !== e || 1 / e == 1 / t : e != e && t != t;
       };
     }, {}],
-    114: [function (e, t, r) {
+    115: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/create-non-enumerable-property");
 
@@ -3583,9 +3612,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/create-non-enumerable-property": 37,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    115: [function (e, t, r) {
+    116: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/get-built-in"),
@@ -3606,11 +3635,11 @@ var global = arguments[3];
       };
     }, {
       "../internals/descriptors": 42,
-      "../internals/get-built-in": 55,
-      "../internals/object-define-property": 91,
-      "../internals/well-known-symbol": 145
+      "../internals/get-built-in": 56,
+      "../internals/object-define-property": 92,
+      "../internals/well-known-symbol": 146
     }],
-    116: [function (e, t, r) {
+    117: [function (e, t, r) {
       var n = e("../internals/object-define-property").f,
           o = e("../internals/has"),
           i = e("../internals/well-known-symbol")("toStringTag");
@@ -3622,11 +3651,11 @@ var global = arguments[3];
         });
       };
     }, {
-      "../internals/has": 59,
-      "../internals/object-define-property": 91,
-      "../internals/well-known-symbol": 145
+      "../internals/has": 60,
+      "../internals/object-define-property": 92,
+      "../internals/well-known-symbol": 146
     }],
-    117: [function (e, t, r) {
+    118: [function (e, t, r) {
       var n = e("../internals/shared"),
           o = e("../internals/uid"),
           i = n("keys");
@@ -3635,20 +3664,20 @@ var global = arguments[3];
         return i[e] || (i[e] = o(e));
       };
     }, {
-      "../internals/shared": 119,
-      "../internals/uid": 142
+      "../internals/shared": 120,
+      "../internals/uid": 143
     }],
-    118: [function (e, t, r) {
+    119: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/set-global"),
           i = "__core-js_shared__",
           a = n[i] || o(i, {});
       t.exports = a;
     }, {
-      "../internals/global": 58,
-      "../internals/set-global": 114
+      "../internals/global": 59,
+      "../internals/set-global": 115
     }],
-    119: [function (e, t, r) {
+    120: [function (e, t, r) {
       var n = e("../internals/is-pure"),
           o = e("../internals/shared-store");
       (t.exports = function (e, t) {
@@ -3659,10 +3688,10 @@ var global = arguments[3];
         copyright: "© 2020 Denis Pushkarev (zloirock.ru)"
       });
     }, {
-      "../internals/is-pure": 74,
-      "../internals/shared-store": 118
+      "../internals/is-pure": 75,
+      "../internals/shared-store": 119
     }],
-    120: [function (e, t, r) {
+    121: [function (e, t, r) {
       var o = e("../internals/an-object"),
           i = e("../internals/a-function"),
           a = e("../internals/well-known-symbol")("species");
@@ -3675,9 +3704,9 @@ var global = arguments[3];
     }, {
       "../internals/a-function": 5,
       "../internals/an-object": 10,
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
-    121: [function (e, t, r) {
+    122: [function (e, t, r) {
       var n = e("../internals/fails");
 
       t.exports = function (t) {
@@ -3689,7 +3718,7 @@ var global = arguments[3];
     }, {
       "../internals/fails": 50
     }],
-    122: [function (e, t, r) {
+    123: [function (e, t, r) {
       function n(s) {
         return function (e, t) {
           var r,
@@ -3708,10 +3737,10 @@ var global = arguments[3];
         charAt: n(!0)
       };
     }, {
-      "../internals/require-object-coercible": 112,
-      "../internals/to-integer": 132
+      "../internals/require-object-coercible": 113,
+      "../internals/to-integer": 133
     }],
-    123: [function (e, t, r) {
+    124: [function (e, t, r) {
       "use strict";
 
       function g(e) {
@@ -3799,7 +3828,7 @@ var global = arguments[3];
         return n.join(".");
       };
     }, {}],
-    124: [function (e, t, r) {
+    125: [function (e, t, r) {
       "use strict";
 
       var o = e("../internals/to-integer"),
@@ -3816,10 +3845,10 @@ var global = arguments[3];
         return r;
       };
     }, {
-      "../internals/require-object-coercible": 112,
-      "../internals/to-integer": 132
+      "../internals/require-object-coercible": 113,
+      "../internals/to-integer": 133
     }],
-    125: [function (e, t, r) {
+    126: [function (e, t, r) {
       var n = e("../internals/fails"),
           o = e("../internals/whitespaces");
 
@@ -3830,9 +3859,9 @@ var global = arguments[3];
       };
     }, {
       "../internals/fails": 50,
-      "../internals/whitespaces": 146
+      "../internals/whitespaces": 147
     }],
-    126: [function (e, t, r) {
+    127: [function (e, t, r) {
       function n(r) {
         return function (e) {
           var t = String(o(e));
@@ -3850,14 +3879,14 @@ var global = arguments[3];
         trim: n(3)
       };
     }, {
-      "../internals/require-object-coercible": 112,
-      "../internals/whitespaces": 146
+      "../internals/require-object-coercible": 113,
+      "../internals/whitespaces": 147
     }],
-    127: [function (e, t, r) {
+    128: [function (e, t, r) {
       function n(e) {
-        if (j.hasOwnProperty(e)) {
-          var t = j[e];
-          delete j[e], t();
+        if (S.hasOwnProperty(e)) {
+          var t = S[e];
+          delete S[e], t();
         }
       }
 
@@ -3891,17 +3920,17 @@ var global = arguments[3];
           _ = c.process,
           x = c.MessageChannel,
           w = c.Dispatch,
-          S = 0,
-          j = {},
+          j = 0,
+          S = {},
           M = "onreadystatechange";
       v && b || (v = function (e) {
         for (var t = [], r = 1; r < arguments.length;) t.push(arguments[r++]);
 
-        return j[++S] = function () {
+        return S[++j] = function () {
           ("function" == typeof e ? e : Function(e)).apply(void 0, t);
-        }, s(S), S;
+        }, s(j), j;
       }, b = function (e) {
-        delete j[e];
+        delete S[e];
       }, "process" == f(_) ? s = function (e) {
         _.nextTick(o(e));
       } : w && w.now ? s = function (e) {
@@ -3921,11 +3950,11 @@ var global = arguments[3];
       "../internals/document-create-element": 43,
       "../internals/engine-is-ios": 45,
       "../internals/fails": 50,
-      "../internals/function-bind-context": 53,
-      "../internals/global": 58,
-      "../internals/html": 62
+      "../internals/function-bind-context": 54,
+      "../internals/global": 59,
+      "../internals/html": 63
     }],
-    128: [function (e, t, r) {
+    129: [function (e, t, r) {
       var n = e("../internals/classof-raw");
 
       t.exports = function (e) {
@@ -3935,7 +3964,7 @@ var global = arguments[3];
     }, {
       "../internals/classof-raw": 28
     }],
-    129: [function (e, t, r) {
+    130: [function (e, t, r) {
       var n = e("../internals/to-integer"),
           o = Math.max,
           i = Math.min;
@@ -3945,9 +3974,9 @@ var global = arguments[3];
         return r < 0 ? o(r + t, 0) : i(r, t);
       };
     }, {
-      "../internals/to-integer": 132
+      "../internals/to-integer": 133
     }],
-    130: [function (e, t, r) {
+    131: [function (e, t, r) {
       var n = e("../internals/to-integer"),
           o = e("../internals/to-length");
 
@@ -3959,10 +3988,10 @@ var global = arguments[3];
         return r;
       };
     }, {
-      "../internals/to-integer": 132,
-      "../internals/to-length": 133
+      "../internals/to-integer": 133,
+      "../internals/to-length": 134
     }],
-    131: [function (e, t, r) {
+    132: [function (e, t, r) {
       var n = e("../internals/indexed-object"),
           o = e("../internals/require-object-coercible");
 
@@ -3970,10 +3999,10 @@ var global = arguments[3];
         return n(o(e));
       };
     }, {
-      "../internals/indexed-object": 65,
-      "../internals/require-object-coercible": 112
+      "../internals/indexed-object": 66,
+      "../internals/require-object-coercible": 113
     }],
-    132: [function (e, t, r) {
+    133: [function (e, t, r) {
       var n = Math.ceil,
           o = Math.floor;
 
@@ -3981,7 +4010,7 @@ var global = arguments[3];
         return isNaN(e = +e) ? 0 : (0 < e ? o : n)(e);
       };
     }, {}],
-    133: [function (e, t, r) {
+    134: [function (e, t, r) {
       var n = e("../internals/to-integer"),
           o = Math.min;
 
@@ -3989,18 +4018,18 @@ var global = arguments[3];
         return 0 < e ? o(n(e), 9007199254740991) : 0;
       };
     }, {
-      "../internals/to-integer": 132
+      "../internals/to-integer": 133
     }],
-    134: [function (e, t, r) {
+    135: [function (e, t, r) {
       var n = e("../internals/require-object-coercible");
 
       t.exports = function (e) {
         return Object(n(e));
       };
     }, {
-      "../internals/require-object-coercible": 112
+      "../internals/require-object-coercible": 113
     }],
-    135: [function (e, t, r) {
+    136: [function (e, t, r) {
       var n = e("../internals/to-positive-integer");
 
       t.exports = function (e, t) {
@@ -4009,9 +4038,9 @@ var global = arguments[3];
         return r;
       };
     }, {
-      "../internals/to-positive-integer": 136
+      "../internals/to-positive-integer": 137
     }],
-    136: [function (e, t, r) {
+    137: [function (e, t, r) {
       var n = e("../internals/to-integer");
 
       t.exports = function (e) {
@@ -4020,9 +4049,9 @@ var global = arguments[3];
         return t;
       };
     }, {
-      "../internals/to-integer": 132
+      "../internals/to-integer": 133
     }],
-    137: [function (e, t, r) {
+    138: [function (e, t, r) {
       var o = e("../internals/is-object");
 
       t.exports = function (e, t) {
@@ -4034,15 +4063,15 @@ var global = arguments[3];
         throw TypeError("Can't convert object to primitive value");
       };
     }, {
-      "../internals/is-object": 73
+      "../internals/is-object": 74
     }],
-    138: [function (e, t, r) {
+    139: [function (e, t, r) {
       var n = {};
       n[e("../internals/well-known-symbol")("toStringTag")] = "z", t.exports = "[object z]" === String(n);
     }, {
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
-    139: [function (e, t, r) {
+    140: [function (e, t, r) {
       "use strict";
 
       function p(e, t) {
@@ -4061,7 +4090,7 @@ var global = arguments[3];
 
       function y(e) {
         var t;
-        return e instanceof G || "ArrayBuffer" == (t = S(e)) || "SharedArrayBuffer" == t;
+        return e instanceof G || "ArrayBuffer" == (t = j(e)) || "SharedArrayBuffer" == t;
       }
 
       function o(e, t) {
@@ -4073,7 +4102,7 @@ var global = arguments[3];
       }
 
       function a(e, t, r) {
-        return !(o(e, t = h(t, !0)) && j(r) && w(r, "value")) || w(r, "get") || w(r, "set") || r.configurable || w(r, "writable") && !r.writable || w(r, "enumerable") && !r.enumerable ? U(e, t, r) : (e[t] = r.value, e);
+        return !(o(e, t = h(t, !0)) && S(r) && w(r, "value")) || w(r, "get") || w(r, "set") || r.configurable || w(r, "writable") && !r.writable || w(r, "enumerable") && !r.enumerable ? U(e, t, r) : (e[t] = r.value, e);
       }
 
       var l = e("../internals/export"),
@@ -4090,8 +4119,8 @@ var global = arguments[3];
           x = e("../internals/to-offset"),
           h = e("../internals/to-primitive"),
           w = e("../internals/has"),
-          S = e("../internals/classof"),
-          j = e("../internals/is-object"),
+          j = e("../internals/classof"),
+          S = e("../internals/is-object"),
           M = e("../internals/object-create"),
           E = e("../internals/object-set-prototype-of"),
           T = e("../internals/object-get-own-property-names").f,
@@ -4099,13 +4128,13 @@ var global = arguments[3];
           C = e("../internals/array-iteration").forEach,
           L = e("../internals/set-species"),
           P = e("../internals/object-define-property"),
-          k = e("../internals/object-get-own-property-descriptor"),
-          A = e("../internals/internal-state"),
+          A = e("../internals/object-get-own-property-descriptor"),
+          k = e("../internals/internal-state"),
           R = e("../internals/inherit-if-required"),
-          D = A.get,
-          I = A.set,
+          D = k.get,
+          I = k.set,
           U = P.f,
-          N = k.f,
+          N = A.f,
           F = Math.round,
           B = u.RangeError,
           G = d.ArrayBuffer,
@@ -4119,7 +4148,7 @@ var global = arguments[3];
           Z = "BYTES_PER_ELEMENT",
           Q = "Wrong length";
 
-      s ? (z || (k.f = i, P.f = a, n(q, "buffer"), n(q, "byteOffset"), n(q, "byteLength"), n(q, "length")), l({
+      s ? (z || (A.f = i, P.f = a, n(q, "buffer"), n(q, "byteOffset"), n(q, "byteLength"), n(q, "length")), l({
         target: "Object",
         stat: !0,
         forced: !z
@@ -4150,7 +4179,7 @@ var global = arguments[3];
             n = h && h.prototype,
             s = {};
         z ? m && (h = t(function (e, t, r, n) {
-          return g(e, h, f), R(j(t) ? y(t) ? void 0 !== n ? new o(t, x(r, d), n) : void 0 !== r ? new o(t, x(r, d)) : new o(t) : Y(t) ? p(h, t) : O.call(h, t) : new o(_(t)), e, h);
+          return g(e, h, f), R(S(t) ? y(t) ? void 0 !== n ? new o(t, x(r, d), n) : void 0 !== r ? new o(t, x(r, d)) : new o(t) : Y(t) ? p(h, t) : O.call(h, t) : new o(_(t)), e, h);
         }), E && E(h, W), C(T(o), function (e) {
           e in h || v(h, e, o[e]);
         }), h.prototype = n) : (h = t(function (e, t, r, n) {
@@ -4161,7 +4190,7 @@ var global = arguments[3];
               s = 0,
               l = 0;
 
-          if (j(t)) {
+          if (S(t)) {
             if (!y(t)) return Y(t) ? p(h, t) : O.call(h, t);
             o = t, l = x(r, d);
             var u = t.byteLength;
@@ -4197,25 +4226,25 @@ var global = arguments[3];
       "../internals/create-property-descriptor": 38,
       "../internals/descriptors": 42,
       "../internals/export": 49,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/inherit-if-required": 66,
-      "../internals/internal-state": 69,
-      "../internals/is-object": 73,
-      "../internals/object-create": 89,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/object-set-prototype-of": 100,
-      "../internals/set-species": 115,
-      "../internals/to-index": 130,
-      "../internals/to-length": 133,
-      "../internals/to-offset": 135,
-      "../internals/to-primitive": 137,
-      "../internals/typed-array-constructors-require-wrappers": 140,
-      "../internals/typed-array-from": 141
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/inherit-if-required": 67,
+      "../internals/internal-state": 70,
+      "../internals/is-object": 74,
+      "../internals/object-create": 90,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/object-set-prototype-of": 101,
+      "../internals/set-species": 116,
+      "../internals/to-index": 131,
+      "../internals/to-length": 134,
+      "../internals/to-offset": 136,
+      "../internals/to-primitive": 138,
+      "../internals/typed-array-constructors-require-wrappers": 141,
+      "../internals/typed-array-from": 142
     }],
-    140: [function (e, t, r) {
+    141: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/fails"),
           i = e("../internals/check-correctness-of-iteration"),
@@ -4235,9 +4264,9 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/check-correctness-of-iteration": 27,
       "../internals/fails": 50,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    141: [function (e, t, r) {
+    142: [function (e, t, r) {
       var p = e("../internals/to-object"),
           y = e("../internals/to-length"),
           m = e("../internals/get-iterator-method"),
@@ -4265,13 +4294,13 @@ var global = arguments[3];
       };
     }, {
       "../internals/array-buffer-view-core": 12,
-      "../internals/function-bind-context": 53,
-      "../internals/get-iterator-method": 56,
-      "../internals/is-array-iterator-method": 70,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/function-bind-context": 54,
+      "../internals/get-iterator-method": 57,
+      "../internals/is-array-iterator-method": 71,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
-    142: [function (e, t, r) {
+    143: [function (e, t, r) {
       var n = 0,
           o = Math.random();
 
@@ -4279,19 +4308,19 @@ var global = arguments[3];
         return "Symbol(" + String(void 0 === e ? "" : e) + ")_" + (++n + o).toString(36);
       };
     }, {}],
-    143: [function (e, t, r) {
+    144: [function (e, t, r) {
       var n = e("../internals/native-symbol");
       t.exports = n && !Symbol.sham && "symbol" == typeof Symbol.iterator;
     }, {
-      "../internals/native-symbol": 82
+      "../internals/native-symbol": 83
     }],
-    144: [function (e, t, r) {
+    145: [function (e, t, r) {
       var n = e("../internals/well-known-symbol");
       r.f = n;
     }, {
-      "../internals/well-known-symbol": 145
+      "../internals/well-known-symbol": 146
     }],
-    145: [function (e, t, r) {
+    146: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/shared"),
           i = e("../internals/has"),
@@ -4306,17 +4335,17 @@ var global = arguments[3];
         return i(u, e) || (s && i(c, e) ? u[e] = c[e] : u[e] = d("Symbol." + e)), u[e];
       };
     }, {
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/native-symbol": 82,
-      "../internals/shared": 119,
-      "../internals/uid": 142,
-      "../internals/use-symbol-as-uid": 143
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/native-symbol": 83,
+      "../internals/shared": 120,
+      "../internals/uid": 143,
+      "../internals/use-symbol-as-uid": 144
     }],
-    146: [function (e, t, r) {
+    147: [function (e, t, r) {
       t.exports = "\t\n\v\f\r                　\u2028\u2029\ufeff";
     }, {}],
-    147: [function (e, t, r) {
+    148: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4334,10 +4363,10 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer": 13,
       "../internals/export": 49,
-      "../internals/global": 58,
-      "../internals/set-species": 115
+      "../internals/global": 59,
+      "../internals/set-species": 116
     }],
-    148: [function (e, t, r) {
+    149: [function (e, t, r) {
       "use strict";
 
       function u(e) {
@@ -4399,13 +4428,13 @@ var global = arguments[3];
       "../internals/engine-v8-version": 47,
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/is-array": 71,
-      "../internals/is-object": 73,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134,
-      "../internals/well-known-symbol": 145
+      "../internals/is-array": 72,
+      "../internals/is-object": 74,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135,
+      "../internals/well-known-symbol": 146
     }],
-    149: [function (e, t, r) {
+    150: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4429,7 +4458,7 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    150: [function (e, t, r) {
+    151: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/array-fill"),
           i = e("../internals/add-to-unscopables");
@@ -4444,7 +4473,7 @@ var global = arguments[3];
       "../internals/array-fill": 15,
       "../internals/export": 49
     }],
-    151: [function (e, t, r) {
+    152: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4468,7 +4497,35 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    152: [function (e, t, r) {
+    153: [function (e, t, r) {
+      "use strict";
+
+      var n = e("../internals/export"),
+          i = e("../internals/flatten-into-array"),
+          a = e("../internals/to-object"),
+          s = e("../internals/to-length"),
+          l = e("../internals/a-function"),
+          u = e("../internals/array-species-create");
+      n({
+        target: "Array",
+        proto: !0
+      }, {
+        flatMap: function (e, t) {
+          var r,
+              n = a(this),
+              o = s(n.length);
+          return l(e), (r = u(n, 0)).length = i(r, n, n, o, 0, 1, e, 1 < arguments.length ? t : void 0), r;
+        }
+      });
+    }, {
+      "../internals/a-function": 5,
+      "../internals/array-species-create": 25,
+      "../internals/export": 49,
+      "../internals/flatten-into-array": 52,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
+    }],
+    154: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4484,7 +4541,7 @@ var global = arguments[3];
       "../internals/array-for-each": 16,
       "../internals/export": 49
     }],
-    153: [function (e, t, r) {
+    155: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/array-from");
       n({
@@ -4501,7 +4558,7 @@ var global = arguments[3];
       "../internals/check-correctness-of-iteration": 27,
       "../internals/export": 49
     }],
-    154: [function (e, t, r) {
+    156: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4525,7 +4582,7 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    155: [function (e, t, r) {
+    157: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4554,7 +4611,7 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    156: [function (e, t, r) {
+    158: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/to-indexed-object"),
@@ -4594,11 +4651,11 @@ var global = arguments[3];
     }, {
       "../internals/add-to-unscopables": 7,
       "../internals/define-iterator": 40,
-      "../internals/internal-state": 69,
-      "../internals/iterators": 78,
-      "../internals/to-indexed-object": 131
+      "../internals/internal-state": 70,
+      "../internals/iterators": 79,
+      "../internals/to-indexed-object": 132
     }],
-    157: [function (e, t, r) {
+    159: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4620,10 +4677,10 @@ var global = arguments[3];
     }, {
       "../internals/array-method-is-strict": 22,
       "../internals/export": 49,
-      "../internals/indexed-object": 65,
-      "../internals/to-indexed-object": 131
+      "../internals/indexed-object": 66,
+      "../internals/to-indexed-object": 132
     }],
-    158: [function (e, t, r) {
+    160: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/array-last-index-of");
       n({
@@ -4637,7 +4694,7 @@ var global = arguments[3];
       "../internals/array-last-index-of": 20,
       "../internals/export": 49
     }],
-    159: [function (e, t, r) {
+    161: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4661,7 +4718,7 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    160: [function (e, t, r) {
+    162: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4708,14 +4765,14 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/create-property": 39,
       "../internals/export": 49,
-      "../internals/is-array": 71,
-      "../internals/is-object": 73,
-      "../internals/to-absolute-index": 129,
-      "../internals/to-indexed-object": 131,
-      "../internals/to-length": 133,
-      "../internals/well-known-symbol": 145
+      "../internals/is-array": 72,
+      "../internals/is-object": 74,
+      "../internals/to-absolute-index": 130,
+      "../internals/to-indexed-object": 132,
+      "../internals/to-length": 134,
+      "../internals/well-known-symbol": 146
     }],
-    161: [function (e, t, r) {
+    163: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4739,7 +4796,7 @@ var global = arguments[3];
       "../internals/array-method-uses-to-length": 23,
       "../internals/export": 49
     }],
-    162: [function (e, t, r) {
+    164: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -4796,12 +4853,17 @@ var global = arguments[3];
       "../internals/array-species-create": 25,
       "../internals/create-property": 39,
       "../internals/export": 49,
-      "../internals/to-absolute-index": 129,
-      "../internals/to-integer": 132,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/to-absolute-index": 130,
+      "../internals/to-integer": 133,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
-    163: [function (e, t, r) {
+    165: [function (e, t, r) {
+      e("../internals/add-to-unscopables")("flatMap");
+    }, {
+      "../internals/add-to-unscopables": 7
+    }],
+    166: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           o = e("../internals/object-define-property").f,
           i = Function.prototype,
@@ -4819,9 +4881,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/descriptors": 42,
-      "../internals/object-define-property": 91
+      "../internals/object-define-property": 92
     }],
-    164: [function (e, t, r) {
+    167: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/collection"),
@@ -4835,7 +4897,7 @@ var global = arguments[3];
       "../internals/collection": 31,
       "../internals/collection-strong": 30
     }],
-    165: [function (e, t, r) {
+    168: [function (e, t, r) {
       var n = e("../internals/export"),
           o = Math.hypot,
           l = Math.abs,
@@ -4854,7 +4916,7 @@ var global = arguments[3];
     }, {
       "../internals/export": 49
     }],
-    166: [function (e, t, r) {
+    169: [function (e, t, r) {
       e("../internals/export")({
         target: "Math",
         stat: !0
@@ -4863,9 +4925,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/math-sign": 79
+      "../internals/math-sign": 80
     }],
-    167: [function (e, t, r) {
+    170: [function (e, t, r) {
       "use strict";
 
       function n(e) {
@@ -4923,33 +4985,33 @@ var global = arguments[3];
           x = u(h(_)) == v;
 
       if (a(v, !b(" 0o1") || !b("0b1") || b("+0x1"))) {
-        for (var w, S = function (e) {
+        for (var w, j = function (e) {
           var t = arguments.length < 1 ? 0 : e,
               r = this;
-          return r instanceof S && (x ? f(function () {
+          return r instanceof j && (x ? f(function () {
             _.valueOf.call(r);
-          }) : u(r) != v) ? c(new b(n(t)), r, S) : n(t);
-        }, j = o ? p(b) : "MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger".split(","), M = 0; j.length > M; M++) l(b, w = j[M]) && !l(S, w) && m(S, w, y(b, w));
+          }) : u(r) != v) ? c(new b(n(t)), r, j) : n(t);
+        }, S = o ? p(b) : "MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger".split(","), M = 0; S.length > M; M++) l(b, w = S[M]) && !l(j, w) && m(j, w, y(b, w));
 
-        (S.prototype = _).constructor = S, s(i, v, S);
+        (j.prototype = _).constructor = j, s(i, v, j);
       }
     }, {
       "../internals/classof-raw": 28,
       "../internals/descriptors": 42,
       "../internals/fails": 50,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/inherit-if-required": 66,
-      "../internals/is-forced": 72,
-      "../internals/object-create": 89,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/redefine": 107,
-      "../internals/string-trim": 126,
-      "../internals/to-primitive": 137
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/inherit-if-required": 67,
+      "../internals/is-forced": 73,
+      "../internals/object-create": 90,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/redefine": 108,
+      "../internals/string-trim": 127,
+      "../internals/to-primitive": 138
     }],
-    168: [function (e, t, r) {
+    171: [function (e, t, r) {
       e("../internals/export")({
         target: "Number",
         stat: !0
@@ -4958,9 +5020,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/number-is-finite": 87
+      "../internals/number-is-finite": 88
     }],
-    169: [function (e, t, r) {
+    172: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -5030,11 +5092,11 @@ var global = arguments[3];
     }, {
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/string-repeat": 124,
-      "../internals/this-number-value": 128,
-      "../internals/to-integer": 132
+      "../internals/string-repeat": 125,
+      "../internals/this-number-value": 129,
+      "../internals/to-integer": 133
     }],
-    170: [function (e, t, r) {
+    173: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/object-assign");
       n({
@@ -5046,9 +5108,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/object-assign": 88
+      "../internals/object-assign": 89
     }],
-    171: [function (e, t, r) {
+    174: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/fails"),
           i = e("../internals/object-get-own-property-names-external").f;
@@ -5064,9 +5126,9 @@ var global = arguments[3];
     }, {
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/object-get-own-property-names-external": 93
+      "../internals/object-get-own-property-names-external": 94
     }],
-    172: [function (e, t, r) {
+    175: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/fails"),
           i = e("../internals/to-object"),
@@ -5088,10 +5150,10 @@ var global = arguments[3];
       "../internals/correct-prototype-getter": 34,
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/object-get-prototype-of": 96,
-      "../internals/to-object": 134
+      "../internals/object-get-prototype-of": 97,
+      "../internals/to-object": 135
     }],
-    173: [function (e, t, r) {
+    176: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/to-object"),
           i = e("../internals/object-keys");
@@ -5109,10 +5171,10 @@ var global = arguments[3];
     }, {
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/object-keys": 98,
-      "../internals/to-object": 134
+      "../internals/object-keys": 99,
+      "../internals/to-object": 135
     }],
-    174: [function (e, t, r) {
+    177: [function (e, t, r) {
       var n = e("../internals/to-string-tag-support"),
           o = e("../internals/redefine"),
           i = e("../internals/object-to-string");
@@ -5120,11 +5182,11 @@ var global = arguments[3];
         unsafe: !0
       });
     }, {
-      "../internals/object-to-string": 101,
-      "../internals/redefine": 107,
-      "../internals/to-string-tag-support": 138
+      "../internals/object-to-string": 102,
+      "../internals/redefine": 108,
+      "../internals/to-string-tag-support": 139
     }],
-    175: [function (e, t, r) {
+    178: [function (e, t, r) {
       "use strict";
 
       function y(e) {
@@ -5164,7 +5226,7 @@ var global = arguments[3];
         J ? ((n = q.createEvent("Event")).promise = t, n.reason = r, n.initEvent(e, !1, !0), h.dispatchEvent(n)) : n = {
           promise: t,
           reason: r
-        }, (o = h["on" + e]) ? o(n) : e === $ && k("Unhandled promise rejection", r);
+        }, (o = h["on" + e]) ? o(n) : e === $ && A("Unhandled promise rejection", r);
       }
 
       function a(t, r, n, o) {
@@ -5192,8 +5254,8 @@ var global = arguments[3];
           _ = e("../internals/set-species"),
           x = e("../internals/is-object"),
           w = e("../internals/a-function"),
-          S = e("../internals/an-instance"),
-          j = e("../internals/classof-raw"),
+          j = e("../internals/an-instance"),
+          S = e("../internals/classof-raw"),
           M = e("../internals/inspect-source"),
           E = e("../internals/iterate"),
           T = e("../internals/check-correctness-of-iteration"),
@@ -5201,8 +5263,8 @@ var global = arguments[3];
           C = e("../internals/task").set,
           L = e("../internals/microtask"),
           P = e("../internals/promise-resolve"),
-          k = e("../internals/host-report-errors"),
-          A = e("../internals/new-promise-capability"),
+          A = e("../internals/host-report-errors"),
+          k = e("../internals/new-promise-capability"),
           R = e("../internals/perform"),
           D = e("../internals/internal-state"),
           I = e("../internals/is-forced"),
@@ -5218,9 +5280,9 @@ var global = arguments[3];
           q = h.document,
           X = h.process,
           Y = p("fetch"),
-          Z = A.f,
+          Z = k.f,
           Q = Z,
-          K = "process" == j(X),
+          K = "process" == S(X),
           J = !!(q && q.createEvent && h.dispatchEvent),
           $ = "unhandledrejection",
           ee = I(B, function () {
@@ -5286,7 +5348,7 @@ var global = arguments[3];
       };
 
       ee && (H = function (e) {
-        S(this, H, B), w(e), n.call(this);
+        j(this, H, B), w(e), n.call(this);
         var t = G(this);
 
         try {
@@ -5318,7 +5380,7 @@ var global = arguments[3];
         var e = new n(),
             t = G(e);
         this.promise = e, this.resolve = a(ie, e, t), this.reject = a(s, e, t);
-      }, A.f = Z = function (e) {
+      }, k.f = Z = function (e) {
         return e === H || e === u ? new l(e) : Q(e);
       }, f || "function" != typeof m || (c = m.prototype.then, g(m.prototype, "then", function (e, t) {
         var r = this;
@@ -5403,29 +5465,29 @@ var global = arguments[3];
       "../internals/classof-raw": 28,
       "../internals/engine-v8-version": 47,
       "../internals/export": 49,
-      "../internals/get-built-in": 55,
-      "../internals/global": 58,
-      "../internals/host-report-errors": 61,
-      "../internals/inspect-source": 67,
-      "../internals/internal-state": 69,
-      "../internals/is-forced": 72,
-      "../internals/is-object": 73,
-      "../internals/is-pure": 74,
-      "../internals/iterate": 76,
-      "../internals/microtask": 80,
-      "../internals/native-promise-constructor": 81,
-      "../internals/new-promise-capability": 85,
-      "../internals/perform": 104,
-      "../internals/promise-resolve": 105,
-      "../internals/redefine": 107,
-      "../internals/redefine-all": 106,
-      "../internals/set-species": 115,
-      "../internals/set-to-string-tag": 116,
-      "../internals/species-constructor": 120,
-      "../internals/task": 127,
-      "../internals/well-known-symbol": 145
+      "../internals/get-built-in": 56,
+      "../internals/global": 59,
+      "../internals/host-report-errors": 62,
+      "../internals/inspect-source": 68,
+      "../internals/internal-state": 70,
+      "../internals/is-forced": 73,
+      "../internals/is-object": 74,
+      "../internals/is-pure": 75,
+      "../internals/iterate": 77,
+      "../internals/microtask": 81,
+      "../internals/native-promise-constructor": 82,
+      "../internals/new-promise-capability": 86,
+      "../internals/perform": 105,
+      "../internals/promise-resolve": 106,
+      "../internals/redefine": 108,
+      "../internals/redefine-all": 107,
+      "../internals/set-species": 116,
+      "../internals/set-to-string-tag": 117,
+      "../internals/species-constructor": 121,
+      "../internals/task": 128,
+      "../internals/well-known-symbol": 146
     }],
-    176: [function (e, t, r) {
+    179: [function (e, t, r) {
       var n = e("../internals/export"),
           o = e("../internals/get-built-in"),
           l = e("../internals/a-function"),
@@ -5488,12 +5550,12 @@ var global = arguments[3];
       "../internals/an-object": 10,
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/function-bind": 54,
-      "../internals/get-built-in": 55,
-      "../internals/is-object": 73,
-      "../internals/object-create": 89
+      "../internals/function-bind": 55,
+      "../internals/get-built-in": 56,
+      "../internals/is-object": 74,
+      "../internals/object-create": 90
     }],
-    177: [function (e, t, r) {
+    180: [function (e, t, r) {
       var n = e("../internals/descriptors"),
           o = e("../internals/global"),
           i = e("../internals/is-forced"),
@@ -5518,8 +5580,8 @@ var global = arguments[3];
       if (n && i("RegExp", !x || w || h(function () {
         return _[m] = !1, g(b) != b || g(_) == _ || "/a/i" != g(b, "i");
       }))) {
-        let S = function (t) {
-          t in j || a(j, t, {
+        let j = function (t) {
+          t in S || a(S, t, {
             configurable: !0,
             get: function () {
               return g[t];
@@ -5530,40 +5592,40 @@ var global = arguments[3];
           });
         };
 
-        for (var j = function (e, t) {
+        for (var S = function (e, t) {
           var r,
-              n = this instanceof j,
+              n = this instanceof S,
               o = u(e),
               i = void 0 === t;
-          if (!n && o && e.constructor === j && i) return e;
-          x ? o && !i && (e = e.source) : e instanceof j && (i && (t = c.call(e)), e = e.source), w && (r = !!t && -1 < t.indexOf("y")) && (t = t.replace(/y/g, ""));
-          var a = s(x ? new g(e, t) : g(e, t), n ? this : v, j);
+          if (!n && o && e.constructor === S && i) return e;
+          x ? o && !i && (e = e.source) : e instanceof S && (i && (t = c.call(e)), e = e.source), w && (r = !!t && -1 < t.indexOf("y")) && (t = t.replace(/y/g, ""));
+          var a = s(x ? new g(e, t) : g(e, t), n ? this : v, S);
           return w && r && p(a, {
             sticky: r
           }), a;
-        }, M = l(g), E = 0; M.length > E;) S(M[E++]);
+        }, M = l(g), E = 0; M.length > E;) j(M[E++]);
 
-        (v.constructor = j).prototype = v, f(o, "RegExp", j);
+        (v.constructor = S).prototype = v, f(o, "RegExp", S);
       }
 
       y("RegExp");
     }, {
       "../internals/descriptors": 42,
       "../internals/fails": 50,
-      "../internals/global": 58,
-      "../internals/inherit-if-required": 66,
-      "../internals/internal-state": 69,
-      "../internals/is-forced": 72,
-      "../internals/is-regexp": 75,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/redefine": 107,
-      "../internals/regexp-flags": 110,
-      "../internals/regexp-sticky-helpers": 111,
-      "../internals/set-species": 115,
-      "../internals/well-known-symbol": 145
+      "../internals/global": 59,
+      "../internals/inherit-if-required": 67,
+      "../internals/internal-state": 70,
+      "../internals/is-forced": 73,
+      "../internals/is-regexp": 76,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/redefine": 108,
+      "../internals/regexp-flags": 111,
+      "../internals/regexp-sticky-helpers": 112,
+      "../internals/set-species": 116,
+      "../internals/well-known-symbol": 146
     }],
-    178: [function (e, t, r) {
+    181: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -5577,9 +5639,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/regexp-exec": 109
+      "../internals/regexp-exec": 110
     }],
-    179: [function (e, t, r) {
+    182: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/redefine"),
@@ -5607,10 +5669,10 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10,
       "../internals/fails": 50,
-      "../internals/redefine": 107,
-      "../internals/regexp-flags": 110
+      "../internals/redefine": 108,
+      "../internals/regexp-flags": 111
     }],
-    180: [function (e, t, r) {
+    183: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/collection"),
@@ -5624,7 +5686,7 @@ var global = arguments[3];
       "../internals/collection": 31,
       "../internals/collection-strong": 30
     }],
-    181: [function (e, t, r) {
+    184: [function (e, t, r) {
       "use strict";
 
       var n,
@@ -5656,13 +5718,13 @@ var global = arguments[3];
     }, {
       "../internals/correct-is-regexp-logic": 33,
       "../internals/export": 49,
-      "../internals/is-pure": 74,
-      "../internals/not-a-regexp": 86,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/require-object-coercible": 112,
-      "../internals/to-length": 133
+      "../internals/is-pure": 75,
+      "../internals/not-a-regexp": 87,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/require-object-coercible": 113,
+      "../internals/to-length": 134
     }],
-    182: [function (e, t, r) {
+    185: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -5680,10 +5742,10 @@ var global = arguments[3];
     }, {
       "../internals/correct-is-regexp-logic": 33,
       "../internals/export": 49,
-      "../internals/not-a-regexp": 86,
-      "../internals/require-object-coercible": 112
+      "../internals/not-a-regexp": 87,
+      "../internals/require-object-coercible": 113
     }],
-    183: [function (e, t, r) {
+    186: [function (e, t, r) {
       "use strict";
 
       var o = e("../internals/string-multibyte").charAt,
@@ -5713,10 +5775,10 @@ var global = arguments[3];
       });
     }, {
       "../internals/define-iterator": 40,
-      "../internals/internal-state": 69,
-      "../internals/string-multibyte": 122
+      "../internals/internal-state": 70,
+      "../internals/string-multibyte": 123
     }],
-    184: [function (e, t, r) {
+    187: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/fix-regexp-well-known-symbol-logic"),
@@ -5749,11 +5811,11 @@ var global = arguments[3];
       "../internals/advance-string-index": 8,
       "../internals/an-object": 10,
       "../internals/fix-regexp-well-known-symbol-logic": 51,
-      "../internals/regexp-exec-abstract": 108,
-      "../internals/require-object-coercible": 112,
-      "../internals/to-length": 133
+      "../internals/regexp-exec-abstract": 109,
+      "../internals/require-object-coercible": 113,
+      "../internals/to-length": 134
     }],
-    185: [function (e, t, r) {
+    188: [function (e, t, r) {
       e("../internals/export")({
         target: "String",
         proto: !0
@@ -5762,9 +5824,9 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/string-repeat": 124
+      "../internals/string-repeat": 125
     }],
-    186: [function (e, t, r) {
+    189: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/fix-regexp-well-known-symbol-logic"),
@@ -5775,21 +5837,21 @@ var global = arguments[3];
           i = e("../internals/require-object-coercible"),
           L = e("../internals/advance-string-index"),
           P = e("../internals/regexp-exec-abstract"),
-          k = Math.max,
-          A = Math.min,
+          A = Math.max,
+          k = Math.min,
           h = Math.floor,
           p = /\$([$&'`]|\d\d?|<[^>]*>)/g,
           y = /\$([$&'`]|\d\d?)/g;
       n("replace", 2, function (o, x, w, e) {
-        var S = e.REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE,
-            j = e.REPLACE_KEEPS_$0,
-            M = S ? "$" : "$0";
+        var j = e.REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE,
+            S = e.REPLACE_KEEPS_$0,
+            M = j ? "$" : "$0";
         return [function (e, t) {
           var r = i(this),
               n = null == e ? void 0 : e[o];
           return void 0 !== n ? n.call(e, r, t) : x.call(String(r), e, t);
         }, function (e, t) {
-          if (!S && j || "string" == typeof t && -1 === t.indexOf(M)) {
+          if (!j && S || "string" == typeof t && -1 === t.indexOf(M)) {
             var r = w(x, e, this, t);
             if (r.done) return r.value;
           }
@@ -5815,7 +5877,7 @@ var global = arguments[3];
           for (var c, d = "", f = 0, h = 0; h < l.length; h++) {
             u = l[h];
 
-            for (var p = String(u[0]), y = k(A(C(u.index), o.length), 0), m = [], g = 1; g < u.length; g++) m.push(void 0 === (c = u[g]) ? c : String(c));
+            for (var p = String(u[0]), y = A(k(C(u.index), o.length), 0), m = [], g = 1; g < u.length; g++) m.push(void 0 === (c = u[g]) ? c : String(c));
 
             var v = u.groups;
 
@@ -5876,13 +5938,13 @@ var global = arguments[3];
       "../internals/advance-string-index": 8,
       "../internals/an-object": 10,
       "../internals/fix-regexp-well-known-symbol-logic": 51,
-      "../internals/regexp-exec-abstract": 108,
-      "../internals/require-object-coercible": 112,
-      "../internals/to-integer": 132,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134
+      "../internals/regexp-exec-abstract": 109,
+      "../internals/require-object-coercible": 113,
+      "../internals/to-integer": 133,
+      "../internals/to-length": 134,
+      "../internals/to-object": 135
     }],
-    187: [function (e, t, r) {
+    190: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/fix-regexp-well-known-symbol-logic"),
@@ -5909,11 +5971,11 @@ var global = arguments[3];
     }, {
       "../internals/an-object": 10,
       "../internals/fix-regexp-well-known-symbol-logic": 51,
-      "../internals/regexp-exec-abstract": 108,
-      "../internals/require-object-coercible": 112,
-      "../internals/same-value": 113
+      "../internals/regexp-exec-abstract": 109,
+      "../internals/require-object-coercible": 113,
+      "../internals/same-value": 114
     }],
-    188: [function (e, t, r) {
+    191: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/fix-regexp-well-known-symbol-logic"),
@@ -5923,11 +5985,11 @@ var global = arguments[3];
           _ = e("../internals/species-constructor"),
           x = e("../internals/advance-string-index"),
           w = e("../internals/to-length"),
-          S = e("../internals/regexp-exec-abstract"),
+          j = e("../internals/regexp-exec-abstract"),
           h = e("../internals/regexp-exec"),
           o = e("../internals/fails"),
           p = [].push,
-          j = Math.min,
+          S = Math.min,
           M = 4294967295,
           E = !o(function () {
         return !RegExp(M, "y");
@@ -5964,13 +6026,13 @@ var global = arguments[3];
               u = void 0 === t ? M : t >>> 0;
 
           if (0 == u) return [];
-          if (0 === o.length) return null === S(l, o) ? [o] : [];
+          if (0 === o.length) return null === j(l, o) ? [o] : [];
 
           for (var c = 0, d = 0, f = []; d < o.length;) {
             l.lastIndex = E ? d : 0;
             var h,
-                p = S(l, E ? o : o.slice(d));
-            if (null === p || (h = j(w(l.lastIndex + (E ? 0 : d)), o.length)) === c) d = x(o, d, a);else {
+                p = j(l, E ? o : o.slice(d));
+            if (null === p || (h = S(w(l.lastIndex + (E ? 0 : d)), o.length)) === c) d = x(o, d, a);else {
               if (f.push(o.slice(c, d)), f.length === u) return f;
 
               for (var y = 1; y <= p.length - 1; y++) if (f.push(p[y]), f.length === u) return f;
@@ -5987,14 +6049,14 @@ var global = arguments[3];
       "../internals/an-object": 10,
       "../internals/fails": 50,
       "../internals/fix-regexp-well-known-symbol-logic": 51,
-      "../internals/is-regexp": 75,
-      "../internals/regexp-exec": 109,
-      "../internals/regexp-exec-abstract": 108,
-      "../internals/require-object-coercible": 112,
-      "../internals/species-constructor": 120,
-      "../internals/to-length": 133
+      "../internals/is-regexp": 76,
+      "../internals/regexp-exec": 110,
+      "../internals/regexp-exec-abstract": 109,
+      "../internals/require-object-coercible": 113,
+      "../internals/species-constructor": 121,
+      "../internals/to-length": 134
     }],
-    189: [function (e, t, r) {
+    192: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -6011,9 +6073,9 @@ var global = arguments[3];
     }, {
       "../internals/create-html": 35,
       "../internals/export": 49,
-      "../internals/string-html-forced": 121
+      "../internals/string-html-forced": 122
     }],
-    190: [function (e, t, r) {
+    193: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -6029,10 +6091,10 @@ var global = arguments[3];
       });
     }, {
       "../internals/export": 49,
-      "../internals/string-trim": 126,
-      "../internals/string-trim-forced": 125
+      "../internals/string-trim": 127,
+      "../internals/string-trim-forced": 126
     }],
-    191: [function (e, t, r) {
+    194: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/export"),
@@ -6078,21 +6140,21 @@ var global = arguments[3];
       "../internals/copy-constructor-properties": 32,
       "../internals/descriptors": 42,
       "../internals/export": 49,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/is-object": 73,
-      "../internals/object-define-property": 91
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/is-object": 74,
+      "../internals/object-define-property": 92
     }],
-    192: [function (e, t, r) {
+    195: [function (e, t, r) {
       e("../internals/define-well-known-symbol")("iterator");
     }, {
       "../internals/define-well-known-symbol": 41
     }],
-    193: [function (e, t, r) {
+    196: [function (e, t, r) {
       "use strict";
 
       function o(e, t) {
-        var r = re[e] = S(Q[W]);
+        var r = re[e] = j(Q[W]);
         return X(r, {
           type: H,
           tag: e,
@@ -6104,7 +6166,7 @@ var global = arguments[3];
         v(t);
 
         var r = _(e),
-            n = j(r).concat(he(r));
+            n = S(r).concat(he(r));
 
         return V(n, function (e) {
           d && !fe.call(r, e) || de(t, e, r[e]);
@@ -6145,8 +6207,8 @@ var global = arguments[3];
           _ = e("../internals/to-indexed-object"),
           x = e("../internals/to-primitive"),
           w = e("../internals/create-property-descriptor"),
-          S = e("../internals/object-create"),
-          j = e("../internals/object-keys"),
+          j = e("../internals/object-create"),
+          S = e("../internals/object-keys"),
           M = e("../internals/object-get-own-property-names"),
           E = e("../internals/object-get-own-property-names-external"),
           T = e("../internals/object-get-own-property-symbols"),
@@ -6154,8 +6216,8 @@ var global = arguments[3];
           C = e("../internals/object-define-property"),
           L = e("../internals/object-property-is-enumerable"),
           P = e("../internals/create-non-enumerable-property"),
-          k = e("../internals/redefine"),
-          A = e("../internals/shared"),
+          A = e("../internals/redefine"),
+          k = e("../internals/shared"),
           R = e("../internals/shared-key"),
           D = e("../internals/hidden-keys"),
           I = e("../internals/uid"),
@@ -6178,15 +6240,15 @@ var global = arguments[3];
           $ = C.f,
           ee = E.f,
           te = L.f,
-          re = A("symbols"),
-          ne = A("op-symbols"),
-          oe = A("string-to-symbol-registry"),
-          ie = A("symbol-to-string-registry"),
-          ae = A("wks"),
+          re = k("symbols"),
+          ne = k("op-symbols"),
+          oe = k("string-to-symbol-registry"),
+          ie = k("symbol-to-string-registry"),
+          ae = k("wks"),
           se = l.QObject,
           le = !se || !se[W] || !se[W].findChild,
           ue = d && p(function () {
-        return 7 != S($({}, "a", {
+        return 7 != j($({}, "a", {
           get: function () {
             return $(this, "a", {
               value: 7
@@ -6205,7 +6267,7 @@ var global = arguments[3];
           de = function (e, t, r) {
         e === Z && de(ne, t, r), v(e);
         var n = x(t, !0);
-        return v(r), y(re, n) ? (r.enumerable ? (y(e, z) && e[z][n] && (e[z][n] = !1), r = S(r, {
+        return v(r), y(re, n) ? (r.enumerable ? (y(e, z) && e[z][n] && (e[z][n] = !1), r = j(r, {
           enumerable: w(0, !1)
         })) : (y(e, z) || $(e, z, w(1, {})), e[z][n] = !0), ue(e, n, r)) : $(e, n, r);
       },
@@ -6223,7 +6285,7 @@ var global = arguments[3];
         }), n;
       };
 
-      f || (k((Q = function (e) {
+      f || (A((Q = function (e) {
         if (this instanceof Q) throw TypeError("Symbol is not a constructor");
 
         var t = arguments.length && void 0 !== e ? String(e) : void 0,
@@ -6238,7 +6300,7 @@ var global = arguments[3];
         }), o(r, t);
       })[W], "toString", function () {
         return Y(this).tag;
-      }), k(Q, "withoutSetter", function (e) {
+      }), A(Q, "withoutSetter", function (e) {
         return o(I(e), e);
       }), L.f = fe, C.f = de, O.f = i, M.f = E.f = a, T.f = he, N.f = function (e) {
         return o(U(e), e);
@@ -6247,7 +6309,7 @@ var global = arguments[3];
         get: function () {
           return Y(this).description;
         }
-      }), c || k(Z, "propertyIsEnumerable", fe, {
+      }), c || A(Z, "propertyIsEnumerable", fe, {
         unsafe: !0
       }))), s({
         global: !0,
@@ -6256,7 +6318,7 @@ var global = arguments[3];
         sham: !f
       }, {
         Symbol: Q
-      }), V(j(ae), function (e) {
+      }), V(S(ae), function (e) {
         F(e);
       }), s({
         target: H,
@@ -6286,7 +6348,7 @@ var global = arguments[3];
         sham: !d
       }, {
         create: function (e, t) {
-          return void 0 === t ? S(e) : n(S(e), t);
+          return void 0 === t ? j(e) : n(j(e), t);
         },
         defineProperty: de,
         defineProperties: n,
@@ -6336,36 +6398,36 @@ var global = arguments[3];
       "../internals/descriptors": 42,
       "../internals/export": 49,
       "../internals/fails": 50,
-      "../internals/get-built-in": 55,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/hidden-keys": 60,
-      "../internals/internal-state": 69,
-      "../internals/is-array": 71,
-      "../internals/is-object": 73,
-      "../internals/is-pure": 74,
-      "../internals/native-symbol": 82,
-      "../internals/object-create": 89,
-      "../internals/object-define-property": 91,
-      "../internals/object-get-own-property-descriptor": 92,
-      "../internals/object-get-own-property-names": 94,
-      "../internals/object-get-own-property-names-external": 93,
-      "../internals/object-get-own-property-symbols": 95,
-      "../internals/object-keys": 98,
-      "../internals/object-property-is-enumerable": 99,
-      "../internals/redefine": 107,
-      "../internals/set-to-string-tag": 116,
-      "../internals/shared": 119,
-      "../internals/shared-key": 117,
-      "../internals/to-indexed-object": 131,
-      "../internals/to-object": 134,
-      "../internals/to-primitive": 137,
-      "../internals/uid": 142,
-      "../internals/use-symbol-as-uid": 143,
-      "../internals/well-known-symbol": 145,
-      "../internals/well-known-symbol-wrapped": 144
+      "../internals/get-built-in": 56,
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/hidden-keys": 61,
+      "../internals/internal-state": 70,
+      "../internals/is-array": 72,
+      "../internals/is-object": 74,
+      "../internals/is-pure": 75,
+      "../internals/native-symbol": 83,
+      "../internals/object-create": 90,
+      "../internals/object-define-property": 92,
+      "../internals/object-get-own-property-descriptor": 93,
+      "../internals/object-get-own-property-names": 95,
+      "../internals/object-get-own-property-names-external": 94,
+      "../internals/object-get-own-property-symbols": 96,
+      "../internals/object-keys": 99,
+      "../internals/object-property-is-enumerable": 100,
+      "../internals/redefine": 108,
+      "../internals/set-to-string-tag": 117,
+      "../internals/shared": 120,
+      "../internals/shared-key": 118,
+      "../internals/to-indexed-object": 132,
+      "../internals/to-object": 135,
+      "../internals/to-primitive": 138,
+      "../internals/uid": 143,
+      "../internals/use-symbol-as-uid": 144,
+      "../internals/well-known-symbol": 146,
+      "../internals/well-known-symbol-wrapped": 145
     }],
-    194: [function (e, t, r) {
+    197: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6378,7 +6440,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-copy-within": 14
     }],
-    195: [function (e, t, r) {
+    198: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6391,7 +6453,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19
     }],
-    196: [function (e, t, r) {
+    199: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6404,7 +6466,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-fill": 15
     }],
-    197: [function (e, t, r) {
+    200: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6420,9 +6482,9 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19,
-      "../internals/species-constructor": 120
+      "../internals/species-constructor": 121
     }],
-    198: [function (e, t, r) {
+    201: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6435,7 +6497,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19
     }],
-    199: [function (e, t, r) {
+    202: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6448,25 +6510,25 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19
     }],
-    200: [function (e, t, r) {
+    203: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Float32", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    201: [function (e, t, r) {
+    204: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Float64", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    202: [function (e, t, r) {
+    205: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6479,7 +6541,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19
     }],
-    203: [function (e, t, r) {
+    206: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6492,7 +6554,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-includes": 18
     }],
-    204: [function (e, t, r) {
+    207: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6505,25 +6567,25 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-includes": 18
     }],
-    205: [function (e, t, r) {
+    208: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Int16", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    206: [function (e, t, r) {
+    209: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Int32", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    207: [function (e, t, r) {
+    210: [function (e, t, r) {
       "use strict";
 
       function n() {
@@ -6549,11 +6611,11 @@ var global = arguments[3];
       }), h("values", n, !y), h(s, n, !y);
     }, {
       "../internals/array-buffer-view-core": 12,
-      "../internals/global": 58,
-      "../internals/well-known-symbol": 145,
-      "../modules/es.array.iterator": 156
+      "../internals/global": 59,
+      "../internals/well-known-symbol": 146,
+      "../modules/es.array.iterator": 158
     }],
-    208: [function (e, t, r) {
+    211: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6566,7 +6628,7 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12
     }],
-    209: [function (e, t, r) {
+    212: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6579,7 +6641,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-last-index-of": 20
     }],
-    210: [function (e, t, r) {
+    213: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6595,9 +6657,9 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19,
-      "../internals/species-constructor": 120
+      "../internals/species-constructor": 121
     }],
-    211: [function (e, t, r) {
+    214: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6610,7 +6672,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-reduce": 24
     }],
-    212: [function (e, t, r) {
+    215: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6623,7 +6685,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-reduce": 24
     }],
-    213: [function (e, t, r) {
+    216: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6638,7 +6700,7 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12
     }],
-    214: [function (e, t, r) {
+    217: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6663,11 +6725,11 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/fails": 50,
-      "../internals/to-length": 133,
-      "../internals/to-object": 134,
-      "../internals/to-offset": 135
+      "../internals/to-length": 134,
+      "../internals/to-object": 135,
+      "../internals/to-offset": 136
     }],
-    215: [function (e, t, r) {
+    218: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6687,9 +6749,9 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/fails": 50,
-      "../internals/species-constructor": 120
+      "../internals/species-constructor": 121
     }],
-    216: [function (e, t, r) {
+    219: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6702,7 +6764,7 @@ var global = arguments[3];
       "../internals/array-buffer-view-core": 12,
       "../internals/array-iteration": 19
     }],
-    217: [function (e, t, r) {
+    220: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6715,7 +6777,7 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12
     }],
-    218: [function (e, t, r) {
+    221: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core"),
@@ -6731,11 +6793,11 @@ var global = arguments[3];
       });
     }, {
       "../internals/array-buffer-view-core": 12,
-      "../internals/species-constructor": 120,
-      "../internals/to-absolute-index": 129,
-      "../internals/to-length": 133
+      "../internals/species-constructor": 121,
+      "../internals/to-absolute-index": 130,
+      "../internals/to-length": 134
     }],
-    219: [function (e, t, r) {
+    222: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/global"),
@@ -6759,9 +6821,9 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/fails": 50,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    220: [function (e, t, r) {
+    223: [function (e, t, r) {
       "use strict";
 
       var n = e("../internals/array-buffer-view-core").exportTypedArrayMethod,
@@ -6778,45 +6840,45 @@ var global = arguments[3];
     }, {
       "../internals/array-buffer-view-core": 12,
       "../internals/fails": 50,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    221: [function (e, t, r) {
+    224: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Uint16", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    222: [function (e, t, r) {
+    225: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Uint32", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    223: [function (e, t, r) {
+    226: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Uint8", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       });
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    224: [function (e, t, r) {
+    227: [function (e, t, r) {
       e("../internals/typed-array-constructor")("Uint8", function (n) {
         return function (e, t, r) {
           return n(this, e, t, r);
         };
       }, !0);
     }, {
-      "../internals/typed-array-constructor": 139
+      "../internals/typed-array-constructor": 140
     }],
-    225: [function (e, t, r) {
+    228: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/dom-iterables"),
           i = e("../internals/array-for-each"),
@@ -6835,9 +6897,9 @@ var global = arguments[3];
       "../internals/array-for-each": 16,
       "../internals/create-non-enumerable-property": 37,
       "../internals/dom-iterables": 44,
-      "../internals/global": 58
+      "../internals/global": 59
     }],
-    226: [function (e, t, r) {
+    229: [function (e, t, r) {
       var n = e("../internals/global"),
           o = e("../internals/dom-iterables"),
           i = e("../modules/es.array.iterator"),
@@ -6867,11 +6929,11 @@ var global = arguments[3];
     }, {
       "../internals/create-non-enumerable-property": 37,
       "../internals/dom-iterables": 44,
-      "../internals/global": 58,
-      "../internals/well-known-symbol": 145,
-      "../modules/es.array.iterator": 156
+      "../internals/global": 59,
+      "../internals/well-known-symbol": 146,
+      "../modules/es.array.iterator": 158
     }],
-    227: [function (e, t, r) {
+    230: [function (e, t, r) {
       "use strict";
 
       e("../modules/es.array.iterator");
@@ -6934,8 +6996,8 @@ var global = arguments[3];
           _ = e("../internals/function-bind-context"),
           x = e("../internals/classof"),
           w = e("../internals/an-object"),
-          S = e("../internals/is-object"),
-          j = e("../internals/object-create"),
+          j = e("../internals/is-object"),
+          S = e("../internals/object-create"),
           M = e("../internals/create-property-descriptor"),
           E = e("../internals/get-iterator"),
           T = e("../internals/get-iterator-method"),
@@ -6943,11 +7005,11 @@ var global = arguments[3];
           C = l("fetch"),
           L = l("Headers"),
           P = O("iterator"),
-          k = "URLSearchParams",
-          A = k + "Iterator",
+          A = "URLSearchParams",
+          k = A + "Iterator",
           R = g.set,
-          D = g.getterFor(k),
-          I = g.getterFor(A),
+          D = g.getterFor(A),
+          I = g.getterFor(k),
           U = /\+/g,
           N = Array(4),
           F = /[!'()~]|%20/g,
@@ -6961,7 +7023,7 @@ var global = arguments[3];
       },
           G = m(function (e, t) {
         R(this, {
-          type: A,
+          type: k,
           iterator: E(D(e).entries),
           kind: t
         });
@@ -6973,7 +7035,7 @@ var global = arguments[3];
         return r.done || (r.value = "keys" === t ? n.key : "values" === t ? n.value : [n.key, n.value]), r;
       }),
           V = function (e) {
-        v(this, V, k);
+        v(this, V, A);
         var t,
             r,
             n,
@@ -6986,11 +7048,11 @@ var global = arguments[3];
             c = 0 < arguments.length ? e : void 0,
             d = [];
         if (R(this, {
-          type: k,
+          type: A,
           entries: d,
           updateURL: function () {},
           updateSearchParams: h
-        }), void 0 !== c) if (S(c)) {
+        }), void 0 !== c) if (j(c)) {
           if ("function" == typeof (t = T(c))) for (n = (r = t.call(c)).next; !(o = n.call(r)).done;) {
             if ((s = (a = (i = E(w(o.value))).next).call(i)).done || (l = a.call(i)).done || !a.call(i).done) throw TypeError("Expected sequence with length 2");
             d.push({
@@ -7091,7 +7153,7 @@ var global = arguments[3];
         return r.join("&");
       }, {
         enumerable: !0
-      }), y(V, k), s({
+      }), y(V, A), s({
         global: !0,
         forced: !c
       }, {
@@ -7106,7 +7168,7 @@ var global = arguments[3];
               n,
               o,
               i = [e];
-          return 1 < arguments.length && (S(r = t) && (n = r.body, x(n) === k && ((o = r.headers ? new L(r.headers) : new L()).has("content-type") || o.set("content-type", "application/x-www-form-urlencoded;charset=UTF-8"), r = j(r, {
+          return 1 < arguments.length && (j(r = t) && (n = r.body, x(n) === A && ((o = r.headers ? new L(r.headers) : new L()).has("content-type") || o.set("content-type", "application/x-www-form-urlencoded;charset=UTF-8"), r = S(r, {
             body: M(0, String(n)),
             headers: M(0, o)
           }))), i.push(r)), C.apply(this, i);
@@ -7122,22 +7184,22 @@ var global = arguments[3];
       "../internals/create-iterator-constructor": 36,
       "../internals/create-property-descriptor": 38,
       "../internals/export": 49,
-      "../internals/function-bind-context": 53,
-      "../internals/get-built-in": 55,
-      "../internals/get-iterator": 57,
-      "../internals/get-iterator-method": 56,
-      "../internals/has": 59,
-      "../internals/internal-state": 69,
-      "../internals/is-object": 73,
-      "../internals/native-url": 83,
-      "../internals/object-create": 89,
-      "../internals/redefine": 107,
-      "../internals/redefine-all": 106,
-      "../internals/set-to-string-tag": 116,
-      "../internals/well-known-symbol": 145,
-      "../modules/es.array.iterator": 156
+      "../internals/function-bind-context": 54,
+      "../internals/get-built-in": 56,
+      "../internals/get-iterator": 58,
+      "../internals/get-iterator-method": 57,
+      "../internals/has": 60,
+      "../internals/internal-state": 70,
+      "../internals/is-object": 74,
+      "../internals/native-url": 84,
+      "../internals/object-create": 90,
+      "../internals/redefine": 108,
+      "../internals/redefine-all": 107,
+      "../internals/set-to-string-tag": 117,
+      "../internals/well-known-symbol": 146,
+      "../modules/es.array.iterator": 158
     }],
-    228: [function (e, t, r) {
+    231: [function (e, t, r) {
       "use strict";
 
       e("../modules/es.string.iterator");
@@ -7166,7 +7228,7 @@ var global = arguments[3];
         var t, r, n, o;
 
         if ("number" == typeof e) {
-          for (t = [], r = 0; r < 4; r++) t.unshift(e % 256), e = A(e / 256);
+          for (t = [], r = 0; r < 4; r++) t.unshift(e % 256), e = k(e / 256);
 
           return t.join(".");
         }
@@ -7195,12 +7257,12 @@ var global = arguments[3];
         return 2 == e.length && N.test(e.charAt(0)) && (":" == (r = e.charAt(1)) || !t && "|" == r);
       }
 
-      function S(e) {
+      function j(e) {
         var t;
         return 1 < e.length && w(e.slice(0, 2)) && (2 == e.length || "/" === (t = e.charAt(2)) || "\\" === t || "?" === t || "#" === t);
       }
 
-      function j(e) {
+      function S(e) {
         var t = e.path,
             r = t.length;
         !r || "file" == e.scheme && 1 == r && w(t[0], !0) || t.pop();
@@ -7250,7 +7312,7 @@ var global = arguments[3];
               if (!n || n.cannotBeABaseURL && "#" != i) return D;
 
               if (n.cannotBeABaseURL && "#" == i) {
-                e.scheme = n.scheme, e.path = n.path.slice(), e.query = n.query, e.fragment = "", e.cannotBeABaseURL = !0, c = je;
+                e.scheme = n.scheme, e.path = n.path.slice(), e.query = n.query, e.fragment = "", e.cannotBeABaseURL = !0, c = Se;
                 break;
               }
 
@@ -7276,13 +7338,13 @@ var global = arguments[3];
               continue;
 
             case ue:
-              if (e.scheme = n.scheme, i == M) e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = n.query;else if ("/" == i || "\\" == i && ne(e)) c = ce;else if ("?" == i) e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = "", c = Se;else {
+              if (e.scheme = n.scheme, i == M) e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = n.query;else if ("/" == i || "\\" == i && ne(e)) c = ce;else if ("?" == i) e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = "", c = je;else {
                 if ("#" != i) {
                   e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.path.pop(), c = xe;
                   continue;
                 }
 
-                e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = n.query, e.fragment = "", c = je;
+                e.username = n.username, e.password = n.password, e.host = n.host, e.port = n.port, e.path = n.path.slice(), e.query = n.query, e.fragment = "", c = Se;
               }
               break;
 
@@ -7381,13 +7443,13 @@ var global = arguments[3];
                   continue;
                 }
 
-                if (i == M) e.host = n.host, e.path = n.path.slice(), e.query = n.query;else if ("?" == i) e.host = n.host, e.path = n.path.slice(), e.query = "", c = Se;else {
+                if (i == M) e.host = n.host, e.path = n.path.slice(), e.query = n.query;else if ("?" == i) e.host = n.host, e.path = n.path.slice(), e.query = "", c = je;else {
                   if ("#" != i) {
-                    S(o.slice(d).join("")) || (e.host = n.host, e.path = n.path.slice(), j(e)), c = xe;
+                    j(o.slice(d).join("")) || (e.host = n.host, e.path = n.path.slice(), S(e)), c = xe;
                     continue;
                   }
 
-                  e.host = n.host, e.path = n.path.slice(), e.query = n.query, e.fragment = "", c = je;
+                  e.host = n.host, e.path = n.path.slice(), e.query = n.query, e.fragment = "", c = Se;
                 }
               }
               break;
@@ -7398,7 +7460,7 @@ var global = arguments[3];
                 break;
               }
 
-              n && "file" == n.scheme && !S(o.slice(d).join("")) && (w(n.path[0], !0) ? e.path.push(n.path[0]) : e.host = n.host), c = xe;
+              n && "file" == n.scheme && !j(o.slice(d).join("")) && (w(n.path[0], !0) ? e.path.push(n.path[0]) : e.host = n.host), c = xe;
               continue;
 
             case be:
@@ -7423,28 +7485,28 @@ var global = arguments[3];
               } else if (r || "?" != i) {
                 if (r || "#" != i) {
                   if (i != M && (c = xe, "/" != i)) continue;
-                } else e.fragment = "", c = je;
-              } else e.query = "", c = Se;
+                } else e.fragment = "", c = Se;
+              } else e.query = "", c = je;
 
               break;
 
             case xe:
               if (i == M || "/" == i || "\\" == i && ne(e) || !r && ("?" == i || "#" == i)) {
-                if (".." === (u = (u = f).toLowerCase()) || "%2e." === u || ".%2e" === u || "%2e%2e" === u ? (j(e), "/" == i || "\\" == i && ne(e) || e.path.push("")) : "." === (l = f) || "%2e" === l.toLowerCase() ? "/" == i || "\\" == i && ne(e) || e.path.push("") : ("file" == e.scheme && !e.path.length && w(f) && (e.host && (e.host = ""), f = f.charAt(0) + ":"), e.path.push(f)), f = "", "file" == e.scheme && (i == M || "?" == i || "#" == i)) for (; 1 < e.path.length && "" === e.path[0];) e.path.shift();
-                "?" == i ? (e.query = "", c = Se) : "#" == i && (e.fragment = "", c = je);
+                if (".." === (u = (u = f).toLowerCase()) || "%2e." === u || ".%2e" === u || "%2e%2e" === u ? (S(e), "/" == i || "\\" == i && ne(e) || e.path.push("")) : "." === (l = f) || "%2e" === l.toLowerCase() ? "/" == i || "\\" == i && ne(e) || e.path.push("") : ("file" == e.scheme && !e.path.length && w(f) && (e.host && (e.host = ""), f = f.charAt(0) + ":"), e.path.push(f)), f = "", "file" == e.scheme && (i == M || "?" == i || "#" == i)) for (; 1 < e.path.length && "" === e.path[0];) e.path.shift();
+                "?" == i ? (e.query = "", c = je) : "#" == i && (e.fragment = "", c = Se);
               } else f += te(i, $);
 
               break;
 
             case we:
-              "?" == i ? (e.query = "", c = Se) : "#" == i ? (e.fragment = "", c = je) : i != M && (e.path[0] += te(i, K));
-              break;
-
-            case Se:
-              r || "#" != i ? i != M && ("'" == i && ne(e) ? e.query += "%27" : e.query += "#" == i ? "%23" : te(i, K)) : (e.fragment = "", c = je);
+              "?" == i ? (e.query = "", c = je) : "#" == i ? (e.fragment = "", c = Se) : i != M && (e.path[0] += te(i, K));
               break;
 
             case je:
+              r || "#" != i ? i != M && ("'" == i && ne(e) ? e.query += "%27" : e.query += "#" == i ? "%23" : te(i, K)) : (e.fragment = "", c = Se);
+              break;
+
+            case Se:
               i != M && (e.fragment += te(i, J));
           }
 
@@ -7481,8 +7543,8 @@ var global = arguments[3];
           C = v.URLSearchParams,
           L = v.getState,
           P = b.set,
-          k = b.getterFor("URL"),
-          A = Math.floor,
+          A = b.getterFor("URL"),
+          k = Math.floor,
           R = Math.pow,
           D = "Invalid scheme",
           I = "Invalid host",
@@ -7656,8 +7718,8 @@ var global = arguments[3];
           _e = {},
           xe = {},
           we = {},
-          Se = {},
           je = {},
+          Se = {},
           Me = function (e, t) {
         var r,
             n,
@@ -7667,17 +7729,17 @@ var global = arguments[3];
             s = P(o, {
           type: "URL"
         });
-        if (void 0 !== i) if (i instanceof Me) r = k(i);else if (n = d(r = {}, String(i))) throw TypeError(n);
+        if (void 0 !== i) if (i instanceof Me) r = A(i);else if (n = d(r = {}, String(i))) throw TypeError(n);
         if (n = d(s, a, null, r)) throw TypeError(n);
         var l = s.searchParams = new C(),
             u = L(l);
         u.updateSearchParams(s.query), u.updateURL = function () {
           s.query = String(l) || null;
-        }, f || (o.href = Te.call(o), o.origin = Oe.call(o), o.protocol = Ce.call(o), o.username = Le.call(o), o.password = Pe.call(o), o.host = ke.call(o), o.hostname = Ae.call(o), o.port = Re.call(o), o.pathname = De.call(o), o.search = Ie.call(o), o.searchParams = Ue.call(o), o.hash = Ne.call(o));
+        }, f || (o.href = Te.call(o), o.origin = Oe.call(o), o.protocol = Ce.call(o), o.username = Le.call(o), o.password = Pe.call(o), o.host = Ae.call(o), o.hostname = ke.call(o), o.port = Re.call(o), o.pathname = De.call(o), o.search = Ie.call(o), o.searchParams = Ue.call(o), o.hash = Ne.call(o));
       },
           Ee = Me.prototype,
           Te = function () {
-        var e = k(this),
+        var e = A(this),
             t = e.scheme,
             r = e.username,
             n = e.password,
@@ -7690,7 +7752,7 @@ var global = arguments[3];
         return null !== o ? (u += "//", x(e) && (u += r + (n ? ":" + n : "") + "@"), u += c(o), null !== i && (u += ":" + i)) : "file" == t && (u += "//"), u += e.cannotBeABaseURL ? a[0] : a.length ? "/" + a.join("/") : "", null !== s && (u += "?" + s), null !== l && (u += "#" + l), u;
       },
           Oe = function () {
-        var e = k(this),
+        var e = A(this),
             t = e.scheme,
             r = e.port;
         if ("blob" == t) try {
@@ -7701,48 +7763,48 @@ var global = arguments[3];
         return "file" != t && ne(e) ? t + "://" + c(e.host) + (null !== r ? ":" + r : "") : "null";
       },
           Ce = function () {
-        return k(this).scheme + ":";
+        return A(this).scheme + ":";
       },
           Le = function () {
-        return k(this).username;
+        return A(this).username;
       },
           Pe = function () {
-        return k(this).password;
+        return A(this).password;
       },
-          ke = function () {
-        var e = k(this),
+          Ae = function () {
+        var e = A(this),
             t = e.host,
             r = e.port;
         return null === t ? "" : null === r ? c(t) : c(t) + ":" + r;
       },
-          Ae = function () {
-        var e = k(this).host;
+          ke = function () {
+        var e = A(this).host;
         return null === e ? "" : c(e);
       },
           Re = function () {
-        var e = k(this).port;
+        var e = A(this).port;
         return null === e ? "" : String(e);
       },
           De = function () {
-        var e = k(this),
+        var e = A(this),
             t = e.path;
         return e.cannotBeABaseURL ? t[0] : t.length ? "/" + t.join("/") : "";
       },
           Ie = function () {
-        var e = k(this).query;
+        var e = A(this).query;
         return e ? "?" + e : "";
       },
           Ue = function () {
-        return k(this).searchParams;
+        return A(this).searchParams;
       },
           Ne = function () {
-        var e = k(this).fragment;
+        var e = A(this).fragment;
         return e ? "#" + e : "";
       };
 
       if (f && l(Ee, {
         href: n(Te, function (e) {
-          var t = k(this),
+          var t = A(this),
               r = String(e),
               n = d(t, r);
           if (n) throw TypeError(n);
@@ -7750,11 +7812,11 @@ var global = arguments[3];
         }),
         origin: n(Oe),
         protocol: n(Ce, function (e) {
-          var t = k(this);
+          var t = A(this);
           d(t, String(e) + ":", oe);
         }),
         username: n(Le, function (e) {
-          var t = k(this),
+          var t = A(this),
               r = T(String(e));
 
           if (!o(t)) {
@@ -7764,7 +7826,7 @@ var global = arguments[3];
           }
         }),
         password: n(Pe, function (e) {
-          var t = k(this),
+          var t = A(this),
               r = T(String(e));
 
           if (!o(t)) {
@@ -7773,30 +7835,30 @@ var global = arguments[3];
             for (var n = 0; n < r.length; n++) t.password += te(r[n], ee);
           }
         }),
-        host: n(ke, function (e) {
-          var t = k(this);
+        host: n(Ae, function (e) {
+          var t = A(this);
           t.cannotBeABaseURL || d(t, String(e), pe);
         }),
-        hostname: n(Ae, function (e) {
-          var t = k(this);
+        hostname: n(ke, function (e) {
+          var t = A(this);
           t.cannotBeABaseURL || d(t, String(e), ye);
         }),
         port: n(Re, function (e) {
-          var t = k(this);
+          var t = A(this);
           o(t) || ("" == (e = String(e)) ? t.port = null : d(t, e, me));
         }),
         pathname: n(De, function (e) {
-          var t = k(this);
+          var t = A(this);
           t.cannotBeABaseURL || (t.path = [], d(t, e + "", _e));
         }),
         search: n(Ie, function (e) {
-          var t = k(this);
-          "" == (e = String(e)) ? t.query = null : ("?" == e.charAt(0) && (e = e.slice(1)), t.query = "", d(t, e, Se)), L(t.searchParams).updateSearchParams(t.query);
+          var t = A(this);
+          "" == (e = String(e)) ? t.query = null : ("?" == e.charAt(0) && (e = e.slice(1)), t.query = "", d(t, e, je)), L(t.searchParams).updateSearchParams(t.query);
         }),
         searchParams: n(Ue),
         hash: n(Ne, function (e) {
-          var t = k(this);
-          "" != (e = String(e)) ? ("#" == e.charAt(0) && (e = e.slice(1)), t.fragment = "", d(t, e, je)) : t.fragment = null;
+          var t = A(this);
+          "" != (e = String(e)) ? ("#" == e.charAt(0) && (e = e.slice(1)), t.fragment = "", d(t, e, Se)) : t.fragment = null;
         })
       }), u(Ee, "toJSON", function () {
         return Te.call(this);
@@ -7828,27 +7890,27 @@ var global = arguments[3];
       "../internals/array-from": 17,
       "../internals/descriptors": 42,
       "../internals/export": 49,
-      "../internals/global": 58,
-      "../internals/has": 59,
-      "../internals/internal-state": 69,
-      "../internals/native-url": 83,
-      "../internals/object-assign": 88,
-      "../internals/object-define-properties": 90,
-      "../internals/redefine": 107,
-      "../internals/set-to-string-tag": 116,
-      "../internals/string-multibyte": 122,
-      "../internals/string-punycode-to-ascii": 123,
-      "../modules/es.string.iterator": 183,
-      "../modules/web.url-search-params": 227
+      "../internals/global": 59,
+      "../internals/has": 60,
+      "../internals/internal-state": 70,
+      "../internals/native-url": 84,
+      "../internals/object-assign": 89,
+      "../internals/object-define-properties": 91,
+      "../internals/redefine": 108,
+      "../internals/set-to-string-tag": 117,
+      "../internals/string-multibyte": 123,
+      "../internals/string-punycode-to-ascii": 124,
+      "../modules/es.string.iterator": 186,
+      "../modules/web.url-search-params": 230
     }],
-    229: [function (e, t, r) {
+    232: [function (e, t, r) {
       "use strict";
 
       t.exports = e("./").polyfill();
     }, {
-      "./": 230
+      "./": 233
     }],
-    230: [function (z, r, n) {
+    233: [function (z, r, n) {
       (function (G, V) {
         var e, t;
         e = this, t = function () {
@@ -7908,7 +7970,7 @@ var global = arguments[3];
               a(function () {
                 return R(o, n, i, r._result);
               });
-            } else k(r, n, e, t);
+            } else A(r, n, e, t);
 
             return n;
           }
@@ -7942,8 +8004,8 @@ var global = arguments[3];
 
           function w() {}
 
-          var S = void 0,
-              j = 1,
+          var j = void 0,
+              S = 1,
               M = 2;
 
           function E(e, n, o) {
@@ -7967,7 +8029,7 @@ var global = arguments[3];
 
           function T(e, t, r) {
             var n, o;
-            t.constructor === e.constructor && r === b && t.constructor.resolve === _ ? (n = e, (o = t)._state === j ? L(n, o._result) : o._state === M ? P(n, o._result) : k(o, void 0, function (e) {
+            t.constructor === e.constructor && r === b && t.constructor.resolve === _ ? (n = e, (o = t)._state === S ? L(n, o._result) : o._state === M ? P(n, o._result) : A(o, void 0, function (e) {
               return O(n, e);
             }, function (e) {
               return P(n, e);
@@ -7990,24 +8052,24 @@ var global = arguments[3];
           }
 
           function C(e) {
-            e._onerror && e._onerror(e._result), A(e);
+            e._onerror && e._onerror(e._result), k(e);
           }
 
           function L(e, t) {
-            e._state === S && (e._result = t, e._state = j, 0 !== e._subscribers.length && a(A, e));
+            e._state === j && (e._result = t, e._state = S, 0 !== e._subscribers.length && a(k, e));
           }
 
           function P(e, t) {
-            e._state === S && (e._state = M, e._result = t, a(C, e));
+            e._state === j && (e._state = M, e._result = t, a(C, e));
           }
 
-          function k(e, t, r, n) {
+          function A(e, t, r, n) {
             var o = e._subscribers,
                 i = o.length;
-            e._onerror = null, o[i] = t, o[i + j] = r, o[i + M] = n, 0 === i && e._state && a(A, e);
+            e._onerror = null, o[i] = t, o[i + S] = r, o[i + M] = n, 0 === i && e._state && a(k, e);
           }
 
-          function A(e) {
+          function k(e) {
             var t = e._subscribers,
                 r = e._state;
 
@@ -8034,7 +8096,7 @@ var global = arguments[3];
               if (t === i) return void P(t, new TypeError("A promises callback cannot return that same promise."));
             } else i = n;
 
-            t._state !== S || (o && s ? O(t, i) : !1 === s ? P(t, a) : e === j ? L(t, i) : e === M && P(t, i));
+            t._state !== j || (o && s ? O(t, i) : !1 === s ? P(t, a) : e === S ? L(t, i) : e === M && P(t, i));
           }
 
           var D = 0;
@@ -8044,7 +8106,7 @@ var global = arguments[3];
           }
 
           var U = (N.prototype._enumerate = function (e) {
-            for (var t = 0; this._state === S && t < e.length; t++) this._eachEntry(e[t], t);
+            for (var t = 0; this._state === j && t < e.length; t++) this._eachEntry(e[t], t);
           }, N.prototype._eachEntry = function (t, e) {
             var r = this._instanceConstructor,
                 n = r.resolve;
@@ -8060,7 +8122,7 @@ var global = arguments[3];
                 a = !0, i = e;
               }
 
-              if (o === b && t._state !== S) this._settledAt(t._state, e, t._result);else if ("function" != typeof o) this._remaining--, this._result[e] = t;else if (r === F) {
+              if (o === b && t._state !== j) this._settledAt(t._state, e, t._result);else if ("function" != typeof o) this._remaining--, this._result[e] = t;else if (r === F) {
                 var s = new r(w);
                 a ? P(s, i) : T(s, t, o), this._willSettleAt(s, e);
               } else this._willSettleAt(new r(function (e) {
@@ -8069,11 +8131,11 @@ var global = arguments[3];
             } else this._willSettleAt(n(t), e);
           }, N.prototype._settledAt = function (e, t, r) {
             var n = this.promise;
-            n._state === S && (this._remaining--, e === M ? P(n, r) : this._result[t] = r), 0 === this._remaining && L(n, this._result);
+            n._state === j && (this._remaining--, e === M ? P(n, r) : this._result[t] = r), 0 === this._remaining && L(n, this._result);
           }, N.prototype._willSettleAt = function (e, t) {
             var r = this;
-            k(e, void 0, function (e) {
-              return r._settledAt(j, t, e);
+            A(e, void 0, function (e) {
+              return r._settledAt(S, t, e);
             }, function (e) {
               return r._settledAt(M, t, e);
             });
@@ -8153,14 +8215,14 @@ var global = arguments[3];
 
             e.Promise = F;
           }, F.Promise = F;
-        }, "object" == typeof n && void 0 !== r ? r.exports = t() : e.ES6Promise = t();
+        }, "object" == typeof n && void 0 !== r ? r.exports = t() : "function" == typeof i && i.amd ? i(t) : e.ES6Promise = t();
       }).call(this, z("_process"), "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
     }, {
-      _process: 238
+      _process: 241
     }],
-    231: [function (e, n, o) {
+    234: [function (e, n, o) {
       !function (e, t) {
-        if (0, void 0 !== o && void 0 !== n) t(o, n);else {
+        if ("function" == typeof i && i.amd) i(["exports", "module"], t);else if (void 0 !== o && void 0 !== n) t(o, n);else {
           var r = {
             exports: {}
           };
@@ -8214,7 +8276,7 @@ var global = arguments[3];
         };
       });
     }, {}],
-    232: [function (e, t, r) {
+    235: [function (e, t, r) {
       var n = n || function (s) {
         "use strict";
 
@@ -8288,9 +8350,11 @@ var global = arguments[3];
         }
       }("undefined" != typeof self && self || "undefined" != typeof window && window || this.content);
 
-      void 0 !== t && t.exports && (t.exports.saveAs = n);
+      void 0 !== t && t.exports ? t.exports.saveAs = n : null != i && null !== i.amd && i("FileSaver.js", function () {
+        return n;
+      });
     }, {}],
-    233: [function (e, t, r) {
+    236: [function (e, t, r) {
       r.read = function (e, t, r, n, o) {
         var i,
             a,
@@ -8330,7 +8394,7 @@ var global = arguments[3];
         e[r + h - p] |= 128 * y;
       };
     }, {}],
-    234: [function (e, t, r) {
+    237: [function (e, t, r) {
       "use strict";
 
       var n;
@@ -8371,7 +8435,7 @@ var global = arguments[3];
         return 0 < n + o ? (t.b - r.b) * n + (t.b - e.b) * o : 0;
       }
 
-      function S(e, t, r, n) {
+      function j(e, t, r, n) {
         return (e = e < 0 ? 0 : e) <= (r = r < 0 ? 0 : r) ? 0 === r ? (t + n) / 2 : t + e / (e + r) * (n - t) : n + r / (e + r) * (t - n);
       }
 
@@ -8380,7 +8444,7 @@ var global = arguments[3];
         return o(t, e.c), o(t.b, e.c), s(t, e.a), t;
       }
 
-      function j(e, t) {
+      function S(e, t) {
         var r = !1,
             n = !1;
         e !== t && (t.a !== e.a && (n = !0, y(t.a, e.a)), t.d !== e.d && (r = !0, l(t.d, e.d)), h(t, e), n || (o(t, e.a), e.a.c = e), r || (s(t, e.d), e.d.a = e));
@@ -8504,13 +8568,13 @@ var global = arguments[3];
         return !1;
       }
 
-      function k(e) {
+      function A(e) {
         var t = e.a,
             r = t.d;
         r.c = e.d, r.a = t, O(e);
       }
 
-      function A(e, t, r) {
+      function k(e, t, r) {
         for (t = (e = t).a; e !== r;) {
           e.c = !1;
           var n = ce(e),
@@ -8518,14 +8582,14 @@ var global = arguments[3];
 
           if (o.a !== t.a) {
             if (!n.c) {
-              k(e);
+              A(e);
               break;
             }
 
             c(n, o = f(t.c.b, o.b));
           }
 
-          t.c !== o && (j(K(o), o), j(t, o)), k(e), t = n.a, e = n;
+          t.c !== o && (S(K(o), o), S(t, o)), A(e), t = n.a, e = n;
         }
 
         return t;
@@ -8534,7 +8598,7 @@ var global = arguments[3];
       function R(e, t, r, n, o, i) {
         for (var a = !0; L(e, t, r.b), (r = r.c) !== n;);
 
-        for (null === o && (o = ce(t).a.b.c); (r = (n = ce(t)).a.b).a === o.a;) r.c !== o && (j(K(r), r), j(K(o), r)), n.f = t.f - r.f, n.d = P(e, n.f), t.b = !0, !a && N(e, t) && (T(r, o), O(t), d(o)), a = !1, t = n, o = r;
+        for (null === o && (o = ce(t).a.b.c); (r = (n = ce(t)).a.b).a === o.a;) r.c !== o && (S(K(r), r), S(K(o), r)), n.f = t.f - r.f, n.d = P(e, n.f), t.b = !0, !a && N(e, t) && (T(r, o), O(t), d(o)), a = !1, t = n, o = r;
 
         t.b = !0, i && B(e, t);
       }
@@ -8546,7 +8610,7 @@ var global = arguments[3];
 
       function I(e, t, r) {
         var n = [null, null, null, null];
-        n[0] = t.a.d, n[1] = r.a.d, D(e, t.a, n, [.5, .5, 0, 0], !1), j(t, r);
+        n[0] = t.a.d, n[1] = r.a.d, D(e, t.a, n, [.5, .5, 0, 0], !1), S(t, r);
       }
 
       function U(e, t, r, n, o) {
@@ -8579,10 +8643,10 @@ var global = arguments[3];
 
               I(e, K(o), n);
             }
-          } else M(o.b), j(n, K(o)), t.b = r.b = !0;
+          } else M(o.b), S(n, K(o)), t.b = r.b = !0;
         } else {
           if (b(n.b.a, o.a, n.a) < 0) return !1;
-          de(t).b = t.b = !0, M(n.b), j(K(o), n);
+          de(t).b = t.b = !0, M(n.b), S(K(o), n);
         }
 
         return !0;
@@ -8609,18 +8673,18 @@ var global = arguments[3];
             h = i,
             p = l,
             y = a;
-        if (g(f, h) || (c = f, f = h, h = c), g(p, y) || (c = p, p = y, y = c), g(f, p) || (c = f, f = p, p = c, c = h, h = y, y = c), g(p, h) ? g(h, y) ? ((c = v(f, p, h)) + (d = v(p, h, y)) < 0 && (c = -c, d = -d), u.b = S(c, p.b, d, h.b)) : ((c = b(f, p, h)) + (d = -b(f, y, h)) < 0 && (c = -c, d = -d), u.b = S(c, p.b, d, y.b)) : u.b = (p.b + h.b) / 2, _(f, h) || (c = f, f = h, h = c), _(p, y) || (c = p, p = y, y = c), _(f, p) || (c = f, f = p, p = c, c = h, h = y, y = c), _(p, h) ? _(h, y) ? ((c = x(f, p, h)) + (d = x(p, h, y)) < 0 && (c = -c, d = -d), u.a = S(c, p.a, d, h.a)) : ((c = w(f, p, h)) + (d = -w(f, y, h)) < 0 && (c = -c, d = -d), u.a = S(c, p.a, d, y.a)) : u.a = (p.a + h.a) / 2, g(u, e.a) && (u.b = e.a.b, u.a = e.a.a), f = g(i, a) ? i : a, g(f, u) && (u.b = f.b, u.a = f.a), m(u, i) || m(u, a)) return N(e, t), !1;
+        if (g(f, h) || (c = f, f = h, h = c), g(p, y) || (c = p, p = y, y = c), g(f, p) || (c = f, f = p, p = c, c = h, h = y, y = c), g(p, h) ? g(h, y) ? ((c = v(f, p, h)) + (d = v(p, h, y)) < 0 && (c = -c, d = -d), u.b = j(c, p.b, d, h.b)) : ((c = b(f, p, h)) + (d = -b(f, y, h)) < 0 && (c = -c, d = -d), u.b = j(c, p.b, d, y.b)) : u.b = (p.b + h.b) / 2, _(f, h) || (c = f, f = h, h = c), _(p, y) || (c = p, p = y, y = c), _(f, p) || (c = f, f = p, p = c, c = h, h = y, y = c), _(p, h) ? _(h, y) ? ((c = x(f, p, h)) + (d = x(p, h, y)) < 0 && (c = -c, d = -d), u.a = j(c, p.a, d, h.a)) : ((c = w(f, p, h)) + (d = -w(f, y, h)) < 0 && (c = -c, d = -d), u.a = j(c, p.a, d, y.a)) : u.a = (p.a + h.a) / 2, g(u, e.a) && (u.b = e.a.b, u.a = e.a.a), f = g(i, a) ? i : a, g(f, u) && (u.b = f.b, u.a = f.a), m(u, i) || m(u, a)) return N(e, t), !1;
 
         if (!m(s, e.a) && 0 <= b(s, e.a, u) || !m(l, e.a) && b(l, e.a, u) <= 0) {
-          if (l === e.a) return M(n.b), j(o.b, n), n = ce(t = C(t)).a, A(e, ce(t), r), R(e, t, K(n), n, n, !0), !0;
+          if (l === e.a) return M(n.b), S(o.b, n), n = ce(t = C(t)).a, k(e, ce(t), r), R(e, t, K(n), n, n, !0), !0;
           if (s !== e.a) return 0 <= b(s, e.a, u) && (de(t).b = t.b = !0, M(n.b), n.a.b = e.a.b, n.a.a = e.a.a), b(l, e.a, u) <= 0 && (t.b = r.b = !0, M(o.b), o.a.b = e.a.b, o.a.a = e.a.a), !1;
 
-          for (M(o.b), j(n.e, K(o)), a = (i = r = t).a.b.a; (i = de(i)).a.b.a === a;);
+          for (M(o.b), S(n.e, K(o)), a = (i = r = t).a.b.a; (i = de(i)).a.b.a === a;);
 
-          return i = ce(t = i).a.b.c, r.a = K(o), R(e, t, (o = A(e, r, null)).c, n.b.c, i, !0), !0;
+          return i = ce(t = i).a.b.c, r.a = K(o), R(e, t, (o = k(e, r, null)).c, n.b.c, i, !0), !0;
         }
 
-        return M(n.b), M(o.b), j(K(o), n), n.a.b = u.b, n.a.a = u.a, n.a.h = te(e.e, n.a), n = n.a, o = [0, 0, 0, 0], u = [i.d, s.d, a.d, l.d], n.g[0] = n.g[1] = n.g[2] = 0, U(n, i, s, o, 0), U(n, a, l, o, 2), D(e, n, u, o, !0), de(t).b = t.b = r.b = !0, !1;
+        return M(n.b), M(o.b), S(K(o), n), n.a.b = u.b, n.a.a = u.a, n.a.h = te(e.e, n.a), n = n.a, o = [0, 0, 0, 0], u = [i.d, s.d, a.d, l.d], n.g[0] = n.g[1] = n.g[2] = 0, U(n, i, s, o, 0), U(n, a, l, o, 2), D(e, n, u, o, !0), de(t).b = t.b = r.b = !0, !1;
       }
 
       function B(e, t) {
@@ -8644,14 +8708,14 @@ var global = arguments[3];
                 break e;
               }
 
-              de(n).b = n.b = !0, u = M(s), j(l.b, u), u.d.c = n.d;
+              de(n).b = n.b = !0, u = M(s), S(l.b, u), u.d.c = n.d;
             } else {
               if (0 < b(l.b.a, s.b.a, l.a)) {
                 n = !1;
                 break e;
               }
 
-              n.b = a.b = !0, u = M(l), j(s.e, l.b), u.b.d.c = n.d;
+              n.b = a.b = !0, u = M(l), S(s.e, l.b), u.b.d.c = n.d;
             }
 
             n = !0;
@@ -8672,7 +8736,7 @@ var global = arguments[3];
           var i = ce(l = o.b),
               a = l.a;
           o = i.a;
-          if (0 === b(a.b.a, n, a.a)) m((a = l.a).a, n) || m(a.b.a, n) || (M(a.b), l.c && (d(a.c), l.c = !1), j(n.c, a), G(r, n));else {
+          if (0 === b(a.b.a, n, a.a)) m((a = l.a).a, n) || m(a.b.a, n) || (M(a.b), l.c && (d(a.c), l.c = !1), S(n.c, a), G(r, n));else {
             var s = g(o.b.a, a.b.a) ? l : i;
             i = void 0;
             l.d || s.c ? (i = s === l ? f(n.c.b, a.e) : f(o.b.c.b, n.c).b, s.c ? c(s, i) : ((l = L(a = r, l, i)).f = de(l).f + l.a.f, l.d = P(a, l.f)), G(r, n)) : R(r, l, n.c, n.c, null, !0);
@@ -8680,11 +8744,11 @@ var global = arguments[3];
           return;
         }
 
-        if (l = (a = ce(r = C(r.i))).a, (a = A(e, a, null)).c === l) {
+        if (l = (a = ce(r = C(r.i))).a, (a = k(e, a, null)).c === l) {
           a = (l = a).c, o = ce(r), i = r.a, s = o.a;
           var l,
               u = !1;
-          i.b.a !== s.b.a && F(e, r), m(i.a, e.a) && (j(K(a), i), a = ce(r = C(r)).a, A(e, ce(r), o), u = !0), m(s.a, e.a) && (j(l, K(s)), l = A(e, o, null), u = !0), u ? R(e, r, l.c, a, a, !0) : (n = g(s.a, i.a) ? K(s) : i, R(e, r, n = f(l.c.b, n), n.c, n.c, !1), n.b.i.c = !0, B(e, r));
+          i.b.a !== s.b.a && F(e, r), m(i.a, e.a) && (S(K(a), i), a = ce(r = C(r)).a, k(e, ce(r), o), u = !0), m(s.a, e.a) && (S(l, K(s)), l = k(e, o, null), u = !0), u ? R(e, r, l.c, a, a, !0) : (n = g(s.a, i.a) ? K(s) : i, R(e, r, n = f(l.c.b, n), n.c, n.c, !1), n.b.i.c = !0, B(e, r));
         } else R(e, r, a.c, l, l, !0);
       }
 
@@ -8941,7 +9005,7 @@ var global = arguments[3];
           i < -1e150 && (i = -1e150, r = !0), 1e150 < i && (i = 1e150, r = !0), n[o] = i;
         }
 
-        r && Y(this, 100155), null === (r = this.q) ? j(r = a(this.b), r.b) : (M(r), r = r.e), r.a.d = t, r.a.g[0] = n[0], r.a.g[1] = n[1], r.a.g[2] = n[2], r.f = 1, r.b.f = -1, this.q = r;
+        r && Y(this, 100155), null === (r = this.q) ? S(r = a(this.b), r.b) : (M(r), r = r.e), r.a.d = t, r.a.g[0] = n[0], r.a.g[1] = n[1], r.a.g[2] = n[2], r.f = 1, r.b.f = -1, this.q = r;
       }, n.u = function (e) {
         X(this, 0), this.d = 1, this.b = new J(), this.c = e;
       }, n.t = function () {
@@ -9100,7 +9164,7 @@ var global = arguments[3];
         }
       }, q.prototype.gluDeleteTess = q.prototype.x, q.prototype.gluTessProperty = q.prototype.B, q.prototype.gluGetTessProperty = q.prototype.y, q.prototype.gluTessNormal = q.prototype.A, q.prototype.gluTessCallback = q.prototype.z, q.prototype.gluTessVertex = q.prototype.C, q.prototype.gluTessBeginPolygon = q.prototype.u, q.prototype.gluTessBeginContour = q.prototype.t, q.prototype.gluTessEndContour = q.prototype.v, q.prototype.gluTessEndPolygon = q.prototype.w, void 0 !== t && (t.exports = this.libtess);
     }, {}],
-    235: [function (e, t, r) {
+    238: [function (e, t, r) {
       "use strict";
 
       function O(e, t, r, n) {
@@ -9295,13 +9359,13 @@ var global = arguments[3];
                   v = x[e++],
                   b = v >> 6 & 1,
                   _ = 1 << 1 + (7 & v),
-                  S = i,
-                  j = a,
+                  j = i,
+                  S = a,
                   M = !1;
 
               if (v >> 7) {
                 M = !0;
-                S = e, e += 3 * (j = _);
+                j = e, e += 3 * (S = _);
               }
 
               var E = e;
@@ -9319,8 +9383,8 @@ var global = arguments[3];
                 width: m,
                 height: g,
                 has_local_palette: M,
-                palette_offset: S,
-                palette_size: j,
+                palette_offset: j,
+                palette_size: S,
                 data_offset: E,
                 data_length: e - E,
                 transparent_index: c,
@@ -9403,10 +9467,10 @@ var global = arguments[3];
         };
       } catch (e) {}
     }, {}],
-    236: [function (Br, t, r) {
+    239: [function (Br, r, n) {
       (function (Fr) {
-        var e;
-        e = this, function (M) {
+        var e, t;
+        e = this, t = function (M) {
           "use strict";
 
           function e(e) {
@@ -9544,7 +9608,7 @@ var global = arguments[3];
             v(t, m, 0, n), v(r, m, n, o);
           }
 
-          function S(e, t, r) {
+          function j(e, t, r) {
             for (;;) {
               var n,
                   o,
@@ -9556,7 +9620,7 @@ var global = arguments[3];
             }
           }
 
-          function j(e) {
+          function S(e) {
             for (var t, r; 8 < e.bitcount;) e.sourceIndex--, e.bitcount -= 8;
 
             if ((t = 256 * (t = e.source[e.sourceIndex + 1]) + e.source[e.sourceIndex]) !== (65535 & ~(256 * e.source[e.sourceIndex + 3] + e.source[e.sourceIndex + 2]))) return i;
@@ -9592,15 +9656,15 @@ var global = arguments[3];
             do {
               switch (r = b(o), _(o, 2, 0)) {
                 case 0:
-                  n = j(o);
+                  n = S(o);
                   break;
 
                 case 1:
-                  n = S(o, s, u);
+                  n = j(o, s, u);
                   break;
 
                 case 2:
-                  w(o, o.ltree, o.dtree), n = S(o, o.ltree, o.dtree);
+                  w(o, o.ltree, o.dtree), n = j(o, o.ltree, o.dtree);
                   break;
 
                 default:
@@ -9786,8 +9850,8 @@ var global = arguments[3];
             assert: C
           },
               P = {},
-              k = {},
-              A = {};
+              A = {},
+              k = {};
 
           function R(e) {
             return function () {
@@ -9795,39 +9859,39 @@ var global = arguments[3];
             };
           }
 
-          k.BYTE = function (e) {
+          A.BYTE = function (e) {
             return L.argument(0 <= e && e <= 255, "Byte value should be between 0 and 255."), [e];
-          }, A.BYTE = R(1), k.CHAR = function (e) {
+          }, k.BYTE = R(1), A.CHAR = function (e) {
             return [e.charCodeAt(0)];
-          }, A.CHAR = R(1), k.CHARARRAY = function (e) {
+          }, k.CHAR = R(1), A.CHARARRAY = function (e) {
             for (var t = [], r = 0; r < e.length; r += 1) t[r] = e.charCodeAt(r);
 
             return t;
-          }, A.CHARARRAY = function (e) {
+          }, k.CHARARRAY = function (e) {
             return e.length;
-          }, k.USHORT = function (e) {
+          }, A.USHORT = function (e) {
             return [e >> 8 & 255, 255 & e];
-          }, A.USHORT = R(2), k.SHORT = function (e) {
+          }, k.USHORT = R(2), A.SHORT = function (e) {
             return 32768 <= e && (e = -(65536 - e)), [e >> 8 & 255, 255 & e];
-          }, A.SHORT = R(2), k.UINT24 = function (e) {
+          }, k.SHORT = R(2), A.UINT24 = function (e) {
             return [e >> 16 & 255, e >> 8 & 255, 255 & e];
-          }, A.UINT24 = R(3), k.ULONG = function (e) {
+          }, k.UINT24 = R(3), A.ULONG = function (e) {
             return [e >> 24 & 255, e >> 16 & 255, e >> 8 & 255, 255 & e];
-          }, A.ULONG = R(4), k.LONG = function (e) {
+          }, k.ULONG = R(4), A.LONG = function (e) {
             return 2147483648 <= e && (e = -(4294967296 - e)), [e >> 24 & 255, e >> 16 & 255, e >> 8 & 255, 255 & e];
-          }, A.LONG = R(4), k.FIXED = k.ULONG, A.FIXED = A.ULONG, k.FWORD = k.SHORT, A.FWORD = A.SHORT, k.UFWORD = k.USHORT, A.UFWORD = A.USHORT, k.LONGDATETIME = function (e) {
+          }, k.LONG = R(4), A.FIXED = A.ULONG, k.FIXED = k.ULONG, A.FWORD = A.SHORT, k.FWORD = k.SHORT, A.UFWORD = A.USHORT, k.UFWORD = k.USHORT, A.LONGDATETIME = function (e) {
             return [0, 0, 0, 0, e >> 24 & 255, e >> 16 & 255, e >> 8 & 255, 255 & e];
-          }, A.LONGDATETIME = R(8), k.TAG = function (e) {
+          }, k.LONGDATETIME = R(8), A.TAG = function (e) {
             return L.argument(4 === e.length, "Tag should be exactly 4 ASCII characters."), [e.charCodeAt(0), e.charCodeAt(1), e.charCodeAt(2), e.charCodeAt(3)];
-          }, A.TAG = R(4), k.Card8 = k.BYTE, A.Card8 = A.BYTE, k.Card16 = k.USHORT, A.Card16 = A.USHORT, k.OffSize = k.BYTE, A.OffSize = A.BYTE, k.SID = k.USHORT, A.SID = A.USHORT, k.NUMBER = function (e) {
-            return -107 <= e && e <= 107 ? [e + 139] : 108 <= e && e <= 1131 ? [247 + ((e -= 108) >> 8), 255 & e] : -1131 <= e && e <= -108 ? [251 + ((e = -e - 108) >> 8), 255 & e] : -32768 <= e && e <= 32767 ? k.NUMBER16(e) : k.NUMBER32(e);
-          }, A.NUMBER = function (e) {
-            return k.NUMBER(e).length;
-          }, k.NUMBER16 = function (e) {
+          }, k.TAG = R(4), A.Card8 = A.BYTE, k.Card8 = k.BYTE, A.Card16 = A.USHORT, k.Card16 = k.USHORT, A.OffSize = A.BYTE, k.OffSize = k.BYTE, A.SID = A.USHORT, k.SID = k.USHORT, A.NUMBER = function (e) {
+            return -107 <= e && e <= 107 ? [e + 139] : 108 <= e && e <= 1131 ? [247 + ((e -= 108) >> 8), 255 & e] : -1131 <= e && e <= -108 ? [251 + ((e = -e - 108) >> 8), 255 & e] : -32768 <= e && e <= 32767 ? A.NUMBER16(e) : A.NUMBER32(e);
+          }, k.NUMBER = function (e) {
+            return A.NUMBER(e).length;
+          }, A.NUMBER16 = function (e) {
             return [28, e >> 8 & 255, 255 & e];
-          }, A.NUMBER16 = R(3), k.NUMBER32 = function (e) {
+          }, k.NUMBER16 = R(3), A.NUMBER32 = function (e) {
             return [29, e >> 24 & 255, e >> 16 & 255, e >> 8 & 255, 255 & e];
-          }, A.NUMBER32 = R(5), k.REAL = function (e) {
+          }, k.NUMBER32 = R(5), A.REAL = function (e) {
             var t = e.toString(),
                 r = /\.(\d*?)(?:9{5,20}|0{5,20})\d{0,2}(?:e(.+)|$)/.exec(t);
 
@@ -9844,9 +9908,9 @@ var global = arguments[3];
             for (var l = [30], u = 0, c = (o += 1 & o.length ? "f" : "ff").length; u < c; u += 2) l.push(parseInt(o.substr(u, 2), 16));
 
             return l;
-          }, A.REAL = function (e) {
-            return k.REAL(e).length;
-          }, k.NAME = k.CHARARRAY, A.NAME = A.CHARARRAY, k.STRING = k.CHARARRAY, A.STRING = A.CHARARRAY, P.UTF8 = function (e, t, r) {
+          }, k.REAL = function (e) {
+            return A.REAL(e).length;
+          }, A.NAME = A.CHARARRAY, k.NAME = k.CHARARRAY, A.STRING = A.CHARARRAY, k.STRING = k.CHARARRAY, P.UTF8 = function (e, t, r) {
             for (var n = [], o = r, i = 0; i < o; i++, t += 1) n[i] = e.getUint8(t);
 
             return String.fromCharCode.apply(null, n);
@@ -9854,14 +9918,14 @@ var global = arguments[3];
             for (var n = [], o = r / 2, i = 0; i < o; i++, t += 2) n[i] = e.getUint16(t);
 
             return String.fromCharCode.apply(null, n);
-          }, k.UTF16 = function (e) {
+          }, A.UTF16 = function (e) {
             for (var t = [], r = 0; r < e.length; r += 1) {
               var n = e.charCodeAt(r);
               t[t.length] = n >> 8 & 255, t[t.length] = 255 & n;
             }
 
             return t;
-          }, A.UTF16 = function (e) {
+          }, k.UTF16 = function (e) {
             return 2 * e.length;
           };
           var I = {
@@ -9936,7 +10000,7 @@ var global = arguments[3];
             return i;
           }
 
-          k.MACSTRING = function (e, t) {
+          A.MACSTRING = function (e, t) {
             var r = function (e) {
               if (!U) for (var t in U = {}, I) U[t] = new String(t);
               var r = U[e];
@@ -9966,52 +10030,52 @@ var global = arguments[3];
 
               return n;
             }
-          }, A.MACSTRING = function (e, t) {
-            var r = k.MACSTRING(e, t);
+          }, k.MACSTRING = function (e, t) {
+            var r = A.MACSTRING(e, t);
             return void 0 !== r ? r.length : 0;
-          }, k.VARDELTAS = function (e) {
+          }, A.VARDELTAS = function (e) {
             for (var t = 0, r = []; t < e.length;) {
               var n = e[t];
               t = 0 === n ? B(e, t, r) : -128 <= n && n <= 127 ? G(e, t, r) : V(e, t, r);
             }
 
             return r;
-          }, k.INDEX = function (e) {
+          }, A.INDEX = function (e) {
             for (var t = 1, r = [t], n = [], o = 0; o < e.length; o += 1) {
-              var i = k.OBJECT(e[o]);
+              var i = A.OBJECT(e[o]);
               Array.prototype.push.apply(n, i), t += i.length, r.push(t);
             }
 
             if (0 === n.length) return [0, 0];
 
-            for (var a = [], s = 1 + Math.floor(Math.log(t) / Math.log(2)) / 8 | 0, l = [void 0, k.BYTE, k.USHORT, k.UINT24, k.ULONG][s], u = 0; u < r.length; u += 1) {
+            for (var a = [], s = 1 + Math.floor(Math.log(t) / Math.log(2)) / 8 | 0, l = [void 0, A.BYTE, A.USHORT, A.UINT24, A.ULONG][s], u = 0; u < r.length; u += 1) {
               var c = l(r[u]);
               Array.prototype.push.apply(a, c);
             }
 
-            return Array.prototype.concat(k.Card16(e.length), k.OffSize(s), a, n);
-          }, A.INDEX = function (e) {
-            return k.INDEX(e).length;
-          }, k.DICT = function (e) {
+            return Array.prototype.concat(A.Card16(e.length), A.OffSize(s), a, n);
+          }, k.INDEX = function (e) {
+            return A.INDEX(e).length;
+          }, A.DICT = function (e) {
             for (var t = [], r = Object.keys(e), n = r.length, o = 0; o < n; o += 1) {
               var i = parseInt(r[o], 0),
                   a = e[i];
-              t = (t = t.concat(k.OPERAND(a.value, a.type))).concat(k.OPERATOR(i));
+              t = (t = t.concat(A.OPERAND(a.value, a.type))).concat(A.OPERATOR(i));
             }
 
             return t;
-          }, A.DICT = function (e) {
-            return k.DICT(e).length;
-          }, k.OPERATOR = function (e) {
+          }, k.DICT = function (e) {
+            return A.DICT(e).length;
+          }, A.OPERATOR = function (e) {
             return e < 1200 ? [e] : [12, e - 1200];
-          }, k.OPERAND = function (e, t) {
+          }, A.OPERAND = function (e, t) {
             var r = [];
-            if (Array.isArray(t)) for (var n = 0; n < t.length; n += 1) L.argument(e.length === t.length, "Not enough arguments given for type" + t), r = r.concat(k.OPERAND(e[n], t[n]));else if ("SID" === t) r = r.concat(k.NUMBER(e));else if ("offset" === t) r = r.concat(k.NUMBER32(e));else if ("number" === t) r = r.concat(k.NUMBER(e));else {
+            if (Array.isArray(t)) for (var n = 0; n < t.length; n += 1) L.argument(e.length === t.length, "Not enough arguments given for type" + t), r = r.concat(A.OPERAND(e[n], t[n]));else if ("SID" === t) r = r.concat(A.NUMBER(e));else if ("offset" === t) r = r.concat(A.NUMBER32(e));else if ("number" === t) r = r.concat(A.NUMBER(e));else {
               if ("real" !== t) throw new Error("Unknown operand type " + t);
-              r = r.concat(k.REAL(e));
+              r = r.concat(A.REAL(e));
             }
             return r;
-          }, k.OP = k.BYTE, A.OP = A.BYTE;
+          }, A.OP = A.BYTE, k.OP = k.BYTE;
           var z = "function" == typeof WeakMap && new WeakMap();
 
           function H(e, t, r) {
@@ -10166,7 +10230,7 @@ var global = arguments[3];
             }));
           }
 
-          k.CHARSTRING = function (e) {
+          A.CHARSTRING = function (e) {
             if (z) {
               var t = z.get(e);
               if (void 0 !== t) return t;
@@ -10174,22 +10238,22 @@ var global = arguments[3];
 
             for (var r = [], n = e.length, o = 0; o < n; o += 1) {
               var i = e[o];
-              r = r.concat(k[i.type](i.value));
+              r = r.concat(A[i.type](i.value));
             }
 
             return z && z.set(e, r), r;
-          }, A.CHARSTRING = function (e) {
-            return k.CHARSTRING(e).length;
-          }, k.OBJECT = function (e) {
-            var t = k[e.type];
-            return L.argument(void 0 !== t, "No encoding function for type " + e.type), t(e.value);
+          }, k.CHARSTRING = function (e) {
+            return A.CHARSTRING(e).length;
           }, A.OBJECT = function (e) {
             var t = A[e.type];
+            return L.argument(void 0 !== t, "No encoding function for type " + e.type), t(e.value);
+          }, k.OBJECT = function (e) {
+            var t = k[e.type];
             return L.argument(void 0 !== t, "No sizeOf function for type " + e.type), t(e.value);
-          }, k.TABLE = function (e) {
+          }, A.TABLE = function (e) {
             for (var t = [], r = e.fields.length, n = [], o = [], i = 0; i < r; i += 1) {
               var a = e.fields[i],
-                  s = k[a.type];
+                  s = A[a.type];
               L.argument(void 0 !== s, "No encoding function for field type " + a.type + " (" + a.name + ")");
               var l = e[a.name];
               void 0 === l && (l = a.value);
@@ -10204,24 +10268,24 @@ var global = arguments[3];
             }
 
             return t;
-          }, A.TABLE = function (e) {
+          }, k.TABLE = function (e) {
             for (var t = 0, r = e.fields.length, n = 0; n < r; n += 1) {
               var o = e.fields[n],
-                  i = A[o.type];
+                  i = k[o.type];
               L.argument(void 0 !== i, "No sizeOf function for field type " + o.type + " (" + o.name + ")");
               var a = e[o.name];
               void 0 === a && (a = o.value), t += i(a), "TABLE" === o.type && (t += 2);
             }
 
             return t;
-          }, k.RECORD = k.TABLE, A.RECORD = A.TABLE, k.LITERAL = function (e) {
+          }, A.RECORD = A.TABLE, k.RECORD = k.TABLE, A.LITERAL = function (e) {
             return e;
-          }, A.LITERAL = function (e) {
+          }, k.LITERAL = function (e) {
             return e.length;
           }, H.prototype.encode = function () {
-            return k.TABLE(this);
-          }, H.prototype.sizeOf = function () {
             return A.TABLE(this);
+          }, H.prototype.sizeOf = function () {
+            return k.TABLE(this);
           };
           var J = {
             Table: H,
@@ -10992,7 +11056,7 @@ var global = arguments[3];
             return e.length < 1240 ? 107 : e.length < 33900 ? 1131 : 32768;
           }
 
-          function Se(e, t, r) {
+          function je(e, t, r) {
             var n,
                 o,
                 i = [],
@@ -11020,7 +11084,7 @@ var global = arguments[3];
             };
           }
 
-          function je(e, t) {
+          function Se(e, t) {
             if (28 === t) return e.parseByte() << 8 | e.parseByte();
             if (29 === t) return e.parseByte() << 24 | e.parseByte() << 16 | e.parseByte() << 8 | e.parseByte();
             if (30 === t) return function (e) {
@@ -11049,7 +11113,7 @@ var global = arguments[3];
 
             for (r = void 0 !== r ? r : e.length; n.relativeOffset < r;) {
               var a = n.parseByte();
-              a <= 21 ? (12 === a && (a = 1200 + n.parseByte()), o.push([a, i]), i = []) : i.push(je(n, a));
+              a <= 21 ? (12 === a && (a = 1200 + n.parseByte()), o.push([a, i]), i = []) : i.push(Se(n, a));
             }
 
             return function (e) {
@@ -11258,7 +11322,7 @@ var global = arguments[3];
                 var f = Le(e, d + t, c, n);
 
                 if (u._defaultWidthX = f.defaultWidthX, u._nominalWidthX = f.nominalWidthX, 0 !== f.subrs) {
-                  var h = Se(e, d + f.subrs + t);
+                  var h = je(e, d + f.subrs + t);
                   u._subrs = h.objects, u._subrsBias = we(u._subrs);
                 }
 
@@ -11271,15 +11335,15 @@ var global = arguments[3];
             return a;
           }
 
-          function ke(m, g, e) {
+          function Ae(m, g, e) {
             var v,
                 b,
                 _,
                 x,
                 w,
-                S,
-                t,
                 j,
+                t,
+                S,
                 M = new D(),
                 E = [],
                 T = 0,
@@ -11291,17 +11355,17 @@ var global = arguments[3];
             if (m.isCIDFont) {
               var r = m.tables.cff.topDict._fdSelect[g.index],
                   n = m.tables.cff.topDict._fdArray[r];
-              w = n._subrs, S = n._subrsBias, t = n._defaultWidthX, j = n._nominalWidthX;
-            } else w = m.tables.cff.topDict._subrs, S = m.tables.cff.topDict._subrsBias, t = m.tables.cff.topDict._defaultWidthX, j = m.tables.cff.topDict._nominalWidthX;
+              w = n._subrs, j = n._subrsBias, t = n._defaultWidthX, S = n._nominalWidthX;
+            } else w = m.tables.cff.topDict._subrs, j = m.tables.cff.topDict._subrsBias, t = m.tables.cff.topDict._defaultWidthX, S = m.tables.cff.topDict._nominalWidthX;
 
-            var k = t;
+            var A = t;
 
-            function A(e, t) {
+            function k(e, t) {
               C && M.closePath(), M.moveTo(e, t), C = !0;
             }
 
             function R() {
-              E.length % 2 == 0 || O || (k = E.shift() + j), T += E.length >> 1, E.length = 0, O = !0;
+              E.length % 2 == 0 || O || (A = E.shift() + S), T += E.length >> 1, E.length = 0, O = !0;
             }
 
             return function e(t) {
@@ -11315,7 +11379,7 @@ var global = arguments[3];
                     break;
 
                   case 4:
-                    1 < E.length && !O && (k = E.shift() + j, O = !0), P += E.pop(), A(L, P);
+                    1 < E.length && !O && (A = E.shift() + S, O = !0), P += E.pop(), k(L, P);
                     break;
 
                   case 5:
@@ -11339,7 +11403,7 @@ var global = arguments[3];
                     break;
 
                   case 10:
-                    a = E.pop() + S, (s = w[a]) && e(s);
+                    a = E.pop() + j, (s = w[a]) && e(s);
                     break;
 
                   case 11:
@@ -11370,7 +11434,7 @@ var global = arguments[3];
                     break;
 
                   case 14:
-                    0 < E.length && !O && (k = E.shift() + j, O = !0), C && (M.closePath(), C = !1);
+                    0 < E.length && !O && (A = E.shift() + S, O = !0), C && (M.closePath(), C = !1);
                     break;
 
                   case 18:
@@ -11383,11 +11447,11 @@ var global = arguments[3];
                     break;
 
                   case 21:
-                    2 < E.length && !O && (k = E.shift() + j, O = !0), P += E.pop(), A(L += E.pop(), P);
+                    2 < E.length && !O && (A = E.shift() + S, O = !0), P += E.pop(), k(L += E.pop(), P);
                     break;
 
                   case 22:
-                    1 < E.length && !O && (k = E.shift() + j, O = !0), A(L += E.pop(), P);
+                    1 < E.length && !O && (A = E.shift() + S, O = !0), k(L += E.pop(), P);
                     break;
 
                   case 23:
@@ -11438,10 +11502,10 @@ var global = arguments[3];
                     y < 32 ? console.log("Glyph " + g.index + ": unknown operator " + y) : y < 247 ? E.push(y - 139) : y < 251 ? (r = t[p], p += 1, E.push(256 * (y - 247) + r + 108)) : y < 255 ? (r = t[p], p += 1, E.push(256 * -(y - 251) - r - 108)) : (r = t[p], n = t[p + 1], o = t[p + 2], i = t[p + 3], p += 4, E.push((r << 24 | n << 16 | o << 8 | i) / 65536));
                 }
               }
-            }(e), g.advanceWidth = k, M;
+            }(e), g.advanceWidth = A, M;
           }
 
-          function Ae(e, t) {
+          function ke(e, t) {
             var r,
                 n = le.indexOf(e);
             return 0 <= n && (r = n), 0 <= (n = t.indexOf(e)) ? r = n + le.length : (r = le.length + t.length, t.push(e)), r;
@@ -11451,7 +11515,7 @@ var global = arguments[3];
             for (var n = {}, o = 0; o < e.length; o += 1) {
               var i = e[o],
                   a = t[i.name];
-              void 0 === a || xe(a, i.value) || ("SID" === i.type && (a = Ae(a, r)), n[i.op] = {
+              void 0 === a || xe(a, i.value) || ("SID" === i.type && (a = ke(a, r)), n[i.op] = {
                 name: i.name,
                 type: i.type,
                 value: a
@@ -11583,10 +11647,10 @@ var global = arguments[3];
               var n,
                   o,
                   i,
-                  a = Se(e, (n = e, o = t, (i = {}).formatMajor = ae.getCard8(n, o), i.formatMinor = ae.getCard8(n, o + 1), i.size = ae.getCard8(n, o + 2), i.offsetSize = ae.getCard8(n, o + 3), i.startOffset = o, i.endOffset = o + 4, i).endOffset, ae.bytesToString),
-                  s = Se(e, a.endOffset),
-                  l = Se(e, s.endOffset, ae.bytesToString),
-                  u = Se(e, l.endOffset);
+                  a = je(e, (n = e, o = t, (i = {}).formatMajor = ae.getCard8(n, o), i.formatMinor = ae.getCard8(n, o + 1), i.size = ae.getCard8(n, o + 2), i.offsetSize = ae.getCard8(n, o + 3), i.startOffset = o, i.endOffset = o + 4, i).endOffset, ae.bytesToString),
+                  s = je(e, a.endOffset),
+                  l = je(e, s.endOffset, ae.bytesToString),
+                  u = je(e, l.endOffset);
               r.gsubrs = u.objects, r.gsubrsBias = we(r.gsubrs);
               var c = Pe(e, t, s.objects, l.objects);
               if (1 !== c.length) throw new Error("CFF table has too many fonts in 'FontSet' - count of fonts NameIndex.length = " + c.length);
@@ -11596,7 +11660,7 @@ var global = arguments[3];
                 var f = d.fdArray,
                     h = d.fdSelect;
                 if (0 === f || 0 === h) throw new Error("Font is marked as a CID font, but FDArray and/or FDSelect information is missing");
-                var p = Pe(e, t, Se(e, f += t).objects, l.objects);
+                var p = Pe(e, t, je(e, f += t).objects, l.objects);
                 d._fdArray = p, h += t, d._fdSelect = function (e, t, r, n) {
                   var o,
                       i = [],
@@ -11631,11 +11695,11 @@ var global = arguments[3];
                   m = Le(e, y, d.private[0], l.objects);
 
               if (r.defaultWidthX = m.defaultWidthX, r.nominalWidthX = m.nominalWidthX, 0 !== m.subrs) {
-                var g = Se(e, y + m.subrs);
+                var g = je(e, y + m.subrs);
                 r.subrs = g.objects, r.subrsBias = we(r.subrs);
               } else r.subrs = [], r.subrsBias = 0;
 
-              var v = Se(e, t + d.charStrings);
+              var v = je(e, t + d.charStrings);
               r.nGlyphs = v.objects.length;
 
               var b = function (e, t, r, n) {
@@ -11678,7 +11742,7 @@ var global = arguments[3];
 
               for (var _ = 0; _ < r.nGlyphs; _ += 1) {
                 var x = v.objects[_];
-                r.glyphs.push(_, _e.cffGlyphLoader(r, _, ke, x));
+                r.glyphs.push(_, _e.cffGlyphLoader(r, _, Ae, x));
               }
             },
             make: function (e, t) {
@@ -11766,7 +11830,7 @@ var global = arguments[3];
                   type: "Card8",
                   value: 0
                 }]), n = 0; n < e.length; n += 1) {
-                  var o = Ae(e[n], t);
+                  var o = ke(e[n], t);
                   r.fields.push({
                     name: "glyph_" + n,
                     type: "SID",
@@ -12699,17 +12763,17 @@ var global = arguments[3];
                       g = l[p],
                       v = qe[g],
                       b = Je(m, v, g),
-                      _ = k.MACSTRING(y, b);
+                      _ = A.MACSTRING(y, b);
 
-                  void 0 === _ && (m = 0, (g = t.indexOf(p)) < 0 && (g = t.length, t.push(p)), v = 4, _ = k.UTF16(y));
+                  void 0 === _ && (m = 0, (g = t.indexOf(p)) < 0 && (g = t.length, t.push(p)), v = 4, _ = A.UTF16(y));
                   var x = tt(_, d);
                   c.push(et(m, v, g, r, _.length, x));
                   var w = u[p];
 
                   if (void 0 !== w) {
-                    var S = k.UTF16(y),
-                        j = tt(S, d);
-                    c.push(et(3, 1, w, r, S.length, j));
+                    var j = A.UTF16(y),
+                        S = tt(j, d);
+                    c.push(et(3, 1, w, r, j.length, S));
                   }
                 }
               }
@@ -13842,7 +13906,7 @@ var global = arguments[3];
                 numberOfHMetrics: e.glyphs.length
               }),
                   w = ze.make(e.glyphs.length),
-                  S = ot.make({
+                  j = ot.make({
                 xAvgCharWidth: Math.round(b.advanceWidthAvg),
                 usWeightClass: e.tables.os2.usWeightClass,
                 usWidthClass: e.tables.os2.usWidthClass,
@@ -13866,7 +13930,7 @@ var global = arguments[3];
                 usDefaultChar: e.hasChar(" ") ? 32 : 0,
                 usBreakChar: e.hasChar(" ") ? 32 : 0
               }),
-                  j = Ge.make(e.glyphs),
+                  S = Ge.make(e.glyphs),
                   M = se.make(e.glyphs),
                   E = e.getEnglishName("fontFamily"),
                   T = e.getEnglishName("fontSubfamily"),
@@ -13883,9 +13947,9 @@ var global = arguments[3];
               }), L.postScriptName || (L.postScriptName = {
                 en: C
               }), L.preferredFamily || (L.preferredFamily = e.names.fontFamily), L.preferredSubfamily || (L.preferredSubfamily = e.names.fontSubfamily);
-              var k = [],
-                  A = rt.make(L, k),
-                  R = 0 < k.length ? Ve.make(k) : void 0,
+              var A = [],
+                  k = rt.make(L, A),
+                  R = 0 < A.length ? Ve.make(A) : void 0,
                   D = it.make(),
                   I = Ne.make(e.glyphs, {
                 version: e.getEnglishName("version"),
@@ -13897,7 +13961,7 @@ var global = arguments[3];
                 fontBBox: [0, b.yMin, b.ascender, b.advanceWidthMax]
               }),
                   U = e.metas && 0 < Object.keys(e.metas).length ? ct.make(e.metas) : void 0,
-                  N = [_, x, w, S, A, M, D, I, j];
+                  N = [_, x, w, j, k, M, D, I, S];
               R && N.push(R), e.tables.gsub && N.push(ut.make(e.tables.gsub)), U && N.push(U);
 
               for (var F = pt(N), B = ft(F.encode()), G = F.fields, V = !1, z = 0; z < G.length; z += 1) if ("head table" === G[z].name) {
@@ -13956,7 +14020,7 @@ var global = arguments[3];
             _t.call(this, e, "gsub");
           }
 
-          function St(e, t) {
+          function jt(e, t) {
             var r = e.length;
             if (r !== t.length) return !1;
 
@@ -13965,7 +14029,7 @@ var global = arguments[3];
             return !0;
           }
 
-          function jt(e, t, r) {
+          function St(e, t, r) {
             for (var n = e.subtables, o = 0; o < n.length; o++) {
               var i = n[o];
               if (i.substFormat === t) return i;
@@ -14356,7 +14420,7 @@ var global = arguments[3];
 
             return n;
           }, wt.prototype.addSingle = function (e, t, r, n) {
-            var o = jt(this.getLookupTables(r, n, e, 1, !0)[0], 2, {
+            var o = St(this.getLookupTables(r, n, e, 1, !0)[0], 2, {
               substFormat: 2,
               coverage: {
                 format: 1,
@@ -14369,7 +14433,7 @@ var global = arguments[3];
                 a = this.binSearch(o.coverage.glyphs, i);
             a < 0 && (a = -1 - a, o.coverage.glyphs.splice(a, 0, i), o.substitute.splice(a, 0, 0)), o.substitute[a] = t.by;
           }, wt.prototype.addAlternate = function (e, t, r, n) {
-            var o = jt(this.getLookupTables(r, n, e, 3, !0)[0], 1, {
+            var o = St(this.getLookupTables(r, n, e, 3, !0)[0], 1, {
               substFormat: 1,
               coverage: {
                 format: 1,
@@ -14401,7 +14465,7 @@ var global = arguments[3];
                 u = this.binSearch(i.coverage.glyphs, a);
 
             if (0 <= u) {
-              for (var c = i.ligatureSets[u], d = 0; d < c.length; d++) if (St(c[d].components, s)) return;
+              for (var c = i.ligatureSets[u], d = 0; d < c.length; d++) if (jt(c[d].components, s)) return;
 
               c.push(l);
             } else u = -1 - u, i.coverage.glyphs.splice(u, 0, a), i.ligatureSets.splice(u, 0, [l]);
@@ -14432,8 +14496,8 @@ var global = arguments[3];
                 return this.addLigature(e, t, r, n);
             }
           };
-          var kt,
-              At,
+          var At,
+              kt,
               Rt,
               Dt,
               It = {
@@ -14898,7 +14962,7 @@ var global = arguments[3];
                   Jt.prototype = Kt, (o = this._fpgmState = new Jt("fpgm", r.tables.fpgm)).funcs = [], o.font = r, M.DEBUG && (console.log("---EXEC FPGM---"), o.step = -1);
 
                   try {
-                    At(o);
+                    kt(o);
                   } catch (e) {
                     return console.log("Hinting error in FPGM:" + e), void (this._errorState = 3);
                   }
@@ -14910,7 +14974,7 @@ var global = arguments[3];
                 M.DEBUG && (console.log("---EXEC PREP---"), n.step = -1);
 
                 try {
-                  At(n);
+                  kt(n);
                 } catch (e) {
                   this._errorState < 2 && console.log("Hinting error in PREP:" + e), this._errorState = 2;
                 }
@@ -14950,7 +15014,7 @@ var global = arguments[3];
                 for (var b = 0; b < y.length; b++) r.push(y[b] + v);
               }
 
-              e.instructions && !o.inhibitGridFit && ((o = new Jt("glyf", e.instructions)).gZone = o.z0 = o.z1 = o.z2 = n, o.contours = r, n.push(new Zt(0, 0), new Zt(Math.round(e.advanceWidth * i), 0)), M.DEBUG && (console.log("---EXEC COMPOSITE---"), o.step = -1), At(o), n.length -= 2);
+              e.instructions && !o.inhibitGridFit && ((o = new Jt("glyf", e.instructions)).gZone = o.z0 = o.z1 = o.z2 = n, o.contours = r, n.push(new Zt(0, 0), new Zt(Math.round(e.advanceWidth * i), 0)), M.DEBUG && (console.log("---EXEC COMPOSITE---"), o.step = -1), kt(o), n.length -= 2);
             } else o = new Jt("glyf", e.instructions), M.DEBUG && (console.log("---EXEC GLYPH---"), o.step = -1), Dt(e, o, i, a), n = o.gZone;
 
             return n;
@@ -14966,13 +15030,13 @@ var global = arguments[3];
                 for (var h = 0; h < l; h++) console.log(h, u[h].x, u[h].y);
               }
 
-              if (u.push(new Zt(0, 0), new Zt(Math.round(e.advanceWidth * r), 0)), At(t), u.length -= 2, M.DEBUG) {
+              if (u.push(new Zt(0, 0), new Zt(Math.round(e.advanceWidth * r), 0)), kt(t), u.length -= 2, M.DEBUG) {
                 console.log("FINISHED GLYPH", t.stack);
 
                 for (var p = 0; p < l; p++) console.log(p, u[p].x, u[p].y);
               }
             }
-          }, At = function (e) {
+          }, kt = function (e) {
             var t = e.prog;
 
             if (t) {
@@ -14980,11 +15044,11 @@ var global = arguments[3];
                   n = t.length;
 
               for (e.ip = 0; e.ip < n; e.ip++) {
-                if (M.DEBUG && e.step++, !(r = kt[t[e.ip]])) throw new Error("unknown instruction: 0x" + Number(t[e.ip]).toString(16));
+                if (M.DEBUG && e.step++, !(r = At[t[e.ip]])) throw new Error("unknown instruction: 0x" + Number(t[e.ip]).toString(16));
                 r(e);
               }
             }
-          }, kt = [tr.bind(void 0, qt), tr.bind(void 0, Wt), rr.bind(void 0, qt), rr.bind(void 0, Wt), nr.bind(void 0, qt), nr.bind(void 0, Wt), or.bind(void 0, 0), or.bind(void 0, 1), ir.bind(void 0, 0), ir.bind(void 0, 1), function (e) {
+          }, At = [tr.bind(void 0, qt), tr.bind(void 0, Wt), rr.bind(void 0, qt), rr.bind(void 0, Wt), nr.bind(void 0, qt), nr.bind(void 0, Wt), or.bind(void 0, 0), or.bind(void 0, 1), ir.bind(void 0, 0), ir.bind(void 0, 1), function (e) {
             var t = e.stack,
                 r = t.pop(),
                 n = t.pop();
@@ -15028,9 +15092,9 @@ var global = arguments[3];
                 _ = f.x,
                 x = f.y,
                 w = (p - m) * (b - x) - (y - g) * (v - _),
-                S = p * g - y * m,
-                j = v * x - b * _;
-            h.x = (S * (v - _) - j * (p - m)) / w, h.y = (S * (b - x) - j * (y - g)) / w;
+                j = p * g - y * m,
+                S = v * x - b * _;
+            h.x = (j * (v - _) - S * (p - m)) / w, h.y = (j * (b - x) - S * (y - g)) / w;
           }, function (e) {
             e.rp0 = e.stack.pop(), M.DEBUG && console.log(e.step, "SRP0[]", e.rp0);
           }, function (e) {
@@ -15144,7 +15208,7 @@ var global = arguments[3];
                 i = e.prog;
             e.prog = e.funcs[r];
 
-            for (var a = 0; a < n; a++) At(e), M.DEBUG && console.log(++e.step, a + 1 < n ? "next loopcall" : "done loopcall", a);
+            for (var a = 0; a < n; a++) kt(e), M.DEBUG && console.log(++e.step, a + 1 < n ? "next loopcall" : "done loopcall", a);
 
             e.ip = o, e.prog = i;
           }, function (e) {
@@ -15152,7 +15216,7 @@ var global = arguments[3];
             M.DEBUG && console.log(e.step, "CALL[]", t);
             var r = e.ip,
                 n = e.prog;
-            e.prog = e.funcs[t], At(e), e.ip = r, e.prog = n, M.DEBUG && console.log(++e.step, "returning from", t);
+            e.prog = e.funcs[t], kt(e), e.ip = r, e.prog = n, M.DEBUG && console.log(++e.step, "returning from", t);
           }, function (e) {
             if ("fpgm" !== e.env) throw new Error("FDEF not allowed here");
             var t = e.stack,
@@ -15479,11 +15543,11 @@ var global = arguments[3];
             }
           }, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, _r.bind(void 0, 1), _r.bind(void 0, 2), _r.bind(void 0, 3), _r.bind(void 0, 4), _r.bind(void 0, 5), _r.bind(void 0, 6), _r.bind(void 0, 7), _r.bind(void 0, 8), xr.bind(void 0, 1), xr.bind(void 0, 2), xr.bind(void 0, 3), xr.bind(void 0, 4), xr.bind(void 0, 5), xr.bind(void 0, 6), xr.bind(void 0, 7), xr.bind(void 0, 8), wr.bind(void 0, 0, 0, 0, 0, 0), wr.bind(void 0, 0, 0, 0, 0, 1), wr.bind(void 0, 0, 0, 0, 0, 2), wr.bind(void 0, 0, 0, 0, 0, 3), wr.bind(void 0, 0, 0, 0, 1, 0), wr.bind(void 0, 0, 0, 0, 1, 1), wr.bind(void 0, 0, 0, 0, 1, 2), wr.bind(void 0, 0, 0, 0, 1, 3), wr.bind(void 0, 0, 0, 1, 0, 0), wr.bind(void 0, 0, 0, 1, 0, 1), wr.bind(void 0, 0, 0, 1, 0, 2), wr.bind(void 0, 0, 0, 1, 0, 3), wr.bind(void 0, 0, 0, 1, 1, 0), wr.bind(void 0, 0, 0, 1, 1, 1), wr.bind(void 0, 0, 0, 1, 1, 2), wr.bind(void 0, 0, 0, 1, 1, 3), wr.bind(void 0, 0, 1, 0, 0, 0), wr.bind(void 0, 0, 1, 0, 0, 1), wr.bind(void 0, 0, 1, 0, 0, 2), wr.bind(void 0, 0, 1, 0, 0, 3), wr.bind(void 0, 0, 1, 0, 1, 0), wr.bind(void 0, 0, 1, 0, 1, 1), wr.bind(void 0, 0, 1, 0, 1, 2), wr.bind(void 0, 0, 1, 0, 1, 3), wr.bind(void 0, 0, 1, 1, 0, 0), wr.bind(void 0, 0, 1, 1, 0, 1), wr.bind(void 0, 0, 1, 1, 0, 2), wr.bind(void 0, 0, 1, 1, 0, 3), wr.bind(void 0, 0, 1, 1, 1, 0), wr.bind(void 0, 0, 1, 1, 1, 1), wr.bind(void 0, 0, 1, 1, 1, 2), wr.bind(void 0, 0, 1, 1, 1, 3), wr.bind(void 0, 1, 0, 0, 0, 0), wr.bind(void 0, 1, 0, 0, 0, 1), wr.bind(void 0, 1, 0, 0, 0, 2), wr.bind(void 0, 1, 0, 0, 0, 3), wr.bind(void 0, 1, 0, 0, 1, 0), wr.bind(void 0, 1, 0, 0, 1, 1), wr.bind(void 0, 1, 0, 0, 1, 2), wr.bind(void 0, 1, 0, 0, 1, 3), wr.bind(void 0, 1, 0, 1, 0, 0), wr.bind(void 0, 1, 0, 1, 0, 1), wr.bind(void 0, 1, 0, 1, 0, 2), wr.bind(void 0, 1, 0, 1, 0, 3), wr.bind(void 0, 1, 0, 1, 1, 0), wr.bind(void 0, 1, 0, 1, 1, 1), wr.bind(void 0, 1, 0, 1, 1, 2), wr.bind(void 0, 1, 0, 1, 1, 3), wr.bind(void 0, 1, 1, 0, 0, 0), wr.bind(void 0, 1, 1, 0, 0, 1), wr.bind(void 0, 1, 1, 0, 0, 2), wr.bind(void 0, 1, 1, 0, 0, 3), wr.bind(void 0, 1, 1, 0, 1, 0), wr.bind(void 0, 1, 1, 0, 1, 1), wr.bind(void 0, 1, 1, 0, 1, 2), wr.bind(void 0, 1, 1, 0, 1, 3), wr.bind(void 0, 1, 1, 1, 0, 0), wr.bind(void 0, 1, 1, 1, 0, 1), wr.bind(void 0, 1, 1, 1, 0, 2), wr.bind(void 0, 1, 1, 1, 0, 3), wr.bind(void 0, 1, 1, 1, 1, 0), wr.bind(void 0, 1, 1, 1, 1, 1), wr.bind(void 0, 1, 1, 1, 1, 2), wr.bind(void 0, 1, 1, 1, 1, 3)];
 
-          var Sr = Array.from || function (e) {
+          var jr = Array.from || function (e) {
             return e.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]?|[^\uD800-\uDFFF]|./g) || [];
           };
 
-          function jr(e) {
+          function Sr(e) {
             (e = e || {}).empty || (Et(e.familyName, "When creating a new Font object, familyName is required."), Et(e.styleName, "When creating a new Font object, styleName is required."), Et(e.unitsPerEm, "When creating a new Font object, unitsPerEm is required."), Et(e.ascender, "When creating a new Font object, ascender is required."), Et(e.descender, "When creating a new Font object, descender is required."), Et(e.descender < 0, "Descender should be negative (e.g. -512)."), this.names = {
               fontFamily: {
                 en: e.familyName || " "
@@ -15587,18 +15651,18 @@ var global = arguments[3];
             return o;
           }
 
-          jr.prototype.hasChar = function (e) {
+          Sr.prototype.hasChar = function (e) {
             return null !== this.encoding.charToGlyphIndex(e);
-          }, jr.prototype.charToGlyphIndex = function (e) {
+          }, Sr.prototype.charToGlyphIndex = function (e) {
             return this.encoding.charToGlyphIndex(e);
-          }, jr.prototype.charToGlyph = function (e) {
+          }, Sr.prototype.charToGlyph = function (e) {
             var t = this.charToGlyphIndex(e),
                 r = this.glyphs.get(t);
             return r = r || this.glyphs.get(0);
-          }, jr.prototype.stringToGlyphs = function (e, t) {
+          }, Sr.prototype.stringToGlyphs = function (e, t) {
             t = t || this.defaultRenderOptions;
 
-            for (var r = Sr(e), n = [], o = 0; o < r.length; o += 1) {
+            for (var r = jr(e), n = [], o = 0; o < r.length; o += 1) {
               var i = r[o];
               n.push(this.charToGlyphIndex(i));
             }
@@ -15620,25 +15684,25 @@ var global = arguments[3];
             for (var y = new Array(a), m = this.glyphs.get(0), g = 0; g < a; g += 1) y[g] = this.glyphs.get(n[g]) || m;
 
             return y;
-          }, jr.prototype.nameToGlyphIndex = function (e) {
+          }, Sr.prototype.nameToGlyphIndex = function (e) {
             return this.glyphNames.nameToGlyphIndex(e);
-          }, jr.prototype.nameToGlyph = function (e) {
+          }, Sr.prototype.nameToGlyph = function (e) {
             var t = this.nameToGlyphIndex(e),
                 r = this.glyphs.get(t);
             return r = r || this.glyphs.get(0);
-          }, jr.prototype.glyphIndexToName = function (e) {
+          }, Sr.prototype.glyphIndexToName = function (e) {
             return this.glyphNames.glyphIndexToName ? this.glyphNames.glyphIndexToName(e) : "";
-          }, jr.prototype.getKerningValue = function (e, t) {
+          }, Sr.prototype.getKerningValue = function (e, t) {
             e = e.index || e, t = t.index || t;
             var r = this.position.defaultKerningTables;
             return r ? this.position.getKerningValue(r, e, t) : this.kerningPairs[e + "," + t] || 0;
-          }, jr.prototype.defaultRenderOptions = {
+          }, Sr.prototype.defaultRenderOptions = {
             kerning: !0,
             features: {
               liga: !0,
               rlig: !0
             }
-          }, jr.prototype.forEachGlyph = function (e, t, r, n, o, i) {
+          }, Sr.prototype.forEachGlyph = function (e, t, r, n, o, i) {
             t = void 0 !== t ? t : 0, r = void 0 !== r ? r : 0, n = void 0 !== n ? n : 72, o = o || this.defaultRenderOptions;
             var a,
                 s = 1 / this.unitsPerEm * n,
@@ -15656,34 +15720,34 @@ var global = arguments[3];
             }
 
             return t;
-          }, jr.prototype.getPath = function (e, t, r, n, i) {
+          }, Sr.prototype.getPath = function (e, t, r, n, i) {
             var a = new D();
             return this.forEachGlyph(e, t, r, n, i, function (e, t, r, n) {
               var o = e.getPath(t, r, n, i, this);
               a.extend(o);
             }), a;
-          }, jr.prototype.getPaths = function (e, t, r, n, i) {
+          }, Sr.prototype.getPaths = function (e, t, r, n, i) {
             var a = [];
             return this.forEachGlyph(e, t, r, n, i, function (e, t, r, n) {
               var o = e.getPath(t, r, n, i, this);
               a.push(o);
             }), a;
-          }, jr.prototype.getAdvanceWidth = function (e, t, r) {
+          }, Sr.prototype.getAdvanceWidth = function (e, t, r) {
             return this.forEachGlyph(e, 0, 0, t, r, function () {});
-          }, jr.prototype.draw = function (e, t, r, n, o, i) {
+          }, Sr.prototype.draw = function (e, t, r, n, o, i) {
             this.getPath(t, r, n, o, i).draw(e);
-          }, jr.prototype.drawPoints = function (o, e, t, r, n, i) {
+          }, Sr.prototype.drawPoints = function (o, e, t, r, n, i) {
             this.forEachGlyph(e, t, r, n, i, function (e, t, r, n) {
               e.drawPoints(o, t, r, n);
             });
-          }, jr.prototype.drawMetrics = function (o, e, t, r, n, i) {
+          }, Sr.prototype.drawMetrics = function (o, e, t, r, n, i) {
             this.forEachGlyph(e, t, r, n, i, function (e, t, r, n) {
               e.drawMetrics(o, t, r, n);
             });
-          }, jr.prototype.getEnglishName = function (e) {
+          }, Sr.prototype.getEnglishName = function (e) {
             var t = this.names[e];
             if (t) return t.en;
-          }, jr.prototype.validate = function () {
+          }, Sr.prototype.validate = function () {
             var r = this;
 
             function e(e) {
@@ -15692,15 +15756,15 @@ var global = arguments[3];
             }
 
             e("fontFamily"), e("weightName"), e("manufacturer"), e("copyright"), e("version"), this.unitsPerEm;
-          }, jr.prototype.toTables = function () {
+          }, Sr.prototype.toTables = function () {
             return mt.fontToTable(this);
-          }, jr.prototype.toBuffer = function () {
+          }, Sr.prototype.toBuffer = function () {
             return console.warn("Font.toBuffer is deprecated. Use Font.toArrayBuffer instead."), this.toArrayBuffer();
-          }, jr.prototype.toArrayBuffer = function () {
+          }, Sr.prototype.toArrayBuffer = function () {
             for (var e = this.toTables().encode(), t = new ArrayBuffer(e.length), r = new Uint8Array(t), n = 0; n < e.length; n++) r[n] = e[n];
 
             return t;
-          }, jr.prototype.download = function (t) {
+          }, Sr.prototype.download = function (t) {
             var e = this.getEnglishName("fontFamily"),
                 r = this.getEnglishName("fontSubfamily");
             t = t || e.replace(/\s/g, "") + "-" + r + ".otf";
@@ -15731,7 +15795,7 @@ var global = arguments[3];
 
               n.writeFileSync(t, i);
             }
-          }, jr.prototype.fsSelectionValues = {
+          }, Sr.prototype.fsSelectionValues = {
             ITALIC: 1,
             UNDERSCORE: 2,
             NEGATIVE: 4,
@@ -15742,7 +15806,7 @@ var global = arguments[3];
             USER_TYPO_METRICS: 128,
             WWS: 256,
             OBLIQUE: 512
-          }, jr.prototype.usWidthClasses = {
+          }, Sr.prototype.usWidthClasses = {
             ULTRA_CONDENSED: 1,
             EXTRA_CONDENSED: 2,
             CONDENSED: 3,
@@ -15752,7 +15816,7 @@ var global = arguments[3];
             EXPANDED: 7,
             EXTRA_EXPANDED: 8,
             ULTRA_EXPANDED: 9
-          }, jr.prototype.usWeightClasses = {
+          }, Sr.prototype.usWeightClasses = {
             THIN: 100,
             EXTRA_LIGHT: 200,
             LIGHT: 300,
@@ -15970,7 +16034,7 @@ var global = arguments[3];
               }]);
             }
           };
-          var kr = {
+          var Ar = {
             parse: function (e, t) {
               var r = new ae.Parser(e, t),
                   n = r.parseUShort();
@@ -16013,7 +16077,7 @@ var global = arguments[3];
               throw new Error("Unsupported kern table version (" + n + ").");
             }
           };
-          var Ar = {
+          var kr = {
             parse: function (e, t, r, n) {
               for (var o = new ae.Parser(e, t), i = n ? o.parseUShort : o.parseULong, a = [], s = 0; s < r + 1; s += 1) {
                 var l = i.call(o);
@@ -16087,7 +16151,7 @@ var global = arguments[3];
                 f,
                 h,
                 p,
-                y = new jr({
+                y = new Sr({
               empty: !0
             }),
                 m = new DataView(e, 0),
@@ -16207,12 +16271,12 @@ var global = arguments[3];
               }
             }
 
-            var S = Ur(m, f);
+            var j = Ur(m, f);
 
-            if (y.tables.name = rt.parse(S.data, S.offset, r), y.names = y.tables.name, a && d) {
-              var j = 0 === t,
+            if (y.tables.name = rt.parse(j.data, j.offset, r), y.names = y.tables.name, a && d) {
+              var S = 0 === t,
                   M = Ur(m, d),
-                  E = Ar.parse(M.data, M.offset, y.numGlyphs, j),
+                  E = kr.parse(M.data, M.offset, y.numGlyphs, S),
                   T = Ur(m, a);
               y.glyphs = It.parse(T.data, T.offset, E, y);
             } else {
@@ -16233,7 +16297,7 @@ var global = arguments[3];
               for (var s = 0; s < e.glyphs.length; s += 1) t = e.glyphs.get(s), e.cffEncoding ? e.isCIDFont ? t.name = "gid" + s : t.name = e.cffEncoding.charset[s] : e.glyphNames.names && (t.name = e.glyphNames.glyphIndexToName(s));
             }(y), c) {
               var L = Ur(m, c);
-              y.kerningPairs = kr.parse(L.data, L.offset);
+              y.kerningPairs = Ar.parse(L.data, L.offset);
             } else y.kerningPairs = {};
 
             if (s) {
@@ -16242,13 +16306,13 @@ var global = arguments[3];
             }
 
             if (l) {
-              var k = Ur(m, l);
-              y.tables.gsub = ut.parse(k.data, k.offset);
+              var A = Ur(m, l);
+              y.tables.gsub = ut.parse(A.data, A.offset);
             }
 
             if (i) {
-              var A = Ur(m, i);
-              y.tables.fvar = Or.parse(A.data, A.offset, y.names);
+              var k = Ur(m, i);
+              y.tables.fvar = Or.parse(k.data, k.offset, y.names);
             }
 
             if (h) {
@@ -16259,7 +16323,7 @@ var global = arguments[3];
             return y;
           }
 
-          M.Font = jr, M.Glyph = ge, M.Path = D, M.BoundingBox = T, M._parse = ae, M.parse = Nr, M.load = function (e, n) {
+          M.Font = Sr, M.Glyph = ge, M.Path = D, M.BoundingBox = T, M._parse = ae, M.parse = Nr, M.load = function (e, n) {
             ("undefined" == typeof window ? Rr : Dr)(e, function (e, t) {
               if (e) return n(e);
               var r;
@@ -16277,13 +16341,13 @@ var global = arguments[3];
           }, Object.defineProperty(M, "__esModule", {
             value: !0
           });
-        }("object" == typeof r && void 0 !== t ? r : e.opentype = {});
+        }, "object" == typeof n && void 0 !== r ? t(n) : "function" == typeof i && i.amd ? i(["exports"], t) : t(e.opentype = {});
       }).call(this, Br("buffer").Buffer);
     }, {
       buffer: 4,
       fs: 2
     }],
-    237: [function (e, t, u) {
+    240: [function (e, t, u) {
       (function (o) {
         function i(e, t) {
           for (var r = 0, n = e.length - 1; 0 <= n; n--) {
@@ -16402,9 +16466,9 @@ var global = arguments[3];
         };
       }).call(this, e("_process"));
     }, {
-      _process: 238
+      _process: 241
     }],
-    238: [function (e, t, r) {
+    241: [function (e, t, r) {
       var n,
           o,
           i = t.exports = {};
@@ -16506,7 +16570,7 @@ var global = arguments[3];
         return 0;
       };
     }, {}],
-    239: [function (e, t, r) {
+    242: [function (e, t, r) {
       !function (e) {
         "use strict";
 
@@ -16754,7 +16818,7 @@ var global = arguments[3];
         }
       }("undefined" != typeof self ? self : this);
     }, {}],
-    240: [function (e, t, r) {
+    243: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.function.name"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.split"), Object.defineProperty(r, "__esModule", {
@@ -17313,15 +17377,15 @@ var global = arguments[3];
       var a = n.default;
       r.default = a;
     }, {
-      "../color/color_conversion": 246,
-      "../core/main": 260,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.split": 188
+      "../color/color_conversion": 249,
+      "../core/main": 264,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.split": 191
     }],
-    241: [function (e, t, r) {
+    244: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.ends-with"), e("core-js/modules/es.string.replace"), Object.defineProperty(r, "__esModule", {
@@ -17407,13 +17471,13 @@ var global = arguments[3];
       var o = a.default;
       r.default = o;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.ends-with": 181,
-      "core-js/modules/es.string.replace": 186
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.ends-with": 184,
+      "core-js/modules/es.string.replace": 189
     }],
-    242: [function (e, t, r) {
+    245: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.map"), Object.defineProperty(r, "__esModule", {
@@ -17483,11 +17547,11 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.map": 159
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.map": 161
     }],
-    243: [function (e, t, r) {
+    246: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.fill"), e("core-js/modules/es.array.map"), e("core-js/modules/es.number.to-fixed"), Object.defineProperty(r, "__esModule", {
@@ -17593,13 +17657,13 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.number.to-fixed": 169
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.number.to-fixed": 172
     }],
-    244: [function (e, t, r) {
+    247: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), Object.defineProperty(r, "__esModule", {
@@ -17651,96 +17715,97 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149
     }],
-    245: [function (e, t, r) {
+    248: [function (e, t, r) {
       "use strict";
 
       var n,
           o = (n = e("./core/main")) && n.__esModule ? n : {
         default: n
       };
-      e("./core/constants"), e("./core/environment"), e("./core/friendly_errors/stacktrace"), e("./core/friendly_errors/validate_params"), e("./core/friendly_errors/file_errors"), e("./core/friendly_errors/fes_core"), e("./core/helpers"), e("./core/legacy"), e("./core/preload"), e("./core/p5.Element"), e("./core/p5.Graphics"), e("./core/p5.Renderer"), e("./core/p5.Renderer2D"), e("./core/rendering"), e("./core/shim"), e("./core/structure"), e("./core/transform"), e("./core/shape/2d_primitives"), e("./core/shape/attributes"), e("./core/shape/curves"), e("./core/shape/vertex"), e("./accessibility/outputs"), e("./accessibility/textOutput"), e("./accessibility/gridOutput"), e("./accessibility/color_namer"), e("./color/color_conversion"), e("./color/creating_reading"), e("./color/p5.Color"), e("./color/setting"), e("./data/p5.TypedDict"), e("./data/local_storage.js"), e("./dom/dom"), e("./accessibility/describe"), e("./events/acceleration"), e("./events/keyboard"), e("./events/mouse"), e("./events/touch"), e("./image/filters"), e("./image/image"), e("./image/loading_displaying"), e("./image/p5.Image"), e("./image/pixels"), e("./io/files"), e("./io/p5.Table"), e("./io/p5.TableRow"), e("./io/p5.XML"), e("./math/calculation"), e("./math/math"), e("./math/noise"), e("./math/p5.Vector"), e("./math/random"), e("./math/trigonometry"), e("./typography/attributes"), e("./typography/loading_displaying"), e("./typography/p5.Font"), e("./utilities/array_functions"), e("./utilities/conversion"), e("./utilities/string_functions"), e("./utilities/time_date"), e("./webgl/3d_primitives"), e("./webgl/interaction"), e("./webgl/light"), e("./webgl/loading"), e("./webgl/material"), e("./webgl/p5.Camera"), e("./webgl/p5.Geometry"), e("./webgl/p5.Matrix"), e("./webgl/p5.RendererGL.Immediate"), e("./webgl/p5.RendererGL"), e("./webgl/p5.RendererGL.Retained"), e("./webgl/p5.Shader"), e("./webgl/p5.RenderBuffer"), e("./webgl/p5.Texture"), e("./webgl/text"), e("./core/init"), t.exports = o.default;
+      e("./core/constants"), e("./core/environment"), e("./core/friendly_errors/stacktrace"), e("./core/friendly_errors/validate_params"), e("./core/friendly_errors/file_errors"), e("./core/friendly_errors/fes_core"), e("./core/friendly_errors/sketch_reader"), e("./core/helpers"), e("./core/legacy"), e("./core/preload"), e("./core/p5.Element"), e("./core/p5.Graphics"), e("./core/p5.Renderer"), e("./core/p5.Renderer2D"), e("./core/rendering"), e("./core/shim"), e("./core/structure"), e("./core/transform"), e("./core/shape/2d_primitives"), e("./core/shape/attributes"), e("./core/shape/curves"), e("./core/shape/vertex"), e("./accessibility/outputs"), e("./accessibility/textOutput"), e("./accessibility/gridOutput"), e("./accessibility/color_namer"), e("./color/color_conversion"), e("./color/creating_reading"), e("./color/p5.Color"), e("./color/setting"), e("./data/p5.TypedDict"), e("./data/local_storage.js"), e("./dom/dom"), e("./accessibility/describe"), e("./events/acceleration"), e("./events/keyboard"), e("./events/mouse"), e("./events/touch"), e("./image/filters"), e("./image/image"), e("./image/loading_displaying"), e("./image/p5.Image"), e("./image/pixels"), e("./io/files"), e("./io/p5.Table"), e("./io/p5.TableRow"), e("./io/p5.XML"), e("./math/calculation"), e("./math/math"), e("./math/noise"), e("./math/p5.Vector"), e("./math/random"), e("./math/trigonometry"), e("./typography/attributes"), e("./typography/loading_displaying"), e("./typography/p5.Font"), e("./utilities/array_functions"), e("./utilities/conversion"), e("./utilities/string_functions"), e("./utilities/time_date"), e("./webgl/3d_primitives"), e("./webgl/interaction"), e("./webgl/light"), e("./webgl/loading"), e("./webgl/material"), e("./webgl/p5.Camera"), e("./webgl/p5.Geometry"), e("./webgl/p5.Matrix"), e("./webgl/p5.RendererGL.Immediate"), e("./webgl/p5.RendererGL"), e("./webgl/p5.RendererGL.Retained"), e("./webgl/p5.Shader"), e("./webgl/p5.RenderBuffer"), e("./webgl/p5.Texture"), e("./webgl/text"), e("./core/init"), t.exports = o.default;
     }, {
-      "./accessibility/color_namer": 240,
-      "./accessibility/describe": 241,
-      "./accessibility/gridOutput": 242,
-      "./accessibility/outputs": 243,
-      "./accessibility/textOutput": 244,
-      "./color/color_conversion": 246,
-      "./color/creating_reading": 247,
-      "./color/p5.Color": 248,
-      "./color/setting": 249,
-      "./core/constants": 250,
-      "./core/environment": 251,
-      "./core/friendly_errors/fes_core": 252,
-      "./core/friendly_errors/file_errors": 253,
-      "./core/friendly_errors/stacktrace": 254,
-      "./core/friendly_errors/validate_params": 255,
-      "./core/helpers": 256,
-      "./core/init": 257,
-      "./core/legacy": 259,
-      "./core/main": 260,
-      "./core/p5.Element": 261,
-      "./core/p5.Graphics": 262,
-      "./core/p5.Renderer": 263,
-      "./core/p5.Renderer2D": 264,
-      "./core/preload": 265,
-      "./core/rendering": 266,
-      "./core/shape/2d_primitives": 267,
-      "./core/shape/attributes": 268,
-      "./core/shape/curves": 269,
-      "./core/shape/vertex": 270,
-      "./core/shim": 271,
-      "./core/structure": 272,
-      "./core/transform": 273,
-      "./data/local_storage.js": 274,
-      "./data/p5.TypedDict": 275,
-      "./dom/dom": 276,
-      "./events/acceleration": 277,
-      "./events/keyboard": 278,
-      "./events/mouse": 279,
-      "./events/touch": 280,
-      "./image/filters": 281,
-      "./image/image": 282,
-      "./image/loading_displaying": 283,
-      "./image/p5.Image": 284,
-      "./image/pixels": 285,
-      "./io/files": 286,
-      "./io/p5.Table": 287,
-      "./io/p5.TableRow": 288,
-      "./io/p5.XML": 289,
-      "./math/calculation": 290,
-      "./math/math": 291,
-      "./math/noise": 292,
-      "./math/p5.Vector": 293,
-      "./math/random": 294,
-      "./math/trigonometry": 295,
-      "./typography/attributes": 296,
-      "./typography/loading_displaying": 297,
-      "./typography/p5.Font": 298,
-      "./utilities/array_functions": 299,
-      "./utilities/conversion": 300,
-      "./utilities/string_functions": 301,
-      "./utilities/time_date": 302,
-      "./webgl/3d_primitives": 303,
-      "./webgl/interaction": 304,
-      "./webgl/light": 305,
-      "./webgl/loading": 306,
-      "./webgl/material": 307,
-      "./webgl/p5.Camera": 308,
-      "./webgl/p5.Geometry": 309,
-      "./webgl/p5.Matrix": 310,
-      "./webgl/p5.RenderBuffer": 311,
-      "./webgl/p5.RendererGL": 314,
-      "./webgl/p5.RendererGL.Immediate": 312,
-      "./webgl/p5.RendererGL.Retained": 313,
-      "./webgl/p5.Shader": 315,
-      "./webgl/p5.Texture": 316,
-      "./webgl/text": 317
+      "./accessibility/color_namer": 243,
+      "./accessibility/describe": 244,
+      "./accessibility/gridOutput": 245,
+      "./accessibility/outputs": 246,
+      "./accessibility/textOutput": 247,
+      "./color/color_conversion": 249,
+      "./color/creating_reading": 250,
+      "./color/p5.Color": 251,
+      "./color/setting": 252,
+      "./core/constants": 253,
+      "./core/environment": 254,
+      "./core/friendly_errors/fes_core": 255,
+      "./core/friendly_errors/file_errors": 256,
+      "./core/friendly_errors/sketch_reader": 257,
+      "./core/friendly_errors/stacktrace": 258,
+      "./core/friendly_errors/validate_params": 259,
+      "./core/helpers": 260,
+      "./core/init": 261,
+      "./core/legacy": 263,
+      "./core/main": 264,
+      "./core/p5.Element": 265,
+      "./core/p5.Graphics": 266,
+      "./core/p5.Renderer": 267,
+      "./core/p5.Renderer2D": 268,
+      "./core/preload": 269,
+      "./core/rendering": 270,
+      "./core/shape/2d_primitives": 271,
+      "./core/shape/attributes": 272,
+      "./core/shape/curves": 273,
+      "./core/shape/vertex": 274,
+      "./core/shim": 275,
+      "./core/structure": 276,
+      "./core/transform": 277,
+      "./data/local_storage.js": 278,
+      "./data/p5.TypedDict": 279,
+      "./dom/dom": 280,
+      "./events/acceleration": 281,
+      "./events/keyboard": 282,
+      "./events/mouse": 283,
+      "./events/touch": 284,
+      "./image/filters": 285,
+      "./image/image": 286,
+      "./image/loading_displaying": 287,
+      "./image/p5.Image": 288,
+      "./image/pixels": 289,
+      "./io/files": 290,
+      "./io/p5.Table": 291,
+      "./io/p5.TableRow": 292,
+      "./io/p5.XML": 293,
+      "./math/calculation": 294,
+      "./math/math": 295,
+      "./math/noise": 296,
+      "./math/p5.Vector": 297,
+      "./math/random": 298,
+      "./math/trigonometry": 299,
+      "./typography/attributes": 300,
+      "./typography/loading_displaying": 301,
+      "./typography/p5.Font": 302,
+      "./utilities/array_functions": 303,
+      "./utilities/conversion": 304,
+      "./utilities/string_functions": 305,
+      "./utilities/time_date": 306,
+      "./webgl/3d_primitives": 307,
+      "./webgl/interaction": 308,
+      "./webgl/light": 309,
+      "./webgl/loading": 310,
+      "./webgl/material": 311,
+      "./webgl/p5.Camera": 312,
+      "./webgl/p5.Geometry": 313,
+      "./webgl/p5.Matrix": 314,
+      "./webgl/p5.RenderBuffer": 315,
+      "./webgl/p5.RendererGL": 318,
+      "./webgl/p5.RendererGL.Immediate": 316,
+      "./webgl/p5.RendererGL.Retained": 317,
+      "./webgl/p5.Shader": 319,
+      "./webgl/p5.Texture": 320,
+      "./webgl/text": 321
     }],
-    246: [function (e, t, r) {
+    249: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -17817,9 +17882,9 @@ var global = arguments[3];
       var i = o.default.ColorConversion;
       r.default = i;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    247: [function (e, t, r) {
+    250: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -17911,15 +17976,15 @@ var global = arguments[3];
       var o = d.default;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/friendly_errors/fes_core": 252,
-      "../core/friendly_errors/file_errors": 253,
-      "../core/friendly_errors/validate_params": 255,
-      "../core/main": 260,
-      "./p5.Color": 248,
-      "core-js/modules/es.array.map": 159
+      "../core/constants": 253,
+      "../core/friendly_errors/fes_core": 255,
+      "../core/friendly_errors/file_errors": 256,
+      "../core/friendly_errors/validate_params": 259,
+      "../core/main": 264,
+      "./p5.Color": 251,
+      "core-js/modules/es.array.map": 161
     }],
-    248: [function (e, t, r) {
+    251: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -18308,19 +18373,19 @@ var global = arguments[3];
       var c = d.default.Color;
       r.default = c;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./color_conversion": 246,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.constructor": 177,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.trim": 190
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./color_conversion": 249,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.constructor": 180,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.trim": 193
     }],
-    249: [function (e, t, r) {
+    252: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -18370,7 +18435,11 @@ var global = arguments[3];
         var e;
         return (e = this._renderer).background.apply(e, arguments), this;
       }, s.default.prototype.clear = function () {
-        return this._renderer.clear(), this;
+        var e = (arguments.length <= 0 ? void 0 : arguments[0]) || 0,
+            t = (arguments.length <= 1 ? void 0 : arguments[1]) || 0,
+            r = (arguments.length <= 2 ? void 0 : arguments[2]) || 0,
+            n = (arguments.length <= 3 ? void 0 : arguments[3]) || 0;
+        return this._renderer.clear(e, t, r, n), this;
       }, s.default.prototype.colorMode = function (e, t, r, n, o) {
         if (s.default._validateParameters("colorMode", arguments), e === l.RGB || e === l.HSB || e === l.HSL) {
           this._colorMode = e;
@@ -18399,19 +18468,19 @@ var global = arguments[3];
       var o = s.default;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./p5.Color": 248,
-      "core-js/modules/es.array.fill": 150
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./p5.Color": 251,
+      "core-js/modules/es.array.fill": 151
     }],
-    250: [function (e, t, r) {
+    253: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.BEZIER = r.QUADRATIC = r.LINEAR = r._CTX_MIDDLE = r._DEFAULT_LEADMULT = r._DEFAULT_TEXT_FILL = r.WORD = r.CHAR = r.BOLDITALIC = r.BOLD = r.ITALIC = r.NORMAL = r.BLUR = r.ERODE = r.DILATE = r.POSTERIZE = r.INVERT = r.OPAQUE = r.GRAY = r.THRESHOLD = r.BURN = r.DODGE = r.SOFT_LIGHT = r.HARD_LIGHT = r.OVERLAY = r.REPLACE = r.SCREEN = r.MULTIPLY = r.EXCLUSION = r.SUBTRACT = r.DIFFERENCE = r.LIGHTEST = r.DARKEST = r.ADD = r.REMOVE = r.BLEND = r.UP_ARROW = r.TAB = r.SHIFT = r.RIGHT_ARROW = r.RETURN = r.OPTION = r.LEFT_ARROW = r.ESCAPE = r.ENTER = r.DOWN_ARROW = r.DELETE = r.CONTROL = r.BACKSPACE = r.ALT = r.AUTO = r.HSL = r.HSB = r.RGB = r.MITER = r.BEVEL = r.ROUND = r.SQUARE = r.PROJECT = r.PIE = r.CHORD = r.OPEN = r.CLOSE = r.TESS = r.QUAD_STRIP = r.QUADS = r.TRIANGLE_STRIP = r.TRIANGLE_FAN = r.TRIANGLES = r.LINE_LOOP = r.LINE_STRIP = r.LINES = r.POINTS = r.BASELINE = r.BOTTOM = r.TOP = r.CENTER = r.LEFT = r.RIGHT = r.RADIUS = r.CORNERS = r.CORNER = r.RAD_TO_DEG = r.DEG_TO_RAD = r.RADIANS = r.DEGREES = r.TWO_PI = r.TAU = r.QUARTER_PI = r.PI = r.HALF_PI = r.WAIT = r.TEXT = r.MOVE = r.HAND = r.CROSS = r.ARROW = r.WEBGL = r.P2D = r.VERSION = void 0, r.FALLBACK = r.LABEL = r.AXES = r.GRID = r._DEFAULT_FILL = r._DEFAULT_STROKE = r.PORTRAIT = r.LANDSCAPE = r.MIRROR = r.CLAMP = r.REPEAT = r.NEAREST = r.IMAGE = r.IMMEDIATE = r.TEXTURE = r.FILL = r.STROKE = r.CURVE = void 0;
       var n = Math.PI;
-      r.VERSION = "1.4.0";
+      r.VERSION = "1.4.1";
       r.P2D = "p2d";
       r.WEBGL = "webgl";
       r.ARROW = "default";
@@ -18537,7 +18606,7 @@ var global = arguments[3];
       r.LABEL = "label";
       r.FALLBACK = "fallback";
     }, {}],
-    251: [function (e, t, r) {
+    254: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -18644,17 +18713,17 @@ var global = arguments[3];
       var f = o.default;
       r.default = f;
     }, {
-      "./constants": 250,
-      "./main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.string.search": 187,
-      "core-js/modules/es.string.split": 188
+      "./constants": 253,
+      "./main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.search": 190,
+      "core-js/modules/es.string.split": 191
     }],
-    252: [function (r, e, t) {
+    255: [function (r, e, t) {
       "use strict";
 
       r("core-js/modules/es.symbol"), r("core-js/modules/es.symbol.description"), r("core-js/modules/es.symbol.iterator"), r("core-js/modules/es.array.concat"), r("core-js/modules/es.array.filter"), r("core-js/modules/es.array.for-each"), r("core-js/modules/es.array.includes"), r("core-js/modules/es.array.iterator"), r("core-js/modules/es.array.join"), r("core-js/modules/es.array.map"), r("core-js/modules/es.array.slice"), r("core-js/modules/es.array.some"), r("core-js/modules/es.function.name"), r("core-js/modules/es.object.assign"), r("core-js/modules/es.object.get-own-property-names"), r("core-js/modules/es.object.keys"), r("core-js/modules/es.object.to-string"), r("core-js/modules/es.regexp.constructor"), r("core-js/modules/es.regexp.exec"), r("core-js/modules/es.regexp.to-string"), r("core-js/modules/es.string.iterator"), r("core-js/modules/es.string.match"), r("core-js/modules/es.string.replace"), r("core-js/modules/es.string.search"), r("core-js/modules/es.string.split"), r("core-js/modules/web.dom-collections.for-each"), r("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(t, "__esModule", {
@@ -18704,39 +18773,39 @@ var global = arguments[3];
       var u = o.default;
       t.default = u;
     }, {
-      "../constants": 250,
-      "../internationalization": 258,
-      "../main": 260,
+      "../constants": 253,
+      "../internationalization": 262,
+      "../main": 264,
       "./browser_errors": void 0,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.some": 161,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/es.object.get-own-property-names": 171,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.constructor": 177,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.match": 184,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.search": 187,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.for-each": 225,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.some": 163,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/es.object.get-own-property-names": 174,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.constructor": 180,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.search": 190,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.for-each": 228,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    253: [function (e, t, r) {
+    256: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -18753,10 +18822,125 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../internationalization": 258,
-      "../main": 260
+      "../internationalization": 262,
+      "../main": 264
     }],
-    254: [function (e, t, r) {
+    257: [function (e, t, r) {
+      "use strict";
+
+      function a(e) {
+        return (a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
+          return typeof e;
+        } : function (e) {
+          return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+        })(e);
+      }
+
+      e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.flat-map"), e("core-js/modules/es.array.for-each"), e("core-js/modules/es.array.from"), e("core-js/modules/es.array.includes"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.unscopables.flat-map"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.constructor"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.includes"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.match"), e("core-js/modules/es.string.split"), e("core-js/modules/es.string.trim"), e("core-js/modules/web.dom-collections.for-each"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
+        value: !0
+      }), r.default = void 0;
+
+      var n = _(e("../main")),
+          o = e("../internationalization"),
+          i = b(e("../constants")),
+          s,
+          l,
+          u,
+          c,
+          d,
+          f,
+          h,
+          p,
+          y,
+          m,
+          g;
+
+      function v() {
+        if ("function" != typeof WeakMap) return null;
+        var e = new WeakMap();
+        return v = function () {
+          return e;
+        }, e;
+      }
+
+      function b(e) {
+        if (e && e.__esModule) return e;
+        if (null === e || "object" !== a(e) && "function" != typeof e) return {
+          default: e
+        };
+        var t = v();
+        if (t && t.has(e)) return t.get(e);
+        var r = {},
+            n = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+        for (var o in e) if (Object.prototype.hasOwnProperty.call(e, o)) {
+          var i = n ? Object.getOwnPropertyDescriptor(e, o) : null;
+          i && (i.get || i.set) ? Object.defineProperty(r, o, i) : r[o] = e[o];
+        }
+
+        return r.default = e, t && t.set(e, r), r;
+      }
+
+      function _(e) {
+        return e && e.__esModule ? e : {
+          default: e
+        };
+      }
+
+      function x(e) {
+        return S(e) || j(e) || w();
+      }
+
+      function w() {
+        throw new TypeError("Invalid attempt to spread non-iterable instance");
+      }
+
+      function j(e) {
+        if (Symbol.iterator in Object(e) || "[object Arguments]" === Object.prototype.toString.call(e)) return Array.from(e);
+      }
+
+      function S(e) {
+        if (Array.isArray(e)) {
+          for (var t = 0, r = new Array(e.length); t < e.length; t++) r[t] = e[t];
+
+          return r;
+        }
+      }
+
+      n.default._fesCodeReader = function () {};
+
+      var M = n.default;
+      r.default = M;
+    }, {
+      "../constants": 253,
+      "../internationalization": 262,
+      "../main": 264,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.flat-map": 153,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.unscopables.flat-map": 165,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.constructor": 180,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.trim": 193,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.for-each": 228,
+      "core-js/modules/web.dom-collections.iterator": 229
+    }],
+    258: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.match"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), Object.defineProperty(r, "__esModule", {
@@ -18875,18 +19059,18 @@ var global = arguments[3];
       var a = o.default;
       r.default = a;
     }, {
-      "../main": 260,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.match": 184,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188
+      "../main": 264,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191
     }],
-    255: [function (e, t, r) {
+    259: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.for-each"), e("core-js/modules/es.array.includes"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.last-index-of"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.function.name"), e("core-js/modules/es.map"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.object.get-prototype-of"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.reflect.construct"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.set"), e("core-js/modules/es.string.includes"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.split"), e("core-js/modules/web.dom-collections.for-each"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -18934,38 +19118,38 @@ var global = arguments[3];
       r.default = i;
     }, {
       "../../../docs/parameterData.json": void 0,
-      "../constants": 250,
-      "../internationalization": 258,
-      "../main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.last-index-of": 158,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.map": 164,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.object.get-prototype-of": 172,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.reflect.construct": 176,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.set": 180,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.for-each": 225,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../constants": 253,
+      "../internationalization": 262,
+      "../main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.last-index-of": 160,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.map": 167,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.object.get-prototype-of": 175,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.reflect.construct": 179,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.set": 183,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.for-each": 228,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    256: [function (e, t, r) {
+    260: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -19034,9 +19218,9 @@ var global = arguments[3];
       };
       r.default = n;
     }, {
-      "./constants": 250
+      "./constants": 253
     }],
-    257: [function (e, t, r) {
+    261: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.promise"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator");
@@ -19052,20 +19236,20 @@ var global = arguments[3];
         void 0 === window._setupDone ? window.mocha || (window.setup && "function" == typeof window.setup || window.draw && "function" == typeof window.draw) && !o.default.instance && new o.default() : console.warn("p5.js seems to have been imported multiple times. Please remove the duplicate import");
       });
     }, {
-      "../core/main": 260,
-      "./internationalization": 258,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "./internationalization": 262,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    258: [function (e, t, r) {
+    262: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.includes"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.promise"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.includes"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.split"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
         value: !0
-      }), r.initialize = r.translator = void 0;
+      }), r.setTranslatorLanguage = r.currentTranslatorLanguage = r.availableTranslatorLanguages = r.initialize = r.translator = void 0;
       var i,
           a,
           n = s(e("i18next")),
@@ -19170,25 +19354,39 @@ var global = arguments[3];
           return console.debug("Translations failed to load (".concat(e, ")"));
         });
       };
+
+      r.availableTranslatorLanguages = function () {
+        return n.default.languages;
+      };
+
+      r.currentTranslatorLanguage = function () {
+        return n.default.language;
+      };
+
+      r.setTranslatorLanguage = function (e) {
+        return n.default.changeLanguage(e || void 0, function (e) {
+          return console.debug("Translations failed to load (".concat(e, ")"));
+        });
+      };
     }, {
       "../../translations": void 0,
       "../../translations/dev": void 0,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/web.dom-collections.iterator": 226,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/web.dom-collections.iterator": 229,
       i18next: 3,
       "i18next-browser-languagedetector": 3
     }],
-    259: [function (e, t, r) {
+    263: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -19210,9 +19408,9 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "./main": 260
+      "./main": 264
     }],
-    260: [function (e, t, r) {
+    264: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -19509,7 +19707,7 @@ var global = arguments[3];
 
       for (var l in i.instance = null, i.disableFriendlyErrors = !1, n) i.prototype[l] = n[l];
 
-      i.prototype._preloadMethods = {
+      i.VERSION = n.VERSION, i.prototype._preloadMethods = {
         loadJSON: i.prototype,
         loadImage: i.prototype,
         loadStrings: i.prototype,
@@ -19528,21 +19726,21 @@ var global = arguments[3];
       var u = i;
       r.default = u;
     }, {
-      "./constants": 250,
-      "./shim": 271,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.get-own-property-names": 171,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.for-each": 225,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "./constants": 253,
+      "./shim": 275,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.get-own-property-names": 174,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.for-each": 228,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    261: [function (e, t, r) {
+    265: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -19603,9 +19801,9 @@ var global = arguments[3];
       var i = o.default.Element;
       r.default = i;
     }, {
-      "./main": 260
+      "./main": 264
     }],
-    262: [function (e, t, r) {
+    266: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -19675,15 +19873,15 @@ var global = arguments[3];
       var o = s.default.Graphics;
       r.default = o;
     }, {
-      "./constants": 250,
-      "./main": 260,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.splice": 162
+      "./constants": 253,
+      "./main": 264,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.splice": 164
     }],
-    263: [function (e, t, r) {
+    267: [function (e, t, r) {
       "use strict";
 
-      e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.object.assign"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
+      e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.object.assign"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/es.string.trim"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.default = void 0;
 
@@ -19691,7 +19889,7 @@ var global = arguments[3];
           l = (n = e("./main")) && n.__esModule ? n : {
         default: n
       },
-          S = function (e) {
+          k = function (e) {
         if (e && e.__esModule) return e;
         if (null === e || "object" !== s(e) && "function" != typeof e) return {
           default: e
@@ -19734,7 +19932,7 @@ var global = arguments[3];
       }
 
       l.default.Renderer = function (e, t, r) {
-        l.default.Element.call(this, e, t), this.canvas = e, this._pixelsState = t, r ? (this._isMainCanvas = !0, this._pInst._setProperty("_curElement", this), this._pInst._setProperty("canvas", this.canvas), this._pInst._setProperty("width", this.width), this._pInst._setProperty("height", this.height)) : (this.canvas.style.display = "none", this._styles = []), this._textSize = 12, this._textLeading = 15, this._textFont = "sans-serif", this._textStyle = S.NORMAL, this._textAscent = null, this._textDescent = null, this._textAlign = S.LEFT, this._textBaseline = S.BASELINE, this._textWrap = S.WORD, this._rectMode = S.CORNER, this._ellipseMode = S.CENTER, this._curveTightness = 0, this._imageMode = S.CORNER, this._tint = null, this._doStroke = !0, this._doFill = !0, this._strokeSet = !1, this._fillSet = !1, this._leadingSet = !1;
+        l.default.Element.call(this, e, t), this.canvas = e, this._pixelsState = t, r ? (this._isMainCanvas = !0, this._pInst._setProperty("_curElement", this), this._pInst._setProperty("canvas", this.canvas), this._pInst._setProperty("width", this.width), this._pInst._setProperty("height", this.height)) : (this.canvas.style.display = "none", this._styles = []), this._textSize = 12, this._textLeading = 15, this._textFont = "sans-serif", this._textStyle = k.NORMAL, this._textAscent = null, this._textDescent = null, this._textAlign = k.LEFT, this._textBaseline = k.BASELINE, this._textWrap = k.WORD, this._rectMode = k.CORNER, this._ellipseMode = k.CENTER, this._curveTightness = 0, this._imageMode = k.CORNER, this._tint = null, this._doStroke = !0, this._doFill = !0, this._strokeSet = !1, this._fillSet = !1, this._leadingSet = !1;
       }, l.default.Renderer.prototype = Object.create(l.default.Element.prototype), l.default.Renderer.prototype.push = function () {
         return {
           properties: {
@@ -19770,9 +19968,9 @@ var global = arguments[3];
       }, l.default.Renderer.prototype.textLeading = function (e) {
         return "number" == typeof e ? (this._setProperty("_leadingSet", !0), this._setProperty("_textLeading", e), this._pInst) : this._textLeading;
       }, l.default.Renderer.prototype.textSize = function (e) {
-        return "number" == typeof e ? (this._setProperty("_textSize", e), this._leadingSet || this._setProperty("_textLeading", e * S._DEFAULT_LEADMULT), this._applyTextProperties()) : this._textSize;
+        return "number" == typeof e ? (this._setProperty("_textSize", e), this._leadingSet || this._setProperty("_textLeading", e * k._DEFAULT_LEADMULT), this._applyTextProperties()) : this._textSize;
       }, l.default.Renderer.prototype.textStyle = function (e) {
-        return e ? (e !== S.NORMAL && e !== S.ITALIC && e !== S.BOLD && e !== S.BOLDITALIC || this._setProperty("_textStyle", e), this._applyTextProperties()) : this._textStyle;
+        return e ? (e !== k.NORMAL && e !== k.ITALIC && e !== k.BOLD && e !== k.BOLDITALIC || this._setProperty("_textStyle", e), this._applyTextProperties()) : this._textStyle;
       }, l.default.Renderer.prototype.textAscent = function () {
         return null === this._textAscent && this._updateTextMetrics(), this._textAscent;
       }, l.default.Renderer.prototype.textDescent = function () {
@@ -19798,55 +19996,80 @@ var global = arguments[3];
 
         if ((this._doFill || this._doStroke) && void 0 !== e) {
           if ("string" != typeof e && (e = e.toString()), i = (e = e.replace(/(\t)/g, "  ")).split("\n"), void 0 !== n) {
-            switch (this._rectMode === S.CENTER && (t -= n / 2), this._textAlign) {
-              case S.CENTER:
+            switch (this._rectMode === k.CENTER && (t -= n / 2), this._textAlign) {
+              case k.CENTER:
                 t += n / 2;
                 break;
 
-              case S.RIGHT:
+              case k.RIGHT:
                 t += n;
             }
 
             var y = !1;
 
             if (void 0 !== o) {
-              switch (this._rectMode === S.CENTER && (r -= o / 2), this._textBaseline) {
-                case S.BOTTOM:
-                  d = r + (o - totalHeight), r = Math.max(d, r);
+              switch (this._rectMode === k.CENTER && (r -= o / 2), this._textBaseline) {
+                case k.BOTTOM:
+                  d = r + o, r = Math.max(d, r);
                   break;
 
-                case S.CENTER:
-                  d = r + (o - totalHeight) / 2, r = Math.max(d, r);
+                case k.CENTER:
+                  d = r + o / 2, r = Math.max(d, r);
                   break;
 
-                case S.BASELINE:
-                  y = !0, this._textBaseline = S.TOP;
+                case k.BASELINE:
+                  y = !0, this._textBaseline = k.TOP;
               }
 
               p = r + o - f.textAscent();
             }
 
-            if (h === S.WORD) for (var m = 0; m < i.length; m++) {
-              a = "", u = i[m].split(" ");
+            if (h === k.WORD) {
+              for (var m = [], g = 0; g < i.length; g++) {
+                a = "", u = i[g].split(" ");
 
-              for (var g = 0; g < u.length; g++) s = "".concat(a + u[g]) + " ", n < (l = this.textWidth(s)) && 0 < a.length ? (this._renderText(f, a, t, r, p), a = "".concat(u[g]) + " ", r += f.textLeading()) : a = s;
+                for (var v = 0; v < u.length; v++) s = "".concat(a + u[v]) + " ", a = n < (l = this.textWidth(s)) && 0 < a.length ? (m.push(a), "".concat(u[v]) + " ") : s;
 
-              this._renderText(f, a, t, r, p), r += f.textLeading(), y && (this._textBaseline = S.BASELINE);
-            } else {
-              for (var v = 0; v < i.length; v++) {
-                a = "", c = i[v].split("");
-
-                for (var b = 0; b < c.length; b++) s = "".concat(a + c[b]), (l = this.textWidth(s)) <= n ? a += c[b] : n < l && 0 < a.length && (this._renderText(f, a, t, r, p), r += f.textLeading(), a = "".concat(c[b]));
+                m.push(a);
               }
 
-              this._renderText(f, a, t, r, p), r += f.textLeading(), y && (this._textBaseline = S.BASELINE);
+              var b = 0,
+                  _ = f.textAlign().vertical;
+              _ === k.CENTER ? b = (m.length - 1) * f.textLeading() / 2 : _ === k.BOTTOM && (b = (m.length - 1) * f.textLeading());
+
+              for (var x = 0; x < i.length; x++) {
+                a = "", u = i[x].split(" ");
+
+                for (var w = 0; w < u.length; w++) s = "".concat(a + u[w]) + " ", n < (l = this.textWidth(s)) && 0 < a.length ? (this._renderText(f, a.trim(), t, r - b, p), a = "".concat(u[w]) + " ", r += f.textLeading()) : a = s;
+
+                this._renderText(f, a.trim(), t, r - b, p), r += f.textLeading(), y && (this._textBaseline = k.BASELINE);
+              }
+            } else {
+              for (var j = [], S = 0; S < i.length; S++) {
+                a = "", c = i[S].split("");
+
+                for (var M = 0; M < c.length; M++) s = "".concat(a + c[M]), (l = this.textWidth(s)) <= n ? a += c[M] : n < l && 0 < a.length && (j.push(a), a = "".concat(c[M]));
+              }
+
+              j.push(a);
+              var E = 0,
+                  T = f.textAlign().vertical;
+              T === k.CENTER ? E = (j.length - 1) * f.textLeading() / 2 : T === k.BOTTOM && (E = (j.length - 1) * f.textLeading());
+
+              for (var O = 0; O < i.length; O++) {
+                a = "", c = i[O].split("");
+
+                for (var C = 0; C < c.length; C++) s = "".concat(a + c[C]), (l = this.textWidth(s)) <= n ? a += c[C] : n < l && 0 < a.length && (this._renderText(f, a.trim(), t, r - E, p), r += f.textLeading(), a = "".concat(c[C]));
+              }
+
+              this._renderText(f, a.trim(), t, r - E, p), r += f.textLeading(), y && (this._textBaseline = k.BASELINE);
             }
           } else {
-            var _ = 0,
-                x = f.textAlign().vertical;
-            x === S.CENTER ? _ = (i.length - 1) * f.textLeading() / 2 : x === S.BOTTOM && (_ = (i.length - 1) * f.textLeading());
+            var L = 0,
+                P = f.textAlign().vertical;
+            P === k.CENTER ? L = (i.length - 1) * f.textLeading() / 2 : P === k.BOTTOM && (L = (i.length - 1) * f.textLeading());
 
-            for (var w = 0; w < i.length; w++) this._renderText(f, i[w], t, r - _, p), r += f.textLeading();
+            for (var A = 0; A < i.length; A++) this._renderText(f, i[A], t, r - L, p), r += f.textLeading();
           }
 
           return f;
@@ -19874,23 +20097,24 @@ var global = arguments[3];
       var o = l.default.Renderer;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "./main": 260,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/constants": 253,
+      "./main": 264,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.trim": 193,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    264: [function (e, t, r) {
+    268: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -20275,20 +20499,20 @@ var global = arguments[3];
       var o = d.default.Renderer2D;
       r.default = o;
     }, {
-      "../image/filters": 281,
-      "./constants": 250,
-      "./main": 260,
-      "./p5.Renderer": 263,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.number.to-fixed": 169,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179
+      "../image/filters": 285,
+      "./constants": 253,
+      "./main": 264,
+      "./p5.Renderer": 267,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.number.to-fixed": 172,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182
     }],
-    265: [function (e, t, r) {
+    269: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.assign"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.promise"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator");
@@ -20371,18 +20595,18 @@ var global = arguments[3];
         return e && (r = r.bind(e)), r;
       };
     }, {
-      "./main": 260,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "./main": 264,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    266: [function (e, t, r) {
+    270: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -20490,21 +20714,21 @@ var global = arguments[3];
       var o = l.default;
       r.default = o;
     }, {
-      "../webgl/p5.RendererGL": 314,
-      "./constants": 250,
-      "./main": 260,
-      "./p5.Graphics": 262,
-      "./p5.Renderer2D": 264,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../webgl/p5.RendererGL": 318,
+      "./constants": 253,
+      "./main": 264,
+      "./p5.Graphics": 266,
+      "./p5.Renderer2D": 268,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    267: [function (e, t, r) {
+    271: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -20622,15 +20846,15 @@ var global = arguments[3];
       var o = c.default;
       r.default = o;
     }, {
-      "../constants": 250,
-      "../friendly_errors/fes_core": 252,
-      "../friendly_errors/file_errors": 253,
-      "../friendly_errors/validate_params": 255,
-      "../helpers": 256,
-      "../main": 260,
-      "core-js/modules/es.array.slice": 160
+      "../constants": 253,
+      "../friendly_errors/fes_core": 255,
+      "../friendly_errors/file_errors": 256,
+      "../friendly_errors/validate_params": 259,
+      "../helpers": 260,
+      "../main": 264,
+      "core-js/modules/es.array.slice": 162
     }],
-    268: [function (e, t, r) {
+    272: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -20694,10 +20918,10 @@ var global = arguments[3];
       var l = o.default;
       r.default = l;
     }, {
-      "../constants": 250,
-      "../main": 260
+      "../constants": 253,
+      "../main": 264
     }],
-    269: [function (e, t, r) {
+    273: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -20748,12 +20972,12 @@ var global = arguments[3];
       var o = s.default;
       r.default = o;
     }, {
-      "../friendly_errors/fes_core": 252,
-      "../friendly_errors/file_errors": 253,
-      "../friendly_errors/validate_params": 255,
-      "../main": 260
+      "../friendly_errors/fes_core": 255,
+      "../friendly_errors/file_errors": 256,
+      "../friendly_errors/validate_params": 259,
+      "../main": 264
     }],
-    270: [function (e, t, r) {
+    274: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -20887,11 +21111,11 @@ var global = arguments[3];
       var m = s.default;
       r.default = m;
     }, {
-      "../constants": 250,
-      "../main": 260,
-      "core-js/modules/es.array.slice": 160
+      "../constants": 253,
+      "../main": 264,
+      "core-js/modules/es.array.slice": 162
     }],
-    271: [function (e, t, r) {
+    275: [function (e, t, r) {
       "use strict";
 
       function n(e) {
@@ -20941,43 +21165,43 @@ var global = arguments[3];
         }
       }();
     }, {
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-clamped-array": 224,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-clamped-array": 227,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    272: [function (e, t, r) {
+    276: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.for-each"), e("core-js/modules/es.object.assign"), e("core-js/modules/web.dom-collections.for-each"), Object.defineProperty(r, "__esModule", {
@@ -21032,12 +21256,12 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "./main": 260,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/web.dom-collections.for-each": 225
+      "./main": 264,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/web.dom-collections.for-each": 228
     }],
-    273: [function (e, t, r) {
+    277: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.from"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.get-prototype-of"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.typed-array.uint8-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -21106,43 +21330,43 @@ var global = arguments[3];
       var a = i.default;
       r.default = a;
     }, {
-      "./main": 260,
-      "core-js/modules/es.array.from": 153,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.get-prototype-of": 172,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-array": 223,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "./main": 264,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.get-prototype-of": 175,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-array": 226,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    274: [function (e, t, r) {
+    278: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.from"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.ends-with"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator");
@@ -21223,19 +21447,19 @@ var global = arguments[3];
         "string" != typeof e && console.log("The argument that you passed to removeItem() - ".concat(e, " is not a string.")), localStorage.removeItem(e), localStorage.removeItem("".concat(e, "p5TypeID"));
       };
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.from": 153,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.ends-with": 181,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.ends-with": 184,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    275: [function (e, t, r) {
+    279: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.string.sub"), Object.defineProperty(r, "__esModule", {
@@ -21331,12 +21555,12 @@ var global = arguments[3];
       var i = o.default.TypedDict;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.string.sub": 189
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.string.sub": 192
     }],
-    276: [function (e, t, r) {
+    280: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.every"), e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.for-each"), e("core-js/modules/es.array.from"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.function.name"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.promise"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/es.string.trim"), e("core-js/modules/web.dom-collections.for-each"), e("core-js/modules/web.dom-collections.iterator"), e("core-js/modules/web.url"), Object.defineProperty(r, "__esModule", {
@@ -21481,27 +21705,29 @@ var global = arguments[3];
 
         var e = document.createElement("div"),
             t = document.createElement("input");
-        t.type = "checkbox", e.appendChild(t);
-        var r = y(e, this);
+        t.type = "checkbox";
+        var r = document.createElement("label");
+        r.appendChild(t), e.appendChild(r);
+        var n = y(e, this);
 
-        if (r.checked = function () {
-          var e = r.elt.getElementsByTagName("input")[0];
+        if (n.checked = function () {
+          var e = n.elt.firstElementChild.getElementsByTagName("input")[0];
 
           if (e) {
             if (0 === arguments.length) return e.checked;
             e.checked = !!arguments[0];
           }
 
-          return r;
+          return n;
         }, this.value = function (e) {
-          return r.value = e, this;
+          return n.value = e, this;
         }, arguments[0]) {
-          var n = Math.random().toString(36).slice(2),
-              o = document.createElement("label");
-          t.setAttribute("id", n), o.htmlFor = n, r.value(arguments[0]), o.appendChild(document.createTextNode(arguments[0])), e.appendChild(o);
+          n.value(arguments[0]);
+          var o = document.createElement("span");
+          o.innerHTML = arguments[0], r.appendChild(o);
         }
 
-        return arguments[1] && (t.checked = !0), r;
+        return arguments[1] && (t.checked = !0), n;
       }, f.default.prototype.createSelect = function () {
         var e;
 
@@ -21574,39 +21800,44 @@ var global = arguments[3];
           return e instanceof HTMLInputElement && "radio" === e.type;
         }
 
-        function c(e) {
-          return e.nextElementSibling instanceof HTMLLabelElement;
+        function d(e) {
+          return e instanceof HTMLLabelElement;
         }
 
         return p._getOptionsArray = function () {
-          return Array.from(this.elt.children).filter(n);
+          return Array.from(this.elt.children).filter(function (e) {
+            return n(e) || d(e) && n(e.firstElementChild);
+          }).map(function (e) {
+            return n(e) ? e : e.firstElementChild;
+          });
         }, p.option = function (e, t) {
           var r,
               n,
-              o = !0,
-              i = !1,
-              a = void 0;
+              o,
+              i = !0,
+              a = !1,
+              s = void 0;
 
           try {
-            for (var s, l = p._getOptionsArray()[Symbol.iterator](); !(o = (s = l.next()).done); o = !0) {
-              var u = s.value;
+            for (var l, u = p._getOptionsArray()[Symbol.iterator](); !(i = (l = u.next()).done); i = !0) {
+              var c = l.value;
 
-              if (u.value === e) {
-                r = u;
+              if (c.value === e) {
+                r = c;
                 break;
               }
             }
           } catch (e) {
-            i = !0, a = e;
+            a = !0, s = e;
           } finally {
             try {
-              o || null == l.return || l.return();
+              i || null == u.return || u.return();
             } finally {
-              if (i) throw a;
+              if (a) throw s;
             }
           }
 
-          return void 0 === r && ((r = document.createElement("input")).setAttribute("type", "radio"), r.setAttribute("value", e), this.elt.appendChild(r)), c(r) ? n = r.nextElementSibling : (n = document.createElement("label"), r.insertAdjacentElement("afterend", n)), n.innerHTML = void 0 === t ? e : t, r.setAttribute("name", p._name), r;
+          return void 0 === r && ((r = document.createElement("input")).setAttribute("type", "radio"), r.setAttribute("value", e)), r.setAttribute("name", p._name), d(r.parentElement) ? n = r.parentElement : (n = document.createElement("label")).insertAdjacentElement("afterbegin", r), n.lastElementChild instanceof HTMLSpanElement ? o = n.lastElementChild : (o = document.createElement("span"), r.insertAdjacentElement("afterend", o)), o.innerHTML = void 0 === t ? e : t, this.elt.appendChild(n), r;
         }, p.remove = function (e) {
           var t = !0,
               r = !1,
@@ -21615,7 +21846,7 @@ var global = arguments[3];
           try {
             for (var o, i = p._getOptionsArray()[Symbol.iterator](); !(t = (o = i.next()).done); t = !0) {
               var a = o.value;
-              if (a.value === e) return c(a) && a.nextElementSibling.remove(), void a.remove();
+              if (a.value === e) return void (d(a.parentElement) ? a.parentElement.remove() : a.remove());
             }
           } catch (e) {
             r = !0, n = e;
@@ -22107,33 +22338,33 @@ var global = arguments[3];
       var a = f.default;
       r.default = a;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.every": 149,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.for-each": 152,
-      "core-js/modules/es.array.from": 153,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.string.trim": 190,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.for-each": 225,
-      "core-js/modules/web.dom-collections.iterator": 226,
-      "core-js/modules/web.url": 228
+      "../core/main": 264,
+      "core-js/modules/es.array.every": 150,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.for-each": 154,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.trim": 193,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.for-each": 228,
+      "core-js/modules/web.dom-collections.iterator": 229,
+      "core-js/modules/web.url": 231
     }],
-    277: [function (e, t, r) {
+    281: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -22223,10 +22454,10 @@ var global = arguments[3];
       var l = o.default;
       r.default = l;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260
+      "../core/constants": 253,
+      "../core/main": 264
     }],
-    278: [function (e, t, r) {
+    282: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -22264,9 +22495,9 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    279: [function (e, t, r) {
+    283: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -22363,12 +22594,12 @@ var global = arguments[3];
       var l = o.default;
       r.default = l;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.string.includes": 182
+      "../core/constants": 253,
+      "../core/main": 264,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.string.includes": 185
     }],
-    280: [function (e, t, r) {
+    284: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.includes"), e("core-js/modules/es.string.includes"), Object.defineProperty(r, "__esModule", {
@@ -22414,11 +22645,11 @@ var global = arguments[3];
       var a = o.default;
       r.default = a;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.string.includes": 182
+      "../core/main": 264,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.string.includes": 185
     }],
-    281: [function (e, t, r) {
+    285: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.typed-array.int32-array"), e("core-js/modules/es.typed-array.uint8-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), Object.defineProperty(r, "__esModule", {
@@ -22428,18 +22659,18 @@ var global = arguments[3];
           C,
           L,
           P,
-          k = {};
+          A = {};
 
       function n(e, t) {
-        for (var r, n, o, i, a, s, l, u, c, d, f = k._toPixels(e), h = e.width, p = e.height, y = h * p, m = new Int32Array(y), g = 0; g < y; g++) m[g] = k._getARGB(f, g);
+        for (var r, n, o, i, a, s, l, u, c, d, f = A._toPixels(e), h = e.width, p = e.height, y = h * p, m = new Int32Array(y), g = 0; g < y; g++) m[g] = A._getARGB(f, g);
 
         var v,
             b,
             _,
             x,
             w = new Int32Array(y),
-            S = new Int32Array(y),
             j = new Int32Array(y),
+            S = new Int32Array(y),
             M = new Int32Array(y),
             E = 0;
 
@@ -22473,7 +22704,7 @@ var global = arguments[3];
               a += (x = P[_])[(-16777216 & T) >>> 24], n += x[(16711680 & T) >> 16], o += x[(65280 & T) >> 8], i += x[255 & T], r += L[_], s++;
             }
 
-            w[l = E + v] = a / r, S[l] = n / r, j[l] = o / r, M[l] = i / r;
+            w[l = E + v] = a / r, j[l] = n / r, S[l] = o / r, M[l] = i / r;
           }
 
           E += h;
@@ -22486,7 +22717,7 @@ var global = arguments[3];
               d = 0, l = u, s = v + c;
             }
 
-            for (_ = d; _ < C && !(p <= l); _++) a += (x = P[_])[w[s]], n += x[S[s]], o += x[j[s]], i += x[M[s]], r += L[_], l++, s += h;
+            for (_ = d; _ < C && !(p <= l); _++) a += (x = P[_])[w[s]], n += x[j[s]], o += x[S[s]], i += x[M[s]], r += L[_], l++, s += h;
 
             m[v + E] = a / r << 24 | n / r << 16 | o / r << 8 | i / r;
           }
@@ -22494,10 +22725,10 @@ var global = arguments[3];
           E += h, c += h, u++;
         }
 
-        k._setPixels(f, m);
+        A._setPixels(f, m);
       }
 
-      k._toPixels = function (e) {
+      A._toPixels = function (e) {
         if (e instanceof ImageData) return e.data;
         if (e.getContext("2d")) return e.getContext("2d").getImageData(0, 0, e.width, e.height).data;
 
@@ -22507,22 +22738,22 @@ var global = arguments[3];
               n = new Uint8Array(r);
           return t.readPixels(0, 0, e.width, e.height, t.RGBA, t.UNSIGNED_BYTE, n), n;
         }
-      }, k._getARGB = function (e, t) {
+      }, A._getARGB = function (e, t) {
         var r = 4 * t;
         return e[3 + r] << 24 & 4278190080 | e[r] << 16 & 16711680 | e[1 + r] << 8 & 65280 | 255 & e[2 + r];
-      }, k._setPixels = function (e, t) {
+      }, A._setPixels = function (e, t) {
         for (var r = 0, n = 0, o = e.length; n < o; n++) e[(r = 4 * n) + 0] = (16711680 & t[n]) >>> 16, e[r + 1] = (65280 & t[n]) >>> 8, e[r + 2] = 255 & t[n], e[r + 3] = (4278190080 & t[n]) >>> 24;
-      }, k._toImageData = function (e) {
+      }, A._toImageData = function (e) {
         return e instanceof ImageData ? e : e.getContext("2d").getImageData(0, 0, e.width, e.height);
-      }, k._createImageData = function (e, t) {
-        return k._tmpCanvas = document.createElement("canvas"), k._tmpCtx = k._tmpCanvas.getContext("2d"), this._tmpCtx.createImageData(e, t);
-      }, k.apply = function (e, t, r) {
+      }, A._createImageData = function (e, t) {
+        return A._tmpCanvas = document.createElement("canvas"), A._tmpCtx = A._tmpCanvas.getContext("2d"), this._tmpCtx.createImageData(e, t);
+      }, A.apply = function (e, t, r) {
         var n = e.getContext("2d"),
             o = n.getImageData(0, 0, e.width, e.height),
             i = t(o, r);
         i instanceof ImageData ? n.putImageData(i, 0, 0, 0, 0, e.width, e.height) : n.putImageData(o, 0, 0, 0, 0, e.width, e.height);
-      }, k.threshold = function (e, t) {
-        var r = k._toPixels(e);
+      }, A.threshold = function (e, t) {
+        var r = A._toPixels(e);
 
         void 0 === t && (t = .5);
 
@@ -22530,19 +22761,19 @@ var global = arguments[3];
           var i = void 0;
           i = n <= .2126 * r[o] + .7152 * r[o + 1] + .0722 * r[o + 2] ? 255 : 0, r[o] = r[o + 1] = r[o + 2] = i;
         }
-      }, k.gray = function (e) {
-        for (var t = k._toPixels(e), r = 0; r < t.length; r += 4) {
+      }, A.gray = function (e) {
+        for (var t = A._toPixels(e), r = 0; r < t.length; r += 4) {
           var n = .2126 * t[r] + .7152 * t[r + 1] + .0722 * t[r + 2];
           t[r] = t[r + 1] = t[r + 2] = n;
         }
-      }, k.opaque = function (e) {
-        for (var t = k._toPixels(e), r = 0; r < t.length; r += 4) t[r + 3] = 255;
+      }, A.opaque = function (e) {
+        for (var t = A._toPixels(e), r = 0; r < t.length; r += 4) t[r + 3] = 255;
 
         return t;
-      }, k.invert = function (e) {
-        for (var t = k._toPixels(e), r = 0; r < t.length; r += 4) t[r] = 255 - t[r], t[r + 1] = 255 - t[r + 1], t[r + 2] = 255 - t[r + 2];
-      }, k.posterize = function (e, t) {
-        var r = k._toPixels(e);
+      }, A.invert = function (e) {
+        for (var t = A._toPixels(e), r = 0; r < t.length; r += 4) t[r] = 255 - t[r], t[r + 1] = 255 - t[r + 1], t[r + 2] = 255 - t[r + 2];
+      }, A.posterize = function (e, t) {
+        var r = A._toPixels(e);
 
         if (t < 2 || 255 < t) throw new Error("Level must be greater than 2 and less than 255 for posterize");
 
@@ -22552,56 +22783,56 @@ var global = arguments[3];
               s = r[o + 2];
           r[o] = 255 * (i * t >> 8) / n, r[o + 1] = 255 * (a * t >> 8) / n, r[o + 2] = 255 * (s * t >> 8) / n;
         }
-      }, k.dilate = function (e) {
-        for (var t, r, n, o, i, a, s, l, u, c, d, f, h, p, y, m, g, v = k._toPixels(e), b = 0, _ = v.length ? v.length / 4 : 0, x = new Int32Array(_); b < _;) for (r = (t = b) + e.width; b < r;) n = o = k._getARGB(v, b), (s = b - 1) < t && (s = b), r <= (a = b + 1) && (a = b), (l = b - e.width) < 0 && (l = 0), _ <= (u = b + e.width) && (u = b), f = k._getARGB(v, l), d = k._getARGB(v, s), h = k._getARGB(v, u), (i = 77 * (n >> 16 & 255) + 151 * (n >> 8 & 255) + 28 * (255 & n)) < (y = 77 * (d >> 16 & 255) + 151 * (d >> 8 & 255) + 28 * (255 & d)) && (o = d, i = y), i < (p = 77 * ((c = k._getARGB(v, a)) >> 16 & 255) + 151 * (c >> 8 & 255) + 28 * (255 & c)) && (o = c, i = p), i < (m = 77 * (f >> 16 & 255) + 151 * (f >> 8 & 255) + 28 * (255 & f)) && (o = f, i = m), i < (g = 77 * (h >> 16 & 255) + 151 * (h >> 8 & 255) + 28 * (255 & h)) && (o = h, i = g), x[b++] = o;
+      }, A.dilate = function (e) {
+        for (var t, r, n, o, i, a, s, l, u, c, d, f, h, p, y, m, g, v = A._toPixels(e), b = 0, _ = v.length ? v.length / 4 : 0, x = new Int32Array(_); b < _;) for (r = (t = b) + e.width; b < r;) n = o = A._getARGB(v, b), (s = b - 1) < t && (s = b), r <= (a = b + 1) && (a = b), (l = b - e.width) < 0 && (l = 0), _ <= (u = b + e.width) && (u = b), f = A._getARGB(v, l), d = A._getARGB(v, s), h = A._getARGB(v, u), (i = 77 * (n >> 16 & 255) + 151 * (n >> 8 & 255) + 28 * (255 & n)) < (y = 77 * (d >> 16 & 255) + 151 * (d >> 8 & 255) + 28 * (255 & d)) && (o = d, i = y), i < (p = 77 * ((c = A._getARGB(v, a)) >> 16 & 255) + 151 * (c >> 8 & 255) + 28 * (255 & c)) && (o = c, i = p), i < (m = 77 * (f >> 16 & 255) + 151 * (f >> 8 & 255) + 28 * (255 & f)) && (o = f, i = m), i < (g = 77 * (h >> 16 & 255) + 151 * (h >> 8 & 255) + 28 * (255 & h)) && (o = h, i = g), x[b++] = o;
 
-        k._setPixels(v, x);
-      }, k.erode = function (e) {
-        for (var t, r, n, o, i, a, s, l, u, c, d, f, h, p, y, m, g, v = k._toPixels(e), b = 0, _ = v.length ? v.length / 4 : 0, x = new Int32Array(_); b < _;) for (r = (t = b) + e.width; b < r;) n = o = k._getARGB(v, b), (s = b - 1) < t && (s = b), r <= (a = b + 1) && (a = b), (l = b - e.width) < 0 && (l = 0), _ <= (u = b + e.width) && (u = b), f = k._getARGB(v, l), d = k._getARGB(v, s), h = k._getARGB(v, u), (y = 77 * (d >> 16 & 255) + 151 * (d >> 8 & 255) + 28 * (255 & d)) < (i = 77 * (n >> 16 & 255) + 151 * (n >> 8 & 255) + 28 * (255 & n)) && (o = d, i = y), (p = 77 * ((c = k._getARGB(v, a)) >> 16 & 255) + 151 * (c >> 8 & 255) + 28 * (255 & c)) < i && (o = c, i = p), (m = 77 * (f >> 16 & 255) + 151 * (f >> 8 & 255) + 28 * (255 & f)) < i && (o = f, i = m), (g = 77 * (h >> 16 & 255) + 151 * (h >> 8 & 255) + 28 * (255 & h)) < i && (o = h, i = g), x[b++] = o;
+        A._setPixels(v, x);
+      }, A.erode = function (e) {
+        for (var t, r, n, o, i, a, s, l, u, c, d, f, h, p, y, m, g, v = A._toPixels(e), b = 0, _ = v.length ? v.length / 4 : 0, x = new Int32Array(_); b < _;) for (r = (t = b) + e.width; b < r;) n = o = A._getARGB(v, b), (s = b - 1) < t && (s = b), r <= (a = b + 1) && (a = b), (l = b - e.width) < 0 && (l = 0), _ <= (u = b + e.width) && (u = b), f = A._getARGB(v, l), d = A._getARGB(v, s), h = A._getARGB(v, u), (y = 77 * (d >> 16 & 255) + 151 * (d >> 8 & 255) + 28 * (255 & d)) < (i = 77 * (n >> 16 & 255) + 151 * (n >> 8 & 255) + 28 * (255 & n)) && (o = d, i = y), (p = 77 * ((c = A._getARGB(v, a)) >> 16 & 255) + 151 * (c >> 8 & 255) + 28 * (255 & c)) < i && (o = c, i = p), (m = 77 * (f >> 16 & 255) + 151 * (f >> 8 & 255) + 28 * (255 & f)) < i && (o = f, i = m), (g = 77 * (h >> 16 & 255) + 151 * (h >> 8 & 255) + 28 * (255 & h)) < i && (o = h, i = g), x[b++] = o;
 
-        k._setPixels(v, x);
-      }, k.blur = function (e, t) {
+        A._setPixels(v, x);
+      }, A.blur = function (e, t) {
         n(e, t);
       };
-      var o = k;
+      var o = A;
       r.default = o;
     }, {
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.int32-array": 206,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-array": 223
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.int32-array": 209,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-array": 226
     }],
-    282: [function (e, t, r) {
+    286: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.from"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.set"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/es.typed-array.uint8-array"), e("core-js/modules/es.typed-array.uint32-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.default = void 0;
-      var k = n(e("../core/main")),
-          A = n(e("omggif"));
+      var A = n(e("../core/main")),
+          k = n(e("omggif"));
 
       function n(e) {
         return e && e.__esModule ? e : {
@@ -22623,10 +22854,10 @@ var global = arguments[3];
         }();
       }
 
-      k.default.prototype.createImage = function (e, t) {
-        return k.default._validateParameters("createImage", arguments), new k.default.Image(e, t);
-      }, k.default.prototype.saveCanvas = function () {
-        k.default._validateParameters("saveCanvas", arguments);
+      A.default.prototype.createImage = function (e, t) {
+        return A.default._validateParameters("createImage", arguments), new A.default.Image(e, t);
+      }, A.default.prototype.saveCanvas = function () {
+        A.default._validateParameters("saveCanvas", arguments);
 
         var e,
             t,
@@ -22634,7 +22865,7 @@ var global = arguments[3];
             n,
             o = [].slice.call(arguments);
 
-        switch (arguments[0] instanceof HTMLCanvasElement ? (e = arguments[0], o.shift()) : arguments[0] instanceof k.default.Element ? (e = arguments[0].elt, o.shift()) : e = this._curElement && this._curElement.elt, 1 <= o.length && (t = o[0]), 2 <= o.length && (r = o[1]), r = r || k.default.prototype._checkFileExtension(t, r)[1] || "png") {
+        switch (arguments[0] instanceof HTMLCanvasElement ? (e = arguments[0], o.shift()) : arguments[0] instanceof A.default.Element ? (e = arguments[0].elt, o.shift()) : e = this._curElement && this._curElement.elt, 1 <= o.length && (t = o[0]), 2 <= o.length && (r = o[1]), r = r || A.default.prototype._checkFileExtension(t, r)[1] || "png") {
           default:
             n = "image/png";
             break;
@@ -22645,9 +22876,9 @@ var global = arguments[3];
         }
 
         e.toBlob(function (e) {
-          k.default.prototype.downloadFile(e, t, r);
+          A.default.prototype.downloadFile(e, t, r);
         }, n);
-      }, k.default.prototype.saveGif = function (p, e) {
+      }, A.default.prototype.saveGif = function (p, e) {
         var y = p.gifProperties,
             t = y.loopLimit;
         1 === t ? t = null : null === t && (t = 0);
@@ -22690,7 +22921,7 @@ var global = arguments[3];
 
         g = new Set(g);
 
-        for (var S = {}, j = 0; j < v.length; j++) S[v[j]] || (S[v[j]] = j);
+        for (var j = {}, S = 0; S < v.length; S++) j[v[S]] || (j[v[S]] = S);
 
         for (var M = 1; M < v.length;) M <<= 1;
 
@@ -22699,10 +22930,10 @@ var global = arguments[3];
         for (var E = {
           loop: t,
           palette: new Uint32Array(v)
-        }, T = new A.default.GifWriter(r, p.width, p.height, E), O = {}, C = function (e) {
+        }, T = new k.default.GifWriter(r, p.width, p.height, E), O = {}, C = function (e) {
           for (var t = !g.has(e), r = t ? [] : v, n = new Uint8Array(p.width * p.height), o = {}, i = new Set(), a = 0; a < m[e].length; a++) {
             var s = m[e][a];
-            t ? (void 0 === o[s] && (o[s] = r.length, r.push(s)), n[a] = o[s]) : n[a] = S[s], 0 < e && m[e - 1][a] !== s && i.add(s);
+            t ? (void 0 === o[s] && (o[s] = r.length, r.push(s)), n[a] = o[s]) : n[a] = j[s], 0 < e && m[e - 1][a] !== s && i.add(s);
           }
 
           var l = {},
@@ -22712,7 +22943,7 @@ var global = arguments[3];
 
           if (0 < u.length) {
             var c = u[0],
-                d = t ? o[c] : S[c];
+                d = t ? o[c] : j[c];
 
             if (0 < e) {
               for (var f = 0; f < m[e].length; f++) m[e - 1][f] === m[e][f] && (n[f] = d);
@@ -22737,16 +22968,16 @@ var global = arguments[3];
         var P = new Blob([r.slice(0, T.end())], {
           type: "image/gif"
         });
-        k.default.prototype.downloadFile(P, e, "gif");
-      }, k.default.prototype.saveFrames = function (e, t, r, n, a) {
-        k.default._validateParameters("saveFrames", arguments);
+        A.default.prototype.downloadFile(P, e, "gif");
+      }, A.default.prototype.saveFrames = function (e, t, r, n, a) {
+        A.default._validateParameters("saveFrames", arguments);
 
         var o = r || 3;
-        o = k.default.prototype.constrain(o, 0, 15), o *= 1e3;
+        o = A.default.prototype.constrain(o, 0, 15), o *= 1e3;
         var i = n || 15;
-        i = k.default.prototype.constrain(i, 0, 22);
+        i = A.default.prototype.constrain(i, 0, 22);
         var s = 0,
-            l = k.default.prototype._makeFrame,
+            l = A.default.prototype._makeFrame,
             u = this._curElement.elt,
             c = [],
             d = setInterval(function () {
@@ -22761,7 +22992,7 @@ var global = arguments[3];
             try {
               for (var n, o = c[Symbol.iterator](); !(e = (n = o.next()).done); e = !0) {
                 var i = n.value;
-                k.default.prototype.downloadFile(i.imageData, i.filename, i.ext);
+                A.default.prototype.downloadFile(i.imageData, i.filename, i.ext);
               }
             } catch (e) {
               t = !0, r = e;
@@ -22775,7 +23006,7 @@ var global = arguments[3];
           }
           c = [];
         }, o + .01);
-      }, k.default.prototype._makeFrame = function (e, t, r) {
+      }, A.default.prototype._makeFrame = function (e, t, r) {
         var n, o;
         if (n = this ? this._curElement.elt : r, t) switch (t.toLowerCase()) {
           case "png":
@@ -22795,56 +23026,56 @@ var global = arguments[3];
         var a = {};
         return a.imageData = i, a.filename = e, a.ext = t, a;
       };
-      var o = k.default;
+      var o = A.default;
       r.default = o;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.from": 153,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.set": 180,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint32-array": 222,
-      "core-js/modules/es.typed-array.uint8-array": 223,
-      "core-js/modules/web.dom-collections.iterator": 226,
-      omggif: 235
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.set": 183,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint32-array": 225,
+      "core-js/modules/es.typed-array.uint8-array": 226,
+      "core-js/modules/web.dom-collections.iterator": 229,
+      omggif: 238
     }],
-    283: [function (e, t, r) {
+    287: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -22896,7 +23127,7 @@ var global = arguments[3];
         };
       }
 
-      function S(e, t) {
+      function j(e, t) {
         return 0 < e && e < t ? e : t;
       }
 
@@ -22985,7 +23216,7 @@ var global = arguments[3];
             m = a || 0,
             g = s || u,
             v = l || c;
-        g = S(g, u), v = S(v, c);
+        g = j(g, u), v = j(v, c);
         var b = 1;
         e.elt && !e.canvas && e.elt.style.width && (b = e.elt.videoWidth && !n ? e.elt.videoWidth : e.elt.width, b /= parseInt(e.elt.style.width, 10)), y *= b, m *= b, v *= b, g *= b;
 
@@ -23024,48 +23255,48 @@ var global = arguments[3];
       var i = x.default;
       r.default = i;
     }, {
-      "../core/constants": 250,
-      "../core/friendly_errors/fes_core": 252,
-      "../core/friendly_errors/file_errors": 253,
-      "../core/friendly_errors/validate_params": 255,
-      "../core/helpers": 256,
-      "../core/main": 260,
-      "./filters": 281,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-array": 223,
-      "core-js/modules/es.typed-array.uint8-clamped-array": 224,
-      omggif: 235
+      "../core/constants": 253,
+      "../core/friendly_errors/fes_core": 255,
+      "../core/friendly_errors/file_errors": 256,
+      "../core/friendly_errors/validate_params": 259,
+      "../core/helpers": 260,
+      "../core/main": 264,
+      "./filters": 285,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-array": 226,
+      "core-js/modules/es.typed-array.uint8-clamped-array": 227,
+      omggif: 238
     }],
-    284: [function (e, t, r) {
+    288: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -23084,7 +23315,7 @@ var global = arguments[3];
         this.width = e, this.height = t, this.canvas = document.createElement("canvas"), this.canvas.width = this.width, this.canvas.height = this.height, this.drawingContext = this.canvas.getContext("2d"), (this._pixelsState = this)._pixelDensity = 1, this.gifProperties = null, this._modified = !1, this.pixels = [];
       }, o.default.Image.prototype._animateGif = function (e) {
         var t = this.gifProperties,
-            r = e._lastFrameTime + e.deltaTime;
+            r = e._lastFrameTime;
 
         if (0 === t.lastChangeTime && (t.lastChangeTime = r), t.playing) {
           t.timeDisplayed = r - t.lastChangeTime;
@@ -23193,18 +23424,18 @@ var global = arguments[3];
       var a = o.default.Image;
       r.default = a;
     }, {
-      "../core/main": 260,
-      "./filters": 281,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "./filters": 285,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    285: [function (e, t, r) {
+    289: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.filter"), Object.defineProperty(r, "__esModule", {
@@ -23257,12 +23488,12 @@ var global = arguments[3];
       var i = h.default;
       r.default = i;
     }, {
-      "../color/p5.Color": 248,
-      "../core/main": 260,
-      "./filters": 281,
-      "core-js/modules/es.array.filter": 151
+      "../color/p5.Color": 251,
+      "../core/main": 264,
+      "./filters": 285,
+      "core-js/modules/es.array.filter": 152
     }],
-    286: [function (e, t, r) {
+    290: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.includes"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.last-index-of"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.function.name"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.promise"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.includes"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/es.typed-array.uint8-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), e("core-js/modules/web.dom-collections.iterator"), e("core-js/modules/web.url"), Object.defineProperty(r, "__esModule", {
@@ -23614,61 +23845,61 @@ var global = arguments[3];
       var o = g.default;
       r.default = o;
     }, {
-      "../core/friendly_errors/fes_core": 252,
-      "../core/friendly_errors/file_errors": 253,
-      "../core/friendly_errors/validate_params": 255,
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.last-index-of": 158,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.promise": 175,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-array": 223,
-      "core-js/modules/web.dom-collections.iterator": 226,
-      "core-js/modules/web.url": 228,
-      "es6-promise/auto": 229,
-      "fetch-jsonp": 231,
-      "file-saver": 232,
-      "whatwg-fetch": 239
+      "../core/friendly_errors/fes_core": 255,
+      "../core/friendly_errors/file_errors": 256,
+      "../core/friendly_errors/validate_params": 259,
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.last-index-of": 160,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.promise": 178,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-array": 226,
+      "core-js/modules/web.dom-collections.iterator": 229,
+      "core-js/modules/web.url": 231,
+      "es6-promise/auto": 232,
+      "fetch-jsonp": 234,
+      "file-saver": 235,
+      "whatwg-fetch": 242
     }],
-    287: [function (e, t, r) {
+    291: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.regexp.constructor"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.match"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.trim"), Object.defineProperty(r, "__esModule", {
@@ -23793,19 +24024,19 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.regexp.constructor": 177,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.match": 184,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.trim": 190
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.regexp.constructor": 180,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.trim": 193
     }],
-    288: [function (e, t, r) {
+    292: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.index-of"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.split"), Object.defineProperty(r, "__esModule", {
@@ -23856,14 +24087,14 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.split": 188
+      "../core/main": 264,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.split": 191
     }],
-    289: [function (e, t, r) {
+    293: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.replace"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -24041,19 +24272,19 @@ var global = arguments[3];
       var i = s.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    290: [function (e, t, r) {
+    294: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.includes"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.math.hypot"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.string.includes"), Object.defineProperty(r, "__esModule", {
@@ -24111,7 +24342,9 @@ var global = arguments[3];
       }, s.default.prototype.norm = function (e, t, r) {
         return s.default._validateParameters("norm", arguments), this.map(e, t, r, 0, 1);
       }, s.default.prototype.pow = Math.pow, s.default.prototype.round = function (e, t) {
-        return t ? Number(Math.round(e + "e" + t) + "e-" + t) : Math.round(e);
+        if (!t) return Math.round(e);
+        var r = Math.pow(10, t);
+        return Math.round(e * r) / r;
       }, s.default.prototype.sq = function (e) {
         return e * e;
       }, s.default.prototype.sqrt = Math.sqrt, s.default.prototype.fract = function (e) {
@@ -24127,19 +24360,19 @@ var global = arguments[3];
       var i = s.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.math.hypot": 165,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.string.includes": 182
+      "../core/main": 264,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.math.hypot": 168,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.string.includes": 185
     }],
-    291: [function (e, t, r) {
+    295: [function (e, t, r) {
       "use strict";
 
-      Object.defineProperty(r, "__esModule", {
+      e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.reflect.construct"), e("core-js/modules/es.regexp.to-string"), Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.default = void 0;
       var n,
@@ -24147,16 +24380,46 @@ var global = arguments[3];
         default: n
       };
 
+      function i(e, t, r) {
+        return (i = function () {
+          if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
+          if (Reflect.construct.sham) return !1;
+          if ("function" == typeof Proxy) return !0;
+
+          try {
+            return Date.prototype.toString.call(Reflect.construct(Date, [], function () {})), !0;
+          } catch (e) {
+            return !1;
+          }
+        }() ? Reflect.construct : function (e, t, r) {
+          var n = [null];
+          n.push.apply(n, t);
+          var o = new (Function.bind.apply(e, n))();
+          return r && a(o, r.prototype), o;
+        }).apply(null, arguments);
+      }
+
+      function a(e, t) {
+        return (a = Object.setPrototypeOf || function (e, t) {
+          return e.__proto__ = t, e;
+        })(e, t);
+      }
+
       o.default.prototype.createVector = function (e, t, r) {
-        return this instanceof o.default ? new o.default.Vector(this, arguments) : new o.default.Vector(e, t, r);
+        return this instanceof o.default ? i(o.default.Vector, [this._fromRadians.bind(this), this._toRadians.bind(this)].concat(Array.prototype.slice.call(arguments))) : new o.default.Vector(e, t, r);
       };
 
-      var i = o.default;
-      r.default = i;
+      var s = o.default;
+      r.default = s;
     }, {
-      "../core/main": 260
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.reflect.construct": 179,
+      "core-js/modules/es.regexp.to-string": 182
     }],
-    292: [function (e, t, r) {
+    296: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -24174,7 +24437,7 @@ var global = arguments[3];
       var _,
           x = 4095,
           w = 4,
-          S = .5;
+          j = .5;
 
       o.default.prototype.noise = function (e) {
         var t = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0,
@@ -24190,12 +24453,12 @@ var global = arguments[3];
 
         for (var o, i, a, s, l, u = Math.floor(e), c = Math.floor(t), d = Math.floor(r), f = e - u, h = t - c, p = r - d, y = 0, m = .5, g = 0; g < w; g++) {
           var v = u + (c << 4) + (d << 8);
-          o = b(f), i = b(h), a = _[v & x], a += o * (_[v + 1 & x] - a), s = _[v + 16 & x], a += i * ((s += o * (_[v + 16 + 1 & x] - s)) - a), s = _[(v += 256) & x], s += o * (_[v + 1 & x] - s), l = _[v + 16 & x], s += i * ((l += o * (_[v + 16 + 1 & x] - l)) - s), y += (a += b(p) * (s - a)) * m, m *= S, u <<= 1, c <<= 1, d <<= 1, 1 <= (f *= 2) && (u++, f--), 1 <= (h *= 2) && (c++, h--), 1 <= (p *= 2) && (d++, p--);
+          o = b(f), i = b(h), a = _[v & x], a += o * (_[v + 1 & x] - a), s = _[v + 16 & x], a += i * ((s += o * (_[v + 16 + 1 & x] - s)) - a), s = _[(v += 256) & x], s += o * (_[v + 1 & x] - s), l = _[v + 16 & x], s += i * ((l += o * (_[v + 16 + 1 & x] - l)) - s), y += (a += b(p) * (s - a)) * m, m *= j, u <<= 1, c <<= 1, d <<= 1, 1 <= (f *= 2) && (u++, f--), 1 <= (h *= 2) && (c++, h--), 1 <= (p *= 2) && (d++, p--);
         }
 
         return y;
       }, o.default.prototype.noiseDetail = function (e, t) {
-        0 < e && (w = e), 0 < t && (S = t);
+        0 < e && (w = e), 0 < t && (j = t);
       }, o.default.prototype.noiseSeed = function (e) {
         var t,
             r,
@@ -24218,9 +24481,9 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    293: [function (e, t, r) {
+    297: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -24266,15 +24529,15 @@ var global = arguments[3];
         }, e;
       }
 
-      l.default.Vector = function (e, t, r) {
-        var n, o, i;
-        i = e instanceof l.default ? (this.p5 = e, n = t[0] || 0, o = t[1] || 0, t[2] || 0) : (n = e || 0, o = t || 0, r || 0), this.x = n, this.y = o, this.z = i;
+      l.default.Vector = function (e, t, r, n, o) {
+        var i, a, s;
+        s = "[object Function]" === {}.toString.call(e) ? (this.isPInst = !0, this._fromRadians = e, this._toRadians = t, i = r || 0, a = n || 0, o || 0) : (i = e || 0, a = t || 0, r || 0), this.x = i, this.y = a, this.z = s;
       }, l.default.Vector.prototype.toString = function () {
         return "p5.Vector Object : [".concat(this.x, ", ").concat(this.y, ", ").concat(this.z, "]");
       }, l.default.Vector.prototype.set = function (e, t, r) {
         return e instanceof l.default.Vector ? (this.x = e.x || 0, this.y = e.y || 0, this.z = e.z || 0) : e instanceof Array ? (this.x = e[0] || 0, this.y = e[1] || 0, this.z = e[2] || 0) : (this.x = e || 0, this.y = t || 0, this.z = r || 0), this;
       }, l.default.Vector.prototype.copy = function () {
-        return this.p5 ? new l.default.Vector(this.p5, [this.x, this.y, this.z]) : new l.default.Vector(this.x, this.y, this.z);
+        return this.isPInst ? new l.default.Vector(this._fromRadians, this._toRadians, this.x, this.y, this.z) : new l.default.Vector(this.x, this.y, this.z);
       }, l.default.Vector.prototype.add = function (e, t, r) {
         return e instanceof l.default.Vector ? (this.x += e.x || 0, this.y += e.y || 0, this.z += e.z || 0) : e instanceof Array ? (this.x += e[0] || 0, this.y += e[1] || 0, this.z += e[2] || 0) : (this.x += e || 0, this.y += t || 0, this.z += r || 0), this;
       };
@@ -24293,22 +24556,27 @@ var global = arguments[3];
             var n = parseFloat(e.x),
                 o = parseFloat(e.y),
                 i = parseFloat(e.z);
-            c.call(this, n, o, i);
+            return c.call(this, n, o, i);
           }
-        } else if (e instanceof Array) e.every(function (e) {
-          return Number.isFinite(e);
-        }) && (2 === e.length && u.call(this, e[0], e[1]), 3 === e.length && c.call(this, e[0], e[1], e[2]));else if (1 === arguments.length) {
+        } else if (e instanceof Array) {
+          if (e.every(function (e) {
+            return Number.isFinite(e);
+          })) {
+            if (2 === e.length) return u.call(this, e[0], e[1]);
+            if (3 === e.length) return c.call(this, e[0], e[1], e[2]);
+          }
+        } else if (1 === arguments.length) {
           if (Number.isFinite(e) && 0 !== e) return this.x = this.x % e, this.y = this.y % e, this.z = this.z % e, this;
         } else if (2 === arguments.length) {
           var a = Array.prototype.slice.call(arguments);
-          a.every(function (e) {
+          if (a.every(function (e) {
             return Number.isFinite(e);
-          }) && 2 === a.length && u.call(this, a[0], a[1]);
+          }) && 2 === a.length) return u.call(this, a[0], a[1]);
         } else if (3 === arguments.length) {
           var s = Array.prototype.slice.call(arguments);
-          s.every(function (e) {
+          if (s.every(function (e) {
             return Number.isFinite(e);
-          }) && 3 === s.length && c.call(this, s[0], s[1], s[2]);
+          }) && 3 === s.length) return c.call(this, s[0], s[1], s[2]);
         }
       }, l.default.Vector.prototype.sub = function (e, t, r) {
         return e instanceof l.default.Vector ? (this.x -= e.x || 0, this.y -= e.y || 0, this.z -= e.z || 0) : e instanceof Array ? (this.x -= e[0] || 0, this.y -= e[1] || 0, this.z -= e[2] || 0) : (this.x -= e || 0, this.y -= t || 0, this.z -= r || 0), this;
@@ -24377,7 +24645,7 @@ var global = arguments[3];
         var t = this.y * e.z - this.z * e.y,
             r = this.z * e.x - this.x * e.z,
             n = this.x * e.y - this.y * e.x;
-        return this.p5 ? new l.default.Vector(this.p5, [t, r, n]) : new l.default.Vector(t, r, n);
+        return this.isPInst ? new l.default.Vector(this._fromRadians, this._toRadians, t, r, n) : new l.default.Vector(t, r, n);
       }, l.default.Vector.prototype.dist = function (e) {
         return e.copy().sub(this).mag();
       }, l.default.Vector.prototype.normalize = function () {
@@ -24390,19 +24658,19 @@ var global = arguments[3];
         return this.normalize().mult(e);
       }, l.default.Vector.prototype.heading = function () {
         var e = Math.atan2(this.y, this.x);
-        return this.p5 ? this.p5._fromRadians(e) : e;
+        return this.isPInst ? this._fromRadians(e) : e;
       }, l.default.Vector.prototype.setHeading = function (e) {
         var t = this.mag();
         return this.x = t * Math.cos(e), this.y = t * Math.sin(e), this;
       }, l.default.Vector.prototype.rotate = function (e) {
         var t = this.heading() + e;
-        this.p5 && (t = this.p5._toRadians(t));
+        this.isPInst && (t = this._toRadians(t));
         var r = this.mag();
         return this.x = Math.cos(t) * r, this.y = Math.sin(t) * r, this;
       }, l.default.Vector.prototype.angleBetween = function (e) {
         var t,
             r = this.dot(e) / (this.mag() * e.mag());
-        return t = Math.acos(Math.min(1, Math.max(-1, r))), t *= Math.sign(this.cross(e).z || 1), this.p5 && (t = this.p5._fromRadians(t)), t;
+        return t = Math.acos(Math.min(1, Math.max(-1, r))), t *= Math.sign(this.cross(e).z || 1), this.isPInst && (t = this._fromRadians(t)), t;
       }, l.default.Vector.prototype.lerp = function (e, t, r, n) {
         return e instanceof l.default.Vector ? this.lerp(e.x, e.y, e.z, t) : (this.x += (e - this.x) * n || 0, this.y += (t - this.y) * n || 0, this.z += (r - this.z) * n || 0, this);
       }, l.default.Vector.prototype.reflect = function (e) {
@@ -24465,20 +24733,20 @@ var global = arguments[3];
       var o = l.default.Vector;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.every": 149,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.some": 161,
-      "core-js/modules/es.math.sign": 166,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.number.is-finite": 168,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.sub": 189
+      "../core/constants": 253,
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.every": 150,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.some": 163,
+      "core-js/modules/es.math.sign": 169,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.number.is-finite": 171,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.sub": 192
     }],
-    294: [function (e, t, r) {
+    298: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -24524,9 +24792,9 @@ var global = arguments[3];
       var l = o.default;
       r.default = l;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    295: [function (e, t, r) {
+    299: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -24602,10 +24870,10 @@ var global = arguments[3];
       var l = o.default;
       r.default = l;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260
+      "../core/constants": 253,
+      "../core/main": 264
     }],
-    296: [function (e, t, r) {
+    300: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -24648,9 +24916,9 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    297: [function (e, t, r) {
+    301: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -24726,19 +24994,19 @@ var global = arguments[3];
       var u = f.default;
       r.default = u;
     }, {
-      "../core/constants": 250,
-      "../core/friendly_errors/fes_core": 252,
-      "../core/friendly_errors/file_errors": 253,
-      "../core/friendly_errors/validate_params": 255,
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.last-index-of": 158,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.split": 188,
-      "opentype.js": 236
+      "../core/constants": 253,
+      "../core/friendly_errors/fes_core": 255,
+      "../core/friendly_errors/file_errors": 256,
+      "../core/friendly_errors/validate_params": 259,
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.last-index-of": 160,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.split": 191,
+      "opentype.js": 239
     }],
-    298: [function (e, t, r) {
+    302: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.fill"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.function.name"), e("core-js/modules/es.number.to-fixed"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.string.split"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -24842,10 +25110,10 @@ var global = arguments[3];
             _ = u * e + l * r,
             x = u * t + l * n,
             w = u * o + l * a,
-            S = u * i + l * s,
-            j = 90 - 180 * Math.atan2(m - v, g - b) / Math.PI;
+            j = u * i + l * s,
+            S = 90 - 180 * Math.atan2(m - v, g - b) / Math.PI;
 
-        return (v < m || g < b) && (j += 180), {
+        return (v < m || g < b) && (S += 180), {
           x: p,
           y: y,
           m: {
@@ -24862,9 +25130,9 @@ var global = arguments[3];
           },
           end: {
             x: w,
-            y: S
+            y: j
           },
-          alpha: j
+          alpha: S
         };
       }
 
@@ -24921,11 +25189,11 @@ var global = arguments[3];
                     b = _(t, r, -g), t = b.x, r = b.y, b = _(l, u, -g), l = b.x, u = b.y;
                     var x = (t - l) / 2,
                         w = (r - u) / 2,
-                        S = x * x / (n * n) + w * w / (o * o);
-                    1 < S && (S = Math.sqrt(S), n *= S, o *= S);
-                    var j = n * n,
+                        j = x * x / (n * n) + w * w / (o * o);
+                    1 < j && (j = Math.sqrt(j), n *= j, o *= j);
+                    var S = n * n,
                         M = o * o,
-                        E = (a === s ? -1 : 1) * Math.sqrt(Math.abs((j * M - j * w * w - M * x * x) / (j * w * w + M * x * x)));
+                        E = (a === s ? -1 : 1) * Math.sqrt(Math.abs((S * M - S * w * w - M * x * x) / (S * w * w + M * x * x)));
                     y = E * n * w / o + (t + l) / 2, m = E * -o * x / n + (r + u) / 2, h = Math.asin(((r - m) / o).toFixed(9)), p = Math.asin(((u - m) / o).toFixed(9)), (h = t < y ? d - h : h) < 0 && (h = 2 * d + h), (p = l < y ? d - p : p) < 0 && (p = 2 * d + p), s && p < h && (h -= 2 * d), !s && h < p && (p -= 2 * d);
                   }
                   var T = p - h;
@@ -24939,15 +25207,15 @@ var global = arguments[3];
 
                   T = p - h;
                   var P = Math.cos(h),
-                      k = Math.sin(h),
-                      A = Math.cos(p),
+                      A = Math.sin(h),
+                      k = Math.cos(p),
                       R = Math.sin(p),
                       D = Math.tan(T / 4),
                       I = 4 / 3 * n * D,
                       U = 4 / 3 * o * D,
                       N = [t, r],
-                      F = [t + I * k, r - U * P],
-                      B = [l + I * R, u - U * A],
+                      F = [t + I * A, r - U * P],
+                      B = [l + I * R, u - U * k],
                       G = [l, u];
                   F[0] = 2 * N[0] - F[0];
                   F[1] = 2 * N[1] - F[1];
@@ -24967,11 +25235,11 @@ var global = arguments[3];
                 break;
 
               case "T":
-                "Q" === r || "T" === r ? (t.qx = 2 * t.x - t.qx, t.qy = 2 * t.y - t.qy) : (t.qx = t.x, t.qy = t.y), e = ["C"].concat(S(t.x, t.y, t.qx, t.qy, e[1], e[2]));
+                "Q" === r || "T" === r ? (t.qx = 2 * t.x - t.qx, t.qy = 2 * t.y - t.qy) : (t.qx = t.x, t.qy = t.y), e = ["C"].concat(j(t.x, t.y, t.qx, t.qy, e[1], e[2]));
                 break;
 
               case "Q":
-                t.qx = e[1], t.qy = e[2], e = ["C"].concat(S(t.x, t.y, e[1], e[2], e[3], e[4]));
+                t.qx = e[1], t.qy = e[2], e = ["C"].concat(j(t.x, t.y, e[1], e[2], e[3], e[4]));
                 break;
 
               case "L":
@@ -25170,7 +25438,7 @@ var global = arguments[3];
         return [e, t, r, n, r, n];
       }
 
-      function S(e, t, r, n, o, i) {
+      function j(e, t, r, n, o, i) {
         return [1 / 3 * e + 2 / 3 * r, 1 / 3 * t + 2 / 3 * n, 1 / 3 * o + 2 / 3 * r, 1 / 3 * i + 2 / 3 * n, o, i];
       }
 
@@ -25249,7 +25517,7 @@ var global = arguments[3];
         n = n || this.parent._renderer._textSize;
 
         for (var u = 0; u < l.length; u++) {
-          if (!(l[i = u].name && "space" === l[i].name || e.length === l.length && " " === e[i] || l[i].index && 3 === l[i].index)) for (var c = y(l[u].getPath(t, r, n).commands), d = 0; d < c.length; d++) for (var f = p(c[d], o), h = 0; h < f.length; h++) f[h].x += a, s.push(f[h]);
+          if (!(l[i = u].name && "space" === l[i].name || e.length === l.length && " " === e[i])) for (var c = y(l[u].getPath(t, r, n).commands), d = 0; d < c.length; d++) for (var f = p(c[d], o), h = 0; h < f.length; h++) f[h].x += a, s.push(f[h]);
           a += l[u].advanceWidth * this._scale(n);
         }
 
@@ -25333,26 +25601,26 @@ var global = arguments[3];
       var u = o.default;
       r.default = u;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.number.to-fixed": 169,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/constants": 253,
+      "../core/main": 264,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.number.to-fixed": 172,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    299: [function (e, t, r) {
+    303: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.array-buffer.constructor"), e("core-js/modules/es.object.to-string"), Object.defineProperty(r, "__esModule", {
@@ -25391,14 +25659,14 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array-buffer.constructor": 147,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.object.to-string": 174
+      "../core/main": 264,
+      "core-js/modules/es.array-buffer.constructor": 148,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.object.to-string": 177
     }],
-    300: [function (e, t, r) {
+    304: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.map"), e("core-js/modules/es.number.constructor"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.repeat"), Object.defineProperty(r, "__esModule", {
@@ -25445,14 +25713,14 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.number.constructor": 167,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.repeat": 185
+      "../core/main": 264,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.number.constructor": 170,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.repeat": 188
     }],
-    301: [function (e, t, r) {
+    305: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.filter"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.join"), e("core-js/modules/es.array.map"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.constructor"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.regexp.to-string"), e("core-js/modules/es.string.match"), e("core-js/modules/es.string.replace"), e("core-js/modules/es.string.split"), e("core-js/modules/es.string.trim"), Object.defineProperty(r, "__esModule", {
@@ -25558,25 +25826,25 @@ var global = arguments[3];
       var u = a.default;
       r.default = u;
     }, {
-      "../core/friendly_errors/fes_core": 252,
-      "../core/friendly_errors/file_errors": 253,
-      "../core/friendly_errors/validate_params": 255,
-      "../core/main": 260,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.join": 157,
-      "core-js/modules/es.array.map": 159,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.constructor": 177,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.match": 184,
-      "core-js/modules/es.string.replace": 186,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.string.trim": 190
+      "../core/friendly_errors/fes_core": 255,
+      "../core/friendly_errors/file_errors": 256,
+      "../core/friendly_errors/validate_params": 259,
+      "../core/main": 264,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.join": 159,
+      "core-js/modules/es.array.map": 161,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.constructor": 180,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.replace": 189,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.trim": 193
     }],
-    302: [function (e, t, r) {
+    306: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -25604,9 +25872,9 @@ var global = arguments[3];
       var i = o.default;
       r.default = i;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    303: [function (e, t, r) {
+    307: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -25726,27 +25994,27 @@ var global = arguments[3];
           }
         }
 
-        var S = 0;
+        var j = 0;
 
         if (i) {
           for (u = 0; u < n; ++u) {
-            var j = (u + 1) % n;
-            this.faces.push([S + u, S + n + j, S + n + u]);
+            var S = (u + 1) % n;
+            this.faces.push([j + u, j + n + S, j + n + u]);
           }
 
-          S += 2 * n;
+          j += 2 * n;
         }
 
         for (s = 0; s < o; ++s) {
           for (l = 0; l < n; ++l) {
             var M = (l + 1) % n;
-            this.faces.push([S + l, S + M, S + n + M]), this.faces.push([S + l, S + n + M, S + n + l]);
+            this.faces.push([j + l, j + M, j + n + M]), this.faces.push([j + l, j + n + M, j + n + l]);
           }
 
-          S += n;
+          j += n;
         }
 
-        if (a) for (S += n, l = 0; l < n; ++l) this.faces.push([S + l, S + (l + 1) % n, S + n]);
+        if (a) for (j += n, l = 0; l < n; ++l) this.faces.push([j + l, j + (l + 1) % n, j + n]);
       }
 
       E.default.prototype.cylinder = function (e, t, r, n, o, i) {
@@ -26113,13 +26381,13 @@ var global = arguments[3];
       var o = E.default;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./p5.Geometry": 309,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.number.to-fixed": 169
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./p5.Geometry": 313,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.number.to-fixed": 172
     }],
-    304: [function (e, t, r) {
+    308: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -26227,13 +26495,13 @@ var global = arguments[3];
       var i = f.default;
       r.default = i;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179
+      "../core/constants": 253,
+      "../core/main": 264,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182
     }],
-    305: [function (e, t, r) {
+    309: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -26357,17 +26625,17 @@ var global = arguments[3];
       var i = y.default;
       r.default = i;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260
+      "../core/constants": 253,
+      "../core/main": 264
     }],
-    306: [function (e, t, r) {
+    310: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.concat"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.array.splice"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.regexp.exec"), e("core-js/modules/es.string.match"), e("core-js/modules/es.string.split"), e("core-js/modules/es.string.trim"), Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.default = void 0;
       var n,
-          S = (n = e("../core/main")) && n.__esModule ? n : {
+          j = (n = e("../core/main")) && n.__esModule ? n : {
         default: n
       };
 
@@ -26377,14 +26645,14 @@ var global = arguments[3];
         return !0;
       }
 
-      e("./p5.Geometry"), S.default.prototype.loadModel = function (e) {
+      e("./p5.Geometry"), j.default.prototype.loadModel = function (e) {
         var t, r, n;
 
-        S.default._validateParameters("loadModel", arguments);
+        j.default._validateParameters("loadModel", arguments);
 
         var o = e.slice(-4);
         "boolean" == typeof arguments[1] ? (t = arguments[1], r = arguments[2], n = arguments[3], void 0 !== arguments[4] && (o = arguments[4])) : (t = !1, r = arguments[1], n = arguments[2], void 0 !== arguments[3] && (o = arguments[3]));
-        var i = new S.default.Geometry();
+        var i = new j.default.Geometry();
         i.gid = "".concat(e, "|").concat(t);
         var a = this;
         return o.match(/\.stl$/i) ? this.httpDo(e, "GET", "arrayBuffer", function (e) {
@@ -26407,9 +26675,9 @@ var global = arguments[3];
                   o = 0 == (32768 & v) ? (r = (31 & v) / 31, n = (v >> 5 & 31) / 31, (v >> 10 & 31) / 31) : (r = a, n = s, l);
                 }
 
-                for (var b = new S.default.Vector(y, m, g), _ = 1; _ <= 3; _++) {
+                for (var b = new j.default.Vector(y, m, g), _ = 1; _ <= 3; _++) {
                   var x = p + 12 * _,
-                      w = new S.default.Vector(u.getFloat32(x, !0), u.getFloat32(4 + x, !0), u.getFloat32(8 + x, !0));
+                      w = new j.default.Vector(u.getFloat32(x, !0), u.getFloat32(4 + x, !0), u.getFloat32(8 + x, !0));
                   e.vertices.push(w), e.vertexNormals.push(b), d && i.push(r, n, o);
                 }
 
@@ -26431,7 +26699,7 @@ var global = arguments[3];
 
                     case "solid":
                       if ("facet" !== l[0] || "normal" !== l[1]) return console.error(s), console.error('Invalid state "'.concat(l[0], '", should be "facet normal"'));
-                      r = new S.default.Vector(parseFloat(l[2]), parseFloat(l[3]), parseFloat(l[4])), e.vertexNormals.push(r, r, r), o = "facet normal";
+                      r = new j.default.Vector(parseFloat(l[2]), parseFloat(l[3]), parseFloat(l[4])), e.vertexNormals.push(r, r, r), o = "facet normal";
                       break;
 
                     case "facet normal":
@@ -26440,7 +26708,7 @@ var global = arguments[3];
                       break;
 
                     case "vertex":
-                      if ("vertex" === l[0]) n = new S.default.Vector(parseFloat(l[1]), parseFloat(l[2]), parseFloat(l[3])), e.vertices.push(n), e.uvs.push([0, 0]), i.push(e.vertices.indexOf(n));else {
+                      if ("vertex" === l[0]) n = new j.default.Vector(parseFloat(l[1]), parseFloat(l[2]), parseFloat(l[3])), e.vertices.push(n), e.uvs.push([0, 0]), i.push(e.vertices.indexOf(n));else {
                         if ("endloop" !== l[0]) return console.error(s), console.error('Invalid state "'.concat(l[0], '", should be "vertex" or "endloop"'));
                         e.faces.push(i), i = [], o = "endloop";
                       }
@@ -26454,7 +26722,7 @@ var global = arguments[3];
                     case "endfacet":
                       if ("endsolid" !== l[0]) {
                         if ("facet" !== l[0] || "normal" !== l[1]) return console.error(s), console.error('Invalid state "'.concat(l[0], '", should be "endsolid" or "facet normal"'));
-                        r = new S.default.Vector(parseFloat(l[2]), parseFloat(l[3]), parseFloat(l[4])), e.vertexNormals.push(r, r, r), o = "facet normal";
+                        r = new j.default.Vector(parseFloat(l[2]), parseFloat(l[3]), parseFloat(l[4])), e.vertexNormals.push(r, r, r), o = "facet normal";
                       }
 
                       break;
@@ -26475,7 +26743,7 @@ var global = arguments[3];
             }, n = {}, o = 0; o < t.length; ++o) {
               var i = t[o].trim().split(/\b\s+/);
               if (0 < i.length) if ("v" === i[0] || "vn" === i[0]) {
-                var a = new S.default.Vector(parseFloat(i[1]), parseFloat(i[2]), parseFloat(i[3]));
+                var a = new j.default.Vector(parseFloat(i[1]), parseFloat(i[2]), parseFloat(i[3]));
                 r[i[0]].push(a);
               } else if ("vt" === i[0]) {
                 var s = [parseFloat(i[1]), 1 - parseFloat(i[2])];
@@ -26498,26 +26766,26 @@ var global = arguments[3];
 
             0 === e.vertexNormals.length && e.computeNormals();
           }(i, e), t && i.normalize(), a._decrementPreload(), "function" == typeof r && r(i);
-        }, n) : (S.default._friendlyFileLoadError(3, e), n ? n() : console.error("Sorry, the file type is invalid. Only OBJ and STL files are supported.")), i;
-      }, S.default.prototype.model = function (e) {
-        this._assert3d("model"), S.default._validateParameters("model", arguments), 0 < e.vertices.length && (this._renderer.geometryInHash(e.gid) || (e._makeTriangleEdges()._edgesToVertices(), this._renderer.createBuffers(e.gid, e)), this._renderer.drawBuffers(e.gid));
+        }, n) : (j.default._friendlyFileLoadError(3, e), n ? n() : console.error("Sorry, the file type is invalid. Only OBJ and STL files are supported.")), i;
+      }, j.default.prototype.model = function (e) {
+        this._assert3d("model"), j.default._validateParameters("model", arguments), 0 < e.vertices.length && (this._renderer.geometryInHash(e.gid) || (e._makeTriangleEdges()._edgesToVertices(), this._renderer.createBuffers(e.gid, e)), this._renderer.drawBuffers(e.gid));
       };
-      var o = S.default;
+      var o = j.default;
       r.default = o;
     }, {
-      "../core/main": 260,
-      "./p5.Geometry": 309,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.array.splice": 162,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.match": 184,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.string.trim": 190
+      "../core/main": 264,
+      "./p5.Geometry": 313,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.array.splice": 164,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.match": 187,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.trim": 193
     }],
-    307: [function (e, t, r) {
+    311: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -26603,7 +26871,7 @@ var global = arguments[3];
       }, u.default.prototype.ambientMaterial = function (e, t, r) {
         this._assert3d("ambientMaterial"), u.default._validateParameters("ambientMaterial", arguments);
         var n = u.default.prototype.color.apply(this, arguments);
-        return this._renderer.curFillColor = n._array, this._renderer._useSpecularMaterial = !1, this._renderer._useEmissiveMaterial = !1, this._renderer._useNormalMaterial = !1, this._renderer._enableLighting = !0, this._renderer._tex = null, this;
+        return this._renderer.curFillColor = n._array, this._renderer._useSpecularMaterial = !1, this._renderer._useEmissiveMaterial = !1, this._renderer._useNormalMaterial = !1, this._renderer._enableLighting = !0, this._renderer._tex = null, this._renderer._setProperty("_doFill", !0), this;
       }, u.default.prototype.emissiveMaterial = function (e, t, r, n) {
         this._assert3d("emissiveMaterial"), u.default._validateParameters("emissiveMaterial", arguments);
         var o = u.default.prototype.color.apply(this, arguments);
@@ -26670,12 +26938,12 @@ var global = arguments[3];
       var i = u.default;
       r.default = i;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./p5.Texture": 316,
-      "core-js/modules/es.array.join": 157
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./p5.Texture": 320,
+      "core-js/modules/es.array.join": 159
     }],
-    308: [function (e, t, r) {
+    312: [function (e, t, r) {
       "use strict";
 
       Object.defineProperty(r, "__esModule", {
@@ -26844,9 +27112,9 @@ var global = arguments[3];
       var o = y.default.Camera;
       r.default = o;
     }, {
-      "../core/main": 260
+      "../core/main": 264
     }],
-    309: [function (e, t, r) {
+    313: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.string.sub"), Object.defineProperty(r, "__esModule", {
@@ -26948,10 +27216,10 @@ var global = arguments[3];
       var o = c.default.Geometry;
       r.default = o;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.string.sub": 189
+      "../core/main": 264,
+      "core-js/modules/es.string.sub": 192
     }],
-    310: [function (e, t, r) {
+    314: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.iterator"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.typed-array.float32-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), Object.defineProperty(r, "__esModule", {
@@ -26995,15 +27263,15 @@ var global = arguments[3];
             _ = r * s - n * a,
             x = r * l - o * a,
             w = n * l - o * s,
-            S = u * p - c * h,
-            j = u * y - d * h,
+            j = u * p - c * h,
+            S = u * y - d * h,
             M = u * m - f * h,
             E = c * y - d * p,
             T = c * m - f * p,
             O = d * m - f * y,
-            C = g * O - v * T + b * E + _ * M - x * j + w * S;
+            C = g * O - v * T + b * E + _ * M - x * S + w * j;
 
-        return C ? (C = 1 / C, this.mat4[0] = (a * O - s * T + l * E) * C, this.mat4[1] = (n * T - r * O - o * E) * C, this.mat4[2] = (p * w - y * x + m * _) * C, this.mat4[3] = (d * x - c * w - f * _) * C, this.mat4[4] = (s * M - i * O - l * j) * C, this.mat4[5] = (t * O - n * M + o * j) * C, this.mat4[6] = (y * b - h * w - m * v) * C, this.mat4[7] = (u * w - d * b + f * v) * C, this.mat4[8] = (i * T - a * M + l * S) * C, this.mat4[9] = (r * M - t * T - o * S) * C, this.mat4[10] = (h * x - p * b + m * g) * C, this.mat4[11] = (c * b - u * x - f * g) * C, this.mat4[12] = (a * j - i * E - s * S) * C, this.mat4[13] = (t * E - r * j + n * S) * C, this.mat4[14] = (p * v - h * _ - y * g) * C, this.mat4[15] = (u * _ - c * v + d * g) * C, this) : null;
+        return C ? (C = 1 / C, this.mat4[0] = (a * O - s * T + l * E) * C, this.mat4[1] = (n * T - r * O - o * E) * C, this.mat4[2] = (p * w - y * x + m * _) * C, this.mat4[3] = (d * x - c * w - f * _) * C, this.mat4[4] = (s * M - i * O - l * S) * C, this.mat4[5] = (t * O - n * M + o * S) * C, this.mat4[6] = (y * b - h * w - m * v) * C, this.mat4[7] = (u * w - d * b + f * v) * C, this.mat4[8] = (i * T - a * M + l * j) * C, this.mat4[9] = (r * M - t * T - o * j) * C, this.mat4[10] = (h * x - p * b + m * g) * C, this.mat4[11] = (c * b - u * x - f * g) * C, this.mat4[12] = (a * S - i * E - s * j) * C, this.mat4[13] = (t * E - r * S + n * j) * C, this.mat4[14] = (p * v - h * _ - y * g) * C, this.mat4[15] = (u * _ - c * v + d * g) * C, this) : null;
       }, L.default.Matrix.prototype.invert3x3 = function () {
         var e = this.mat3[0],
             t = this.mat3[1],
@@ -27105,14 +27373,14 @@ var global = arguments[3];
             _ = t * t * b + v,
             x = r * t * b + n * g,
             w = n * t * b - r * g,
-            S = t * r * b - n * g,
-            j = r * r * b + v,
+            j = t * r * b - n * g,
+            S = r * r * b + v,
             M = n * r * b + t * g,
             E = t * n * b + r * g,
             T = r * n * b - t * g,
             O = n * n * b + v;
 
-        return this.mat4[0] = i * _ + u * x + h * w, this.mat4[1] = a * _ + c * x + p * w, this.mat4[2] = s * _ + d * x + y * w, this.mat4[3] = l * _ + f * x + m * w, this.mat4[4] = i * S + u * j + h * M, this.mat4[5] = a * S + c * j + p * M, this.mat4[6] = s * S + d * j + y * M, this.mat4[7] = l * S + f * j + m * M, this.mat4[8] = i * E + u * T + h * O, this.mat4[9] = a * E + c * T + p * O, this.mat4[10] = s * E + d * T + y * O, this.mat4[11] = l * E + f * T + m * O, this;
+        return this.mat4[0] = i * _ + u * x + h * w, this.mat4[1] = a * _ + c * x + p * w, this.mat4[2] = s * _ + d * x + y * w, this.mat4[3] = l * _ + f * x + m * w, this.mat4[4] = i * j + u * S + h * M, this.mat4[5] = a * j + c * S + p * M, this.mat4[6] = s * j + d * S + y * M, this.mat4[7] = l * j + f * S + m * M, this.mat4[8] = i * E + u * T + h * O, this.mat4[9] = a * E + c * T + p * O, this.mat4[10] = s * E + d * T + y * O, this.mat4[11] = l * E + f * T + m * O, this;
       }, L.default.Matrix.prototype.translate = function (e) {
         var t = e[0],
             r = e[1],
@@ -27137,35 +27405,35 @@ var global = arguments[3];
       var i = L.default.Matrix;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.float32-array": 200,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220
+      "../core/main": 264,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.float32-array": 203,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223
     }],
-    311: [function (e, t, r) {
+    315: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.array.map"), Object.defineProperty(r, "__esModule", {
@@ -27204,10 +27472,10 @@ var global = arguments[3];
       var i = o.default.RenderBuffer;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.map": 159
+      "../core/main": 264,
+      "core-js/modules/es.array.map": 161
     }],
-    312: [function (e, t, r) {
+    316: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -27364,43 +27632,43 @@ var global = arguments[3];
       var o = s.default.RendererGL;
       r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./p5.RenderBuffer": 311,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.float32-array": 200,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./p5.RenderBuffer": 315,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.float32-array": 203,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    313: [function (e, t, r) {
+    317: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.fill"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.some"), e("core-js/modules/es.object.keys"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/es.typed-array.float32-array"), e("core-js/modules/es.typed-array.uint16-array"), e("core-js/modules/es.typed-array.uint32-array"), e("core-js/modules/es.typed-array.copy-within"), e("core-js/modules/es.typed-array.every"), e("core-js/modules/es.typed-array.fill"), e("core-js/modules/es.typed-array.filter"), e("core-js/modules/es.typed-array.find"), e("core-js/modules/es.typed-array.find-index"), e("core-js/modules/es.typed-array.for-each"), e("core-js/modules/es.typed-array.includes"), e("core-js/modules/es.typed-array.index-of"), e("core-js/modules/es.typed-array.iterator"), e("core-js/modules/es.typed-array.join"), e("core-js/modules/es.typed-array.last-index-of"), e("core-js/modules/es.typed-array.map"), e("core-js/modules/es.typed-array.reduce"), e("core-js/modules/es.typed-array.reduce-right"), e("core-js/modules/es.typed-array.reverse"), e("core-js/modules/es.typed-array.set"), e("core-js/modules/es.typed-array.slice"), e("core-js/modules/es.typed-array.some"), e("core-js/modules/es.typed-array.sort"), e("core-js/modules/es.typed-array.subarray"), e("core-js/modules/es.typed-array.to-locale-string"), e("core-js/modules/es.typed-array.to-string"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
@@ -27552,47 +27820,47 @@ var global = arguments[3];
       var i = l.default.RendererGL;
       r.default = i;
     }, {
-      "../core/main": 260,
-      "./p5.RenderBuffer": 311,
-      "./p5.RendererGL": 314,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.some": 161,
-      "core-js/modules/es.object.keys": 173,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.float32-array": 200,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint16-array": 221,
-      "core-js/modules/es.typed-array.uint32-array": 222,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "./p5.RenderBuffer": 315,
+      "./p5.RendererGL": 318,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.some": 163,
+      "core-js/modules/es.object.keys": 176,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.float32-array": 203,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint16-array": 224,
+      "core-js/modules/es.typed-array.uint32-array": 225,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    314: [function (e, t, r) {
+    318: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -27683,7 +27951,7 @@ var global = arguments[3];
           geometry: {},
           buffers: {
             stroke: [new u.default.RenderBuffer(3, "lineVertices", "lineVertexBuffer", "aPosition", this, this._flatten), new u.default.RenderBuffer(4, "lineNormals", "lineNormalBuffer", "aDirection", this, this._flatten)],
-            fill: [new u.default.RenderBuffer(3, "vertices", "vertexBuffer", "aPosition", this, this._vToNArray), new u.default.RenderBuffer(3, "vertexNormals", "normalBuffer", "aNormal", this, this._vToNArray), new u.default.RenderBuffer(4, "vertexColors", "colorBuffer", "aMaterialColor", this), new u.default.RenderBuffer(3, "vertexAmbients", "ambientBuffer", "aAmbientColor", this), new u.default.RenderBuffer(2, "uvs", "uvBuffer", "aTexCoord", this, this._flatten)],
+            fill: [new u.default.RenderBuffer(3, "vertices", "vertexBuffer", "aPosition", this, this._vToNArray), new u.default.RenderBuffer(3, "vertexNormals", "normalBuffer", "aNormal", this, this._vToNArray), new u.default.RenderBuffer(4, "vertexColors", "colorBuffer", "aVertexColor", this), new u.default.RenderBuffer(3, "vertexAmbients", "ambientBuffer", "aAmbientColor", this), new u.default.RenderBuffer(2, "uvs", "uvBuffer", "aTexCoord", this, this._flatten)],
             text: [new u.default.RenderBuffer(3, "vertices", "vertexBuffer", "aPosition", this, this._vToNArray), new u.default.RenderBuffer(2, "uvs", "uvBuffer", "aTexCoord", this, this._flatten)]
           }
         }, this.immediateMode = {
@@ -27700,7 +27968,7 @@ var global = arguments[3];
         }, this.pointSize = 5, this.curStrokeWeight = 1, this.textures = [], this.textureMode = i.IMAGE, this.textureWrapX = i.CLAMP, this.textureWrapY = i.CLAMP, this._tex = null, this._curveTightness = 6, this._lookUpTableBezier = [], this._lookUpTableQuadratic = [], this._lutBezierDetail = 0, this._lutQuadraticDetail = 0, this._tessy = this._initTessy(), this.fontInfos = {}, this._curShader = void 0, this;
       }, u.default.RendererGL.prototype = Object.create(u.default.Renderer.prototype), u.default.RendererGL.prototype._setAttributeDefaults = function (e) {
         var t = {
-          alpha: !0,
+          alpha: !1,
           depth: !0,
           stencil: !0,
           antialias: navigator.userAgent.toLowerCase().includes("safari"),
@@ -27800,7 +28068,7 @@ var global = arguments[3];
             t = (arguments.length <= 1 ? void 0 : arguments[1]) || 0,
             r = (arguments.length <= 2 ? void 0 : arguments[2]) || 0,
             n = (arguments.length <= 3 ? void 0 : arguments[3]) || 0;
-        this.GL.clearColor(e, t, r, n), this.GL.clear(this.GL.COLOR_BUFFER_BIT | this.GL.DEPTH_BUFFER_BIT);
+        this.GL.clearColor(e, t, r, n), this.GL.clearDepth(1), this.GL.clear(this.GL.COLOR_BUFFER_BIT | this.GL.DEPTH_BUFFER_BIT);
       }, u.default.RendererGL.prototype.applyMatrix = function (e, t, r, n, o, i) {
         16 === arguments.length ? u.default.Matrix.prototype.apply.apply(this.uMVMatrix, arguments) : this.uMVMatrix.apply([e, t, 0, 0, r, n, 0, 0, 0, 0, 1, 0, o, i, 0, 1]);
       }, u.default.RendererGL.prototype.translate = function (e, t, r) {
@@ -28006,73 +28274,73 @@ var global = arguments[3];
       var f = u.default.RendererGL;
       r.default = f;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "../core/p5.Renderer": 263,
-      "./p5.Camera": 308,
-      "./p5.Matrix": 310,
-      "./p5.Shader": 315,
-      "core-js/modules/es.array.concat": 148,
-      "core-js/modules/es.array.fill": 150,
-      "core-js/modules/es.array.filter": 151,
-      "core-js/modules/es.array.from": 153,
-      "core-js/modules/es.array.includes": 154,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.object.assign": 170,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.to-string": 179,
-      "core-js/modules/es.string.includes": 182,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.float32-array": 200,
-      "core-js/modules/es.typed-array.float64-array": 201,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.int16-array": 205,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint16-array": 221,
-      "core-js/modules/es.typed-array.uint32-array": 222,
-      "core-js/modules/es.typed-array.uint8-array": 223,
-      "core-js/modules/web.dom-collections.iterator": 226,
-      libtess: 234,
-      path: 237
+      "../core/constants": 253,
+      "../core/main": 264,
+      "../core/p5.Renderer": 267,
+      "./p5.Camera": 312,
+      "./p5.Matrix": 314,
+      "./p5.Shader": 319,
+      "core-js/modules/es.array.concat": 149,
+      "core-js/modules/es.array.fill": 151,
+      "core-js/modules/es.array.filter": 152,
+      "core-js/modules/es.array.from": 155,
+      "core-js/modules/es.array.includes": 156,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.object.assign": 173,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.to-string": 182,
+      "core-js/modules/es.string.includes": 185,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.float32-array": 203,
+      "core-js/modules/es.typed-array.float64-array": 204,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.int16-array": 208,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint16-array": 224,
+      "core-js/modules/es.typed-array.uint32-array": 225,
+      "core-js/modules/es.typed-array.uint8-array": 226,
+      "core-js/modules/web.dom-collections.iterator": 229,
+      libtess: 237,
+      path: 240
     }],
-    315: [function (e, t, r) {
+    319: [function (e, t, r) {
       "use strict";
 
       e("core-js/modules/es.symbol"), e("core-js/modules/es.symbol.description"), e("core-js/modules/es.symbol.iterator"), e("core-js/modules/es.array.index-of"), e("core-js/modules/es.array.iterator"), e("core-js/modules/es.array.slice"), e("core-js/modules/es.function.name"), e("core-js/modules/es.object.to-string"), e("core-js/modules/es.string.iterator"), e("core-js/modules/web.dom-collections.iterator"), Object.defineProperty(r, "__esModule", {
         value: !0
       }), r.default = void 0;
       var n,
-          o = (n = e("../core/main")) && n.__esModule ? n : {
+          i = (n = e("../core/main")) && n.__esModule ? n : {
         default: n
       };
-      o.default.Shader = function (e, t, r) {
+      i.default.Shader = function (e, t, r) {
         this._renderer = e, this._vertSrc = t, this._fragSrc = r, this._vertShader = -1, this._fragShader = -1, this._glProgram = 0, this._loadedAttributes = !1, this.attributes = {}, this._loadedUniforms = !1, this.uniforms = {}, this._bound = !1, this.samplers = [];
-      }, o.default.Shader.prototype.init = function () {
+      }, i.default.Shader.prototype.init = function () {
         if (0 === this._glProgram) {
           var e = this._renderer.GL;
           if (this._vertShader = e.createShader(e.VERTEX_SHADER), e.shaderSource(this._vertShader, this._vertSrc), e.compileShader(this._vertShader), !e.getShaderParameter(this._vertShader, e.COMPILE_STATUS)) return console.error("Yikes! An error occurred compiling the vertex shader:".concat(e.getShaderInfoLog(this._vertShader))), null;
@@ -28081,7 +28349,7 @@ var global = arguments[3];
         }
 
         return this;
-      }, o.default.Shader.prototype._loadAttributes = function () {
+      }, i.default.Shader.prototype._loadAttributes = function () {
         if (!this._loadedAttributes) {
           this.attributes = {};
 
@@ -28095,23 +28363,23 @@ var global = arguments[3];
 
           this._loadedAttributes = !0;
         }
-      }, o.default.Shader.prototype._loadUniforms = function () {
+      }, i.default.Shader.prototype._loadUniforms = function () {
         if (!this._loadedUniforms) {
           for (var e = this._renderer.GL, t = e.getProgramParameter(this._glProgram, e.ACTIVE_UNIFORMS), r = 0, n = 0; n < t; ++n) {
             var o = e.getActiveUniform(this._glProgram, n),
                 i = {};
             i.location = e.getUniformLocation(this._glProgram, o.name), i.size = o.size;
             var a = o.name;
-            1 < o.size && (a = a.substring(0, a.indexOf("[0]"))), i.name = a, i.type = o.type, i._cachedData = void 0, i.type === e.SAMPLER_2D && (i.samplerIndex = r, r++, this.samplers.push(i)), i.isArray = i.type === e.FLOAT_MAT3 || i.type === e.FLOAT_MAT4 || i.type === e.FLOAT_VEC2 || i.type === e.FLOAT_VEC3 || i.type === e.FLOAT_VEC4 || i.type === e.INT_VEC2 || i.type === e.INT_VEC3 || i.type === e.INT_VEC4, this.uniforms[a] = i;
+            1 < o.size && (a = a.substring(0, a.indexOf("[0]"))), i.name = a, i.type = o.type, i._cachedData = void 0, i.type === e.SAMPLER_2D && (i.samplerIndex = r, r++, this.samplers.push(i)), i.isArray = 1 < o.size || i.type === e.FLOAT_MAT3 || i.type === e.FLOAT_MAT4 || i.type === e.FLOAT_VEC2 || i.type === e.FLOAT_VEC3 || i.type === e.FLOAT_VEC4 || i.type === e.INT_VEC2 || i.type === e.INT_VEC4 || i.type === e.INT_VEC3, this.uniforms[a] = i;
           }
 
           this._loadedUniforms = !0;
         }
-      }, o.default.Shader.prototype.compile = function () {}, o.default.Shader.prototype.bindShader = function () {
+      }, i.default.Shader.prototype.compile = function () {}, i.default.Shader.prototype.bindShader = function () {
         this.init(), this._bound || (this.useProgram(), this._bound = !0, this._setMatrixUniforms(), this.setUniform("uViewport", this._renderer._viewport));
-      }, o.default.Shader.prototype.unbindShader = function () {
+      }, i.default.Shader.prototype.unbindShader = function () {
         return this._bound && (this.unbindTextures(), this._bound = !1), this;
-      }, o.default.Shader.prototype.bindTextures = function () {
+      }, i.default.Shader.prototype.bindTextures = function () {
         var e = this._renderer.GL,
             t = !0,
             r = !1,
@@ -28132,7 +28400,7 @@ var global = arguments[3];
             if (r) throw n;
           }
         }
-      }, o.default.Shader.prototype.updateTextures = function () {
+      }, i.default.Shader.prototype.updateTextures = function () {
         var e = !0,
             t = !1,
             r = void 0;
@@ -28151,12 +28419,16 @@ var global = arguments[3];
             if (t) throw r;
           }
         }
-      }, o.default.Shader.prototype.unbindTextures = function () {}, o.default.Shader.prototype._setMatrixUniforms = function () {
-        this.setUniform("uProjectionMatrix", this._renderer.uPMatrix.mat4), this.isStrokeShader() && ("default" === this._renderer._curCamera.cameraType ? this.setUniform("uPerspective", 1) : this.setUniform("uPerspective", 0)), this.setUniform("uModelViewMatrix", this._renderer.uMVMatrix.mat4), this.setUniform("uViewMatrix", this._renderer._curCamera.cameraMatrix.mat4), this.uniforms.uNormalMatrix && (this._renderer.uNMatrix.inverseTranspose(this._renderer.uMVMatrix), this.setUniform("uNormalMatrix", this._renderer.uNMatrix.mat3));
-      }, o.default.Shader.prototype.useProgram = function () {
+      }, i.default.Shader.prototype.unbindTextures = function () {}, i.default.Shader.prototype._setMatrixUniforms = function () {
+        var e = this._renderer._curCamera.cameraMatrix,
+            t = this._renderer.uPMatrix,
+            r = this._renderer.uMVMatrix,
+            n = r.copy();
+        n.mult(t), this.isStrokeShader() && ("default" === this._renderer._curCamera.cameraType ? this.setUniform("uPerspective", 1) : this.setUniform("uPerspective", 0)), this.setUniform("uViewMatrix", e.mat4), this.setUniform("uProjectionMatrix", t.mat4), this.setUniform("uModelViewMatrix", r.mat4), this.setUniform("uModelViewProjectionMatrix", n.mat4), this.uniforms.uNormalMatrix && (this._renderer.uNMatrix.inverseTranspose(this._renderer.uMVMatrix), this.setUniform("uNormalMatrix", this._renderer.uNMatrix.mat3));
+      }, i.default.Shader.prototype.useProgram = function () {
         var e = this._renderer.GL;
         return this._renderer._curShader !== this && (e.useProgram(this._glProgram), this._renderer._curShader = this), this;
-      }, o.default.Shader.prototype.setUniform = function (e, t) {
+      }, i.default.Shader.prototype.setUniform = function (e, t) {
         var r = this.uniforms[e];
 
         if (r) {
@@ -28167,7 +28439,7 @@ var global = arguments[3];
             r._cachedData = t.slice(0);
           } else {
             if (r._cachedData && r._cachedData === t) return;
-            r._cachedData = t;
+            Array.isArray(t) ? r._cachedData = t.slice(0) : r._cachedData = t;
           }
 
           var o = r.location;
@@ -28218,24 +28490,24 @@ var global = arguments[3];
               break;
 
             case n.SAMPLER_2D:
-              n.activeTexture(n.TEXTURE0 + r.samplerIndex), r.texture = this._renderer.getTexture(t), n.uniform1i(r.location, r.samplerIndex);
+              n.activeTexture(n.TEXTURE0 + r.samplerIndex), r.texture = t instanceof i.default.Texture ? t : this._renderer.getTexture(t), n.uniform1i(o, r.samplerIndex);
           }
 
           return this;
         }
-      }, o.default.Shader.prototype.isLightShader = function () {
+      }, i.default.Shader.prototype.isLightShader = function () {
         return void 0 !== this.attributes.aNormal || void 0 !== this.uniforms.uUseLighting || void 0 !== this.uniforms.uAmbientLightCount || void 0 !== this.uniforms.uDirectionalLightCount || void 0 !== this.uniforms.uPointLightCount || void 0 !== this.uniforms.uAmbientColor || void 0 !== this.uniforms.uDirectionalDiffuseColors || void 0 !== this.uniforms.uDirectionalSpecularColors || void 0 !== this.uniforms.uPointLightLocation || void 0 !== this.uniforms.uPointLightDiffuseColors || void 0 !== this.uniforms.uPointLightSpecularColors || void 0 !== this.uniforms.uLightingDirection || void 0 !== this.uniforms.uSpecular;
-      }, o.default.Shader.prototype.isNormalShader = function () {
+      }, i.default.Shader.prototype.isNormalShader = function () {
         return void 0 !== this.attributes.aNormal;
-      }, o.default.Shader.prototype.isTextureShader = function () {
-        return 0 < this.samplerIndex;
-      }, o.default.Shader.prototype.isColorShader = function () {
+      }, i.default.Shader.prototype.isTextureShader = function () {
+        return 0 < this.samplers.length;
+      }, i.default.Shader.prototype.isColorShader = function () {
         return void 0 !== this.attributes.aVertexColor || void 0 !== this.uniforms.uMaterialColor;
-      }, o.default.Shader.prototype.isTexLightShader = function () {
+      }, i.default.Shader.prototype.isTexLightShader = function () {
         return this.isLightShader() && this.isTextureShader();
-      }, o.default.Shader.prototype.isStrokeShader = function () {
+      }, i.default.Shader.prototype.isStrokeShader = function () {
         return void 0 !== this.uniforms.uStrokeWeight;
-      }, o.default.Shader.prototype.enableAttrib = function (e, t, r, n, o, i) {
+      }, i.default.Shader.prototype.enableAttrib = function (e, t, r, n, o, i) {
         if (e) {
           0;
           var a = e.location;
@@ -28248,22 +28520,22 @@ var global = arguments[3];
 
         return this;
       };
-      var i = o.default.Shader;
-      r.default = i;
+      var o = i.default.Shader;
+      r.default = o;
     }, {
-      "../core/main": 260,
-      "core-js/modules/es.array.index-of": 155,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.array.slice": 160,
-      "core-js/modules/es.function.name": 163,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/main": 264,
+      "core-js/modules/es.array.index-of": 157,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.array.slice": 162,
+      "core-js/modules/es.function.name": 166,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }],
-    316: [function (e, t, r) {
+    320: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -28279,7 +28551,7 @@ var global = arguments[3];
       }), r.default = void 0;
 
       var n,
-          o = (n = e("../core/main")) && n.__esModule ? n : {
+          i = (n = e("../core/main")) && n.__esModule ? n : {
         default: n
       },
           s = function (e) {
@@ -28309,25 +28581,26 @@ var global = arguments[3];
         }, e;
       }
 
-      o.default.Texture = function (e, t) {
+      i.default.Texture = function (e, t, r) {
         this._renderer = e;
-        var r = this._renderer.GL;
-        this.src = t, this.glTex = void 0, this.glTarget = r.TEXTURE_2D, this.glFormat = r.RGBA, this.mipmaps = !1, this.glMinFilter = r.LINEAR, this.glMagFilter = r.LINEAR, this.glWrapS = r.CLAMP_TO_EDGE, this.glWrapT = r.CLAMP_TO_EDGE, this.isSrcMediaElement = void 0 !== o.default.MediaElement && t instanceof o.default.MediaElement, this._videoPrevUpdateTime = 0, this.isSrcHTMLElement = void 0 !== o.default.Element && t instanceof o.default.Element && !(t instanceof o.default.Graphics), this.isSrcP5Image = t instanceof o.default.Image, this.isSrcP5Graphics = t instanceof o.default.Graphics, this.isImageData = "undefined" != typeof ImageData && t instanceof ImageData;
+        var n = this._renderer.GL;
+        (r = r || {}).dataType === n.FLOAT && (n.getExtension("OES_texture_float") || console.log("Oh no, your device doesn't support floating point textures!"), n.getExtension("OES_texture_float_linear") || console.log("Ack! Your device doesn't support linear filtering for floating point textures"));
+        this.src = t, this.glTex = void 0, this.glTarget = n.TEXTURE_2D, this.glFormat = r.format || n.RGBA, this.mipmaps = !1, this.glMinFilter = r.minFilter || n.LINEAR, this.glMagFilter = r.magFilter || n.LINEAR, this.glWrapS = r.wrapS || n.CLAMP_TO_EDGE, this.glWrapT = r.wrapT || n.CLAMP_TO_EDGE, this.glDataType = r.dataType || n.UNSIGNED_BYTE, this.isSrcMediaElement = void 0 !== i.default.MediaElement && t instanceof i.default.MediaElement, this._videoPrevUpdateTime = 0, this.isSrcHTMLElement = void 0 !== i.default.Element && t instanceof i.default.Element && !(t instanceof i.default.Graphics), this.isSrcP5Image = t instanceof i.default.Image, this.isSrcP5Graphics = t instanceof i.default.Graphics, this.isImageData = "undefined" != typeof ImageData && t instanceof ImageData;
 
-        var n = this._getTextureDataFromSource();
+        var o = this._getTextureDataFromSource();
 
-        return this.width = n.width, this.height = n.height, this.init(n), this;
-      }, o.default.Texture.prototype._getTextureDataFromSource = function () {
+        return this.width = o.width, this.height = o.height, this.init(o), this;
+      }, i.default.Texture.prototype._getTextureDataFromSource = function () {
         var e;
         return this.isSrcP5Image ? e = this.src.canvas : this.isSrcMediaElement || this.isSrcP5Graphics || this.isSrcHTMLElement ? e = this.src.elt : this.isImageData && (e = this.src), e;
-      }, o.default.Texture.prototype.init = function (e) {
+      }, i.default.Texture.prototype.init = function (e) {
         var t = this._renderer.GL;
 
         if (this.glTex = t.createTexture(), this.glWrapS = this._renderer.textureWrapX, this.glWrapT = this._renderer.textureWrapY, this.setWrapMode(this.glWrapS, this.glWrapT), this.bindTexture(), t.texParameteri(t.TEXTURE_2D, t.TEXTURE_MAG_FILTER, this.glMagFilter), t.texParameteri(t.TEXTURE_2D, t.TEXTURE_MIN_FILTER, this.glMinFilter), 0 === this.width || 0 === this.height || this.isSrcMediaElement && !this.src.loadedmetadata) {
           var r = new Uint8Array([1, 1, 1, 1]);
-          t.texImage2D(this.glTarget, 0, t.RGBA, 1, 1, 0, this.glFormat, t.UNSIGNED_BYTE, r);
-        } else t.texImage2D(this.glTarget, 0, this.glFormat, this.glFormat, t.UNSIGNED_BYTE, e);
-      }, o.default.Texture.prototype.update = function () {
+          t.texImage2D(this.glTarget, 0, t.RGBA, 1, 1, 0, this.glFormat, this.glDataType, r);
+        } else t.texImage2D(this.glTarget, 0, this.glFormat, this.glFormat, this.glDataType, e);
+      }, i.default.Texture.prototype.update = function () {
         var e = this.src;
         if (0 === e.width || 0 === e.height) return !1;
 
@@ -28335,15 +28608,15 @@ var global = arguments[3];
             r = !1,
             n = this._renderer.GL;
 
-        return t.width !== this.width || t.height !== this.height ? (r = !0, this.width = t.width, this.height = t.height, this.isSrcP5Image ? e.setModified(!1) : (this.isSrcMediaElement || this.isSrcHTMLElement) && e.setModified(!0)) : this.isSrcP5Image ? e.isModified() && (r = !0, e.setModified(!1)) : this.isSrcMediaElement ? e.isModified() ? (r = !0, e.setModified(!1)) : e.loadedmetadata && this._videoPrevUpdateTime !== e.time() && (this._videoPrevUpdateTime = e.time(), r = !0) : this.isImageData ? e._dirty && (r = !(e._dirty = !1)) : r = !0, r && (this.bindTexture(), n.texImage2D(this.glTarget, 0, this.glFormat, this.glFormat, n.UNSIGNED_BYTE, t)), r;
-      }, o.default.Texture.prototype.bindTexture = function () {
+        return t.width !== this.width || t.height !== this.height ? (r = !0, this.width = t.width, this.height = t.height, this.isSrcP5Image ? e.setModified(!1) : (this.isSrcMediaElement || this.isSrcHTMLElement) && e.setModified(!0)) : this.isSrcP5Image ? e.isModified() && (r = !0, e.setModified(!1)) : this.isSrcMediaElement ? e.isModified() ? (r = !0, e.setModified(!1)) : e.loadedmetadata && this._videoPrevUpdateTime !== e.time() && (this._videoPrevUpdateTime = e.time(), r = !0) : this.isImageData ? e._dirty && (r = !(e._dirty = !1)) : r = !0, r && (this.bindTexture(), n.texImage2D(this.glTarget, 0, this.glFormat, this.glFormat, this.glDataType, t)), r;
+      }, i.default.Texture.prototype.bindTexture = function () {
         return this._renderer.GL.bindTexture(this.glTarget, this.glTex), this;
-      }, o.default.Texture.prototype.unbindTexture = function () {
+      }, i.default.Texture.prototype.unbindTexture = function () {
         this._renderer.GL.bindTexture(this.glTarget, null);
-      }, o.default.Texture.prototype.setInterpolation = function (e, t) {
+      }, i.default.Texture.prototype.setInterpolation = function (e, t) {
         var r = this._renderer.GL;
         e === s.NEAREST ? this.glMinFilter = r.NEAREST : this.glMinFilter = r.LINEAR, t === s.NEAREST ? this.glMagFilter = r.NEAREST : this.glMagFilter = r.LINEAR, this.bindTexture(), r.texParameteri(r.TEXTURE_2D, r.TEXTURE_MIN_FILTER, this.glMinFilter), r.texParameteri(r.TEXTURE_2D, r.TEXTURE_MAG_FILTER, this.glMagFilter), this.unbindTexture();
-      }, o.default.Texture.prototype.setWrapMode = function (e, t) {
+      }, i.default.Texture.prototype.setWrapMode = function (e, t) {
         function r(e) {
           return 0 == (e & e - 1);
         }
@@ -28353,39 +28626,39 @@ var global = arguments[3];
             i = r(this.height);
         e === s.REPEAT ? o && i ? this.glWrapS = n.REPEAT : (console.warn("You tried to set the wrap mode to REPEAT but the texture size is not a power of two. Setting to CLAMP instead"), this.glWrapS = n.CLAMP_TO_EDGE) : e === s.MIRROR ? o && i ? this.glWrapS = n.MIRRORED_REPEAT : (console.warn("You tried to set the wrap mode to MIRROR but the texture size is not a power of two. Setting to CLAMP instead"), this.glWrapS = n.CLAMP_TO_EDGE) : this.glWrapS = n.CLAMP_TO_EDGE, t === s.REPEAT ? o && i ? this.glWrapT = n.REPEAT : (console.warn("You tried to set the wrap mode to REPEAT but the texture size is not a power of two. Setting to CLAMP instead"), this.glWrapT = n.CLAMP_TO_EDGE) : t === s.MIRROR ? o && i ? this.glWrapT = n.MIRRORED_REPEAT : (console.warn("You tried to set the wrap mode to MIRROR but the texture size is not a power of two. Setting to CLAMP instead"), this.glWrapT = n.CLAMP_TO_EDGE) : this.glWrapT = n.CLAMP_TO_EDGE, this.bindTexture(), n.texParameteri(n.TEXTURE_2D, n.TEXTURE_WRAP_S, this.glWrapS), n.texParameteri(n.TEXTURE_2D, n.TEXTURE_WRAP_T, this.glWrapT), this.unbindTexture();
       };
-      var i = o.default.Texture;
-      r.default = i;
+      var o = i.default.Texture;
+      r.default = o;
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.typed-array.copy-within": 194,
-      "core-js/modules/es.typed-array.every": 195,
-      "core-js/modules/es.typed-array.fill": 196,
-      "core-js/modules/es.typed-array.filter": 197,
-      "core-js/modules/es.typed-array.find": 199,
-      "core-js/modules/es.typed-array.find-index": 198,
-      "core-js/modules/es.typed-array.for-each": 202,
-      "core-js/modules/es.typed-array.includes": 203,
-      "core-js/modules/es.typed-array.index-of": 204,
-      "core-js/modules/es.typed-array.iterator": 207,
-      "core-js/modules/es.typed-array.join": 208,
-      "core-js/modules/es.typed-array.last-index-of": 209,
-      "core-js/modules/es.typed-array.map": 210,
-      "core-js/modules/es.typed-array.reduce": 212,
-      "core-js/modules/es.typed-array.reduce-right": 211,
-      "core-js/modules/es.typed-array.reverse": 213,
-      "core-js/modules/es.typed-array.set": 214,
-      "core-js/modules/es.typed-array.slice": 215,
-      "core-js/modules/es.typed-array.some": 216,
-      "core-js/modules/es.typed-array.sort": 217,
-      "core-js/modules/es.typed-array.subarray": 218,
-      "core-js/modules/es.typed-array.to-locale-string": 219,
-      "core-js/modules/es.typed-array.to-string": 220,
-      "core-js/modules/es.typed-array.uint8-array": 223
+      "../core/constants": 253,
+      "../core/main": 264,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.typed-array.copy-within": 197,
+      "core-js/modules/es.typed-array.every": 198,
+      "core-js/modules/es.typed-array.fill": 199,
+      "core-js/modules/es.typed-array.filter": 200,
+      "core-js/modules/es.typed-array.find": 202,
+      "core-js/modules/es.typed-array.find-index": 201,
+      "core-js/modules/es.typed-array.for-each": 205,
+      "core-js/modules/es.typed-array.includes": 206,
+      "core-js/modules/es.typed-array.index-of": 207,
+      "core-js/modules/es.typed-array.iterator": 210,
+      "core-js/modules/es.typed-array.join": 211,
+      "core-js/modules/es.typed-array.last-index-of": 212,
+      "core-js/modules/es.typed-array.map": 213,
+      "core-js/modules/es.typed-array.reduce": 215,
+      "core-js/modules/es.typed-array.reduce-right": 214,
+      "core-js/modules/es.typed-array.reverse": 216,
+      "core-js/modules/es.typed-array.set": 217,
+      "core-js/modules/es.typed-array.slice": 218,
+      "core-js/modules/es.typed-array.some": 219,
+      "core-js/modules/es.typed-array.sort": 220,
+      "core-js/modules/es.typed-array.subarray": 221,
+      "core-js/modules/es.typed-array.to-locale-string": 222,
+      "core-js/modules/es.typed-array.to-string": 223,
+      "core-js/modules/es.typed-array.uint8-array": 226
     }],
-    317: [function (e, t, r) {
+    321: [function (e, t, r) {
       "use strict";
 
       function a(e) {
@@ -28402,7 +28675,7 @@ var global = arguments[3];
           G = (n = e("../core/main")) && n.__esModule ? n : {
         default: n
       },
-          A = function (e) {
+          k = function (e) {
         if (e && e.__esModule) return e;
         if (null === e || "object" !== a(e) && "function" != typeof e) return {
           default: e
@@ -28623,8 +28896,8 @@ var global = arguments[3];
           }
 
           var x = !0,
-              S = !1,
-              j = void 0;
+              j = !1,
+              S = void 0;
 
           try {
             for (var M, E = l[Symbol.iterator](); !(x = (M = E.next()).done); x = !0) {
@@ -28664,8 +28937,8 @@ var global = arguments[3];
                     break;
 
                   case "C":
-                    for (var k = v(u, c, (T.x1 - o) / a, (T.y1 - i) / s, (T.x2 - o) / a, (T.y2 - i) / s, O, C), A = 0; A < k.length; A++) {
-                      var R = k[A].toQuadratic();
+                    for (var A = v(u, c, (T.x1 - o) / a, (T.y1 - i) / s, (T.x2 - o) / a, (T.y2 - i) / s, O, C), k = 0; k < A.length; k++) {
+                      var R = A[k].toQuadratic();
                       m([R.x, R.x1, R.cx], [R.y, R.y1, R.cy], R);
                     }
 
@@ -28679,12 +28952,12 @@ var global = arguments[3];
               }
             }
           } catch (e) {
-            S = !0, j = e;
+            j = !0, S = e;
           } finally {
             try {
               x || null == E.return || E.return();
             } finally {
-              if (S) throw j;
+              if (j) throw S;
             }
           }
 
@@ -28735,7 +29008,7 @@ var global = arguments[3];
             e.push();
             var i = this._doStroke,
                 a = this.drawMode;
-            this._doStroke = !1, this.drawMode = A.TEXTURE;
+            this._doStroke = !1, this.drawMode = k.TEXTURE;
             var s = this._textFont.font,
                 l = this._textFont._fontInfo;
             l = l || (this._textFont._fontInfo = new R(s));
@@ -28782,21 +29055,21 @@ var global = arguments[3];
             try {
               var x = 0,
                   w = null,
-                  S = s.stringToGlyphs(t),
-                  j = !0,
+                  j = s.stringToGlyphs(t),
+                  S = !0,
                   M = !1,
                   E = void 0;
 
               try {
-                for (var T, O = S[Symbol.iterator](); !(j = (T = O.next()).done); j = !0) {
+                for (var T, O = j[Symbol.iterator](); !(S = (T = O.next()).done); S = !0) {
                   var C = T.value;
                   w && (x += s.getKerningValue(w, C));
                   var L = l.getGlyphInfo(C);
 
                   if (L.uGlyphRect) {
                     var P = L.rowInfo,
-                        k = L.colInfo;
-                    h.setUniform("uSamplerStrokes", L.strokeImageInfo.imageData), h.setUniform("uSamplerRowStrokes", P.cellImageInfo.imageData), h.setUniform("uSamplerRows", P.dimImageInfo.imageData), h.setUniform("uSamplerColStrokes", k.cellImageInfo.imageData), h.setUniform("uSamplerCols", k.dimImageInfo.imageData), h.setUniform("uGridOffset", L.uGridOffset), h.setUniform("uGlyphRect", L.uGlyphRect), h.setUniform("uGlyphOffset", x), h.bindTextures(), d.drawElements(d.TRIANGLES, 6, this.GL.UNSIGNED_SHORT, 0);
+                        A = L.colInfo;
+                    h.setUniform("uSamplerStrokes", L.strokeImageInfo.imageData), h.setUniform("uSamplerRowStrokes", P.cellImageInfo.imageData), h.setUniform("uSamplerRows", P.dimImageInfo.imageData), h.setUniform("uSamplerColStrokes", A.cellImageInfo.imageData), h.setUniform("uSamplerCols", A.dimImageInfo.imageData), h.setUniform("uGridOffset", L.uGridOffset), h.setUniform("uGlyphRect", L.uGlyphRect), h.setUniform("uGlyphOffset", x), h.bindTextures(), d.drawElements(d.TRIANGLES, 6, this.GL.UNSIGNED_SHORT, 0);
                   }
 
                   x += C.advanceWidth, w = C;
@@ -28805,7 +29078,7 @@ var global = arguments[3];
                 M = !0, E = e;
               } finally {
                 try {
-                  j || null == O.return || O.return();
+                  S || null == O.return || O.return();
                 } finally {
                   if (M) throw E;
                 }
@@ -28819,22 +29092,22 @@ var global = arguments[3];
         } else console.log("WEBGL: you must load and set a font before drawing text. See `loadFont` and `textFont` for more details.");
       };
     }, {
-      "../core/constants": 250,
-      "../core/main": 260,
-      "./p5.RendererGL.Retained": 313,
-      "./p5.Shader": 315,
-      "core-js/modules/es.array.iterator": 156,
-      "core-js/modules/es.object.to-string": 174,
-      "core-js/modules/es.regexp.exec": 178,
-      "core-js/modules/es.string.iterator": 183,
-      "core-js/modules/es.string.split": 188,
-      "core-js/modules/es.string.sub": 189,
-      "core-js/modules/es.symbol": 193,
-      "core-js/modules/es.symbol.description": 191,
-      "core-js/modules/es.symbol.iterator": 192,
-      "core-js/modules/web.dom-collections.iterator": 226
+      "../core/constants": 253,
+      "../core/main": 264,
+      "./p5.RendererGL.Retained": 317,
+      "./p5.Shader": 319,
+      "core-js/modules/es.array.iterator": 158,
+      "core-js/modules/es.object.to-string": 177,
+      "core-js/modules/es.regexp.exec": 181,
+      "core-js/modules/es.string.iterator": 186,
+      "core-js/modules/es.string.split": 191,
+      "core-js/modules/es.string.sub": 192,
+      "core-js/modules/es.symbol": 196,
+      "core-js/modules/es.symbol.description": 194,
+      "core-js/modules/es.symbol.iterator": 195,
+      "core-js/modules/web.dom-collections.iterator": 229
     }]
-  }, {}, [245])(245);
+  }, {}, [248])(248);
 });
 },{}],"src/Objects/config.js":[function(require,module,exports) {
 "use strict";
@@ -29324,12 +29597,18 @@ exports.default = Helper;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -29490,12 +29769,18 @@ exports.default = DifficultyOneSubject;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -29653,12 +29938,18 @@ exports.default = DifficultyTwoSubject;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -29799,12 +30090,18 @@ exports.default = DifficultyFiveSubject;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -29971,12 +30268,18 @@ exports.default = DifficultyThreeSubject;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -30145,12 +30448,18 @@ exports.default = DifficultyFourSubject;
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -31692,7 +32001,7 @@ var s = function s(sketch) {
   var game;
 
   sketch.setup = function () {
-    sketch.createCanvas(window.innerWidth, window.innerHeight); // sketch.frameRate(config.game.frameRate);
+    sketch.createCanvas(window.innerWidth, window.innerHeight); // sketch.frameRate(configs.game.frameRate);
 
     sketch.angleMode(sketch.DEGREES);
     game = new _Game.default(sketch);
@@ -31735,7 +32044,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60351" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
