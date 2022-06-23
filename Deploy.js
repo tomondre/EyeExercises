@@ -36,18 +36,26 @@ ghpages.publish('AnalgyphExercise', AnalgyphExerciseSettings, () => {
                     dest: 'SmoothPursuit',
                     branch: 'gh-pages'
                 };
-                    ghpages.publish('SmoothPursuit/dist', SmoothPursuitSettings, () => {
+                ghpages.publish('SmoothPursuit/dist', SmoothPursuitSettings, () => {
                     console.log("SmoothPursuit deployed")
-                     }).then(() => {
-                        let RedBlueColumns = {
-                            dest: 'RedBlueColumns',
+                }).then(() => {
+                    let RedBlueColumns = {
+                        dest: 'RedBlueColumns',
+                        branch: 'gh-pages'
+                    };
+                    ghpages.publish('RedBlueColumns/dist', RedBlueColumns, () => {
+                        console.log("RedBlueColumns deployed")
+                    }).then(() => {
+                        let ThreeDTraining = {
+                            dest: '3DTraining',
                             branch: 'gh-pages'
                         };
-                        ghpages.publish('RedBlueColumns/dist', RedBlueColumns, () => {
-                            console.log("RedBlueColumns deployed")
+                        ghpages.publish('3DTraining/dist', ThreeDTraining, () => {
+                            console.log("3DTraining deployed")
                         }).then(() => {
                             console.log(("deployed"))
-                    } );
+                        });
+                    });
 
                 });
             });

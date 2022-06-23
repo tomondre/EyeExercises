@@ -4,9 +4,9 @@
   "description": "",
   "main": "Deploy.js",
   "scripts": {
-    "deployAll": "cd FootballGame && npm run build && cd .. && cd JumpingColumn && npm run build && cd .. && cd Maze && npm run build && cd .. && cd SmoothPursuit && npm run build && cd .. && cd RedBlueColumns && npm run build && cd .. && node Deploy.js",
+    "deployAll": "cd FootballGame && npm run build && cd .. && cd JumpingColumn && npm run build && cd .. && cd Maze && npm run build && cd .. && cd SmoothPursuit && npm run build && cd .. && cd RedBlueColumns && npm run build && cd ..  && cd 3DTraining && npm run build && cd .. && node Deploy.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "installAll": "cd FootballGame && npm install && cd .. && cd JumpingColumn && npm install && cd .. && cd Maze && npm install && cd .. && cd SmoothPursuit && npm install && cd .. && cd RedBlueColumns && npm install && cd .."
+    "installAll": "cd FootballGame && npm install && cd .. && cd JumpingColumn && npm install && cd .. && cd Maze && npm install && cd .. && cd SmoothPursuit && npm install && cd .. && cd RedBlueColumns && npm install && cd .. && cd 3DTraining && npm install && cd .."
   },
   "repository": {
     "type": "git",
