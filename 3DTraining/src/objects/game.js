@@ -83,7 +83,7 @@ export default class Game{
             mistakes = 0
         } else {
             this.scoreDown(5)
-            //this.levelDown()
+            this.levelDown()
         }
 
     }
