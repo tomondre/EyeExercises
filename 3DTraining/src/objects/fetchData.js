@@ -1,5 +1,9 @@
 import {config} from "../Config/config";
 
+/**
+ * persistence part
+ * saves currently to local storage
+ */
 export default class FetchDataManager {
     saveLevelIndex(level) {
         if(level >= 0 && level < config.levels.length)
@@ -38,4 +42,17 @@ export default class FetchDataManager {
         } else
             return parseInt(index);
     }
+
+    static saveCurrentScore(score){
+        window.localStorage.setItem("908/CurrentScore/", score);
+    }
+    static getCurrentScore(){
+        console.log("local storage of score")
+        var score = window.localStorage.getItem("908/CurrentScore/");
+        if (score === null || score <= 0) {
+            return 0
+        } else
+            return parseInt(score);
+    }
+
 }

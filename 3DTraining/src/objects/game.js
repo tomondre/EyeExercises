@@ -25,7 +25,8 @@ export default class Game{
         message = new MessageManager(timer)
         level = new LevelManager(data, pictures, message)
         timeSetting = new TimeSetting(() => this.show())
-        score = 0
+        score = FetchDataManager.getCurrentScore()
+        this.updateScore()
     }
 
     create(){
@@ -67,6 +68,7 @@ export default class Game{
     }
 
     updateScore() {
+        FetchDataManager.saveCurrentScore(score)
         document.getElementById("scoreField").innerHTML = "Score: " + score;
     }
 
@@ -87,11 +89,11 @@ export default class Game{
 
     scoreUp(){
         score += 5;
-        this.updateScore(score);
+        this.updateScore(score)
     }
     scoreDown(value){
-        score = (score <= 3 ? 0 : score - value);
-        this.updateScore(score);
+        score = (score <= 3 ? 0 : score - value)
+        this.updateScore(score)
     }
 
     levelDown(){

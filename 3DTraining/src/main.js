@@ -12,8 +12,6 @@ const s = (sketch) => {
         game.create()
     }
 
-    sketch.draw = function () {
-    }
 }
 new p5(s);
 
