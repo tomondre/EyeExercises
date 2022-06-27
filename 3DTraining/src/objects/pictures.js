@@ -37,23 +37,30 @@ export default class Pictures {
 
     setupInputField(levelIndex) {
         document.getElementById("inputImg").src = "img/" + config.levels[levelIndex].levelName + "/exp.png"
-        document.getElementById("button1").coords = config.levels[levelIndex].button1
-        document.getElementById("button2").coords = config.levels[levelIndex].button2
-        document.getElementById("button3").coords = config.levels[levelIndex].button3
-        document.getElementById("button4").coords = config.levels[levelIndex].button4
-        document.getElementById("button5").coords = config.levels[levelIndex].button5
-        document.getElementById("button6").coords = config.levels[levelIndex].button6
+
 
         var uagent = navigator.userAgent.toLowerCase()
-        if(uagent.search("android") > -1 || uagent.search("apple") > -1){
-            // document.getElementById(("inputImg")).width = config.levels[levelIndex].expPhoneWidth
-            // document.getElementById(("inputImg")).height = config.levels[levelIndex].expPhoneHeight
-            document.getElementById(("inputImg")).width = config.levels[levelIndex].expWidth
-            document.getElementById(("inputImg")).height = config.levels[levelIndex].expHeight
+        if(uagent.search("android") > -1 || uagent.search("apple") > -1 && uagent.search("apple") != 42){
+            document.getElementById(("inputImg")).width = config.levels[levelIndex].phone.expWidth
+            document.getElementById(("inputImg")).height = config.levels[levelIndex].phone.expHeight
+
+            document.getElementById("button1").coords = config.levels[levelIndex].phone.button1
+            document.getElementById("button2").coords = config.levels[levelIndex].phone.button2
+            document.getElementById("button3").coords = config.levels[levelIndex].phone.button3
+            document.getElementById("button4").coords = config.levels[levelIndex].phone.button4
+            document.getElementById("button5").coords = config.levels[levelIndex].phone.button5
+            document.getElementById("button6").coords = config.levels[levelIndex].phone.button6
         }
         else {
-            document.getElementById(("inputImg")).width = config.levels[levelIndex].expWidth
-            document.getElementById(("inputImg")).height = config.levels[levelIndex].expHeight
+            document.getElementById(("inputImg")).width = config.levels[levelIndex].computer.expWidth
+            document.getElementById(("inputImg")).height = config.levels[levelIndex].computer.expHeight
+
+            document.getElementById("button1").coords = config.levels[levelIndex].computer.button1
+            document.getElementById("button2").coords = config.levels[levelIndex].computer.button2
+            document.getElementById("button3").coords = config.levels[levelIndex].computer.button3
+            document.getElementById("button4").coords = config.levels[levelIndex].computer.button4
+            document.getElementById("button5").coords = config.levels[levelIndex].computer.button5
+            document.getElementById("button6").coords = config.levels[levelIndex].computer.button6
         }
     }
 

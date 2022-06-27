@@ -73,6 +73,7 @@ export default class Game{
     }
 
     DisplayImage(str) {
+        console.log(str)
         var img = document.getElementById("img3D");
 
         if (img.src.indexOf("-" + str) !== -1) {
@@ -82,7 +83,7 @@ export default class Game{
             mistakes = 0
         } else {
             this.scoreDown(5)
-            this.levelDown()
+            //this.levelDown()
         }
 
     }
