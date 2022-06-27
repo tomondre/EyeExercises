@@ -20,7 +20,7 @@ let maxTime = 15000,
 export default class Game{
     constructor() {
         data = new FetchDataManager()
-        timer = new Timer(() => this.timePassed())
+        timer = new Timer(() => this.timePassed(), () => this.scoreDown(3))
         pictures = new Pictures()
         message = new MessageManager(timer)
         level = new LevelManager(data, pictures, message)
@@ -74,14 +74,23 @@ export default class Game{
         var img = document.getElementById("img3D");
 
         if (img.src.indexOf("-" + str) !== -1) {
-            score += 5;
+            this.scoreUp()
             this.levelUp()
+            timer.resetTicks()
             mistakes = 0
         } else {
-            score = (score <= 2 ? 0 : score - 5);
+            this.scoreDown(5)
             this.levelDown()
         }
 
+    }
+
+    scoreUp(){
+        score += 5;
+        this.updateScore(score);
+    }
+    scoreDown(value){
+        score = (score <= 3 ? 0 : score - value);
         this.updateScore(score);
     }
 

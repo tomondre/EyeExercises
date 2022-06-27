@@ -43,8 +43,18 @@ export default class Pictures {
         document.getElementById("button4").coords = config.levels[levelIndex].button4
         document.getElementById("button5").coords = config.levels[levelIndex].button5
         document.getElementById("button6").coords = config.levels[levelIndex].button6
-        document.getElementById(("inputImg")).width = config.levels[levelIndex].expWidth
-        document.getElementById(("inputImg")).height = config.levels[levelIndex].expHeight
+
+        var uagent = navigator.userAgent.toLowerCase()
+        if(uagent.search("android") > -1 || uagent.search("apple") > -1){
+            // document.getElementById(("inputImg")).width = config.levels[levelIndex].expPhoneWidth
+            // document.getElementById(("inputImg")).height = config.levels[levelIndex].expPhoneHeight
+            document.getElementById(("inputImg")).width = config.levels[levelIndex].expWidth
+            document.getElementById(("inputImg")).height = config.levels[levelIndex].expHeight
+        }
+        else {
+            document.getElementById(("inputImg")).width = config.levels[levelIndex].expWidth
+            document.getElementById(("inputImg")).height = config.levels[levelIndex].expHeight
+        }
     }
 
     setupSquarePictures() {

@@ -1,20 +1,20 @@
 
 import FetchDataManager from "./fetchData"
 
-
-
-
-let timerObject;
-let time;
-let timerInterval;
-let shouldTimerBeContinued = true;
-let shouldTimerBeDisplayed = true;
-let call
+let timerObject
+let time,
+    ticks = 0
+let timerInterval
+let shouldTimerBeContinued = true
+let shouldTimerBeDisplayed = true
+let call,
+    callScore
 
 
 export default class Timer {
-    constructor(Callback) {
+    constructor(Callback, CallbackScore) {
         call = Callback
+        callScore = CallbackScore
         if (time === -1)
         {
             shouldTimerBeDisplayed = false;
@@ -55,13 +55,22 @@ export default class Timer {
 
     tick() {
         if(time > 0) {
-            time--;
+            time--
+            ticks++
             this.update()
         }
         else {
             this.pause()
             call()
         }
+        if(ticks >= 15){
+            callScore()
+            this.resetTicks()
+        }
+    }
+
+    resetTicks(){
+        ticks = 0;
     }
 
     pause() {

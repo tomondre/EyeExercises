@@ -11,6 +11,8 @@ export const config = {
                 button6:"61,55,84,78",
                 expHeight:"130",
                 expWidth:"134",
+                expPhoneHeight:"230",
+                expPhoneWidth:"234",
             },
             {
                 levelName: "star",
@@ -22,6 +24,8 @@ export const config = {
                 button6:"61,55,84,78",
                 expHeight:"130",
                 expWidth:"134",
+                expPhoneHeight:"230",
+                expPhoneWidth:"234",
             },
             {
                 levelName: "square",
@@ -33,6 +37,8 @@ export const config = {
                 button6:"",
                 expHeight:"130",
                 expWidth:"406",
+                expPhoneHeight:"230",
+                expPhoneWidth:"234",
             },
             {
                 levelName: "circle",
@@ -44,6 +50,8 @@ export const config = {
                 button6:"61,55,84,78",
                 expHeight:"130",
                 expWidth:"129",
+                expPhoneHeight:"230",
+                expPhoneWidth:"234",
             },
         ]
     ,
